@@ -20,7 +20,7 @@ import org.uncommons.maths.binary.BinaryUtils;
 
 /**
  * <p>This is the default {@link Random JDK RNG} extended
- * to implement the {@link RepeatableRNG} interface (for consitency with
+ * to implement the {@link RepeatableRNG} interface (for consistency with
  * the other RNGs in this package).</p>
  *
  * <p>The {@link MersenneTwisterRNG} should be used in preference to this
