@@ -117,6 +117,7 @@
     <delete dir="${release.dir}" />
     <delete dir="${temp.dir}" />
     <delete dir="${build.dir}"/>
+    <delete file="velocity.log" />
   </target>
 
 
@@ -246,6 +247,9 @@
                      totalbranchrate="${minimum.coverage}"
                      datafile="${temp.dir}/cobertura.ser"/>
 
+    <!-- Clean up afterwards. -->
+    <delete dir="${temp.dir}" />
+    <delete file="velocity.log" />
   </target>
 
 
@@ -271,7 +275,7 @@
       </fileset>
     </delete>
     <api.docs api.dir="${web.dir}/api" />
-    <copy todir="${web.dir}" file="./CHANGELOG.txt" />
+    <!--<copy todir="${web.dir}" file="./CHANGELOG.txt" />-->
   </target>
 
 </project>

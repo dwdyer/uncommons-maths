@@ -40,7 +40,7 @@
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
   </component>
-  <component name="CppTools.Loader" reportImplicitCastToBool="false" version="1" />
+  <component name="CppTools.Loader" reportImplicitCastToBool="false" warnedAboutFileOutOfSourceRoot="true" version="1" />
   <component name="DataSourceManagerImpl" />
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
