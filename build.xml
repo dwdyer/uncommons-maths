@@ -1,0 +1,277 @@
+<!-- =========================================================================
+  Copyright 2006, 2007 Daniel W. Dyer
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may notP use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+========================================================================== -->
+<project name="uncommons-maths" default="dist" basedir=".">
+  <description>Ant build file for Uncommons Maths library.</description>
+
+
+<!-- ==================================================================
+     GLOBAL BUILD PROPERTIES
+=================================================================== -->
+
+  <!-- Project-global locations. -->
+  <property name="conf.dir" location="./etc" />
+  <property name="lib.dir" location="./lib" />
+  <property name="lib.compiletime" location="${lib.dir}/compiletime" />
+  <property name="lib.runtime" location="${lib.dir}/runtime" />
+  <property name="dist.dir" location="./dist" />
+  <property name="docs.dir" location="./docs" />
+  <property name="api.dir" location="${docs.dir}/api" />
+  <property name="coverage.dir" location="${docs.dir}/coverage" />
+  <property name="test-results.dir" location="${docs.dir}/test-results" />
+  <property name="release.dir" location="./release" />
+  <property name="web.dir" location="./www" />
+  <property name="temp.dir" location="./temp" />
+
+  <!-- Per-module locations. -->
+  <property name="src.dir" value="src" />
+  <property name="java.dir" value="${src.dir}/java" />
+  <property name="build.dir" value="build"/>
+  <property name="classes.dir" value="${build.dir}/classes" />
+
+  <!-- Classpath for compilation and tests. -->
+  <path id="base.path">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <property name="version" value="1.0"/>
+  <property name="artifact.identifier" value="uncommons-maths-${version}"/>
+
+  <!-- This is the minimum coverage percentage (for both lines and
+       branches) that will be tolerated.  This is used to prevent
+       regressions in coverage.  The threshold will be raised as
+       test coverage improves. -->
+  <property name="minimum.coverage" value="75" />
+
+
+  <!-- This macro compiles one source group (i.e. the main source tree
+       or the unit test source tree) of a given module. -->
+  <macrodef name="compile.src.group">
+    <attribute name="src.group"/>
+    <element name="groupclasspath" optional="true"/>
+    <sequential>
+      <mkdir dir="./${classes.dir}/@{src.group}" />
+      <javac destdir="./${classes.dir}/@{src.group}"
+             debug="on"
+             deprecation="on"
+             optimize="on"
+             source="1.5"
+             target="1.5"
+             srcdir="./${java.dir}/@{src.group}">
+        <classpath>
+          <groupclasspath/>
+          <path refid="base.path"/>
+        </classpath>
+        <compilerarg value="-Xlint:unchecked" />
+      </javac>
+    </sequential>
+  </macrodef>
+
+  <!-- Generates API documentation for all modules. -->
+  <macrodef name="api.docs">
+    <attribute name="api.dir"/>
+    <sequential>
+      <mkdir dir="@{api.dir}"/>
+      <javadoc destdir="@{api.dir}"
+               doctitle="Uncommons Maths ${version}"
+               windowtitle="Uncommons Maths API">
+        <fileset dir="." defaultexcludes="yes">
+          <include name="**/${java.dir}/main/org/uncommons/**/*.java"/>
+        </fileset>
+        <header><![CDATA[Uncommons Maths API<br><small>(Version ${version})</small>]]></header>
+        <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
+      </javadoc>
+    </sequential>
+  </macrodef>
+
+
+<!-- ==================================================================
+     TARGETS FOR BUILDING THE SOFTWARE
+=================================================================== -->
+
+  <!-- Builds everything from scratch. -->
+  <target name="all"
+          depends="clean, test"
+          description="Builds everything, excluding docs, from scratch."/>
+
+
+  <!-- Deletes all directories and files created by the build process. -->
+  <target name="clean"
+          description="Remove all files created by the build process." >
+    <delete dir="${docs.dir}" />
+    <delete dir="${dist.dir}" />
+    <delete dir="${release.dir}" />
+    <delete dir="${temp.dir}" />
+    <delete dir="${build.dir}"/>
+  </target>
+
+
+  <target name="compile"
+          description="Compiles all classes (main and test).">
+    <compile.src.group src.group="main" />
+    <compile.src.group src.group="test">
+      <groupclasspath>
+        <!-- Add the main classes to the classpath for unit test compilation. -->
+        <path location="${classes.dir}/main" />
+      </groupclasspath>
+    </compile.src.group>
+  </target>
+
+
+  <target name="jar"
+          description="Packages the library.">
+    <jar destfile="${build.dir}/${artifact.identifier}.jar">
+      <fileset dir="${classes.dir}/main"/>
+    </jar>
+  </target>
+
+
+  <!-- Copy all necessary files to distribution directory. -->
+  <target name="dist"
+          depends="compile, jar"
+          description="Generate the project distribution." >
+    <mkdir dir="${dist.dir}" />
+    <!-- Copy all application JARs and 3rd party libraries. -->
+    <copy todir="${dist.dir}" flatten="true">
+      <fileset dir="." includes="${build.dir}/*.jar" />
+      <fileset dir="." includes="${lib.runtime}/*.jar" />
+    </copy>
+  </target>
+
+
+  <!-- Create the release artifacts. -->
+  <target name="release"
+          depends="clean, dist, test, docs"
+          description="Creates the release archives.">
+    <mkdir dir="${release.dir}" />
+    <!-- Create a GZipped TAR file containing the built binaries and the API
+         documentation. -->
+    <tar destfile="${release.dir}/${artifact.identifier}.tgz"
+         compression="gzip"
+         longfile="gnu">
+      <tarfileset dir="${dist.dir}"
+                  prefix="${artifact.identifier}"
+                  includes="**/*" />
+      <tarfileset dir="${api.dir}"
+                  prefix="${artifact.identifier}/docs/api"
+                  includes="**/*" />
+      <!-- Don't forget to include the licence and other important information. -->
+      <tarfileset dir="."
+                  prefix="${artifact.identifier}"
+                  includes="*.txt" />
+    </tar>
+    <!-- Also create a zip file release for the convenience of Windows users. -->
+    <zip destfile="${release.dir}/${artifact.identifier}.zip">
+      <zipfileset dir="${dist.dir}"
+                  prefix="${artifact.identifier}"
+                  includes="**/*" />
+      <zipfileset dir="${api.dir}"
+                  prefix="${artifact.identifier}/docs/api"
+                  includes="**/*" />
+      <!-- Don't forget to include the licence and other important information. -->
+      <zipfileset dir="."
+                  prefix="${artifact.identifier}"
+                  includes="*.txt" />
+    </zip>
+  </target>
+
+
+<!-- ==================================================================
+      TARGETS FOR GENERATING TEST REPORTS & DOCUMENTATION
+ =================================================================== -->
+
+  <!-- Runs unit tests for all modules. -->
+  <target name="test"
+          depends="dist"
+          description="Run the unit test suite.">
+    <mkdir dir="${temp.dir}" />
+
+    <!-- Bytecode instrumentation to enable collection of test coverage data. -->
+    <taskdef resource="tasks.properties" classpathref="base.path" />
+    <cobertura-instrument todir="${temp.dir}"
+                          datafile="${temp.dir}/cobertura.ser">
+      <fileset dir="${dist.dir}" includes="**/*.jar"/>
+    </cobertura-instrument>
+
+    <!-- Run the unit tests on the instrumented classes. -->
+    <taskdef resource="testngtasks" classpathref="base.path"/>
+    <path id="test.path">
+      <dirset dir=".">
+        <include name="${classes.dir}/test" />
+      </dirset>
+      <fileset dir="${temp.dir}" includes="*.jar"/>
+      <path refid="base.path" />
+    </path>
+    <mkdir dir="${test-results.dir}" />
+    <testng classpathref="test.path"
+            outputdir="${test-results.dir}"
+            haltonfailure="true"
+            useDefaultListeners="false"
+            listeners="org.uncommons.reportng.HTMLReporter">
+      <xmlfileset dir="${conf.dir}" includes="testng.xml"/>
+      <sysproperty key="net.sourceforge.cobertura.datafile"
+                   file="${temp.dir}/cobertura.ser" />
+      <sysproperty key="org.uncommons.reportng.title"
+                   value="Uncommons Maths Unit Test Report" />
+      <sysproperty key="org.uncommons.reportng.coverage-report"
+                   value="../coverage/index.html" />
+    </testng>
+
+    <!-- Generate the coverage report. -->
+    <mkdir dir="${coverage.dir}" />
+    <cobertura-report format="html"
+                      destdir="${coverage.dir}"
+                      datafile="${temp.dir}/cobertura.ser">
+      <fileset dir="${java.dir}/main">
+        <include name="**/*.java" />
+      </fileset>
+    </cobertura-report>
+
+    <!-- If the coverage is poor, fail. -->
+    <cobertura-check totallinerate="${minimum.coverage}"
+                     totalbranchrate="${minimum.coverage}"
+                     datafile="${temp.dir}/cobertura.ser"/>
+
+  </target>
+
+
+  <!-- Generates API documentation for all modules. -->
+  <target name="docs"
+          description="Generates Javadoc API documentation.">
+    <api.docs api.dir="${api.dir}" />
+  </target>
+
+
+<!-- ==================================================================
+      TARGETS FOR UPDATING THE PROJECT WEBSITE
+ =================================================================== -->
+
+  <!-- Refresh the API documentation tree for the project website. -->
+  <target name="website-docs"
+          description="Re-builds the website Javadocs."
+          depends="dist">
+    <!-- Delete all existing HTML files and then regenerate the docs over the top. -->
+    <delete>
+      <fileset dir="${web.dir}/api">
+        <include name="**/*.html" />
+      </fileset>
+    </delete>
+    <api.docs api.dir="${web.dir}/api" />
+    <copy todir="${web.dir}" file="./CHANGELOG.txt" />
+  </target>
+
+</project>
