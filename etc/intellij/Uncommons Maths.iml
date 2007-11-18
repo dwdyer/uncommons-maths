@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/../../src/java/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/java/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../dist" />
+      <excludeFolder url="file://$MODULE_DIR$/../../docs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

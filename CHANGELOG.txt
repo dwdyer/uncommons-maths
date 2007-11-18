@@ -1,0 +1,8 @@
+Changes in version 1.0.1
+------------------------
+
+* Added minimum, maximum and median methods to DataSet class.
+
+* Fixed logic around zero-length combinations and permutations.
+
+* Improved unit test coverage.
