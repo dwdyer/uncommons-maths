@@ -54,9 +54,9 @@ public class CombinationGenerator<T>
         {
             throw new IllegalArgumentException("Combination length cannot be greater than set size.");
         }
-        if (elements.length < 1 || elements.length > MAX_SET_LENGTH)
+        if (elements.length > MAX_SET_LENGTH)
         {
-            throw new IllegalArgumentException("Combination length must be between 1 and 20.");
+            throw new IllegalArgumentException("Combination length must be less than or equal to 20.");
         }
 
         this.elements = elements.clone();
@@ -136,15 +136,9 @@ public class CombinationGenerator<T>
     @SuppressWarnings("unchecked")
     public T[] nextCombinationAsArray()
     {
-        generateNextCombinationIndices();
-        // Generate actual combination.
         T[] combination = (T[]) Array.newInstance(elements.getClass().getComponentType(),
                                                   combinationIndices.length);
-        for (int i = 0; i < combinationIndices.length; i++)
-        {
-            combination[i] = elements[combinationIndices[i]];
-        }
-        return combination;
+        return nextCombinationAsArray(combination);
     }
 
 
@@ -161,8 +155,9 @@ public class CombinationGenerator<T>
      * @param destination Provides an array to use to create the
      * combination.  The specified array must be the same length as a
      * combination.
+     * @return The provided array now containing the elements of the combination.
      */
-    public void nextCombinationAsArray(T[] destination)
+    public T[] nextCombinationAsArray(T[] destination)
     {
         if (destination.length != combinationIndices.length)
         {
@@ -173,6 +168,7 @@ public class CombinationGenerator<T>
         {
             destination[i] = elements[combinationIndices[i]];
         }
+        return destination;
     }
 
 
@@ -185,14 +181,7 @@ public class CombinationGenerator<T>
      */
     public List<T> nextCombinationAsList()
     {
-        generateNextCombinationIndices();
-        // Generate actual combination.
-        List<T> combination = new ArrayList<T>(elements.length);
-        for (int i : combinationIndices)
-        {
-            combination.add(elements[i]);
-        }
-        return combination;
+        return nextCombinationAsList(new ArrayList<T>(elements.length));
     }
 
 
@@ -208,8 +197,9 @@ public class CombinationGenerator<T>
      * instance to be reused in such circumstances.
      * @param destination Provides a list to use to create the
      * combination.
+     * @return The provided list now containing the elements of the combination.
      */
-    public void nextCombinationAsList(List<T> destination)
+    public List<T> nextCombinationAsList(List<T> destination)
     {
         generateNextCombinationIndices();
         // Generate actual combination.
@@ -218,6 +208,7 @@ public class CombinationGenerator<T>
         {
             destination.add(elements[i]);
         }
+        return destination;
     }
 
 
@@ -229,7 +220,12 @@ public class CombinationGenerator<T>
      */
     private void generateNextCombinationIndices()
     {
-        if (remainingCombinations < totalCombinations)
+        if (remainingCombinations == 0)
+        {
+            throw new IllegalStateException("There are no combinations remaining.  " +
+                                            "Generator must be reset to continue using.");
+        }
+        else if (remainingCombinations < totalCombinations)
         {
             int i = combinationIndices.length - 1;
             while (combinationIndices[i] == elements.length - combinationIndices.length + i)

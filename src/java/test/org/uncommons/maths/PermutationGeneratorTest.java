@@ -16,6 +16,9 @@
 package org.uncommons.maths;
 
 import java.util.List;
+import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.Collections;
 import org.testng.annotations.Test;
 
 /**
@@ -36,12 +39,10 @@ public class PermutationGeneratorTest
     {
         PermutationGenerator<String> generator = new PermutationGenerator<String>(elements);
         assert generator.getTotalPermutations() == 6 : "Possible permutations should be 6.";
-        assert generator.hasMore() : "Generator should have more permutations available.";
         assert generator.getRemainingPermutations() == 6 : "Remaining permutations should be 6.";
 
         String[] permutation1 = generator.nextPermutationAsArray();
         assert permutation1.length == 3 : "Permutation length should be 3.";
-        assert generator.hasMore() : "Generator should have more permutations available.";
         assert generator.getRemainingPermutations() == 5 : "Remaining permutations should be 5.";
         assert !permutation1[0].equals(permutation1[1]) : "Permutation elements should be different.";
         assert !permutation1[0].equals(permutation1[2]) : "Permutation elements should be different.";
@@ -49,7 +50,6 @@ public class PermutationGeneratorTest
 
         List<String> permutation2 = generator.nextPermutationAsList();
         assert permutation2.size() == 3 : "Permutation length should be 3.";
-        assert generator.hasMore() : "Generator should have more permutations available.";
         assert generator.getRemainingPermutations() == 4: "Remaining permutations should be 4.";
         // Make sure this combination is different from the previous one.
         assert !permutation2.get(0).equals(permutation2.get(1)) : "Permutation elements should be different.";
@@ -59,6 +59,29 @@ public class PermutationGeneratorTest
         String perm1String = permutation1[0] + permutation1[1] + permutation1[2];
         String perm2String = permutation2.get(0) + permutation2.get(1) + permutation2.get(2);
         assert !(perm1String).equals(perm2String) : "Permutation should be different from previous one.";
+    }
+
+
+    /**
+     * Make sure that the permutation generator correctly calculates how many
+     * permutations are remaining.
+     */
+    @Test
+    public void testPermutationCount()
+    {
+        PermutationGenerator<String> generator = new PermutationGenerator<String>(elements);
+        assert generator.getTotalPermutations() == 6 : "Possible permutations should be 6.";
+        assert generator.hasMore() : "Generator should have more permutations available.";
+        assert generator.getRemainingPermutations() == 6 : "Remaining permutations should be 6.";
+        // Generate all of the permutations.
+        List<String> temp = new LinkedList<String>();
+        for (int i = 6; i > 0; i--)
+        {
+            generator.nextPermutationAsList(temp);
+        }
+        assert generator.getTotalPermutations() == 6 : "Total permutations should be unchanged.";
+        assert generator.getRemainingPermutations() == 0 : "Remaining permutations should be zero.";
+        assert !generator.hasMore() : "Should be no more permutations.";
     }
 
 
@@ -85,5 +108,30 @@ public class PermutationGeneratorTest
     {
         PermutationGenerator<String> generator = new PermutationGenerator<String>(elements);
         generator.nextPermutationAsArray(new String[4]); // Should throw an exception.
+    }
+
+
+    /**
+     * Zero-length permutations for an emtpy set of elements is not an error.
+     * It should not return any permutations other than a single empty one.
+     */
+    @Test
+    public void testZeroLength()
+    {
+        PermutationGenerator<String> generator = new PermutationGenerator<String>(Collections.<String>emptyList());
+        assert generator.getTotalPermutations() == 1 : "Should be only one permutation.";
+        List<String> permutation = generator.nextPermutationAsList();
+        assert permutation.isEmpty() : "Permutation should be zero-length.";
+        assert !generator.hasMore() : "Should be no more permutations.";
+    }
+
+
+    @Test(dependsOnMethods = "testZeroLength",
+          expectedExceptions = IllegalStateException.class)
+    public void testExhaustion()
+    {
+        PermutationGenerator<String> generator = new PermutationGenerator<String>(Collections.<String>emptyList());
+        generator.nextPermutationAsList(); // First one should succeed.
+        generator.nextPermutationAsList(); // Second one should throw an exception.
     }
 }

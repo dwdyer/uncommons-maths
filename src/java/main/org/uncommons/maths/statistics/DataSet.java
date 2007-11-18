@@ -15,6 +15,8 @@
 // ============================================================================
 package org.uncommons.maths.statistics;
 
+import java.util.Arrays;
+
 /**
  * Utility class for calculating statistics for a finite data set.
  * @author Daniel Dyer
@@ -29,6 +31,8 @@ public class DataSet
 
     private double total = 0;
     private double product = 1;
+    private double minimum = Double.MAX_VALUE;
+    private double maximum = Double.MIN_VALUE;
 
 
     /**
@@ -73,7 +77,7 @@ public class DataSet
      * statistics that are calculated cumulatively.
      * @param value The value to add.
      */
-    public final void addValue(double value)
+    public void addValue(double value)
     {
         if (dataSetSize == dataSet.length)
         {
@@ -93,6 +97,17 @@ public class DataSet
     {
         total += value;
         product *= value;
+        minimum = Math.min(minimum, value);
+        maximum = Math.max(maximum, value);
+    }
+
+
+    private void assertNotEmpty()
+    {
+        if (getSize() == 0)
+        {
+            throw new EmptyDataSetException();
+        }
     }
 
 
@@ -107,19 +122,70 @@ public class DataSet
 
 
     /**
+     * @return The smallest value in the data set.
+     * @throws EmptyDataSetException If the data set is empty.
+     */
+    public final double getMinimum()
+    {
+        assertNotEmpty();
+        return minimum;
+    }
+
+
+    /**
+     * @return The biggest value in the data set.
+     * @throws EmptyDataSetException If the data set is empty.
+     */
+    public final double getMaximum()
+    {
+        assertNotEmpty();
+        return maximum;
+    }
+
+
+    /**
+     * Determines the median value of the data set.
+     * @return If the number of elements is odd, returns the middle element.
+     * If the number of elements is even, returns the midpoint of the two
+     * middle elements. 
+     */
+    public final double getMedian()
+    {
+        assertNotEmpty();
+        // Sort the data (take a copy to do this).
+        double[] dataCopy = new double[getSize()];
+        System.arraycopy(dataSet, 0, dataCopy, 0, dataCopy.length);
+        Arrays.sort(dataCopy);
+        int midPoint = dataCopy.length / 2;
+        if (dataCopy.length % 2 != 0)
+        {
+            return dataCopy[midPoint];
+        }
+        else
+        {
+            return dataCopy[midPoint - 1] + (dataCopy[midPoint] - dataCopy[midPoint - 1]) / 2;
+        }
+    }
+
+
+    /**
      * @return The sum of all values.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getAggregate()
     {
+        assertNotEmpty();
         return total;
     }
 
 
     /**
      * @return The product of all values.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getProduct()
     {
+        assertNotEmpty();
         return product;
     }
 
@@ -129,9 +195,11 @@ public class DataSet
      * all the elements divided by n.
      * @see #getGeometricMean()
      * @return The arithmetic mean of all elements in the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getArithmeticMean()
     {
+        assertNotEmpty();
         return total / dataSetSize;
     }
 
@@ -142,9 +210,11 @@ public class DataSet
      * the product of all the elements.
      * @see #getArithmeticMean()
      * @return The geometric mean of all elements in the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getGeometricMean()
     {
+        assertNotEmpty();
         return Math.pow(product, 1.0d / dataSetSize);
     }
 
@@ -157,6 +227,7 @@ public class DataSet
      * @see #getVariance()
      * @see #getStandardDeviation()
      * @return The mean absolute deviation of the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getMeanDeviation()
     {
@@ -182,8 +253,9 @@ public class DataSet
      * @see #getStandardDeviation()
      * @see #getMeanDeviation()
      * @return The population variance of the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
-    public double getVariance()
+    public final double getVariance()
     {
         return sumSquaredDiffs() / getSize();
     }
@@ -193,9 +265,10 @@ public class DataSet
      * Helper method for variance calculations.
      * @return The sum of the squares of the differences between
      * each value and the arithmetic mean.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     private double sumSquaredDiffs()
-    {
+    {        
         double mean = getArithmeticMean();
         double squaredDiffs = 0;
         for (int i = 0; i < getSize(); i++)
@@ -216,6 +289,7 @@ public class DataSet
      * @see #getVariance()
      * @see #getMeanDeviation()
      * @return The standard deviation of the population.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getStandardDeviation()
     {
@@ -234,8 +308,9 @@ public class DataSet
      * @see #getSampleStandardDeviation()
      * @see #getMeanDeviation()
      * @return The sample variance of the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
-    public double getSampleVariance()
+    public final double getSampleVariance()
     {
         return sumSquaredDiffs() / (getSize() - 1);
     }
@@ -250,6 +325,7 @@ public class DataSet
      * @see #getSampleVariance()
      * @see #getMeanDeviation()
      * @return The sample standard deviation of the data set.
+     * @throws EmptyDataSetException If the data set is empty.
      */
     public final double getSampleStandardDeviation()
     {

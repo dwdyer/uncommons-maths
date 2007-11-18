@@ -18,6 +18,7 @@ package org.uncommons.maths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 import org.testng.annotations.Test;
 
 /**
@@ -106,4 +107,30 @@ public class CombinationGeneratorTest
     {
         new CombinationGenerator<String>(Arrays.asList(elements), 4);
     }
+
+
+    /**
+     * Zero-length combinations for an emtpy set of elements is not an error.
+     * It should not return any combinations other than a single empty one.
+     */
+    @Test
+    public void testZeroLength()
+    {
+        CombinationGenerator<String> generator = new CombinationGenerator<String>(Collections.<String>emptyList(), 0);
+        assert generator.getTotalCombinations() == 1 : "Should be only one combination.";
+        List<String> combination = generator.nextCombinationAsList();
+        assert combination.isEmpty() : "Combination should be zero-length.";
+        assert !generator.hasMore() : "Should be no more combinations.";
+    }
+
+
+    @Test(dependsOnMethods = "testZeroLength",
+          expectedExceptions = IllegalStateException.class)
+    public void testExhaustion()
+    {
+        CombinationGenerator<String> generator = new CombinationGenerator<String>(Collections.<String>emptyList(), 0);
+        generator.nextCombinationAsList(); // First one should succeed.
+        generator.nextCombinationAsList(); // Second one should throw an exception.
+    }
+
 }

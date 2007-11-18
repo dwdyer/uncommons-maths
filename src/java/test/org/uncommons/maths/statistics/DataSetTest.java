@@ -65,6 +65,49 @@ public class DataSetTest
 
 
     @Test
+    public void testMinimum()
+    {
+        DataSet data = new DataSet();
+        data.addValue(4);
+        assert data.getMinimum() == 4 : "Minimum should be 4, is " + data.getMinimum();
+        data.addValue(7);
+        assert data.getMinimum() == 4 : "Minimum should be 4, is " + data.getMinimum();
+        data.addValue(2);
+        assert data.getMinimum() == 2 : "Minimum should be 2, is " + data.getMinimum();
+        data.addValue(-9);
+        assert data.getMinimum() == -9 : "Minimum should be -9, is " + data.getMinimum();
+    }
+
+
+    @Test
+    public void testMaximum()
+    {
+        DataSet data = new DataSet();
+        data.addValue(9);
+        assert data.getMaximum() == 9 : "Maximum should be 9, is " + data.getMaximum();
+        data.addValue(8);
+        assert data.getMaximum() == 9 : "Maximum should be 9, is " + data.getMaximum();
+        data.addValue(-15);
+        assert data.getMaximum() == 9 : "Maximum should be 9, is " + data.getMaximum();
+        data.addValue(12);
+        assert data.getMaximum() == 12 : "Maximum should be 12, is " + data.getMaximum();
+    }
+
+
+    @Test
+    public void testMedian()
+    {
+        DataSet data = new DataSet();
+        data.addValue(15);
+        assert data.getMedian() == 15 : "Median should be 15, is " + data.getMedian();
+        data.addValue(17);
+        assert Math.round(data.getMedian()) == 16 : "Median should be 16, is " + data.getMedian();
+        data.addValue(102);
+        assert Math.round(data.getMedian()) == 17 : "Median should be 17, is " + data.getMedian();
+    }
+
+
+    @Test
     public void testArithmeticMean()
     {
         DataSet data = new DataSet(DATA_SET);
@@ -125,5 +168,17 @@ public class DataSetTest
         DataSet data = new DataSet(DATA_SET);
         assert data.getSampleStandardDeviation() == Math.sqrt(2.5d)
             : "Incorrect sample variance: " + data.getSampleStandardDeviation();
+    }
+
+
+    /**
+     * Check that an appropriate exception is thrown when attempting to
+     * calculate stats without any data.
+     */
+    @Test(expectedExceptions = EmptyDataSetException.class)
+    public void testEmptyDataSet()
+    {
+        DataSet data = new DataSet();
+        data.getArithmeticMean(); // Should throw EmptyDataSetException.
     }
 }

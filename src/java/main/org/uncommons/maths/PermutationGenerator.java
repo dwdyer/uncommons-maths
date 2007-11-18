@@ -51,9 +51,9 @@ public class PermutationGenerator<T>
      */
     public PermutationGenerator(T[] elements)
     {
-        if (elements.length < 1 || elements.length > 20)
+        if (elements.length > 20)
         {
-            throw new IllegalArgumentException("Size must be between 1 and 20.");
+            throw new IllegalArgumentException("Size must be less than or equal to 20.");
         }
         this.elements = elements.clone();
         permutationIndices = new int[elements.length];
@@ -128,15 +128,9 @@ public class PermutationGenerator<T>
     @SuppressWarnings("unchecked")
     public T[] nextPermutationAsArray()
     {
-        generateNextPermutationIndices();
-        // Generate actual permutation.
         T[] permutation = (T[]) Array.newInstance(elements.getClass().getComponentType(),
                                                   permutationIndices.length);
-        for (int i = 0; i < permutationIndices.length; i++)
-        {
-            permutation[i] = elements[permutationIndices[i]];
-        }
-        return permutation;
+        return nextPermutationAsArray(permutation);
     }
 
 
@@ -181,14 +175,8 @@ public class PermutationGenerator<T>
      */
     public List<T> nextPermutationAsList()
     {
-        generateNextPermutationIndices();
-        // Generate actual permutation.
         List<T> permutation = new ArrayList<T>(elements.length);
-        for (int i : permutationIndices)
-        {
-            permutation.add(elements[i]);
-        }
-        return permutation;
+        return nextPermutationAsList(permutation);
     }
 
 
@@ -227,7 +215,12 @@ public class PermutationGenerator<T>
      */
     private void generateNextPermutationIndices()
     {
-        if (remainingPermutations < totalPermutations)
+        if (remainingPermutations == 0)
+        {
+            throw new IllegalStateException("There are no permutations remaining.  " +
+                                            "Generator must be reset to continue using.");
+        }
+        else if (remainingPermutations < totalPermutations)
         {
             // Find largest index j with permutationIndices[j] < permutationIndices[j + 1]
             int j = permutationIndices.length - 2;
