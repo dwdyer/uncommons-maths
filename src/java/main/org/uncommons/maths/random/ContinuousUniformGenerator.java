@@ -19,7 +19,8 @@ import java.util.Random;
 import org.uncommons.maths.NumberGenerator;
 
 /**
- * Continuous, uniformly distributed random sequence.
+ * Continuous, uniformly distributed random sequence.  Generates
+ * values in the range mininum (inclusive) - maximum (exclusive).
  * @author Daniel Dyer
  */
 public class ContinuousUniformGenerator implements NumberGenerator<Double>
@@ -34,7 +35,7 @@ public class ContinuousUniformGenerator implements NumberGenerator<Double>
     {
         this.rng = rng;
         this.minimumValue = minimumValue;
-        this.range = maximumValue - minimumValue + 1;
+        this.range = maximumValue - minimumValue;
     }
 
 

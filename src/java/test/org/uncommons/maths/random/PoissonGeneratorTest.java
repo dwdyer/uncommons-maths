@@ -86,7 +86,9 @@ public class PoissonGeneratorTest
         DataSet data = new DataSet(iterations);
         for (int i = 0; i < iterations; i++)
         {
-            data.addValue(generator.nextValue());
+            int value = generator.nextValue();
+            assert value >= 0 : "Value must be non-negative: " + value;
+            data.addValue(value);
         }
         assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02)
                 : "Observed mean outside acceptable range: " + data.getArithmeticMean();

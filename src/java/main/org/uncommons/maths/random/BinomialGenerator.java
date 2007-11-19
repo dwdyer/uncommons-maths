@@ -39,7 +39,7 @@ public class BinomialGenerator implements NumberGenerator<Integer>
 
 
     /**
-     * <p>Creates a generator of normally-distributed values.  The number of
+     * <p>Creates a generator of binomially-distributed values.  The number of
      * trials ({@literal n}) and the probability of success in each trial
      * ({@literal p}) are determined by the provided {@link NumberGenerator}s.
      * This means that the statistical parameters of this generator may change
@@ -68,7 +68,7 @@ public class BinomialGenerator implements NumberGenerator<Integer>
 
 
     /**
-     * Creates a generator of Binomially-distributed values from a distribution
+     * Creates a generator of binomially-distributed values from a distribution
      * with the specified parameters.
      * @param n The number of trials (and therefore the maximum possible value returned
      * by this sequence).

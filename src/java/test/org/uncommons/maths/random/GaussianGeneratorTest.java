@@ -84,5 +84,8 @@ public class GaussianGeneratorTest
                 : "Observed mean outside acceptable range: " + data.getArithmeticMean();
         assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.02)
                 : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
+        // Expected median is the same as expected mean.
+        assert Maths.approxEquals(data.getMedian(), expectedMean, 0.02)
+                : "Observed median outside acceptable range: " + data.getMedian();
     }
 }

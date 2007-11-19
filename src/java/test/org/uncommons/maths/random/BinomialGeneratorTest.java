@@ -119,7 +119,9 @@ public class BinomialGeneratorTest
         DataSet data = new DataSet(iterations);
         for (int i = 0; i < iterations; i++)
         {
-            data.addValue(generator.nextValue());
+            int value = generator.nextValue();
+            assert value >= 0 && value <= n : "Value out-of-range: " + value; 
+            data.addValue(value);
         }
         assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02d)
                 : "Observed mean outside acceptable range: " + data.getArithmeticMean();
