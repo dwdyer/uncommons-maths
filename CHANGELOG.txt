@@ -1,3 +1,16 @@
+Changes in version 1.0.2
+------------------------
+
+* Added generator for exponential distribution.
+
+* Fixed possibility of out-of-range values in continuous uniform generator.
+
+* Modified AESCounterRNG to allow seed size (AES key size) to be specified.
+  Defaults to 128-bits.  192-bits and 256-bits are supported but they require
+  the unlimited strength cryptography policy files (available from Sun) to be
+  installed on the local machine.
+
+
 Changes in version 1.0.1
 ------------------------
 

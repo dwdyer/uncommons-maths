@@ -124,6 +124,7 @@ public class DataSet
     /**
      * @return The smallest value in the data set.
      * @throws EmptyDataSetException If the data set is empty.
+     * @since 1.0.1
      */
     public final double getMinimum()
     {
@@ -135,6 +136,7 @@ public class DataSet
     /**
      * @return The biggest value in the data set.
      * @throws EmptyDataSetException If the data set is empty.
+     * @since 1.0.1
      */
     public final double getMaximum()
     {
@@ -147,7 +149,8 @@ public class DataSet
      * Determines the median value of the data set.
      * @return If the number of elements is odd, returns the middle element.
      * If the number of elements is even, returns the midpoint of the two
-     * middle elements. 
+     * middle elements.
+     * @since 1.0.1 
      */
     public final double getMedian()
     {

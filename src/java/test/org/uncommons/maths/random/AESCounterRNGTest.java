@@ -17,7 +17,6 @@ package org.uncommons.maths.random;
 
 import java.security.GeneralSecurityException;
 import org.testng.Reporter;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
 
@@ -27,26 +26,14 @@ import org.uncommons.maths.Maths;
  */
 public class AESCounterRNGTest
 {
-    private AESCounterRNG rng;
-
-    @BeforeClass
-    public void configureRNG() throws GeneralSecurityException
-    {
-        // Create an RNG using the default seeding strategy.
-        // This RNG is used by all of the test methods.
-        rng = new AESCounterRNG();
-    }
-
-
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.  This method must be run before any of the
-     * other tests otherwise the state of the RNG will not be the same in the
-     * duplicate RNG.
+     * same sequence of numbers.
      */
     @Test
     public void testRepeatability() throws GeneralSecurityException
     {
+        AESCounterRNG rng = new AESCounterRNG();
         // Create second RNG using same seed.
         AESCounterRNG duplicateRNG = new AESCounterRNG(rng.getSeed());
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
@@ -59,8 +46,9 @@ public class AESCounterRNGTest
      * provides a simple check for major problems with the output.
      */
     @Test(dependsOnMethods = "testRepeatability")
-    public void testDistribution()
+    public void testDistribution() throws GeneralSecurityException, SeedException
     {
+        AESCounterRNG rng = new AESCounterRNG(DefaultSeedGenerator.getInstance());
         double pi = RNGTestUtils.calculateMonteCarloValueForPi(rng, 100000);
         Reporter.log("Monte Carlo value for Pi: " + pi);
         assert Maths.approxEquals(pi, Math.PI, 0.01) : "Monte Carlo value for Pi is outside acceptable range:" + pi;
@@ -73,8 +61,9 @@ public class AESCounterRNGTest
      * provides a simple check for major problems with the output.
      */
     @Test(dependsOnMethods = "testRepeatability")
-    public void testStandardDeviation()
+    public void testStandardDeviation() throws GeneralSecurityException
     {
+        AESCounterRNG rng = new AESCounterRNG();
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
         int n = 100;
@@ -82,5 +71,19 @@ public class AESCounterRNGTest
         double expectedSD = 100 / Math.sqrt(12);
         Reporter.log("Expected SD: " + expectedSD + ", observed SD: " + observedSD);
         assert Maths.approxEquals(observedSD, expectedSD, 0.02) : "Standard deviation is outside acceptable range: " + observedSD;
+    }
+
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInvalidSeedLength() throws GeneralSecurityException
+    {
+        new AESCounterRNG(new byte[]{1, 2, 3}); // Should throw an exception.
+    }
+
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInvalidGeneratedSeedLength() throws GeneralSecurityException
+    {
+        new AESCounterRNG(20); // Should throw an exception.
     }
 }

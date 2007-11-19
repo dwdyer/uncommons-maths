@@ -70,11 +70,14 @@ public class ExponentialGeneratorTest
         {
             data.addValue(generator.nextValue());
         }
-        assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02d)
+        // Exponential distribution appears to be a bit more volatile than the others in
+        // terms of conforming to expectations, so use a 4% tolerance here, instead of the 2%
+        // used for other distributions, to avoid too many false positives.
+        assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.04d)
             : "Observed mean outside acceptable range: " + data.getArithmeticMean();
-        assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.02)
+        assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.04d)
             : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
-        assert Maths.approxEquals(data.getMedian(), expectedMedian, 0.02)
+        assert Maths.approxEquals(data.getMedian(), expectedMedian, 0.04d)
             : "Observed median outside acceptable range: " + data.getMedian();
     }
 }
