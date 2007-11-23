@@ -1,3 +1,13 @@
+Changes in version 1.1
+----------------------
+
+* PermutationGenerator and CombinationGenerator now implement
+  java.lang.Iterable
+
+* Moved PermutationGenerator and CombinationGenerator into new combinatorics
+  package.
+
+
 Changes in version 1.0.2
 ------------------------
 

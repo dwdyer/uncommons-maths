@@ -13,7 +13,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths;
+package org.uncommons.maths.combinatorics;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.testng.annotations.Test;
+import org.uncommons.maths.combinatorics.PermutationGenerator;
 
 /**
  * Unit test for the {@link PermutationGenerator} class.

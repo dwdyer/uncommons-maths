@@ -14,9 +14,10 @@
 //   limitations under the License.
 // ============================================================================
 /**
- * <p>This package provides deterministic, repeatable, pseudo-random number
- * generators, a set of strategies for seeding them, and classes for generating
- * values from different probability distributions.</p>
- * @author Daniel Dyer
+ * Utility classes for combinatorics.  Includes classes for generating permutations,
+ * combinations and cartesian products.
+ * @author Michael Gilleland (original implementations of PermutationGenerator and
+ * CombinationGenerator that the Uncommons versions are derived from).
+ * @author Daniel Dyer (Uncommons modifications to the original versions).
  */
-package org.uncommons.maths.random;
+package org.uncommons.maths.combinatorics;

@@ -13,13 +13,14 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths;
+package org.uncommons.maths.combinatorics;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Iterator;
+import org.uncommons.maths.Maths;
 
 /**
  * Combination generator for generating all combinations for all sets up to
@@ -259,6 +260,7 @@ public class CombinationGenerator<T> implements Iterable<List<T>>
      * }
      * </pre>
      * @return An iterator.
+     * @since 1.1
      */
     public Iterator<List<T>> iterator()
     {
