@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
+import java.util.Set;
+import java.util.HashSet;
 import org.testng.annotations.Test;
 
 /**
@@ -68,6 +70,26 @@ public class CombinationGeneratorTest
         assert !(combination1[0] + combination1[1]).equals(combination3.get(0) + combination3.get(1))
             : "Combination should be different from previous one.";
     }
+
+
+    /**
+     * Ensures that the combination generator works correctly with the "for-each" style
+     * loop.
+     */
+    @Test
+    public void testIterable()
+    {
+        CombinationGenerator<String> generator = new CombinationGenerator<String>(elements, 2);
+        Set<String> distinctCombinations = new HashSet<String>();
+        for (List<String> combination : generator)
+        {
+            assert combination.size() == 2 : "Wrong combination length: " + combination.size();
+            // Flatten to a single string for easier comparison.
+            distinctCombinations.add(combination.get(0) + combination.get(1));
+        }
+        assert distinctCombinations.size() == 3 : "Wrong number of combinations: " + distinctCombinations.size();
+    }
+
 
 
     /**

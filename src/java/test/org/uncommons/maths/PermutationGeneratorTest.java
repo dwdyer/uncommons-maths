@@ -15,10 +15,11 @@
 // ============================================================================
 package org.uncommons.maths;
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import org.testng.annotations.Test;
 
 /**
@@ -82,6 +83,25 @@ public class PermutationGeneratorTest
         assert generator.getTotalPermutations() == 6 : "Total permutations should be unchanged.";
         assert generator.getRemainingPermutations() == 0 : "Remaining permutations should be zero.";
         assert !generator.hasMore() : "Should be no more permutations.";
+    }
+
+
+    /**
+     * Ensures that the permutation generator works correctly with the "for-each" style
+     * loop.
+     */
+    @Test
+    public void testIterable()
+    {
+        PermutationGenerator<String> generator = new PermutationGenerator<String>(elements);
+        Set<String> distinctPermutations = new HashSet<String>();
+        for (List<String> permutation : generator)
+        {
+            assert permutation.size() == 3 : "Wrong permutation length: " + permutation.size();
+            // Flatten to a single string for easier comparison.
+            distinctPermutations.add(permutation.get(0) + permutation.get(1) + permutation.get(2));
+        }
+        assert distinctPermutations.size() == 6 : "Wrong number of permutations: " + distinctPermutations.size();
     }
 
 
