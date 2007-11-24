@@ -440,7 +440,9 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Uncommons Maths.iml" filepath="$PROJECT_DIR$/Uncommons Maths.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Core.iml" filepath="$PROJECT_DIR$/Core.iml" group="Modules" />
+      <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" group="Modules" />
+      <module fileurl="file://$PROJECT_DIR$/Global.iml" filepath="$PROJECT_DIR$/Global.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">

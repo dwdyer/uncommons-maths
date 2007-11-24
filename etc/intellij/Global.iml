@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4" relativePaths="true" type="JAVA_MODULE">
+  <component name="ModuleRootManager" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <content url="file://$MODULE_DIR$/../..">
+      <excludeFolder url="file://$MODULE_DIR$/../../core" />
+      <excludeFolder url="file://$MODULE_DIR$/../../demo" />
+      <excludeFolder url="file://$MODULE_DIR$/../../dist" />
+      <excludeFolder url="file://$MODULE_DIR$/../../docs" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntryProperties />
+  </component>
+</module>
+
