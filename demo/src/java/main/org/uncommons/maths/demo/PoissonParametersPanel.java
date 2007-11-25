@@ -15,11 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JLabel;
-import org.uncommons.maths.random.PoissonGenerator;
-import java.util.Random;
 
 /**
  * @author Daniel Dyer
@@ -35,9 +33,8 @@ class PoissonParametersPanel extends ParametersPanel
     }
 
 
-    public PoissonGenerator createProbabilityDistribution(Random rng)
+    public PoissonDistribution createProbabilityDistribution()
     {
-        return new PoissonGenerator(meanNumberModel.getNumber().doubleValue(),
-                                    rng);
+        return new PoissonDistribution(meanNumberModel.getNumber().doubleValue());
     }
 }

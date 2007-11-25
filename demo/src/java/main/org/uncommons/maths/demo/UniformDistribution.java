@@ -15,30 +15,39 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
+import org.uncommons.maths.random.DiscreteUniformGenerator;
 
 /**
  * @author Daniel Dyer
  */
-class BinomialParametersPanel extends ParametersPanel
+public class UniformDistribution extends AbstractProbabilityDistribution
 {
-    private final SpinnerNumberModel trialsNumberModel = new SpinnerNumberModel(50, 1, 1000, 1);
-    private final SpinnerNumberModel probabilityNumberModel = new SpinnerNumberModel(0.5d, 0.0d, 1.0d, 0.01d);
+    private final int min;
+    private final int max;
 
-    public BinomialParametersPanel()
+    public UniformDistribution(int min, int max)
     {
-        add(new JLabel("No. Trials: "));
-        add(new JSpinner(trialsNumberModel));
-        add(new JLabel("Probability: "));
-        add(new JSpinner(probabilityNumberModel));
+        this.min = min;
+        this.max = max;
     }
 
-    
-    public BinomialDistribution createProbabilityDistribution()
+
+    public Map<Integer, Double> getExpectedValues()
     {
-        return new BinomialDistribution(trialsNumberModel.getNumber().intValue(),
-                                        probabilityNumberModel.getNumber().doubleValue());
+        Map<Integer, Double> values = new LinkedHashMap<Integer, Double>();
+        for (int i = min; i <= max; i++)
+        {
+            values.put(i, 1d / ((max - min) + 1));
+        }
+        return values;
+    }
+
+
+    protected DiscreteUniformGenerator createValueGenerator(Random rng)
+    {
+        return new DiscreteUniformGenerator(min, max, rng);
     }
 }

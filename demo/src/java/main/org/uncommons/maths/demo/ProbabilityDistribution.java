@@ -15,30 +15,15 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author Daniel Dyer
  */
-class BinomialParametersPanel extends ParametersPanel
+public interface ProbabilityDistribution
 {
-    private final SpinnerNumberModel trialsNumberModel = new SpinnerNumberModel(50, 1, 1000, 1);
-    private final SpinnerNumberModel probabilityNumberModel = new SpinnerNumberModel(0.5d, 0.0d, 1.0d, 0.01d);
+    Map<Integer, Double> generateValues(int count, Random rng);
 
-    public BinomialParametersPanel()
-    {
-        add(new JLabel("No. Trials: "));
-        add(new JSpinner(trialsNumberModel));
-        add(new JLabel("Probability: "));
-        add(new JSpinner(probabilityNumberModel));
-    }
-
-    
-    public BinomialDistribution createProbabilityDistribution()
-    {
-        return new BinomialDistribution(trialsNumberModel.getNumber().intValue(),
-                                        probabilityNumberModel.getNumber().doubleValue());
-    }
+    Map<Integer, Double> getExpectedValues();
 }

@@ -17,7 +17,6 @@ package org.uncommons.maths.demo;
 
 import java.awt.BorderLayout;
 import java.util.Map;
-import java.util.TreeMap;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -40,28 +39,33 @@ class GraphPanel extends JPanel
     }
 
 
-    public void generateGraph(int[] values)
+    public void generateGraph(String title,
+                              Map<Integer, Double> observedValues,
+                              Map<Integer, Double> expectedValues)
     {
         XYSeriesCollection dataSet = new XYSeriesCollection();
-        XYSeries series = new XYSeries("Test");
-        dataSet.addSeries(series);
-        Map<Integer, Integer> valueCounts = new TreeMap<Integer, Integer>();
-        for (int value : values)
+        XYSeries observedSeries = new XYSeries("Observed");
+        dataSet.addSeries(observedSeries);
+        XYSeries expectedSeries = new XYSeries("Expected");
+        dataSet.addSeries(expectedSeries);
+
+        for (Map.Entry<Integer, Double> entry : observedValues.entrySet())
         {
-            Integer count = valueCounts.get(value);
-            count = count == null ? 0 : count;
-            valueCounts.put(value, ++count);
+            observedSeries.add(entry.getKey(), entry.getValue());
         }
-        for (Map.Entry<Integer, Integer> entry : valueCounts.entrySet())
+
+        for (Map.Entry<Integer, Double> entry : expectedValues.entrySet())
         {
-            series.add(entry.getKey(), entry.getValue());
+            expectedSeries.add(entry.getKey(), entry.getValue());
         }
-        JFreeChart chart = ChartFactory.createXYLineChart("Distribution",
+
+
+        JFreeChart chart = ChartFactory.createXYLineChart(title,
                                                           "Count",
                                                           "Frequency",
                                                           dataSet,
                                                           PlotOrientation.VERTICAL,
-                                                          false,
+                                                          true,
                                                           false,
                                                           false);
         chartPanel.setChart(chart);

@@ -15,26 +15,30 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JSpinner;
 import javax.swing.JButton;
-import javax.swing.BorderFactory;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.Random;
-import org.uncommons.swing.SwingBackgroundTask;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import org.uncommons.maths.random.MersenneTwisterRNG;
-import org.uncommons.maths.NumberGenerator;
+import org.uncommons.swing.SwingBackgroundTask;
 
 /**
+ * Demo application that demonstrates the generation of random values using
+ * different probability distributions.
  * @author Daniel Dyer
  */
 public class RandomDemo extends JFrame
@@ -70,24 +74,28 @@ public class RandomDemo extends JFrame
         {
             public void actionPerformed(ActionEvent actionEvent)
             {
-                new SwingBackgroundTask<int[]>()
+                new SwingBackgroundTask<List<Map<Integer, Double>>>()
                 {
-                    protected int[] performTask()
+                    protected List<Map<Integer, Double>> performTask()
                     {
-                        NumberGenerator<Integer> distribution
-                            = (NumberGenerator<Integer>) distributionPanel.createProbabilityDistribution(RANDOM);
+                        ProbabilityDistribution distribution = distributionPanel.createProbabilityDistribution();
+
                         int iterations = iterationsNumberModel.getNumber().intValue();
-                        int[] values = new int[iterations];
-                        for (int i = 0; i < iterations; i++)
-                        {
-                            values[i] = distribution.nextValue();
-                        }
-                        return values;
+                        Map<Integer, Double> observedValues = distribution.generateValues(iterations,
+                                                                                          RANDOM);
+                        Map<Integer, Double> expectedValues = distribution.getExpectedValues();
+                        List<Map<Integer, Double>> list = new ArrayList<Map<Integer, Double>>(2);
+                        list.add(observedValues);
+                        list.add(expectedValues);
+                        return list;
                     }
 
-                    protected void postProcessing(int[] result)
+                    protected void postProcessing(List<Map<Integer, Double>> values)
                     {
-                        graphPanel.generateGraph(result);
+                        assert values.size() == 2 : "Wrong number of data series.";
+                        graphPanel.generateGraph(distributionPanel.getDescription(),
+                                                 values.get(0),
+                                                 values.get(1));
                     }
                 }.execute();
             }

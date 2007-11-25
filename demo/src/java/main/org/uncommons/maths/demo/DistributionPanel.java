@@ -22,11 +22,9 @@ import java.awt.event.ItemListener;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import org.uncommons.maths.NumberGenerator;
 
 /**
  * @author Daniel Dyer
@@ -70,9 +68,15 @@ class DistributionPanel extends JPanel
     }
 
 
-    public NumberGenerator<?> createProbabilityDistribution(Random rng)
+    public ProbabilityDistribution createProbabilityDistribution()
     {
         ParametersPanel panel = parameterPanels.get(distributionCombo.getSelectedItem().toString());
-        return panel.createProbabilityDistribution(rng);
+        return panel.createProbabilityDistribution();
+    }
+
+
+    public String getDescription()
+    {
+        return distributionCombo.getSelectedItem().toString() + " Distribution";
     }
 }

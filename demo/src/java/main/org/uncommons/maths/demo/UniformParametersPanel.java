@@ -15,11 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import org.uncommons.maths.random.DiscreteUniformGenerator;
 
 /**
  * @author Daniel Dyer
@@ -38,10 +36,9 @@ class UniformParametersPanel extends ParametersPanel
     }
 
 
-    public DiscreteUniformGenerator createProbabilityDistribution(Random rng)
+    public UniformDistribution createProbabilityDistribution()
     {
-        return new DiscreteUniformGenerator(minNumberModel.getNumber().intValue(),
-                                            maxNumberModel.getNumber().intValue(),
-                                            rng);
+        return new UniformDistribution(minNumberModel.getNumber().intValue(),
+                                       maxNumberModel.getNumber().intValue());
     }
 }
