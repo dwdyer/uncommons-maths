@@ -48,7 +48,7 @@
     </fileset>
   </path>
 
-  <property name="version" value="1.0.2"/>
+  <property name="version" value="1.1"/>
   <property name="artifact.identifier" value="uncommons-maths-${version}"/>
 
   <!-- This is the minimum coverage percentage (for both lines and
@@ -183,8 +183,19 @@
   <target name="demo"
           depends="core"
           description="Builds the demo module.">
-    <compile.module module.name="demo" />
-    <jar.module module.name="demo" jar.name="uncommons-maths-demo-${version}.jar"/>
+    <compile.module module.name="demo">
+      <moduleclasspath>
+        <path location="./core/${build.dir}/${artifact.identifier}.jar" />
+      </moduleclasspath>
+    </compile.module>
+    <jar.module module.name="demo" jar.name="uncommons-maths-demo-${version}.jar">
+      <additionalcontents>
+        <manifest>
+          <attribute name="Main-Class" value="org.uncommons.maths.demo.RandomDemo"/>
+          <attribute name="Class-Path" value="${artifact.identifier}.jar jfreechart-1.0.8.jar jcommon-1.0.12.jar"/>
+        </manifest>
+      </additionalcontents>
+    </jar.module>
   </target>
 
   
@@ -196,7 +207,7 @@
     <!-- Copy all application JARs and 3rd party libraries. -->
     <copy todir="${dist.dir}" flatten="true">
       <fileset dir="." includes="**/${build.dir}/*.jar" />
-      <fileset dir="." includes="${lib.runtime}/*.jar" />
+      <fileset dir="${lib.runtime}" includes="**/*.jar" />
     </copy>
   </target>
 
