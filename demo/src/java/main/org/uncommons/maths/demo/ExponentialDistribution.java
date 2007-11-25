@@ -15,64 +15,79 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.HashMap;
-import org.uncommons.maths.random.DiscreteUniformGenerator;
+import org.uncommons.maths.random.ExponentialGenerator;
 
 /**
  * @author Daniel Dyer
  */
-class UniformDistribution extends ProbabilityDistribution
+class ExponentialDistribution extends ProbabilityDistribution
 {
-    private final int min;
-    private final int max;
+    private final double rate;
 
-    public UniformDistribution(int min, int max)
+
+    public ExponentialDistribution(double rate)
     {
-        this.min = min;
-        this.max = max;
+        this.rate = rate;
+    }
+
+
+    protected ExponentialGenerator createValueGenerator(Random rng)
+    {
+        return new ExponentialGenerator(rate, rng);
     }
 
 
     public Map<Double, Double> getExpectedValues()
     {
         Map<Double, Double> values = new HashMap<Double, Double>();
-        for (int i = min; i <= max; i++)
+        double p;
+        double x = 0;
+        do
         {
-            values.put((double) i, 1d / ((max - min) + 1));
-        }
+            p = getExpectedProbability(x);
+            values.put(x, p);
+            x += (1 / (2 * rate));
+        } while (p > 0.001);
         return values;
     }
 
 
-    protected DiscreteUniformGenerator createValueGenerator(Random rng)
+    private double getExpectedProbability(double x)
     {
-        return new DiscreteUniformGenerator(min, max, rng);
+        if (x < 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return rate * Math.exp(-rate * x);
+        }
     }
 
 
     public double getExpectedMean()
     {
-        return (max - min) / 2 + min;
+        return Math.pow(rate, -1);
     }
 
 
     public double getExpectedStandardDeviation()
     {
-        return (max - min) / Math.sqrt(12);
+        return Math.sqrt(Math.pow(rate, -2));
     }
 
 
     public String getDescription()
     {
-        return "Uniform Distribution (Range = " + min + ".." + max + ")";
+        return "Exponential Distribution (\u03bb = " + rate + ")";
     }
 
 
     public boolean isDiscrete()
     {
-        return true;
-    }    
+        return false;
+    }
 }

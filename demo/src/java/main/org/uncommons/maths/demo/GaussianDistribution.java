@@ -15,63 +15,54 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import org.uncommons.maths.Maths;
-import org.uncommons.maths.random.PoissonGenerator;
+import org.uncommons.maths.random.GaussianGenerator;
 
 /**
  * @author Daniel Dyer
  */
-class PoissonDistribution extends ProbabilityDistribution
+class GaussianDistribution extends ProbabilityDistribution
 {
     private final double mean;
+    private final double standardDeviation;
 
-    public PoissonDistribution(double mean)
+
+    public GaussianDistribution(double mean, double standardDeviation)
     {
         this.mean = mean;
+        this.standardDeviation = standardDeviation;
+    }
+
+
+    protected GaussianGenerator createValueGenerator(Random rng)
+    {
+        return new GaussianGenerator(mean, standardDeviation, rng);
     }
 
 
     public Map<Double, Double> getExpectedValues()
     {
         Map<Double, Double> values = new HashMap<Double, Double>();
-        int index = 0;
         double p;
+        double x = mean;
         do
         {
-            p = getExpectedProbability(index);
-            values.put((double) index, p);
-            ++index;
+            p = getExpectedProbability(x);
+            values.put(x, p);
+            values.put(-x, p);
+            x += (3 * standardDeviation / 10); // 99.7% of values are within 3 standard deviations.
         } while (p > 0.001);
         return values;
     }
 
 
-    /**
-     * This is the probability mass function
-     * (http://en.wikipedia.org/wiki/Probability_mass_function) of
-     * the Poisson distribution represented by this number generator.
-     * @param events The number of occurrences to determine the
-     * probability for.
-     * @return The probability of the specified number of events
-     * occurring given the current value of lamda.
-     */
-    private double getExpectedProbability(int events)
+    private double getExpectedProbability(double x)
     {
-        BigDecimal kFactorial = new BigDecimal(Maths.bigFactorial(events));
-        double numerator = Math.exp(-mean) * Math.pow(mean, events);
-        return new BigDecimal(numerator).divide(kFactorial, RoundingMode.HALF_UP).doubleValue();
-    }
-
-
-    
-    protected PoissonGenerator createValueGenerator(Random rng)
-    {
-        return new PoissonGenerator(mean, rng);
+        double y = 1 / (standardDeviation * Math.sqrt(Math.PI * 2));
+        double z = -Math.pow(x - mean, 2) / (2 * Math.pow(standardDeviation, 2));
+        return y * Math.exp(z);
     }
 
 
@@ -83,18 +74,18 @@ class PoissonDistribution extends ProbabilityDistribution
 
     public double getExpectedStandardDeviation()
     {
-        return Math.sqrt(mean); 
+        return standardDeviation;
     }
 
 
     public String getDescription()
     {
-        return "Poisson Description (\u03bb = " + mean + ")";
+        return "Gaussian Distribution (\u03bc = " + mean + ", \u03c3 = " + standardDeviation +")";
     }
 
-
+    
     public boolean isDiscrete()
     {
-        return true;
-    }    
+        return false;
+    }
 }

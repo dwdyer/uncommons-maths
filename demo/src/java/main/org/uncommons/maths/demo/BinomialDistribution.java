@@ -16,16 +16,16 @@
 package org.uncommons.maths.demo;
 
 import java.math.BigInteger;
-import java.util.Random;
 import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.Random;
+import java.util.HashMap;
 import org.uncommons.maths.Maths;
 import org.uncommons.maths.random.BinomialGenerator;
 
 /**
  * @author Daniel Dyer
  */
-public class BinomialDistribution extends ProbabilityDistribution
+class BinomialDistribution extends ProbabilityDistribution
 {
     private final int n;
     private final double p;
@@ -38,12 +38,12 @@ public class BinomialDistribution extends ProbabilityDistribution
     }
 
 
-    public Map<Integer, Double> getExpectedValues()
+    public Map<Double, Double> getExpectedValues()
     {
-        Map<Integer, Double> values = new LinkedHashMap<Integer, Double>();
+        Map<Double, Double> values = new HashMap<Double, Double>();
         for (int i = 0; i <= n; i++)
         {
-            values.put(i, getExpectedProbability(i));
+            values.put((double) i, getExpectedProbability(i));
         }
         return values;
     }
@@ -96,5 +96,11 @@ public class BinomialDistribution extends ProbabilityDistribution
     public String getDescription()
     {
         return "Binomial Distribution (n = " + n + ", p = " + p + ")";
+    }
+
+
+    public boolean isDiscrete()
+    {
+        return true;
     }
 }

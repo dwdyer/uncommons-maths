@@ -21,7 +21,10 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -40,8 +43,9 @@ class GraphPanel extends JPanel
 
 
     public void generateGraph(String title,
-                              Map<Integer, Double> observedValues,
-                              Map<Integer, Double> expectedValues)
+                              Map<Double, Double> observedValues,
+                              Map<Double, Double> expectedValues,
+                              boolean discrete)
     {
         XYSeriesCollection dataSet = new XYSeriesCollection();
         XYSeries observedSeries = new XYSeries("Observed");
@@ -49,25 +53,38 @@ class GraphPanel extends JPanel
         XYSeries expectedSeries = new XYSeries("Expected");
         dataSet.addSeries(expectedSeries);
 
-        for (Map.Entry<Integer, Double> entry : observedValues.entrySet())
+        for (Map.Entry<Double, Double> entry : observedValues.entrySet())
         {
             observedSeries.add(entry.getKey(), entry.getValue());
         }
 
-        for (Map.Entry<Integer, Double> entry : expectedValues.entrySet())
+        for (Map.Entry<Double, Double> entry : expectedValues.entrySet())
         {
             expectedSeries.add(entry.getKey(), entry.getValue());
         }
 
 
         JFreeChart chart = ChartFactory.createXYLineChart(title,
-                                                          "Count",
-                                                          "Frequency",
+                                                          "Value",
+                                                          "Probability",
                                                           dataSet,
                                                           PlotOrientation.VERTICAL,
                                                           true,
                                                           false,
                                                           false);
+        if (discrete)
+        {
+            // Render markers at each data point (these discrete points are the
+            // distibution, not the lines between them).
+            ((XYPlot) chart.getPlot()).setRenderer(new XYLineAndShapeRenderer());
+        }
+        else
+        {
+            // Render smooth lines between points for a continuous distribution.
+            XYSplineRenderer renderer = new XYSplineRenderer();
+            renderer.setBaseShapesVisible(false);
+            ((XYPlot) chart.getPlot()).setRenderer(renderer);
+        }
         chartPanel.setChart(chart);
     }
 }

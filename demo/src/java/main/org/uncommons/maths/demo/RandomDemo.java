@@ -80,8 +80,8 @@ public class RandomDemo extends JFrame
                         distribution = distributionPanel.createProbabilityDistribution();
 
                         int iterations = iterationsNumberModel.getNumber().intValue();
-                        Map<Integer, Double> observedValues = distribution.generateValues(iterations, RANDOM);
-                        Map<Integer, Double> expectedValues = distribution.getExpectedValues();
+                        Map<Double, Double> observedValues = distribution.generateValues(iterations, RANDOM);
+                        Map<Double, Double> expectedValues = distribution.getExpectedValues();
                         return new GraphData(observedValues, expectedValues);
                     }
 
@@ -89,7 +89,8 @@ public class RandomDemo extends JFrame
                     {
                         graphPanel.generateGraph(distribution.getDescription(),
                                                  data.getObservedValues(),
-                                                 data.getExpectedValues());
+                                                 data.getExpectedValues(),
+                                                 distribution.isDiscrete());
                     }
                 }.execute();
             }
@@ -115,23 +116,23 @@ public class RandomDemo extends JFrame
 
     private static class GraphData
     {
-        private final Map<Integer, Double> observedValues;
-        private final Map<Integer, Double> expectedValues;
+        private final Map<Double, Double> observedValues;
+        private final Map<Double, Double> expectedValues;
 
 
-        public GraphData(Map<Integer, Double> observedValues, Map<Integer, Double> expectedValues)
+        public GraphData(Map<Double, Double> observedValues, Map<Double, Double> expectedValues)
         {
             this.observedValues = observedValues;
             this.expectedValues = expectedValues;
         }
 
 
-        public Map<Integer, Double> getObservedValues()
+        public Map<Double, Double> getObservedValues()
         {
             return observedValues;
         }
 
-        public Map<Integer, Double> getExpectedValues()
+        public Map<Double, Double> getExpectedValues()
         {
             return expectedValues;
         }

@@ -27,6 +27,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 /**
+ * GUI component for selecting a probability distribution.  Displays appropriate
+ * configuration options for each distribution.
  * @author Daniel Dyer
  */
 class DistributionPanel extends JPanel
@@ -36,8 +38,10 @@ class DistributionPanel extends JPanel
 
     {
         parameterPanels.put("Binomial", new BinomialParametersPanel());
+        parameterPanels.put("Exponential", new ExponentialParametersPanel());
+        parameterPanels.put("Gaussian", new GaussianParametersPanel());
         parameterPanels.put("Poisson", new PoissonParametersPanel());
-        parameterPanels.put("Uniform", new UniformParametersPanel()); 
+        parameterPanels.put("Uniform", new UniformParametersPanel());
     }
 
     
