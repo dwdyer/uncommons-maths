@@ -26,7 +26,7 @@ import org.uncommons.maths.random.PoissonGenerator;
 /**
  * @author Daniel Dyer
  */
-public class PoissonDistribution extends AbstractProbabilityDistribution
+public class PoissonDistribution extends ProbabilityDistribution
 {
     private final double mean;
 
@@ -72,5 +72,23 @@ public class PoissonDistribution extends AbstractProbabilityDistribution
     protected PoissonGenerator createValueGenerator(Random rng)
     {
         return new PoissonGenerator(mean, rng);
+    }
+
+
+    public double getExpectedMean()
+    {
+        return mean;
+    }
+
+
+    public double getExpectedStandardDeviation()
+    {
+        return Math.sqrt(mean); 
+    }
+
+
+    public String getDescription()
+    {
+        return "Poisson Description (\u03bb = " + mean + ")";
     }
 }

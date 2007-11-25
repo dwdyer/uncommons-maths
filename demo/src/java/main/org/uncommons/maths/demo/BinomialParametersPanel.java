@@ -30,9 +30,14 @@ class BinomialParametersPanel extends ParametersPanel
     public BinomialParametersPanel()
     {
         add(new JLabel("No. Trials: "));
-        add(new JSpinner(trialsNumberModel));
+        JSpinner trialsSpinner = new JSpinner(trialsNumberModel);
+        add(trialsSpinner);
         add(new JLabel("Probability: "));
-        add(new JSpinner(probabilityNumberModel));
+        JSpinner probabilitySpinner = new JSpinner(probabilityNumberModel);
+        // Size of this spinner doesn't seem to get set sensibly, so we make
+        // it the same size as the other one.
+        probabilitySpinner.setPreferredSize(trialsSpinner.getPreferredSize());
+        add(probabilitySpinner);
     }
 
     

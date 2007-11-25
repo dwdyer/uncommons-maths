@@ -25,7 +25,7 @@ import org.uncommons.maths.random.BinomialGenerator;
 /**
  * @author Daniel Dyer
  */
-public class BinomialDistribution extends AbstractProbabilityDistribution
+public class BinomialDistribution extends ProbabilityDistribution
 {
     private final int n;
     private final double p;
@@ -78,5 +78,23 @@ public class BinomialDistribution extends AbstractProbabilityDistribution
     protected BinomialGenerator createValueGenerator(Random rng)
     {
         return new BinomialGenerator(n, p, rng);
-    }    
+    }
+
+
+    public double getExpectedMean()
+    {
+        return n * p;
+    }
+
+
+    public double getExpectedStandardDeviation()
+    {
+        return Math.sqrt(n * p * (1 - p));
+    }
+
+
+    public String getDescription()
+    {
+        return "Binomial Distribution (n = " + n + ", p = " + p + ")";
+    }
 }

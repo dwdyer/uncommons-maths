@@ -23,7 +23,7 @@ import org.uncommons.maths.random.DiscreteUniformGenerator;
 /**
  * @author Daniel Dyer
  */
-public class UniformDistribution extends AbstractProbabilityDistribution
+public class UniformDistribution extends ProbabilityDistribution
 {
     private final int min;
     private final int max;
@@ -49,5 +49,23 @@ public class UniformDistribution extends AbstractProbabilityDistribution
     protected DiscreteUniformGenerator createValueGenerator(Random rng)
     {
         return new DiscreteUniformGenerator(min, max, rng);
+    }
+
+
+    public double getExpectedMean()
+    {
+        return (max - min) / 2 + min;
+    }
+
+
+    public double getExpectedStandardDeviation()
+    {
+        return (max - min) / Math.sqrt(12);
+    }
+
+
+    public String getDescription()
+    {
+        return "Uniform Distribution (Range = " + min + ".." + max + ")";
     }
 }

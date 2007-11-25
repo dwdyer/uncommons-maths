@@ -16,15 +16,12 @@
 package org.uncommons.maths.demo;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -65,7 +62,7 @@ public class RandomDemo extends JFrame
         JPanel controls = new JPanel(new BorderLayout());
         controls.add(distributionPanel, BorderLayout.CENTER);
 
-        Box execution = new Box(BoxLayout.X_AXIS);
+        JPanel execution = new JPanel(new FlowLayout(FlowLayout.LEFT));
         execution.add(new JLabel("Iterations: "));
         final SpinnerNumberModel iterationsNumberModel = new SpinnerNumberModel(10000, 10, 100000, 1);
         execution.add(new JSpinner(iterationsNumberModel));
@@ -74,28 +71,25 @@ public class RandomDemo extends JFrame
         {
             public void actionPerformed(ActionEvent actionEvent)
             {
-                new SwingBackgroundTask<List<Map<Integer, Double>>>()
+                new SwingBackgroundTask<GraphData>()
                 {
-                    protected List<Map<Integer, Double>> performTask()
+                    private ProbabilityDistribution distribution;
+
+                    protected GraphData performTask()
                     {
-                        ProbabilityDistribution distribution = distributionPanel.createProbabilityDistribution();
+                        distribution = distributionPanel.createProbabilityDistribution();
 
                         int iterations = iterationsNumberModel.getNumber().intValue();
-                        Map<Integer, Double> observedValues = distribution.generateValues(iterations,
-                                                                                          RANDOM);
+                        Map<Integer, Double> observedValues = distribution.generateValues(iterations, RANDOM);
                         Map<Integer, Double> expectedValues = distribution.getExpectedValues();
-                        List<Map<Integer, Double>> list = new ArrayList<Map<Integer, Double>>(2);
-                        list.add(observedValues);
-                        list.add(expectedValues);
-                        return list;
+                        return new GraphData(observedValues, expectedValues);
                     }
 
-                    protected void postProcessing(List<Map<Integer, Double>> values)
+                    protected void postProcessing(GraphData data)
                     {
-                        assert values.size() == 2 : "Wrong number of data series.";
-                        graphPanel.generateGraph(distributionPanel.getDescription(),
-                                                 values.get(0),
-                                                 values.get(1));
+                        graphPanel.generateGraph(distribution.getDescription(),
+                                                 data.getObservedValues(),
+                                                 data.getExpectedValues());
                     }
                 }.execute();
             }
@@ -116,5 +110,30 @@ public class RandomDemo extends JFrame
                 new RandomDemo().setVisible(true);
             }
         });
+    }
+
+
+    private static class GraphData
+    {
+        private final Map<Integer, Double> observedValues;
+        private final Map<Integer, Double> expectedValues;
+
+
+        public GraphData(Map<Integer, Double> observedValues, Map<Integer, Double> expectedValues)
+        {
+            this.observedValues = observedValues;
+            this.expectedValues = expectedValues;
+        }
+
+
+        public Map<Integer, Double> getObservedValues()
+        {
+            return observedValues;
+        }
+
+        public Map<Integer, Double> getExpectedValues()
+        {
+            return expectedValues;
+        }
     }
 }
