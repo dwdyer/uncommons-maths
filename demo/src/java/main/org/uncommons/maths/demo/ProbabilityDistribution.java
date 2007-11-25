@@ -15,9 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.HashMap;
 import org.uncommons.maths.NumberGenerator;
 
 /**
@@ -37,10 +37,14 @@ abstract class ProbabilityDistribution
                                      ? generateDiscreteValues(count, rng)
                                      : generateContinuousValues(count, rng);
 
+        double sum = 0;
         for (Double key : values.keySet())
         {
-            values.put(key, values.get(key) / count);
+            Double value = values.get(key);
+            values.put(key, value / count);
+            sum += value;
         }
+        assert Math.round(sum) == count : "Wrong total: " + sum;
         return values;
     }
 
@@ -75,19 +79,30 @@ abstract class ProbabilityDistribution
             max = Math.max(value, max);
             values[i] = value;
         }
+        return doQuantization(max, min, values);
+    }
+
+
+    protected static Map<Double, Double> doQuantization(double max,
+                                                        double min,
+                                                        double[] values)
+    {
         double range = max - min;
-        double intervalSize = range / 19;
-        int[] intervals = new int[20];
+        int noIntervals = 20;
+        double intervalSize = range / noIntervals;
+        int[] intervals = new int[noIntervals];
         for (double value : values)
         {
-            int interval = (int) Math.round((value - min) / intervalSize);
-            assert interval >= 0 && interval <= 19 : "Invalid interval: " + interval;
+            int interval = Math.min(noIntervals - 1,
+                                    (int) Math.floor((value - min) / intervalSize));
+            assert interval >= 0 && interval < noIntervals : "Invalid interval: " + interval;
             ++intervals[interval];
         }
         Map<Double, Double> discretisedValues = new HashMap<Double, Double>();
         for (int i = 0; i < intervals.length; i++)
         {
-            discretisedValues.put(min + i * intervalSize, (double) intervals[i]);
+            double value = (1 / intervalSize) * (double) intervals[i];
+            discretisedValues.put(min + ((i + 0.5) * intervalSize), value);
         }
         return discretisedValues;
     }

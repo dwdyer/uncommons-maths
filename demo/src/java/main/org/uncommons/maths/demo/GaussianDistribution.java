@@ -58,10 +58,14 @@ class GaussianDistribution extends ProbabilityDistribution
     }
 
 
+    /**
+     * This is the probability density function for the Gaussian
+     * distribution.
+     */
     private double getExpectedProbability(double x)
     {
         double y = 1 / (standardDeviation * Math.sqrt(Math.PI * 2));
-        double z = -Math.pow(x - mean, 2) / (2 * Math.pow(standardDeviation, 2));
+        double z = -(Math.pow(x - mean, 2) / (2 * Math.pow(standardDeviation, 2)));
         return y * Math.exp(z);
     }
 

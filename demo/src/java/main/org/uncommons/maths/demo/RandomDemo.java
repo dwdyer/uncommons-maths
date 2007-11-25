@@ -64,7 +64,7 @@ public class RandomDemo extends JFrame
 
         JPanel execution = new JPanel(new FlowLayout(FlowLayout.LEFT));
         execution.add(new JLabel("Iterations: "));
-        final SpinnerNumberModel iterationsNumberModel = new SpinnerNumberModel(10000, 10, 100000, 1);
+        final SpinnerNumberModel iterationsNumberModel = new SpinnerNumberModel(10000, 10, 1000000, 100);
         execution.add(new JSpinner(iterationsNumberModel));
         JButton executeButton = new JButton("Go");
         executeButton.addActionListener(new ActionListener()

@@ -55,6 +55,10 @@ class ExponentialDistribution extends ProbabilityDistribution
     }
 
 
+    /**
+     * This is the probability density function for the Exponential
+     * distribution.
+     */
     private double getExpectedProbability(double x)
     {
         if (x < 0)
