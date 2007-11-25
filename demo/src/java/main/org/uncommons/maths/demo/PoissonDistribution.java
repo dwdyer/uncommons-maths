@@ -89,7 +89,7 @@ class PoissonDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Poisson Description (\u03bb = " + mean + ")";
+        return "Poisson Distribution (\u03bb = " + mean + ")";
     }
 
 

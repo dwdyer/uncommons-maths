@@ -21,10 +21,10 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -45,6 +45,8 @@ class GraphPanel extends JPanel
     public void generateGraph(String title,
                               Map<Double, Double> observedValues,
                               Map<Double, Double> expectedValues,
+                              double expectedMean,
+                              double expectedStandardDeviation,
                               boolean discrete)
     {
         XYSeriesCollection dataSet = new XYSeriesCollection();
@@ -72,19 +74,21 @@ class GraphPanel extends JPanel
                                                           true,
                                                           false,
                                                           false);
+        XYPlot plot = (XYPlot) chart.getPlot();
         if (discrete)
         {
             // Render markers at each data point (these discrete points are the
             // distibution, not the lines between them).
-            ((XYPlot) chart.getPlot()).setRenderer(new XYLineAndShapeRenderer());
+            plot.setRenderer(new XYLineAndShapeRenderer());
         }
         else
         {
             // Render smooth lines between points for a continuous distribution.
             XYSplineRenderer renderer = new XYSplineRenderer();
             renderer.setBaseShapesVisible(false);
-            ((XYPlot) chart.getPlot()).setRenderer(renderer);
+            plot.setRenderer(renderer);
         }
+
         chartPanel.setChart(chart);
     }
 }

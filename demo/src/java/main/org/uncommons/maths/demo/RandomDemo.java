@@ -82,7 +82,10 @@ public class RandomDemo extends JFrame
                         int iterations = iterationsNumberModel.getNumber().intValue();
                         Map<Double, Double> observedValues = distribution.generateValues(iterations, RANDOM);
                         Map<Double, Double> expectedValues = distribution.getExpectedValues();
-                        return new GraphData(observedValues, expectedValues);
+                        return new GraphData(observedValues,
+                                             expectedValues,
+                                             distribution.getExpectedMean(),
+                                             distribution.getExpectedStandardDeviation());
                     }
 
                     protected void postProcessing(GraphData data)
@@ -90,6 +93,8 @@ public class RandomDemo extends JFrame
                         graphPanel.generateGraph(distribution.getDescription(),
                                                  data.getObservedValues(),
                                                  data.getExpectedValues(),
+                                                 data.getExpectedMean(),
+                                                 data.getExpectedStandardDeviation(),
                                                  distribution.isDiscrete());
                     }
                 }.execute();
@@ -118,12 +123,19 @@ public class RandomDemo extends JFrame
     {
         private final Map<Double, Double> observedValues;
         private final Map<Double, Double> expectedValues;
+        private final double expectedMean;
+        private final double expectedStandardDeviation;
 
 
-        public GraphData(Map<Double, Double> observedValues, Map<Double, Double> expectedValues)
+        public GraphData(Map<Double, Double> observedValues,
+                         Map<Double, Double> expectedValues,
+                         double expectedMean,
+                         double expectedStandardDeviation)
         {
             this.observedValues = observedValues;
             this.expectedValues = expectedValues;
+            this.expectedMean = expectedMean;
+            this.expectedStandardDeviation = expectedStandardDeviation;
         }
 
 
@@ -132,9 +144,21 @@ public class RandomDemo extends JFrame
             return observedValues;
         }
 
+
         public Map<Double, Double> getExpectedValues()
         {
             return expectedValues;
+        }
+
+
+        public double getExpectedMean()
+        {
+            return expectedMean;
+        }
+
+        public double getExpectedStandardDeviation()
+        {
+            return expectedStandardDeviation;
         }
     }
 }

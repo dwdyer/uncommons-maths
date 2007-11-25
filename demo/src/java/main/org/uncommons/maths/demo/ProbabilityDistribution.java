@@ -83,6 +83,10 @@ abstract class ProbabilityDistribution
     }
 
 
+    /**
+     * Convert the continuous values into discrete values by chopping up
+     * the distribution into several equally-sized intervals.
+     */
     protected static Map<Double, Double> doQuantization(double max,
                                                         double min,
                                                         double[] values)
@@ -101,6 +105,7 @@ abstract class ProbabilityDistribution
         Map<Double, Double> discretisedValues = new HashMap<Double, Double>();
         for (int i = 0; i < intervals.length; i++)
         {
+            // Correct the value to take into account the size of the interval.
             double value = (1 / intervalSize) * (double) intervals[i];
             discretisedValues.put(min + ((i + 0.5) * intervalSize), value);
         }
