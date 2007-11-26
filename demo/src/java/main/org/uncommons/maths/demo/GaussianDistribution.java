@@ -46,13 +46,13 @@ class GaussianDistribution extends ProbabilityDistribution
     {
         Map<Double, Double> values = new HashMap<Double, Double>();
         double p;
-        double x = mean;
+        double x = 0;
         do
         {
-            p = getExpectedProbability(x);
-            values.put(x, p);
-            values.put(-x, p);
-            x += (3 * standardDeviation / 10); // 99.7% of values are within 3 standard deviations.
+            p = getExpectedProbability(mean + x);
+            values.put(mean + x, p);
+            values.put(mean - x, p);
+            x += (3 * standardDeviation / 10); // 99.7% of values are within 3 standard deviations of the mean.
         } while (p > 0.001);
         return values;
     }
