@@ -15,10 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.HashMap;
 import org.uncommons.maths.random.DiscreteUniformGenerator;
 
 /**
@@ -67,7 +66,7 @@ class UniformDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Uniform Distribution (Range = " + min + ".." + max + ")";
+        return "Uniform Distribution (Range = " + min + "..." + max + ")";
     }
 
 

@@ -16,6 +16,7 @@
 package org.uncommons.maths.demo;
 
 import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Random;
 import java.util.HashMap;
@@ -61,17 +62,18 @@ class BinomialDistribution extends ProbabilityDistribution
     private double getExpectedProbability(int successes)
     {
         double prob = Math.pow(p, successes) * Math.pow(1 - p, n - successes);
-        return binomialCoefficient(n, successes) * prob;
+        BigDecimal coefficient = new BigDecimal(binomialCoefficient(n, successes));
+        return coefficient.multiply(new BigDecimal(prob)).doubleValue();
     }
 
 
-    private long binomialCoefficient(int n, int k)
+    private BigInteger binomialCoefficient(int n, int k)
     {
         BigInteger nFactorial = Maths.bigFactorial(n);
         BigInteger kFactorial = Maths.bigFactorial(k);
         BigInteger nMinusKFactorial = Maths.bigFactorial(n - k);
         BigInteger divisor = kFactorial.multiply(nMinusKFactorial);
-        return nFactorial.divide(divisor).longValue();
+        return nFactorial.divide(divisor);
     }
 
 

@@ -18,6 +18,10 @@ package org.uncommons.maths.demo;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import org.uncommons.swing.SpringUtilities;
+import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer
@@ -29,10 +33,13 @@ class GaussianParametersPanel extends ParametersPanel
 
     public GaussianParametersPanel()
     {
-        add(new JLabel("Mean: "));
-        add(new JSpinner(meanNumberModel));
-        add(new JLabel("Standard Deviation: "));
-        add(new JSpinner(deviationNumberModel));
+        JPanel wrapper = new JPanel(new SpringLayout());
+        wrapper.add(new JLabel("Mean: "));
+        wrapper.add(new JSpinner(meanNumberModel));
+        wrapper.add(new JLabel("Standard Deviation: "));
+        wrapper.add(new JSpinner(deviationNumberModel));
+        SpringUtilities.makeCompactGrid(wrapper, 4, 1, 6, 6, 6, 6);
+        add(wrapper, BorderLayout.NORTH);
     }
 
 

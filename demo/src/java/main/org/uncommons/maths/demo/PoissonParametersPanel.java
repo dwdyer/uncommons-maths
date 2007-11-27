@@ -18,6 +18,10 @@ package org.uncommons.maths.demo;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import org.uncommons.swing.SpringUtilities;
+import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer
@@ -28,8 +32,11 @@ class PoissonParametersPanel extends ParametersPanel
 
     public PoissonParametersPanel()
     {
-        add(new JLabel("Mean: "));
-        add(new JSpinner(meanNumberModel));
+        JPanel wrapper = new JPanel(new SpringLayout());
+        wrapper.add(new JLabel("Mean: "));
+        wrapper.add(new JSpinner(meanNumberModel));
+        SpringUtilities.makeCompactGrid(wrapper, 2, 1, 6, 6, 6, 6);
+        add(wrapper, BorderLayout.NORTH);
     }
 
 

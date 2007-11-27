@@ -1,6 +1,8 @@
 package org.uncommons.maths.demo;
 
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 /**
@@ -10,7 +12,7 @@ abstract class ParametersPanel extends JPanel
 {
     protected ParametersPanel()
     {
-        super(new FlowLayout(FlowLayout.LEFT));
+        super(new BorderLayout());
     }
 
 

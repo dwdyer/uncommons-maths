@@ -66,7 +66,7 @@ class DistributionPanel extends JPanel
             }
         });
 
-        add(distributionCombo, BorderLayout.WEST);
+        add(distributionCombo, BorderLayout.NORTH);
         add(parametersPanel, BorderLayout.CENTER);
         setBorder(BorderFactory.createTitledBorder("Probability Distribution"));
     }

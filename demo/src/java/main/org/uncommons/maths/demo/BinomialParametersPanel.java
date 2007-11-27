@@ -18,26 +18,28 @@ package org.uncommons.maths.demo;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SpringLayout;
+import javax.swing.JPanel;
+import org.uncommons.swing.SpringUtilities;
+import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer
  */
 class BinomialParametersPanel extends ParametersPanel
 {
-    private final SpinnerNumberModel trialsNumberModel = new SpinnerNumberModel(50, 1, 1000, 1);
+    private final SpinnerNumberModel trialsNumberModel = new SpinnerNumberModel(50, 1, 100, 1);
     private final SpinnerNumberModel probabilityNumberModel = new SpinnerNumberModel(0.5d, 0.0d, 1.0d, 0.01d);
 
     public BinomialParametersPanel()
     {
-        add(new JLabel("No. Trials: "));
-        JSpinner trialsSpinner = new JSpinner(trialsNumberModel);
-        add(trialsSpinner);
-        add(new JLabel("Probability: "));
-        JSpinner probabilitySpinner = new JSpinner(probabilityNumberModel);
-        // Size of this spinner doesn't seem to get set sensibly, so we make
-        // it the same size as the other one.
-        probabilitySpinner.setPreferredSize(trialsSpinner.getPreferredSize());
-        add(probabilitySpinner);
+        JPanel wrapper = new JPanel(new SpringLayout());
+        wrapper.add(new JLabel("No. Trials: "));
+        wrapper.add(new JSpinner(trialsNumberModel));
+        wrapper.add(new JLabel("Probability: "));
+        wrapper.add(new JSpinner(probabilityNumberModel));
+        SpringUtilities.makeCompactGrid(wrapper, 4, 1, 6, 6, 6, 6);
+        add(wrapper, BorderLayout.NORTH);
     }
 
     

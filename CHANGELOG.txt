@@ -2,10 +2,12 @@ Changes in version 1.1
 ----------------------
 
 * PermutationGenerator and CombinationGenerator now implement
-  java.lang.Iterable
+  java.lang.Iterable (ISSUE#1).
 
 * Moved PermutationGenerator and CombinationGenerator into new combinatorics
   package.
+
+* Added demo program for different probability distributions (ISSUE#2).
 
 
 Changes in version 1.0.2

@@ -18,6 +18,10 @@ package org.uncommons.maths.demo;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import org.uncommons.swing.SpringUtilities;
+import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer
@@ -28,8 +32,11 @@ class ExponentialParametersPanel extends ParametersPanel
 
     public ExponentialParametersPanel()
     {
-        add(new JLabel("Rate: "));
-        add(new JSpinner(rateNumberModel));
+        JPanel wrapper = new JPanel(new SpringLayout());
+        wrapper.add(new JLabel("Rate: "));
+        wrapper.add(new JSpinner(rateNumberModel));
+        SpringUtilities.makeCompactGrid(wrapper, 2, 1, 6, 6, 6, 6);
+        add(wrapper, BorderLayout.NORTH);
     }
 
 

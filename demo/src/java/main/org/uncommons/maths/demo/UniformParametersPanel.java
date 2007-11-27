@@ -18,6 +18,10 @@ package org.uncommons.maths.demo;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import org.uncommons.swing.SpringUtilities;
+import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer
@@ -29,10 +33,13 @@ class UniformParametersPanel extends ParametersPanel
 
     public UniformParametersPanel()
     {
-        add(new JLabel("Minimum: "));
-        add(new JSpinner(minNumberModel));
-        add(new JLabel("Maximum: "));
-        add(new JSpinner(maxNumberModel));
+        JPanel wrapper = new JPanel(new SpringLayout());
+        wrapper.add(new JLabel("Minimum: "));
+        wrapper.add(new JSpinner(minNumberModel));
+        wrapper.add(new JLabel("Maximum: "));
+        wrapper.add(new JSpinner(maxNumberModel));
+        SpringUtilities.makeCompactGrid(wrapper, 4, 1, 6, 6, 6, 6);
+        add(wrapper, BorderLayout.NORTH);
     }
 
 
