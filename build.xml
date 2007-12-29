@@ -263,7 +263,7 @@
     <taskdef resource="tasks.properties" classpathref="base.path" />
     <cobertura-instrument todir="${temp.dir}"
                           datafile="${temp.dir}/cobertura.ser">
-      <fileset dir="${dist.dir}" includes="**/*.jar"/>
+      <fileset dir="${dist.dir}" includes="${artifact.identifier}.jar"/>
     </cobertura-instrument>
 
     <!-- Run the unit tests on the instrumented classes. -->
@@ -295,7 +295,7 @@
     <cobertura-report format="html"
                       destdir="${coverage.dir}"
                       datafile="${temp.dir}/cobertura.ser">
-      <fileset dir="${java.dir}/main">
+      <fileset dir="core/${java.dir}/main">
         <include name="**/*.java" />
       </fileset>
     </cobertura-report>

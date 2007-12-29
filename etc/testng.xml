@@ -8,6 +8,12 @@
     </packages>
   </test>
 
+  <test name="Combinatorics" >
+    <packages>
+      <package name="org.uncommons.maths.combinatorics" />
+    </packages>
+  </test>
+
   <test name="Statistics" >
     <packages>
       <package name="org.uncommons.maths.statistics" />
