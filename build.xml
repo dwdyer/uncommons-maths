@@ -290,9 +290,17 @@
                    value="../coverage/index.html" />
     </testng>
 
-    <!-- Generate the coverage report. -->
+    <!-- Generate the HTML coverage report. -->
     <mkdir dir="${coverage.dir}" />
     <cobertura-report format="html"
+                      destdir="${coverage.dir}"
+                      datafile="${temp.dir}/cobertura.ser">
+      <fileset dir="core/${java.dir}/main">
+        <include name="**/*.java" />
+      </fileset>
+    </cobertura-report>
+    <!-- Generate an XML report for Hudson. -->
+    <cobertura-report format="xml"
                       destdir="${coverage.dir}"
                       datafile="${temp.dir}/cobertura.ser">
       <fileset dir="core/${java.dir}/main">
