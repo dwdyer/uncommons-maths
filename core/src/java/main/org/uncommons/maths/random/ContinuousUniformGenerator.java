@@ -16,7 +16,7 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
-import org.uncommons.maths.NumberGenerator;
+import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Continuous, uniformly distributed random sequence.  Generates

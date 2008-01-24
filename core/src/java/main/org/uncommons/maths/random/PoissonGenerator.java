@@ -16,8 +16,8 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
-import org.uncommons.maths.ConstantGenerator;
-import org.uncommons.maths.NumberGenerator;
+import org.uncommons.maths.number.ConstantGenerator;
+import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Discrete random sequence that follows a Poisson distribution.
@@ -31,7 +31,7 @@ public class PoissonGenerator implements NumberGenerator<Integer>
 
     /**
      * <p>Creates a generator of Poisson-distributed values.  The mean is
-     * determined by the provided {@link NumberGenerator}.  This means that
+     * determined by the provided {@link org.uncommons.maths.number.NumberGenerator}.  This means that
      * the statistical parameters of this generator may change over time.
      * One example of where this is useful is if the mean generator is attached
      * to a GUI control that allows a user to tweak the parameters while a

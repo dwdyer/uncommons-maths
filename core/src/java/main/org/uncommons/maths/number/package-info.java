@@ -13,22 +13,8 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths;
-
 /**
- * Interface for providing different types of sequences of numbers.  This is
- * a simple but powerful abstraction that provides considerable flexibility
- * in implementing classes that require numeric configuration.  Refer to the
- * implementations in this package for examples of how it can be used.
- * @param <T> The type (Integer, Long, Double, etc.) of number to generate.
- * @author Daniel Dyer
- * @see ConstantGenerator
- * @see AdjustableNumberGenerator
+ * Custom numeric data types and classes for working with java.lang.Number and
+ * its sub-classes.
  */
-public interface NumberGenerator<T extends Number>
-{
-    /**
-     * @return The next value from the generator.
-     */
-    T nextValue();
-}
+package org.uncommons.maths.number;

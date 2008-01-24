@@ -13,36 +13,22 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths.random;
-
-import java.util.Random;
-import org.uncommons.maths.number.NumberGenerator;
+package org.uncommons.maths.number;
 
 /**
- * Discrete, uniformly distributed random sequence.
+ * Interface for providing different types of sequences of numbers.  This is
+ * a simple but powerful abstraction that provides considerable flexibility
+ * in implementing classes that require numeric configuration.  Refer to the
+ * implementations in this package for examples of how it can be used.
+ * @param <T> The type (Integer, Long, Double, etc.) of number to generate.
  * @author Daniel Dyer
+ * @see ConstantGenerator
+ * @see AdjustableNumberGenerator
  */
-public class DiscreteUniformGenerator implements NumberGenerator<Integer>
+public interface NumberGenerator<T extends Number>
 {
-    private final Random rng;
-    private final int range;
-    private final int minimumValue;
-
-    public DiscreteUniformGenerator(int minimumValue,
-                                    int maximumValue,
-                                    Random rng)
-    {
-        this.rng = rng;
-        this.minimumValue = minimumValue;
-        this.range = maximumValue - minimumValue + 1;
-    }
-
-
     /**
-     * {@inheritDoc}
+     * @return The next value from the generator.
      */
-    public Integer nextValue()
-    {
-        return rng.nextInt(range) + minimumValue;
-    }
+    T nextValue();
 }

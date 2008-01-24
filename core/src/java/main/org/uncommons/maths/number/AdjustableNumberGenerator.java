@@ -13,14 +13,14 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths;
+package org.uncommons.maths.number;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Implementation of {@link NumberGenerator} that works similarly to
- * {@link org.uncommons.maths.ConstantGenerator} but allows the returned
+ * {@link ConstantGenerator} but allows the returned
  * value to be changed after instantiation.
  * The most useful application of this type of number generator is to permit
  * runtime re-configuration of objects that rely on {@link NumberGenerator}s

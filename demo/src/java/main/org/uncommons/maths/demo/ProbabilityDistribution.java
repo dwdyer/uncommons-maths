@@ -18,7 +18,7 @@ package org.uncommons.maths.demo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import org.uncommons.maths.NumberGenerator;
+import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Encapsulates a probability distribution.  Provides both theoretical

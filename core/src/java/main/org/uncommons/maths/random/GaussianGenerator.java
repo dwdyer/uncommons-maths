@@ -16,8 +16,8 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
-import org.uncommons.maths.ConstantGenerator;
-import org.uncommons.maths.NumberGenerator;
+import org.uncommons.maths.number.ConstantGenerator;
+import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Normally distributed random sequence.

@@ -15,9 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
-import org.uncommons.maths.NumberGenerator;
-import org.uncommons.maths.ConstantGenerator;
 import java.util.Random;
+import org.uncommons.maths.number.ConstantGenerator;
+import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Continuous random sequence that follows an exponential distribution.

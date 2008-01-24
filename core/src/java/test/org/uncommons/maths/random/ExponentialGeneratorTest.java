@@ -15,12 +15,12 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
-import org.uncommons.maths.NumberGenerator;
-import org.uncommons.maths.Maths;
-import org.uncommons.maths.AdjustableNumberGenerator;
-import org.uncommons.maths.statistics.DataSet;
-import org.testng.annotations.Test;
 import java.util.Random;
+import org.testng.annotations.Test;
+import org.uncommons.maths.Maths;
+import org.uncommons.maths.number.AdjustableNumberGenerator;
+import org.uncommons.maths.number.NumberGenerator;
+import org.uncommons.maths.statistics.DataSet;
 
 /**
  * Unit test for the exponential random generator.

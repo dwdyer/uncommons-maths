@@ -13,7 +13,7 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths;
+package org.uncommons.maths.number;
 
 /**
  * Convenience implementation of {@link NumberGenerator} that always
