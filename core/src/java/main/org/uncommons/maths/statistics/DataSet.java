@@ -20,6 +20,8 @@ import java.util.Arrays;
 /**
  * Utility class for calculating statistics for a finite data set.
  * @author Daniel Dyer
+ * @see <a href="http://betterexplained.com/articles/how-to-analyze-data-using-the-average">
+ * How To Analyze Data Using the Average</a>
  */
 public class DataSet
 {
@@ -31,6 +33,7 @@ public class DataSet
 
     private double total = 0;
     private double product = 1;
+    private double reciprocalSum = 0;
     private double minimum = Double.MAX_VALUE;
     private double maximum = Double.MIN_VALUE;
 
@@ -97,6 +100,7 @@ public class DataSet
     {
         total += value;
         product *= value;
+        reciprocalSum += 1 / value;
         minimum = Math.min(minimum, value);
         maximum = Math.max(maximum, value);
     }
@@ -150,7 +154,7 @@ public class DataSet
      * @return If the number of elements is odd, returns the middle element.
      * If the number of elements is even, returns the midpoint of the two
      * middle elements.
-     * @since 1.0.1 
+     * @since 1.0.1
      */
     public final double getMedian()
     {
@@ -195,7 +199,8 @@ public class DataSet
 
     /**
      * The arithemthic mean of an n-element set is the sum of
-     * all the elements divided by n.
+     * all the elements divided by n.  The arithmetic mean is often
+     * referred to simply as the "mean" or "average" of a data set.
      * @see #getGeometricMean()
      * @return The arithmetic mean of all elements in the data set.
      * @throws EmptyDataSetException If the data set is empty.
@@ -210,8 +215,10 @@ public class DataSet
 
     /**
      * The geometric mean of an n-element set is the nth-root of
-     * the product of all the elements.
+     * the product of all the elements.  The geometric mean is used
+     * for finding the average factor (e.g. an average interest rate).
      * @see #getArithmeticMean()
+     * @see #getHarmonicMean()
      * @return The geometric mean of all elements in the data set.
      * @throws EmptyDataSetException If the data set is empty.
      */
@@ -219,6 +226,24 @@ public class DataSet
     {
         assertNotEmpty();
         return Math.pow(product, 1.0d / dataSetSize);
+    }
+
+
+    /**
+     * The harmonic mean of an n-element set is {@literal n} divided by the sum
+     * of the reciprocals of the values (where the reciprocal of a value
+     * {@literal x} is 1/x).  The harmonic mean is used to calculate an average
+     * rate (e.g. an average speed).
+     * @see #getArithmeticMean()
+     * @see #getGeometricMean()
+     * @since 1.1
+     * @return The harmonic mean of all the elements in the data set.
+     * @throws EmptyDataSetException If the data set is empty.
+     */
+    public final double getHarmonicMean()
+    {
+        assertNotEmpty();
+        return dataSetSize / reciprocalSum;
     }
 
 

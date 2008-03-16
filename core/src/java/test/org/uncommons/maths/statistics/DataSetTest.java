@@ -127,6 +127,16 @@ public class DataSetTest
 
 
     @Test
+    public void testHarmonicMean()
+    {
+        DataSet data = new DataSet(new double[]{1, 2, 4, 4});
+        // Reciprocals are 1, 1/2, 1/4 and 1/4.
+        // Sum of reciprocals is 2.  Therefore, harmonic mean is 4/2 = 2.
+        assert data.getHarmonicMean() == 2d : "Incorrect harmonic mean: " + data.getHarmonicMean();
+    }
+
+
+    @Test
     public void testMeanDeviation()
     {
         DataSet data = new DataSet(DATA_SET);
