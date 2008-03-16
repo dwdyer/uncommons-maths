@@ -77,4 +77,15 @@ public class MersenneTwisterRNGTest
         Reporter.log("Expected SD: " + expectedSD + ", observed SD: " + observedSD);
         assert Maths.approxEquals(observedSD, expectedSD, 0.02) : "Standard deviation is outside acceptable range: " + observedSD;
     }
+
+
+    /**
+     * Make sure that the RNG does not accept seeds that are too small since
+     * this could affect the distribution of the output.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInvalidSeedSize()
+    {
+        new MersenneTwisterRNG(new byte[]{1, 2, 3, 4, 5, 6, 7, 8}); // Need 16 bytes, should cause an IllegalArgumentException.
+    }
 }

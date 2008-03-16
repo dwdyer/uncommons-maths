@@ -77,4 +77,15 @@ public class CellularAutomatonRNGTest
         Reporter.log("Expected SD: " + expectedSD + ", observed SD: " + observedSD);
         assert Maths.approxEquals(observedSD, expectedSD, 0.02) : "Standard deviation is outside acceptable range: " + observedSD;
     }
+
+
+    /**
+     * Make sure that the RNG does not accept seeds that are too small since
+     * this could affect the distribution of the output.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInvalidSeedSize()
+    {
+        new CellularAutomatonRNG(new byte[]{1, 2, 3}); // One byte too few, should cause an IllegalArgumentException.
+    }
 }

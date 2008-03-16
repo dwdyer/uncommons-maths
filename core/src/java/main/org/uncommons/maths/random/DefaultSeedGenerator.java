@@ -53,8 +53,8 @@ public final class DefaultSeedGenerator implements SeedGenerator
     /**
      * Generates a seed by trying each of the available strategies in
      * turn until one succeeds.  Tries the most suitable strategy first
-     * and eventually degrades to the least suitable but guaranteed to
-     * work strategy.
+     * and eventually degrades to the least suitable (but guaranteed to
+     * work) strategy.
      * @param length The length (in bytes) of the seed.
      * @return A random seed of the requested length.
      */

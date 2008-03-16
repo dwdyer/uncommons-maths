@@ -104,7 +104,7 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
         // Always log seed so that an indentical RNG can be created later if necessary.
         System.out.println("Mersenne Twister RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
 
-        int[] seedInts = convertBytesToInts(this.seed);
+        int[] seedInts = BinaryUtils.convertBytesToInts(this.seed);
 
         // This section is translated from the init_genrand code in the C version.
         mt[0] = BOOTSTRAP_SEED;
@@ -193,20 +193,5 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
         y ^= (y >>> 18);
 
         return y >>> (32 - bits);
-    }
-
-
-    /**
-     * Helper method to convert an array of bytes to an array of ints.
-     */
-    private int[] convertBytesToInts(byte[] bytes)
-    {
-        assert bytes.length % 4 == 0 : "Number of seed bytes must be multiple of 4.";
-        int[] ints = new int[bytes.length / 4];
-        for (int i = 0; i < bytes.length; i += 4)
-        {
-            ints[i / 4] = (bytes[i] << 24) + (bytes[i + 1] << 16) + (bytes[i + 2] << 8) + bytes[i + 3];
-        }
-        return ints;
     }
 }

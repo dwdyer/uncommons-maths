@@ -67,6 +67,20 @@ public class BinaryUtilsTest
     }
 
 
+    /**
+     * Make sure that the conversion method correctly converts 8 bytes to a
+     * long assuming big-endian convention.
+     */
+    @Test
+    public void testConvertBytesToLong()
+    {
+        byte[] bytes = new byte[]{0, 0, 0, 16, 8, 4, 2, 1};
+        final long expected = 68853957121L;
+        long result = BinaryUtils.convertBytesToLong(bytes, 0);
+        assert expected == result : "Expected " + expected + ", was " + result;
+    }
+
+
     @Test
     public void testConvertFixedPoint()
     {

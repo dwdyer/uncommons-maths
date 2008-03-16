@@ -63,15 +63,24 @@ public class JavaRNG extends Random implements RepeatableRNG
      */
     public JavaRNG(byte[] seed)
     {
-        super(convertBytesToLong(seed));
+        super(createLongSeed(seed));
+        this.seed = seed.clone();
+        // Always log seed so that an indentical RNG can be created later if necessary.
+        System.out.println("Standard Java RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
+    }
+
+
+    /**
+     * Helper method to convert seed bytes into the long value required by the
+     * super class.
+     */
+    private static long createLongSeed(byte[] seed)
+    {
         if (seed == null || seed.length != SEED_SIZE_BYTES)
         {
             throw new IllegalArgumentException("Java RNG requires a 64-bit (8-byte) seed.");
         }
-        this.seed = seed.clone();
-
-        // Always log seed so that an indentical RNG can be created later if necessary.
-        System.out.println("Standard Java RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
+        return BinaryUtils.convertBytesToLong(seed, 0);
     }
 
 
@@ -83,24 +92,4 @@ public class JavaRNG extends Random implements RepeatableRNG
         return seed.clone();
     }
 
-
-    /**
-     * Utility method to convert an array of bytes into a long.  Byte ordered is
-     * assumed to be big-endian.
-     */
-    private static long convertBytesToLong(byte[] bytes)
-    {
-        if (bytes.length > 8)
-        {
-            throw new IllegalArgumentException("Number of bytes must be less than or equal to 8.");
-        }
-        long value = 0;
-        for (byte b : bytes)
-        {
-            value <<= 8;
-            value += b;
-        }
-        return value;
-
-    }
 }

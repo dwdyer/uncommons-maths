@@ -37,5 +37,16 @@ public class JavaRNGTest
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
     }
 
+
+    /**
+     * Make sure that the RNG does not accept seeds that are too small since
+     * this could affect the distribution of the output.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInvalidSeedSize()
+    {
+        new JavaRNG(new byte[]{1, 2, 3, 4, 5, 6, 7}); // One byte too few, should cause an IllegalArgumentException.
+    }
+
     // Don't bother testing the distribution of the output for this RNG, it's beyond our control.
 }

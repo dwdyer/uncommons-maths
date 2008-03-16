@@ -94,6 +94,50 @@ public final class BinaryUtils
 
 
     /**
+     * Convert an array of bytes into an array of ints.  4 bytes from the
+     * input data map to a single int in the output data.
+     * @param bytes The data to read from.
+     * @return An array of 32-bit integers constructed from the data.
+     * @since 1.1
+     */
+    public static int[] convertBytesToInts(byte[] bytes)
+    {
+        if (bytes.length % 4 != 0)
+        {
+            throw new IllegalArgumentException("Number of input bytes must be a multiple of 4.");
+        }
+        int[] ints = new int[bytes.length / 4];
+        for (int i = 0; i < ints.length; i++)
+        {
+            ints[i] = convertBytesToInt(bytes, i * 4);
+        }
+        return ints;
+    }
+
+
+    /**
+     * Utility method to convert an array of bytes into a long.  Byte ordered is
+     * assumed to be big-endian.
+     * @param bytes The data to read from.
+     * @param offset The position to start reading the 8-byte long from.
+     * @return The 64-bit integer represented by the eight bytes.
+     * @since 1.1
+     */
+    public static long convertBytesToLong(byte[] bytes, int offset)
+    {
+        long value = 0;
+        for (int i = offset; i < offset + 8; i++)
+        {
+            byte b = bytes[i];
+            value <<= 8;
+            value += b;
+        }
+        return value;
+
+    }
+
+
+    /**
      * Converts a floating point value in the range 0 - 1 into a fixed
      * point bit string (where the most significant bit has a value of 0.5).
      * @param value The value to convert (must be between zero and one).
