@@ -52,7 +52,8 @@ public class CellularAutomatonRNGTest
      * detect the subtle statistical anomalies that would be picked up by Diehard, but it
      * provides a simple check for major problems with the output.
      */
-    @Test(dependsOnMethods = "testRepeatability")
+    @Test(groups = "non-deterministic",
+          dependsOnMethods = "testRepeatability")
     public void testDistribution()
     {
         double pi = RNGTestUtils.calculateMonteCarloValueForPi(rng, 100000);
@@ -66,7 +67,8 @@ public class CellularAutomatonRNGTest
      * detect the subtle statistical anomalies that would be picked up by Diehard, but it
      * provides a simple check for major problems with the output.
      */
-    @Test(dependsOnMethods = "testRepeatability")
+    @Test(groups = "non-deterministic",
+          dependsOnMethods = "testRepeatability")
     public void testStandardDeviation()
     {
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n

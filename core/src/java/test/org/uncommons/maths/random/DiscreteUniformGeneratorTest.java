@@ -30,7 +30,7 @@ public class DiscreteUniformGeneratorTest
      * Check that the observed mean and standard deviation are consistent
      * with the specified distribution parameters.
      */
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDistribution()
     {
         final int min = 150;

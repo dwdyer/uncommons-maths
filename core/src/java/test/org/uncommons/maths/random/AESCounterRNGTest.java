@@ -45,7 +45,8 @@ public class AESCounterRNGTest
      * detect the subtle statistical anomalies that would be picked up by Diehard, but it
      * provides a simple check for major problems with the output.
      */
-    @Test(dependsOnMethods = "testRepeatability")
+    @Test(groups = "non-deterministic",
+          dependsOnMethods = "testRepeatability")
     public void testDistribution() throws GeneralSecurityException, SeedException
     {
         AESCounterRNG rng = new AESCounterRNG(DefaultSeedGenerator.getInstance());
@@ -60,7 +61,8 @@ public class AESCounterRNGTest
      * detect the subtle statistical anomalies that would be picked up by Diehard, but it
      * provides a simple check for major problems with the output.
      */
-    @Test(dependsOnMethods = "testRepeatability")
+    @Test(groups = "non-deterministic",
+          dependsOnMethods = "testRepeatability")
     public void testStandardDeviation() throws GeneralSecurityException
     {
         AESCounterRNG rng = new AESCounterRNG();

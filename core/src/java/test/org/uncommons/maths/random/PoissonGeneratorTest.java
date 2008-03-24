@@ -35,7 +35,7 @@ public class PoissonGeneratorTest
      * Check that the observed mean and standard deviation are consistent
      * with the specified distribution parameters.
      */
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDistribution()
     {
         final double mean = 19;
@@ -44,7 +44,7 @@ public class PoissonGeneratorTest
     }
 
 
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDynamicParameters()
     {
         final double initialMean = 19;

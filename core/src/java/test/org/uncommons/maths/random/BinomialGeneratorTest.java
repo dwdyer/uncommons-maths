@@ -34,7 +34,7 @@ public class BinomialGeneratorTest
      * Check that the observed mean and standard deviation are consistent
      * with the specified distribution parameters.
      */
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDistribution()
     {
         final int n = 20;
@@ -46,7 +46,7 @@ public class BinomialGeneratorTest
     }
 
 
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDynamicParameters()
     {
         final int initialN = 20;

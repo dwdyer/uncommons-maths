@@ -30,7 +30,7 @@ public class ContinuousUniformGeneratorTest
      * Check that the observed mean and standard deviation are consistent
      * with the specified distribution parameters.
      */
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDistribution()
     {
         final double min = 150;

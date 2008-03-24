@@ -30,7 +30,7 @@ public class ExponentialGeneratorTest
 {
     private final Random rng = new MersenneTwisterRNG();
 
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDistribution()
     {
         final double rate = 3.2d;
@@ -39,7 +39,7 @@ public class ExponentialGeneratorTest
     }
 
 
-    @Test
+    @Test(groups = "non-deterministic")
     public void testDynamicParameters()
     {
         final double initialRate = 0.75d;
