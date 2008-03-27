@@ -52,6 +52,12 @@ public class DevRandomSeedGenerator implements SeedGenerator
         {
             throw new SeedException("Failed reading from " + DEV_RANDOM.getName(), ex);
         }
+        catch (SecurityException ex)
+        {
+            // Might be thrown if resource access is restricted (such as in
+            // an applet sandbox).
+            throw new SeedException("SecurityManager prevented access to " + DEV_RANDOM.getName(), ex);
+        }
         finally
         {
             if (file != null)

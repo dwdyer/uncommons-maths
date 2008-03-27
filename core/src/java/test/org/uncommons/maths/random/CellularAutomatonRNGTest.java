@@ -15,6 +15,7 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.security.GeneralSecurityException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -26,13 +27,6 @@ import org.uncommons.maths.Maths;
 public class CellularAutomatonRNGTest
 {
     /**
-     * Create an RNG using the default seeding strategy.
-     * This RNG is used by all of the test methods.
-     */
-    private CellularAutomatonRNG rng = new CellularAutomatonRNG();
-
-
-    /**
      * Test to ensure that two distinct RNGs with the same seed return the
      * same sequence of numbers.  This method must be run before any of the
      * other tests otherwise the state of the RNG will not be the same in the
@@ -41,6 +35,7 @@ public class CellularAutomatonRNGTest
     @Test
     public void testRepeatability()
     {
+        CellularAutomatonRNG rng = new CellularAutomatonRNG();
         // Create second RNG using same seed.
         CellularAutomatonRNG duplicateRNG = new CellularAutomatonRNG(rng.getSeed());
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
@@ -54,8 +49,9 @@ public class CellularAutomatonRNGTest
      */
     @Test(groups = "non-deterministic",
           dependsOnMethods = "testRepeatability")
-    public void testDistribution()
+    public void testDistribution() throws SeedException
     {
+        CellularAutomatonRNG rng = new CellularAutomatonRNG(DefaultSeedGenerator.getInstance());
         double pi = RNGTestUtils.calculateMonteCarloValueForPi(rng, 100000);
         Reporter.log("Monte Carlo value for Pi: " + pi);
         assert Maths.approxEquals(pi, Math.PI, 0.01) : "Monte Carlo value for Pi is outside acceptable range:" + pi;
@@ -71,6 +67,7 @@ public class CellularAutomatonRNGTest
           dependsOnMethods = "testRepeatability")
     public void testStandardDeviation()
     {
+        CellularAutomatonRNG rng = new CellularAutomatonRNG();
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
         int n = 100;
@@ -89,5 +86,15 @@ public class CellularAutomatonRNGTest
     public void testInvalidSeedSize()
     {
         new CellularAutomatonRNG(new byte[]{1, 2, 3}); // One byte too few, should cause an IllegalArgumentException.
+    }
+
+
+    /**
+     * RNG must not accept a null seed otherwise it will not be properly initialised.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testNullSeed() throws GeneralSecurityException
+    {
+        new CellularAutomatonRNG((byte[]) null);
     }
 }

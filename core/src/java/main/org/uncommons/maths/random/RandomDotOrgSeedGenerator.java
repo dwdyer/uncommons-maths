@@ -47,26 +47,34 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
      */    
     public byte[] generateSeed(int length) throws SeedException
     {
-        synchronized (CACHE)
+        try
         {
-            // First make sure there are enough bytes to generate a seed
-            // of the requested length.
-            if (cacheOffset + length >= CACHE_SIZE)
+            synchronized (CACHE)
             {
-                try
+                // First make sure there are enough bytes to generate a seed
+                // of the requested length.
+                if (cacheOffset + length >= CACHE_SIZE)
                 {
-                    refreshCache();
+                    try
+                    {
+                        refreshCache();
+                    }
+                    catch (IOException ex)
+                    {
+                        throw new SeedException("Failed downloading bytes from http://www.random.org", ex);
+                    }
                 }
-                catch (IOException ex)
-                {
-                    throw new SeedException("Failed downloading bytes from random.org", ex);
-                }
+                byte[] seedData = new byte[length];
+                System.arraycopy(CACHE, cacheOffset, seedData, 0, length);
+                cacheOffset += length;
+                System.out.println(length + " bytes of seed data acquired from http://www.random.org");
+                return seedData;
             }
-            byte[] seedData = new byte[length];
-            System.arraycopy(CACHE, cacheOffset, seedData, 0, length);
-            cacheOffset += length;
-            System.out.println(length + " bytes of seed data acquired from http://www.random.org");
-            return seedData;
+        }
+        catch (SecurityException ex)
+        {
+            // Might be thrown if resource access is restricted (such as in an applet sandbox).
+            throw new SeedException("SecurityManager prevented access to http://www.random.org", ex);
         }
     }
 

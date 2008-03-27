@@ -15,6 +15,7 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.security.GeneralSecurityException;
 import org.testng.annotations.Test;
 
 /**
@@ -47,6 +48,23 @@ public class JavaRNGTest
     {
         new JavaRNG(new byte[]{1, 2, 3, 4, 5, 6, 7}); // One byte too few, should cause an IllegalArgumentException.
     }
+
+
+    /**
+     * RNG must not accept a null seed otherwise it will not be properly initialised.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testNullSeed() throws GeneralSecurityException, SeedException
+    {
+        new JavaRNG(new SeedGenerator()
+        {
+            public byte[] generateSeed(int length)
+            {
+                return null;
+            }
+        });
+    }
+
 
     // Don't bother testing the distribution of the output for this RNG, it's beyond our control.
 }
