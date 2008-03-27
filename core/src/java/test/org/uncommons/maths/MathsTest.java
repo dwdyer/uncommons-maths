@@ -74,6 +74,18 @@ public class MathsTest
 
 
     /**
+     * The standard factorial method (the one that uses longs rather than
+     * BigIntegers) cannot calculate factorials larger than 20!.  It should
+     * throw an exception rather than overflow silently.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testFactorialTooBig()
+    {
+        Maths.factorial(21); // Should throw an exception.
+    }
+
+
+    /**
      * Factorials of negative integers are not supported.  This test
      * checks that an appropriate exception is thrown.
      */
@@ -114,5 +126,35 @@ public class MathsTest
     {
         double log = Maths.log(2, 8);
         assert Math.round(log) == 3 : "Base-2 logarithm of 8 should be 3, is " + log;
+    }
+
+
+    @Test
+    public void testApproxEquals()
+    {
+        assert Maths.approxEquals(1.1d, 1.2d, 0.1d) : "1.1 and 1.2 should be equal with tolerance of 10%";
+        assert !Maths.approxEquals(1.1d, 1.3d, 0.1d) : "1.1 and 1.3 should be unequal with tolerance of 10%";
+    }
+
+
+    @Test
+    public void testApproxEqualsToleranceZero()
+    {
+        // Zero tolerance should allow exactly equivalent values.
+        assert Maths.approxEquals(1d, 1d, 0d) : "Identical values should be equal with zero tolerance.";
+    }
+    
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testApproxEqualsToleranceTooLow()
+    {
+        Maths.approxEquals(0d, 1d, -0.1d); // Tolerance too low (<0), should throw exception.
+    }
+
+    
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testApproxEqualsToleranceTooHigh()
+    {
+        Maths.approxEquals(0d, 1d, 1.2d); // Tolerance too high (>1), should throw exception.
     }
 }
