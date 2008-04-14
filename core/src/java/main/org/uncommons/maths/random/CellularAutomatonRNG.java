@@ -110,9 +110,6 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         }
         this.seed = seed.clone();
 
-        // Always log seed so that an indentical RNG can be created later if necessary.
-        System.out.println("Cellular Automaton RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
-
         // Set initial cell states using seed.
         cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
         cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;

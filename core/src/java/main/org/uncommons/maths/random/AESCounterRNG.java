@@ -101,9 +101,6 @@ public class AESCounterRNG extends Random implements RepeatableRNG
 
         cipher = Cipher.getInstance("AES/ECB/NoPadding");
         cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
-
-        // Always log seed so that an indentical RNG can be created later if necessary.
-        System.out.println("AES RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
     }
 
 

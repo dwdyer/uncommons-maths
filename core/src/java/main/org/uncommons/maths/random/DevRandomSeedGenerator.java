@@ -28,6 +28,9 @@ public class DevRandomSeedGenerator implements SeedGenerator
 {
     private static final File DEV_RANDOM = new File("/dev/random");
 
+    /**
+     * {@inheritDoc}
+     */
     public byte[] generateSeed(int length) throws SeedException
     {
         FileInputStream file = null;
@@ -45,7 +48,6 @@ public class DevRandomSeedGenerator implements SeedGenerator
                 }
                 count += bytesRead;
             }
-            System.out.println(length + " bytes of seed data acquired from /dev/random");
             return randomSeed;
         }
         catch (IOException ex)
@@ -72,5 +74,12 @@ public class DevRandomSeedGenerator implements SeedGenerator
                 }
             }
         }
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "/dev/random";
     }
 }

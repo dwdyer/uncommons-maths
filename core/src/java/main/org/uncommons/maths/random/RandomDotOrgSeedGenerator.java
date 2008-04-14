@@ -31,11 +31,13 @@ import java.net.URLConnection;
  */
 public class RandomDotOrgSeedGenerator implements SeedGenerator
 {
+    private static final String BASE_URL = "http://www.random.org";
+
     private static final int CACHE_SIZE = 1024;
     private static final byte[] CACHE = new byte[CACHE_SIZE];
 
     /** The URL from which the random bytes are retrieved. */
-    private static final String RANDOM_URL = "http://www.random.org/cgi-bin/randbyte?nbytes="
+    private static final String RANDOM_URL = BASE_URL + "/cgi-bin/randbyte?nbytes="
                                              + CACHE_SIZE + "&format=d";
     /** Used to identify the client to the random.org service. */
     private static final String USER_AGENT = RandomDotOrgSeedGenerator.class.getName();
@@ -61,20 +63,19 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
                     }
                     catch (IOException ex)
                     {
-                        throw new SeedException("Failed downloading bytes from http://www.random.org", ex);
+                        throw new SeedException("Failed downloading bytes from " + BASE_URL, ex);
                     }
                 }
                 byte[] seedData = new byte[length];
                 System.arraycopy(CACHE, cacheOffset, seedData, 0, length);
                 cacheOffset += length;
-                System.out.println(length + " bytes of seed data acquired from http://www.random.org");
                 return seedData;
             }
         }
         catch (SecurityException ex)
         {
             // Might be thrown if resource access is restricted (such as in an applet sandbox).
-            throw new SeedException("SecurityManager prevented access to http://www.random.org", ex);
+            throw new SeedException("SecurityManager prevented access to " + BASE_URL, ex);
         }
     }
 
@@ -101,5 +102,12 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
             throw new IOException("Insufficient data received.");
         }
         cacheOffset = 0;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return BASE_URL;
     }
 }

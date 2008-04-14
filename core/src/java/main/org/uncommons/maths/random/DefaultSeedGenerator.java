@@ -15,6 +15,8 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import org.uncommons.maths.binary.BinaryUtils;
+
 /**
  * Seed generator that maintains multiple strategies for seed
  * generation and will delegate to the best one available for the
@@ -23,6 +25,8 @@ package org.uncommons.maths.random;
  */
 public final class DefaultSeedGenerator implements SeedGenerator
 {
+    private static final String DEBUG_PROPERTY = "org.uncommons.maths.random.debug";
+    
     /** Singleton instance. */
     private static final DefaultSeedGenerator INSTANCE = new DefaultSeedGenerator();
 
@@ -64,7 +68,15 @@ public final class DefaultSeedGenerator implements SeedGenerator
         {
             try
             {
-                return generator.generateSeed(length);
+                byte[] seed = generator.generateSeed(length);
+                boolean debug = System.getProperty(DEBUG_PROPERTY, "false").equals("true");
+                if (debug)
+                {
+                    String seedString = BinaryUtils.convertBytesToHexString(seed);
+                    System.out.println(seed.length + " bytes of seed data acquired from " + generator + ":");
+                    System.out.println("  " + seedString);
+                }
+                return seed;
             }
             catch (SeedException ex)
             {

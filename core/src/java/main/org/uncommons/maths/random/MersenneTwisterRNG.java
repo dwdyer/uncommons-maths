@@ -101,9 +101,6 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
         }
         this.seed = seed.clone();
 
-        // Always log seed so that an indentical RNG can be created later if necessary.
-        System.out.println("Mersenne Twister RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
-
         int[] seedInts = BinaryUtils.convertBytesToInts(this.seed);
 
         // This section is translated from the init_genrand code in the C version.

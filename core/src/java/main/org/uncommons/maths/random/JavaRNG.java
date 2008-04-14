@@ -65,8 +65,6 @@ public class JavaRNG extends Random implements RepeatableRNG
     {
         super(createLongSeed(seed));
         this.seed = seed.clone();
-        // Always log seed so that an indentical RNG can be created later if necessary.
-        System.out.println("Standard Java RNG created with seed " + BinaryUtils.convertBytesToHexString(seed));
     }
 
 

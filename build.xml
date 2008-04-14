@@ -283,6 +283,8 @@
             listeners="org.uncommons.reportng.HTMLReporter,
                        org.uncommons.reportng.JUnitXMLReporter">
       <xmlfileset dir="${conf.dir}" includes="testng.xml"/>
+      <sysproperty key="org.uncommons.maths.random.debug"
+                   value="true" />
       <sysproperty key="net.sourceforge.cobertura.datafile"
                    file="${temp.dir}/cobertura.ser" />
       <sysproperty key="org.uncommons.reportng.title"
