@@ -11,7 +11,11 @@ Changes in version 1.1
 
 * Added demo program for different probability distributions (ISSUE#2).
 
-* Added method to the DataSet class for calculating the harmonic mean. 
+* Added method to the DataSet class for calculating the harmonic mean.
+
+* RNGs no longer log any information to stdout (ISSUE#7) by default.
+  The DefaultSeedGenerator class will log the seeds that it generates
+  only if the org.uncommons.maths.random.debug System property is set to true.
 
 
 Changes in version 1.0.2
