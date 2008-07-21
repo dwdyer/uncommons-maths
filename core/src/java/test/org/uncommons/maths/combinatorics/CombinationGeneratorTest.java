@@ -155,4 +155,24 @@ public class CombinationGeneratorTest
         generator.nextCombinationAsList(); // Second one should throw an exception.
     }
 
+
+    /**
+     * If the original set of elements is sorted, then all of the combinations should
+     * be sorted as well since the algorithm does not re-order them, it just omits some when
+     * creating each combination.
+     */
+    @Test
+    public void testOrdering()
+    {
+        Integer[] elements = new Integer[]{1, 2, 3, 4, 5, 6};
+        CombinationGenerator<Integer> generator = new CombinationGenerator<Integer>(elements, 4);
+        for (List<Integer> combination : generator)
+        {
+            for (int i = 1; i < combination.size(); i++)
+            {
+                assert combination.get(i - 1) < combination.get(i) : "Combination is not ordered correctly.";
+            }
+        }
+    }
+
 }
