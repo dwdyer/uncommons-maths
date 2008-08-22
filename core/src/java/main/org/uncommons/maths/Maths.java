@@ -26,6 +26,9 @@ public final class Maths
     // The biggest factorial that can be calculated using 64-bit signed longs.
     private static final int MAX_LONG_FACTORIAL = 20;
 
+    // Cache BigInteger factorial values because they are expensive to generate.
+    private static final BigInteger[] BIG_FACTORIALS = new BigInteger[256];
+
     private Maths()
     {
         // Prevent instantiation.
@@ -70,11 +73,26 @@ public final class Maths
         {
             throw new IllegalArgumentException("Argument must greater than or equal to zero.");
         }
-        BigInteger factorial = BigInteger.ONE;
-        for (int i = n; i > 1; i--)
+
+        BigInteger factorial = null;
+        if (n < BIG_FACTORIALS.length) // Check for a cached value.
         {
-            factorial = factorial.multiply(BigInteger.valueOf(i));
+            factorial = BIG_FACTORIALS[n];
         }
+
+        if (factorial == null)
+        {
+            factorial = BigInteger.ONE;
+            for (int i = n; i > 1; i--)
+            {
+                factorial = factorial.multiply(BigInteger.valueOf(i));
+            }
+            if (n < BIG_FACTORIALS.length) // Cache value.
+            {
+                BIG_FACTORIALS[n] = factorial;
+            }
+        }
+
         return factorial;
     }
 
