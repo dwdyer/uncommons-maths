@@ -21,6 +21,9 @@ Changes in version 1.1
   CombinationGenerator.  The maximum was 20 but bigger sets are now permitted
   as long as the total number of combinations is no more than 2^63 (ISSUE#8).
 
+* Added a cache for BigInteger factorial values.  This avoids expensive
+  recalculation in code that repeatedly computes factorials.
+
 
 Changes in version 1.0.2
 ------------------------
