@@ -17,6 +17,10 @@ Changes in version 1.1
   The DefaultSeedGenerator class will log the seeds that it generates
   only if the org.uncommons.maths.random.debug System property is set to true.
 
+* Relaxed restriction on the maximum size of the element set used by
+  CombinationGenerator.  The maximum was 20 but bigger sets are now permitted
+  as long as the total number of combinations is no more than 2^63 (ISSUE#8).
+
 
 Changes in version 1.0.2
 ------------------------

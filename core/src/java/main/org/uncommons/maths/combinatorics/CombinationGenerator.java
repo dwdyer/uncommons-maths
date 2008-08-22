@@ -16,18 +16,18 @@
 package org.uncommons.maths.combinatorics;
 
 import java.lang.reflect.Array;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 import org.uncommons.maths.Maths;
 
 /**
- * Combination generator for generating all combinations for all sets up to
- * 20 elements in size.  The reason for the size restriction is in order to
- * provide the best possible performance for small sets by avoiding the need
- * to perform the internal arithmetic using {@link java.math.BigInteger} (which
- * would be necessary to calculate any factorial greater than 20!).
+ * Combination generator for generating all combinations of a given size from
+ * the specified set of elements.  For performance reasons, this implementation
+ * is restricted to operating with set sizes and combination lengths that produce
+ * no more than 2^63 different combinations.
  * @param <T> The type of element that the combinations are made from.
  * @author Daniel Dyer (modified from the original version written by Michael
  * Gilleland of Merriam Park Software -
@@ -36,9 +36,6 @@ import org.uncommons.maths.Maths;
  */
 public class CombinationGenerator<T> implements Iterable<List<T>>
 {
-    // Maximum number of elements that can be combined by this class.
-    private static final int MAX_SET_LENGTH = 20;
-
     private final T[] elements;
     private final int[] combinationIndices;
     private long remainingCombinations;
@@ -57,18 +54,21 @@ public class CombinationGenerator<T> implements Iterable<List<T>>
         {
             throw new IllegalArgumentException("Combination length cannot be greater than set size.");
         }
-        if (elements.length > MAX_SET_LENGTH)
-        {
-            throw new IllegalArgumentException("Combination length must be less than or equal to 20.");
-        }
 
         this.elements = elements.clone();
         this.combinationIndices = new int[combinationLength];
 
-        long sizeFactorial = Maths.factorial(elements.length);
-        long lengthFactorial = Maths.factorial(combinationLength);
-        long differenceFactorial = Maths.factorial(elements.length - combinationLength);
-        totalCombinations = sizeFactorial / (lengthFactorial * differenceFactorial);
+        BigInteger sizeFactorial = Maths.bigFactorial(elements.length);
+        BigInteger lengthFactorial = Maths.bigFactorial(combinationLength);
+        BigInteger differenceFactorial = Maths.bigFactorial(elements.length - combinationLength);
+        BigInteger total = sizeFactorial.divide(differenceFactorial.multiply(lengthFactorial));
+        
+        if (total.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0)
+        {
+            throw new IllegalArgumentException("Total number of combinations must not be more than 2^63."); 
+        }
+
+        totalCombinations = total.longValue();
         reset();
     }
 

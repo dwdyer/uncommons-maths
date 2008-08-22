@@ -146,6 +146,22 @@ public class CombinationGeneratorTest
     }
 
 
+    /**
+     * If the initial parameters result in more than 2^63 combinations, then an
+     * exception should be thrown as this is outside the range of a long.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testTooManyCombinations()
+    {
+        Integer [] elements = new Integer[100];
+        for (int i = 0; i < elements.length; i++)
+        {
+            elements[i] = i;
+        }
+        new CombinationGenerator<Integer>(elements, 40); // Should throw an exception.
+    }
+
+
     @Test(dependsOnMethods = "testZeroLength",
           expectedExceptions = IllegalStateException.class)
     public void testExhaustion()
