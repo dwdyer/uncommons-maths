@@ -69,13 +69,21 @@ public final class DefaultSeedGenerator implements SeedGenerator
             try
             {
                 byte[] seed = generator.generateSeed(length);
-                boolean debug = System.getProperty(DEBUG_PROPERTY, "false").equals("true");
-                if (debug)
+                try
                 {
-                    String seedString = BinaryUtils.convertBytesToHexString(seed);
-                    System.out.println(seed.length + " bytes of seed data acquired from " + generator + ":");
-                    System.out.println("  " + seedString);
+                    boolean debug = System.getProperty(DEBUG_PROPERTY, "false").equals("true");
+                    if (debug)
+                    {
+                        String seedString = BinaryUtils.convertBytesToHexString(seed);
+                        System.out.println(seed.length + " bytes of seed data acquired from " + generator + ":");
+                        System.out.println("  " + seedString);
+                    }
                 }
+                catch (SecurityException ex)
+                {
+                    // Ignore, means we can't read the property so just default to false.
+                }
+
                 return seed;
             }
             catch (SeedException ex)
