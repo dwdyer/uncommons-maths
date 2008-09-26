@@ -20,7 +20,7 @@ import org.uncommons.maths.number.NumberGenerator;
 
 /**
  * Continuous, uniformly distributed random sequence.  Generates
- * values in the range mininum (inclusive) - maximum (exclusive).
+ * values in the range {@literal mininum (inclusive) ... maximum (exclusive)}.
  * @author Daniel Dyer
  */
 public class ContinuousUniformGenerator implements NumberGenerator<Double>

@@ -19,10 +19,9 @@ import java.util.Random;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
- * <p>Random number generator based on the Mersenne Twister algorithm developed
- * by Makoto Matsumoto and Takuji Nishimura
- * (<a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html"
- * >http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html</a>).</p>
+ * <p>Random number generator based on the
+ * <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html" target="_top">Mersenne
+ * Twister</a> algorithm developed by Makoto Matsumoto and Takuji Nishimura.</p>
  *
  * <p>This is a very fast random number generator with good statistical
  * properties (it passes the full DIEHARD suite).  This is the best RNG

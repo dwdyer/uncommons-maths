@@ -19,7 +19,8 @@ import java.util.Random;
 import org.uncommons.maths.number.NumberGenerator;
 
 /**
- * Discrete, uniformly distributed random sequence.
+ * Discrete, uniformly distributed random sequence.  Generates
+ * values between the specified minimum and maximum values (inclusive).
  * @author Daniel Dyer
  */
 public class DiscreteUniformGenerator implements NumberGenerator<Integer>

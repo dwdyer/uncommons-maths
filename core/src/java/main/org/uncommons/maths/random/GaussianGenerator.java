@@ -20,7 +20,8 @@ import org.uncommons.maths.number.ConstantGenerator;
 import org.uncommons.maths.number.NumberGenerator;
 
 /**
- * Normally distributed random sequence.
+ * <a href="http://en.wikipedia.org/wiki/Normal_distribution" target="_top">Normally distributed</a>
+ * random sequence.
  * @author Daniel Dyer
  */
 public class GaussianGenerator implements NumberGenerator<Double>

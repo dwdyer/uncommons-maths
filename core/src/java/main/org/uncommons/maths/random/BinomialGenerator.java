@@ -22,7 +22,9 @@ import org.uncommons.maths.number.ConstantGenerator;
 import org.uncommons.maths.number.NumberGenerator;
 
 /**
- * Discrete random sequence that follows a binomial distribution.
+ * Discrete random sequence that follows a
+ * <a href="http://en.wikipedia.org/wiki/Binomial_distribution" target="_top">binomial
+ * distribution</a>.
  * @author Daniel Dyer
  */
 public class BinomialGenerator implements NumberGenerator<Integer>

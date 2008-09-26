@@ -23,7 +23,8 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * Utility to generate an input file for the DIEHARD suite of statistical
+ * Utility to generate an input file for the
+ * <a href="http://stat.fsu.edu/pub/diehard/" target="_top">DIEHARD</a> suite of statistical
  * tests for random number generators.
  * @author Daniel Dyer
  */

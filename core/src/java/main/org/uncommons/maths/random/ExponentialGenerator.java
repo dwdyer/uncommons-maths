@@ -20,7 +20,9 @@ import org.uncommons.maths.number.ConstantGenerator;
 import org.uncommons.maths.number.NumberGenerator;
 
 /**
- * Continuous random sequence that follows an exponential distribution.
+ * Continuous random sequence that follows an
+ * <a href="http://en.wikipedia.org/wiki/Exponential_distribution" target="_top">exponential
+ * distribution</a>.
  * @author Daniel Dyer
  * @since 1.0.2
  */

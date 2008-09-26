@@ -22,13 +22,14 @@ import javax.crypto.Cipher;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
- * Non-linear random number generator based on the AES block cipher in counter mode.
- * Uses the seed as a key to encrypt a 128-bit counter using AES(Rijndael).
- * By default we only use a 128-bit key for the cipher because any larger key requires
+ * <p>Non-linear random number generator based on the AES block cipher in counter mode.
+ * Uses the seed as a key to encrypt a 128-bit counter using AES(Rijndael).</p>
+ * 
+ * <p>By default, we only use a 128-bit key for the cipher because any larger key requires
  * the inconvenience of installing the unlimited strength cryptography policy
- * files for the Java platform.  Larger keys can be used (192 or 256 bits) but if the
+ * files for the Java platform.  Larger keys may be used (192 or 256 bits) but if the
  * cryptography policy files are not installed, a
- * {@link java.security.GeneralSecurityException} will be thrown.
+ * {@link java.security.GeneralSecurityException} will be thrown.</p>
  * @author Daniel Dyer
  */
 public class AESCounterRNG extends Random implements RepeatableRNG

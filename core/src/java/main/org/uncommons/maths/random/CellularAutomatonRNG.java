@@ -19,10 +19,9 @@ import java.util.Random;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
- * Java port of the cellular automaton pseudorandom number generator developed by
- * Tony Pasqualoni
- * (<a href="http://home.southernct.edu/~pasqualonia1/ca/report.html"
- * >http://home.southernct.edu/~pasqualonia1/ca/report.html</a>).
+ * Java port of the
+ * <a href="http://home.southernct.edu/~pasqualonia1/ca/report.html" target="_top">cellular
+ * automaton pseudorandom number generator</a> developed by Tony Pasqualoni.
  * @author Tony Pasqualoni (original C version)
  * @author Daniel Dyer (Java port)
  */

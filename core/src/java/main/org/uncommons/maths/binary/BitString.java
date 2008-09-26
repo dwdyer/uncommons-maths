@@ -21,9 +21,11 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Implementation of a fixed-length bit-string.  This implementation makes
- * more efficient use of space than the alternative approach of using an
- * array of booleans. 
+ * <p>Implementation of a fixed-length bit-string.  Internally, bits are packed into an
+ * array of ints.  This implementation makes more efficient use of space than the
+ * alternative approach of using an array of booleans.</p>
+ * <p>This class is preferable to {@link java.util.BitSet} if a fixed number of bits is
+ * required.</p> 
  * @author Daniel Dyer
  */
 public final class BitString implements Cloneable, Serializable

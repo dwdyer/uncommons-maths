@@ -21,7 +21,8 @@ import java.io.IOException;
 
 /**
  * RNG seed strategy that gets data from {@literal /dev/random} on systems
- * that provide it (e.g. Solaris/Linux).
+ * that provide it (e.g. Solaris/Linux).  If {@literal /dev/random} does not
+ * exist or is not accessible, a {@link SeedException} is thrown.
  * @author Daniel Dyer
  */
 public class DevRandomSeedGenerator implements SeedGenerator
@@ -30,6 +31,10 @@ public class DevRandomSeedGenerator implements SeedGenerator
 
     /**
      * {@inheritDoc}
+     * @return The requested number of random bytes, read directly from
+     * {@literal /dev/random}.
+     * @throws SeedException If {@literal /dev/random} does not exist or is
+     * not accessible
      */
     public byte[] generateSeed(int length) throws SeedException
     {

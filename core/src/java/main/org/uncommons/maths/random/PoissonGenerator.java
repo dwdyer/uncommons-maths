@@ -20,7 +20,9 @@ import org.uncommons.maths.number.ConstantGenerator;
 import org.uncommons.maths.number.NumberGenerator;
 
 /**
- * Discrete random sequence that follows a Poisson distribution.
+ * Discrete random sequence that follows a
+ * <a href="http://en.wikipedia.org/wiki/Poisson_distribution" target="_top">Poisson
+ * distribution</a>.
  * @author Daniel Dyer
  */
 public class PoissonGenerator implements NumberGenerator<Integer>

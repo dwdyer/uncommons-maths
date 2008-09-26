@@ -22,11 +22,11 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Connects to the <a href="http://www.random.org">random.org</a> website and
- * downloads a set of random bits to use as seed data.  It is generally better
- * to use the {@link DevRandomSeedGenerator} where possible, as it should be
+ * Connects to the <a href="http://www.random.org" target="_top">random.org</a>
+ * website and downloads a set of random bits to use as seed data.  It is generally
+ * better to use the {@link DevRandomSeedGenerator} where possible, as it should be
  * much quicker. This seed generator is most useful on Microsoft Windows
- * and other platforms that do not provide /dev/random.
+ * and other platforms that do not provide {@literal /dev/random}.
  * @author Daniel Dyer
  */
 public class RandomDotOrgSeedGenerator implements SeedGenerator
