@@ -1,3 +1,12 @@
+Changes in verison 1.2
+----------------------
+
+* Added two new fast PRNGs (CMWC and XOR).  CMWC provides a very long period
+  and XOR is twice as fast as the Mersenne Twister.  See
+  http://school.anhb.uwa.edu.au/personalpages/kwessen/shared/Marsaglia03.html
+  for descriptions.
+
+
 Changes in version 1.1
 ----------------------
 
