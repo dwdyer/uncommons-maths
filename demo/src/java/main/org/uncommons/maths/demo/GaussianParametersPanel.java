@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006, 2007 Daniel W. Dyer
+//   Copyright 2006, 2007, 2008 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import javax.swing.SpinnerNumberModel;
+import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.JSpinner;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SpringLayout;
 import org.uncommons.swing.SpringUtilities;
-import java.awt.BorderLayout;
 
 /**
  * @author Daniel Dyer

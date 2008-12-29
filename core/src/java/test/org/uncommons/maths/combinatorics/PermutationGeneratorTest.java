@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006, 2007 Daniel W. Dyer
+//   Copyright 2006, 2007, 2008 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import org.testng.annotations.Test;
-import org.uncommons.maths.combinatorics.PermutationGenerator;
 
 /**
  * Unit test for the {@link PermutationGenerator} class.

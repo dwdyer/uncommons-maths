@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006, 2007 Daniel W. Dyer
+//   Copyright 2006, 2007, 2008 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.HashMap;
 import org.uncommons.maths.Maths;
 import org.uncommons.maths.random.BinomialGenerator;
 

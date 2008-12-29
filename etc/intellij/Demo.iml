@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4" relativePaths="true" type="JAVA_MODULE">
+  <component name="ModuleRootManager" />
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../../demo/build/classes/main" />
+    <exclude-output />
+    <output-test url="file://$MODULE_DIR$/../../demo/build/classes/test" />
+    <content url="file://$MODULE_DIR$/../../demo">
+      <sourceFolder url="file://$MODULE_DIR$/../../demo/src/java/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../demo/src/java/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../demo/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Core" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/runtime/jfreechart-1.0.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/runtime/jcommon-1.0.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="testng-5.7-jdk15" level="project" />
+    <orderEntryProperties />
+  </component>
+</module>
+

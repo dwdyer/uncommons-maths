@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006, 2007 Daniel W. Dyer
+//   Copyright 2006, 2007, 2008 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -15,23 +15,23 @@
 // ============================================================================
 package org.uncommons.maths.demo;
 
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JSpinner;
-import javax.swing.BorderFactory;
-import org.uncommons.swing.SpringUtilities;
-import org.uncommons.maths.random.MersenneTwisterRNG;
-import org.uncommons.maths.random.CellularAutomatonRNG;
-import org.uncommons.maths.random.AESCounterRNG;
-import org.uncommons.maths.random.JavaRNG;
+import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.security.SecureRandom;
-import java.security.GeneralSecurityException;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SpringLayout;
+import org.uncommons.maths.random.AESCounterRNG;
+import org.uncommons.maths.random.CellularAutomatonRNG;
+import org.uncommons.maths.random.JavaRNG;
+import org.uncommons.maths.random.MersenneTwisterRNG;
+import org.uncommons.swing.SpringUtilities;
 
 /**
  * Controls for selecing a random number generator and a number of values
