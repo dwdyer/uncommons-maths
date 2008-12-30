@@ -2,9 +2,16 @@ Changes in verison 1.2
 ----------------------
 
 * Added two new fast PRNGs (CMWC and XOR).  CMWC provides a very long period
-  and XOR is twice as fast as the Mersenne Twister.  See
+  and the XOR RNG is twice as fast as the Mersenne Twister.  See
   http://school.anhb.uwa.edu.au/personalpages/kwessen/shared/Marsaglia03.html
   for descriptions.
+
+* Fixed RandomDotOrgSeedGenerator so that it can generate seeds > 1kb in size.
+
+* Introduced the Probability class, a new numeric type.  This immutatble value
+  type encapsulates a probability value between zero and one.  The class
+  enforces the 0..1 bounds and provides convenient methods for working with
+  probabilities.
 
 
 Changes in version 1.1
