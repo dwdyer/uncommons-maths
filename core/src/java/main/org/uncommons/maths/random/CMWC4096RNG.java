@@ -73,13 +73,12 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
      */
     public CMWC4096RNG(byte[] seed)
     {
-        if (seed == null)
+        if (seed == null || seed.length != SEED_SIZE_BYTES)
         {
             throw new IllegalArgumentException("CMWC RNG requires 16kb of seed data.");
         }
         this.seed = seed.clone();
         this.state = BinaryUtils.convertBytesToInts(seed);
-        assert this.state.length == 4096 : "Wrong number of ints: " + state.length;
     }
 
 

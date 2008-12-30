@@ -31,4 +31,18 @@ public class RandomDotOrgSeedGeneratorTest
         byte[] seed = generator.generateSeed(32);
         assert seed.length == 32 : "Failed to generate seed of correct length";
     }
+
+
+    /**
+     * Try to acquire a large number of bytes, more than are cached internally
+     * by the seed generator implementation.
+     */
+    @Test
+    public void testLargeRequest() throws SeedException
+    {
+        SeedGenerator generator = new RandomDotOrgSeedGenerator();
+        // 1024 bytes are cached internally, so request more than that.
+        byte[] seed = generator.generateSeed(1536);
+        assert seed.length == 1536 : "Failed to generate seed of correct length";        
+    }
 }

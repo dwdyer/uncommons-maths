@@ -17,9 +17,13 @@ package org.uncommons.maths.random;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.MessageFormat;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Connects to the <a href="http://www.random.org" target="_top">random.org</a>
@@ -33,75 +37,99 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
 {
     private static final String BASE_URL = "http://www.random.org";
 
-    private static final int CACHE_SIZE = 1024;
-    private static final byte[] CACHE = new byte[CACHE_SIZE];
-
     /** The URL from which the random bytes are retrieved. */
-    private static final String RANDOM_URL = BASE_URL + "/cgi-bin/randbyte?nbytes="
-                                             + CACHE_SIZE + "&format=d";
+    private static final String RANDOM_URL = BASE_URL + "/cgi-bin/randbyte?nbytes={0,number,0}&format=d";
+
     /** Used to identify the client to the random.org service. */
     private static final String USER_AGENT = RandomDotOrgSeedGenerator.class.getName();
 
-    private static int cacheOffset = CACHE_SIZE;
+    private static final Lock cacheLock = new ReentrantLock();
+    private static byte[] cache = new byte[1024];
+    private static int cacheOffset = cache.length;
 
     /**
      * {@inheritDoc}
      */    
     public byte[] generateSeed(int length) throws SeedException
     {
+        byte[] seedData = new byte[length];
         try
         {
-            synchronized (CACHE)
+            cacheLock.lock();
+            int count = 0;
+            while (count < length)
             {
-                // First make sure there are enough bytes to generate a seed
-                // of the requested length.
-                if (cacheOffset + length >= CACHE_SIZE)
+                if (cacheOffset < cache.length)
                 {
-                    try
-                    {
-                        refreshCache();
-                    }
-                    catch (IOException ex)
-                    {
-                        throw new SeedException("Failed downloading bytes from " + BASE_URL, ex);
-                    }
+                    int numberOfBytes = Math.min(length - count, cache.length - cacheOffset);
+                    System.arraycopy(cache, cacheOffset, seedData, count, numberOfBytes);
+                    count += numberOfBytes;
+                    cacheOffset += numberOfBytes;
                 }
-                byte[] seedData = new byte[length];
-                System.arraycopy(CACHE, cacheOffset, seedData, 0, length);
-                cacheOffset += length;
-                return seedData;
+                else
+                {
+                    refreshCache(length - count);
+                }
             }
+        }
+        catch (IOException ex)
+        {
+            throw new SeedException("Failed downloading bytes from " + BASE_URL, ex);
         }
         catch (SecurityException ex)
         {
             // Might be thrown if resource access is restricted (such as in an applet sandbox).
             throw new SeedException("SecurityManager prevented access to " + BASE_URL, ex);
         }
+        finally
+        {
+            cacheLock.unlock();
+        }
+        return seedData;
     }
 
 
-    private void refreshCache() throws IOException
+    /**
+     * @param minimumBytes The minimum number of bytes to request from random.org.  The
+     * implementation may request more and cache the excess (to avoid making lots of
+     * small requests).
+     * @throws IOException If there is a problem downloading the random bits.
+     */
+    private void refreshCache(int minimumBytes) throws IOException
     {
-        URL url = new URL(RANDOM_URL);
+        int numberOfBytes = Math.max(minimumBytes, cache.length);
+        if (numberOfBytes > cache.length)
+        {
+            cache = new byte[numberOfBytes];
+        }
+        URL url = new URL(MessageFormat.format(RANDOM_URL, numberOfBytes));
         URLConnection connection = url.openConnection();
         connection.setRequestProperty("User-Agent", USER_AGENT);
-
-        StreamTokenizer tokenizer = new StreamTokenizer(new InputStreamReader(connection.getInputStream()));
-
-        int index = -1;
-        while (tokenizer.nextToken() != StreamTokenizer.TT_EOF)
+        Reader reader = new InputStreamReader(connection.getInputStream());
+        
+        try
         {
-            if (tokenizer.ttype != StreamTokenizer.TT_NUMBER)
+            StreamTokenizer tokenizer = new StreamTokenizer(reader);
+
+            int index = -1;
+            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF)
             {
-                throw new IOException("Received invalid data.");
+                if (tokenizer.ttype != StreamTokenizer.TT_NUMBER)
+                {
+                    throw new IOException("Received invalid data.");
+                }
+                cache[++index] = (byte) tokenizer.nval;
             }
-            CACHE[++index] = (byte) tokenizer.nval;
+            if (index < cache.length - 1)
+            {
+                throw new IOException("Insufficient data received.");
+            }
+            cacheOffset = 0;
         }
-        if (index < CACHE.length - 1)
+        finally
         {
-            throw new IOException("Insufficient data received.");
+            reader.close();
         }
-        cacheOffset = 0;
     }
 
 
