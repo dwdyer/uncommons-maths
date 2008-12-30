@@ -42,7 +42,7 @@ public class RandomDotOrgSeedGeneratorTest
     {
         SeedGenerator generator = new RandomDotOrgSeedGenerator();
         // 1024 bytes are cached internally, so request more than that.
-        byte[] seed = generator.generateSeed(1536);
-        assert seed.length == 1536 : "Failed to generate seed of correct length";        
+        byte[] seed = generator.generateSeed(2560);
+        assert seed.length == 2560 : "Failed to generate seed of correct length";        
     }
 }

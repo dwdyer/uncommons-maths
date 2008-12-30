@@ -15,10 +15,9 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StreamTokenizer;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.MessageFormat;
@@ -38,7 +37,7 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
     private static final String BASE_URL = "http://www.random.org";
 
     /** The URL from which the random bytes are retrieved. */
-    private static final String RANDOM_URL = BASE_URL + "/cgi-bin/randbyte?nbytes={0,number,0}&format=d";
+    private static final String RANDOM_URL = BASE_URL + "/integers/?num={0,number,0}&min=0&max=255&col=1&base=16&format=plain&rnd=new";
 
     /** Used to identify the client to the random.org service. */
     private static final String USER_AGENT = RandomDotOrgSeedGenerator.class.getName();
@@ -105,20 +104,14 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
         URL url = new URL(MessageFormat.format(RANDOM_URL, numberOfBytes));
         URLConnection connection = url.openConnection();
         connection.setRequestProperty("User-Agent", USER_AGENT);
-        Reader reader = new InputStreamReader(connection.getInputStream());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         
         try
         {
-            StreamTokenizer tokenizer = new StreamTokenizer(reader);
-
             int index = -1;
-            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF)
+            for (String line = reader.readLine(); line != null; line = reader.readLine())
             {
-                if (tokenizer.ttype != StreamTokenizer.TT_NUMBER)
-                {
-                    throw new IOException("Received invalid data.");
-                }
-                cache[++index] = (byte) tokenizer.nval;
+                cache[++index] = (byte) Integer.parseInt(line, 16);
             }
             if (index < cache.length - 1)
             {
