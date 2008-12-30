@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4" relativePaths="false">
   <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
+    <defaultAnt name="Apache Ant version 1.7.1" />
     <buildFile url="file:///Users/dan/Projects/uncommons-maths/build.xml">
       <additionalClassPath />
       <antReference projectDefault="true" />

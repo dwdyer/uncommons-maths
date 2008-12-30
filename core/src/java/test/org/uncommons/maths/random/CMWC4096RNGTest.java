@@ -21,21 +21,19 @@ import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
 
 /**
- * Unit test for the cellular automaton RNG.
+ * Unit test for the Complementary Multiply With Carry (CMWC) RNG.
  * @author Daniel Dyer
  */
 public class CMWC4096RNGTest
 {
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.  This method must be run before any of the
-     * other tests otherwise the state of the RNG will not be the same in the
-     * duplicate RNG.
+     * same sequence of numbers.
      */
     @Test
-    public void testRepeatability()
+    public void testRepeatability() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG();
+        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
         // Create second RNG using same seed.
         CMWC4096RNG duplicateRNG = new CMWC4096RNG(rng.getSeed());
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
@@ -51,7 +49,7 @@ public class CMWC4096RNGTest
           dependsOnMethods = "testRepeatability")
     public void testDistribution() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG(DefaultSeedGenerator.getInstance());
+        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
         double pi = RNGTestUtils.calculateMonteCarloValueForPi(rng, 100000);
         Reporter.log("Monte Carlo value for Pi: " + pi);
         assert Maths.approxEquals(pi, Math.PI, 0.01) : "Monte Carlo value for Pi is outside acceptable range:" + pi;
@@ -65,9 +63,9 @@ public class CMWC4096RNGTest
      */
     @Test(groups = "non-deterministic",
           dependsOnMethods = "testRepeatability")
-    public void testStandardDeviation()
+    public void testStandardDeviation() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG();
+        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
         int n = 100;

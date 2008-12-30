@@ -27,9 +27,8 @@ import org.uncommons.maths.binary.BinaryUtils;
  *
  * <p>One potential drawback of this RNG is that it requires significantly more seed data than
  * the other RNGs provided by Uncommons Maths.  It requires just over 16 kilobytes, which may
- * be a problem if a slow {@link SeedGenerator} is used (for example, if you use certain hardware
- * RNGs or remote services to provide seed data).  In contrast, the Mersenne Twister requires
- * only 128 bits of seed data.</p>
+ * be a problem if your are obtaining seed data from a slow or limited entropy source.
+ * In contrast, the Mersenne Twister requires only 128 bits of seed data.</p>
  *  
  * @author Daniel Dyer
  * @since 1.2

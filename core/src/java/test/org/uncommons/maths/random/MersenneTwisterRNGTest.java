@@ -28,9 +28,7 @@ public class MersenneTwisterRNGTest
 {
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.  This method must be run before any of the
-     * other tests otherwise the state of the RNG will not be the same in the
-     * duplicate RNG.
+     * same sequence of numbers.
      */
     @Test
     public void testRepeatability()
