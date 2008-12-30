@@ -27,7 +27,7 @@ import java.io.IOException;
  */
 public class DevRandomSeedGenerator implements SeedGenerator
 {
-    private static final File DEV_RANDOM = new File("/dev/urandom");
+    private static final File DEV_RANDOM = new File("/dev/random");
 
     /**
      * {@inheritDoc}
