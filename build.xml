@@ -265,6 +265,7 @@
   <target name="diehard"
           description="Run DIEHARD test suite against each RNG."
           depends="core">
+    <delete dir="${docs.dir}/diehard" />
     <mkdir dir="${docs.dir}/diehard" />
     <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
              results.file="${docs.dir}/diehard/aes.txt" />
@@ -277,7 +278,7 @@
     <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
              results.file="${docs.dir}/diehard/xor.txt" />
     <!-- Test java.util.Random for comparison. -->
-    <diehard rng.class="java.util.Random"
+    <diehard rng.class="org.uncommons.maths.random.JavaRNG"
              results.file="${docs.dir}/diehard/java.txt" />
   </target>
 
