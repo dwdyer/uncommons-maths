@@ -26,6 +26,8 @@ import org.uncommons.maths.Maths;
  */
 public class CMWC4096RNGTest
 {
+    private final SeedGenerator seedGenerator = new RandomDotOrgSeedGenerator();
+
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
      * same sequence of numbers.
@@ -33,7 +35,7 @@ public class CMWC4096RNGTest
     @Test
     public void testRepeatability() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
+        CMWC4096RNG rng = new CMWC4096RNG(seedGenerator);
         // Create second RNG using same seed.
         CMWC4096RNG duplicateRNG = new CMWC4096RNG(rng.getSeed());
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
@@ -49,7 +51,7 @@ public class CMWC4096RNGTest
           dependsOnMethods = "testRepeatability")
     public void testDistribution() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
+        CMWC4096RNG rng = new CMWC4096RNG(seedGenerator);
         double pi = RNGTestUtils.calculateMonteCarloValueForPi(rng, 100000);
         Reporter.log("Monte Carlo value for Pi: " + pi);
         assert Maths.approxEquals(pi, Math.PI, 0.01) : "Monte Carlo value for Pi is outside acceptable range:" + pi;
@@ -65,7 +67,7 @@ public class CMWC4096RNGTest
           dependsOnMethods = "testRepeatability")
     public void testStandardDeviation() throws SeedException
     {
-        CMWC4096RNG rng = new CMWC4096RNG(new SecureRandomSeedGenerator());
+        CMWC4096RNG rng = new CMWC4096RNG(seedGenerator);
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
         int n = 100;

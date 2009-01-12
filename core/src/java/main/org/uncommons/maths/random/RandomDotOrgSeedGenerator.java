@@ -42,6 +42,9 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
     /** Used to identify the client to the random.org service. */
     private static final String USER_AGENT = RandomDotOrgSeedGenerator.class.getName();
 
+    /** Random.org does not allow requests for more than 10k integers at once. */
+    private static final int MAX_REQUEST_SIZE = 10000;
+
     private static final Lock cacheLock = new ReentrantLock();
     private static byte[] cache = new byte[1024];
     private static int cacheOffset = cache.length;
@@ -89,15 +92,17 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
 
 
     /**
-     * @param minimumBytes The minimum number of bytes to request from random.org.  The
-     * implementation may request more and cache the excess (to avoid making lots of
-     * small requests).
+     * @param requiredBytes The preferred number of bytes to request from random.org.
+     * The implementation may request more and cache the excess (to avoid making lots
+     * of small requests).  Alternatively, it may request fewer if the required number
+     * is greater than that permitted by random.org for a single request.
      * @throws IOException If there is a problem downloading the random bits.
      */
-    private void refreshCache(int minimumBytes) throws IOException
+    private void refreshCache(int requiredBytes) throws IOException
     {
-        int numberOfBytes = Math.max(minimumBytes, cache.length);
-        if (numberOfBytes > cache.length)
+        int numberOfBytes = Math.max(requiredBytes, cache.length);
+        numberOfBytes = Math.min(numberOfBytes, MAX_REQUEST_SIZE);
+        if (numberOfBytes != cache.length)
         {
             cache = new byte[numberOfBytes];
         }
