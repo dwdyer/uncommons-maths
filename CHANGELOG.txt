@@ -8,6 +8,9 @@ Changes in verison 1.2
 
 * Fixed RandomDotOrgSeedGenerator so that it can generate seeds > 1kb in size.
 
+* Changed RandomDotOrgSeedGenerator so that it uses HTTPS for communicating
+  with the website (ISSUE#9).
+
 * Introduced the Probability class, a new numeric type.  This immutatble value
   type encapsulates a probability value between zero and one.  The class
   enforces the 0..1 bounds and provides convenient methods for working with

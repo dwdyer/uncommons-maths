@@ -26,15 +26,15 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Connects to the <a href="http://www.random.org" target="_top">random.org</a>
- * website and downloads a set of random bits to use as seed data.  It is generally
- * better to use the {@link DevRandomSeedGenerator} where possible, as it should be
- * much quicker. This seed generator is most useful on Microsoft Windows
- * and other platforms that do not provide {@literal /dev/random}.
+ * website (via HTTPS) and downloads a set of random bits to use as seed data.  It
+ * is generally better to use the {@link DevRandomSeedGenerator} where possible,
+ * as it should be much quicker. This seed generator is most useful on Microsoft
+ * Windows and other platforms that do not provide {@literal /dev/random}.
  * @author Daniel Dyer
  */
 public class RandomDotOrgSeedGenerator implements SeedGenerator
 {
-    private static final String BASE_URL = "http://www.random.org";
+    private static final String BASE_URL = "https://www.random.org";
 
     /** The URL from which the random bytes are retrieved. */
     private static final String RANDOM_URL = BASE_URL + "/integers/?num={0,number,0}&min=0&max=255&col=1&base=16&format=plain&rnd=new";
