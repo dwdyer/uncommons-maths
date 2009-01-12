@@ -80,6 +80,24 @@
   </macrodef>
 
 
+  <macrodef name="diehard">
+    <attribute name="rng.class"/>
+    <attribute name="results.file"/>
+    <sequential>
+      <mkdir dir="${temp.dir}" />
+      <delete file="${temp.dir}/random.dat" />
+      <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
+        <arg value="@{rng.class}"/>
+        <arg value="${temp.dir}/random.dat"/>
+      </java>
+      <exec dir="${lib.compiletime}/diehard"
+            executable="${lib.compiletime}/diehard/diehard"
+            output="@{results.file}"
+            input="${lib.compiletime}/diehard/input.txt"/>
+    </sequential>
+  </macrodef>
+
+
 <!-- ==================================================================
      TARGETS FOR BUILDING THE SOFTWARE
 =================================================================== -->
@@ -241,6 +259,26 @@
     <!-- Clean up afterwards. -->
     <delete dir="${temp.dir}" />
     <delete file="velocity.log" />
+  </target>
+
+
+  <target name="diehard"
+          description="Run DIEHARD test suite against each RNG."
+          depends="core">
+    <mkdir dir="${docs.dir}/diehard" />
+    <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
+             results.file="${docs.dir}/diehard/aes.txt" />
+    <diehard rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
+             results.file="${docs.dir}/diehard/automaton.txt" />
+    <diehard rng.class="org.uncommons.maths.random.CMWC4096RNG"
+             results.file="${docs.dir}/diehard/cmwc.txt" />
+    <diehard rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
+             results.file="${docs.dir}/diehard/mersenne.txt" />
+    <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
+             results.file="${docs.dir}/diehard/xor.txt" />
+    <!-- Test java.util.Random for comparison. -->
+    <diehard rng.class="java.util.Random"
+             results.file="${docs.dir}/diehard/java.txt" />
   </target>
 
 
