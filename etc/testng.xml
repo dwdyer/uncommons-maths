@@ -26,9 +26,10 @@
     </packages>
   </test>
 
-  <test name="Other" >
+  <test name="Number" >
     <packages>
       <package name="org.uncommons.maths" />
+      <package name="org.uncommons.maths.number" />
     </packages>
   </test>
 

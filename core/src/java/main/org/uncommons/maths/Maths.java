@@ -152,4 +152,26 @@ public final class Maths
         return Math.abs(value1 - value2) <= value1 * tolerance;
     }
 
+
+    /**
+     * Determines the greatest common divisor of a pair of natural numbers
+     * using the Euclidean algorithm.  This method only works with natural
+     * numbers.  If negative integers are passed in, the absolute values will
+     * be used.  The return value is always positive.
+     * @param a The first value.
+     * @param b The second value.
+     * @return The greatest common divisor.
+     */
+    public static long greatestCommonDivisor(long a, long b)
+    {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        while (b != 0)
+        {
+            long temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
 }

@@ -16,6 +16,9 @@ Changes in verison 1.2
   enforces the 0..1 bounds and provides convenient methods for working with
   probabilities.
 
+* Added Rational type to enable arithmetic on rational numbers without loss of
+  precision.
+
 
 Changes in version 1.1
 ----------------------

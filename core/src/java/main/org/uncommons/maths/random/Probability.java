@@ -22,6 +22,7 @@ import java.util.Random;
  * range 0..1 inclusive and provides useful utility methods for working with
  * probabilities (such as generating an event with a given probability).
  * @author Daniel Dyer
+ * @since 1.2
  */
 public final class Probability extends Number implements Comparable<Probability>
 {
@@ -147,24 +148,24 @@ public final class Probability extends Number implements Comparable<Probability>
      * Determines whether this probability value is equal to some other object.
      * To be considered equal the other object must also be a Probability object
      * with an indentical probability value.
-     * @param o The object to compare against.
+     * @param other The object to compare against.
      * @return True if the objects are equal, false otherwise.
      */
     @Override
-    public boolean equals(Object o)
+    public boolean equals(Object other)
     {
-        if (this == o)
+        if (this == other)
         {
             return true;
         }
-        if (o == null || getClass() != o.getClass())
+        if (other == null || getClass() != other.getClass())
         {
             return false;
         }
 
-        Probability that = (Probability) o;
+        Probability that = (Probability) other;
 
-        return Double.compare(that.probability, probability) == 0;
+        return Double.compare(that.doubleValue(), probability) == 0;
     }
 
 
@@ -181,12 +182,12 @@ public final class Probability extends Number implements Comparable<Probability>
 
 
     /**
-     * Compares this object with the specified object for order. Returns a negative
-     * integer, zero, or a positive integer as this object is less than, equal to, or
-     * greater than the specified object.
+     * Compares this value with the specified object for order. Returns a negative
+     * integer, zero, or a positive integer as this value is less than, equal to, or
+     * greater than the specified value.
      * @param other Another Probability value.
-     * @return A negative integer, zero, or a positive integer as this object is less
-     * than, equal to, or greater than the specified object.
+     * @return A negative integer, zero, or a positive integer as this value is less
+     * than, equal to, or greater than the specified value.
      */
     public int compareTo(Probability other)
     {
@@ -195,6 +196,8 @@ public final class Probability extends Number implements Comparable<Probability>
 
 
     /**
+     * Formats the probability as a String.  This is simply the string representation
+     * of the double value encapsulated by this probability object.
      * @return A string representation of the probability value (a number between
      * 0 and 1 inclusive).
      */

@@ -157,4 +157,30 @@ public class MathsTest
     {
         Maths.approxEquals(0d, 1d, 1.2d); // Tolerance too high (>1), should throw exception.
     }
+
+
+    @Test
+    public void testGreatestCommonDivisor()
+    {
+        long gcd = Maths.greatestCommonDivisor(9, 12);
+        assert gcd == 3 : "GCD should be 3, is " + gcd;
+    }
+
+
+    @Test
+    public void testNoCommonDivisorGreaterThanOne()
+    {
+        long gcd = Maths.greatestCommonDivisor(11, 12);
+        assert gcd == 1 : "GCD should be 1, is " + gcd;
+    }
+
+
+    @Test
+    public void testGreatestCommonDivisorNegatives()
+    {
+        long gcd = Maths.greatestCommonDivisor(-9, 12);
+        assert gcd == 3 : "GCD should be 3, is " + gcd;
+        gcd = Maths.greatestCommonDivisor(10, -12);
+        assert gcd == 2 : "GCD should be 2, is " + gcd;
+    }
 }
