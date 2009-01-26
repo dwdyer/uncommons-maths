@@ -28,9 +28,11 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpringLayout;
 import org.uncommons.maths.random.AESCounterRNG;
+import org.uncommons.maths.random.CMWC4096RNG;
 import org.uncommons.maths.random.CellularAutomatonRNG;
 import org.uncommons.maths.random.JavaRNG;
 import org.uncommons.maths.random.MersenneTwisterRNG;
+import org.uncommons.maths.random.XORShiftRNG;
 import org.uncommons.swing.SpringUtilities;
 
 /**
@@ -49,9 +51,11 @@ class RNGPanel extends JPanel
         {
             rngs.put("AES", new AESCounterRNG());
             rngs.put("Cellular Automaton", new CellularAutomatonRNG());
+            rngs.put("CMWC 4096", new CMWC4096RNG());
             rngs.put("JDK RNG", new JavaRNG());
             rngs.put("Mersenne Twister", new MersenneTwisterRNG());
             rngs.put("SecureRandom", new SecureRandom());
+            rngs.put("XOR Shift", new XORShiftRNG());
         }
         catch (GeneralSecurityException ex)
         {
