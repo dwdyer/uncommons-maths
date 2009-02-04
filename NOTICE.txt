@@ -1,5 +1,8 @@
-Uncommons Maths
-Copyright 2006, 2007 Daniel W. Dyer (http://www.dandyer.co.uk)
+_______________________________________________________________________________
+
+  Uncommons Maths (https://uncommons-maths.dev.java.net)
+  Copyright 2006-2009 Daniel W. Dyer (http://www.dandyer.co.uk)
+_______________________________________________________________________________
 
 Acknowledgements:
 -----------------
