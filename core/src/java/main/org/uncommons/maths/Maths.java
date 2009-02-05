@@ -16,6 +16,8 @@
 package org.uncommons.maths;
 
 import java.math.BigInteger;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Maths operations not provided by {@link Math java.lang.Math}.
@@ -27,7 +29,9 @@ public final class Maths
     private static final int MAX_LONG_FACTORIAL = 20;
 
     // Cache BigInteger factorial values because they are expensive to generate.
-    private static final BigInteger[] BIG_FACTORIALS = new BigInteger[256];
+    private static final int CACHE_SIZE = 256;
+    private static final ConcurrentMap<Integer, BigInteger> BIG_FACTORIALS
+        = new ConcurrentHashMap<Integer, BigInteger>();
 
     private Maths()
     {
@@ -75,9 +79,9 @@ public final class Maths
         }
 
         BigInteger factorial = null;
-        if (n < BIG_FACTORIALS.length) // Check for a cached value.
+        if (n < CACHE_SIZE) // Check for a cached value.
         {
-            factorial = BIG_FACTORIALS[n];
+            factorial = BIG_FACTORIALS.get(n);
         }
 
         if (factorial == null)
@@ -87,9 +91,9 @@ public final class Maths
             {
                 factorial = factorial.multiply(BigInteger.valueOf(i));
             }
-            if (n < BIG_FACTORIALS.length) // Cache value.
+            if (n < CACHE_SIZE) // Cache value.
             {
-                BIG_FACTORIALS[n] = factorial;
+                BIG_FACTORIALS.putIfAbsent(n, factorial);
             }
         }
 
@@ -154,6 +158,54 @@ public final class Maths
 
 
     /**
+     * If the specified value is not greater than or equal to the specified minimum and
+     * less than or equal to the specified maximum, adjust it so that it is.
+     * @param value The value to check.
+     * @param min The minimum permitted value.
+     * @param max The maximum permitted value.
+     * @return {@code value} if it is between the specified limits, {@code min} if the value
+     * is too low, or {@code max} if the value is too high.
+     * @since 1.2
+     */
+    public static int restrictRange(int value, int min, int max)
+    {
+        return Math.min((Math.max(value, min)), max);
+    }
+
+
+    /**
+     * If the specified value is not greater than or equal to the specified minimum and
+     * less than or equal to the specified maximum, adjust it so that it is.
+     * @param value The value to check.
+     * @param min The minimum permitted value.
+     * @param max The maximum permitted value.
+     * @return {@code value} if it is between the specified limits, {@code min} if the value
+     * is too low, or {@code max} if the value is too high.
+     * @since 1.2
+     */
+    public static long restrictRange(long value, long min, long max)
+    {
+        return Math.min((Math.max(value, min)), max);
+    }
+
+
+    /**
+     * If the specified value is not greater than or equal to the specified minimum and
+     * less than or equal to the specified maximum, adjust it so that it is.
+     * @param value The value to check.
+     * @param min The minimum permitted value.
+     * @param max The maximum permitted value.
+     * @return {@code value} if it is between the specified limits, {@code min} if the value
+     * is too low, or {@code max} if the value is too high.
+     * @since 1.2
+     */
+    public static double restrictRange(double value, double min, double max)
+    {
+        return Math.min((Math.max(value, min)), max);
+    }
+
+
+    /**
      * Determines the greatest common divisor of a pair of natural numbers
      * using the Euclidean algorithm.  This method only works with natural
      * numbers.  If negative integers are passed in, the absolute values will
@@ -161,6 +213,7 @@ public final class Maths
      * @param a The first value.
      * @param b The second value.
      * @return The greatest common divisor.
+     * @since 1.2
      */
     public static long greatestCommonDivisor(long a, long b)
     {

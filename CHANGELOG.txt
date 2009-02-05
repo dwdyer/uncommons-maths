@@ -19,6 +19,11 @@ Changes in verison 1.2
 * Added Rational type to enable arithmetic on rational numbers without loss of
   precision.
 
+* Added restrictRange methods to Maths class.  These adjust a given value so
+  that it falls between specified minimum and maximum values.
+
+* Made caching of BigInteger factorials thread-safe.
+
 
 Changes in version 1.1
 ----------------------

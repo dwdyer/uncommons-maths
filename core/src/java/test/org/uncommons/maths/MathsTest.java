@@ -160,6 +160,33 @@ public class MathsTest
 
 
     @Test
+    public void testRestrictRangeValueWithinRange()
+    {
+        assert Maths.restrictRange(5, 0, 10) == 5 : "Value should not be altered when it is in-range.";
+        assert Maths.restrictRange(5L, 0L, 10L) == 5L : "Value should not be altered when it is in-range.";
+        assert Maths.restrictRange(5d, 0d, 10d) == 5d : "Value should not be altered when it is in-range.";
+    }
+
+
+    @Test
+    public void testRestrictRangeValueTooLow()
+    {
+        assert Maths.restrictRange(-1, 0, 10) == 0 : "Minimum should be returned when value is too low.";
+        assert Maths.restrictRange(-1L, 0L, 10L) == 0L : "Minimum should be returned when value is too low.";
+        assert Maths.restrictRange(-0.1d, 0d, 10d) == 0d : "Minimum should be returned when value is too low.";
+    }
+
+
+    @Test
+    public void testRestrictRangeValueTooHigh()
+    {
+        assert Maths.restrictRange(11, 0, 10) == 10 : "Maximum should be returned when value is too high.";
+        assert Maths.restrictRange(11L, 0L, 10L) == 10L : "Maximum should be returned when value is too high.";
+        assert Maths.restrictRange(10.1d, 0d, 10d) == 10d : "Maximum should be returned when value is too high.";
+    }
+
+
+    @Test
     public void testGreatestCommonDivisor()
     {
         long gcd = Maths.greatestCommonDivisor(9, 12);
