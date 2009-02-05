@@ -105,6 +105,7 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
         if (numberOfBytes != cache.length)
         {
             cache = new byte[numberOfBytes];
+            cacheOffset = numberOfBytes;
         }
         URL url = new URL(MessageFormat.format(RANDOM_URL, numberOfBytes));
         URLConnection connection = url.openConnection();
