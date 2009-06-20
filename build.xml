@@ -44,7 +44,7 @@
     </fileset>
   </path>
 
-  <property name="version" value="1.2"/>
+  <property name="version" value="1.3pre"/>
   <property name="artifact.identifier" value="uncommons-maths-${version}"/>
 
   <!-- This is the minimum coverage percentage (for both lines and

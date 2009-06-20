@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4" relativePaths="true" type="JAVA_MODULE">
-  <component name="ModuleRootManager" />
+<module relativePaths="true" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/../../core/build/classes/main" />
-    <exclude-output />
     <output-test url="file://$MODULE_DIR$/../../core/build/classes/test" />
+    <exclude-output />
     <content url="file://$MODULE_DIR$/../../core">
       <sourceFolder url="file://$MODULE_DIR$/../../core/src/java/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../core/src/java/test" isTestSource="true" />
@@ -13,7 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="testng-5.7-jdk15" level="project" />
-    <orderEntryProperties />
   </component>
 </module>
 
