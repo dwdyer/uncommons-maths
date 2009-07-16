@@ -1,3 +1,10 @@
+Changes in version 1.2.1
+------------------------
+
+* Converted internal state of XORShiftRNG from an array to five separate
+  fields.  This results in improved performance.  Optimisation suggested by Jos
+  Hirth.
+
 Changes in verison 1.2
 ----------------------
 

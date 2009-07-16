@@ -30,7 +30,14 @@ public class XORShiftRNG extends Random implements RepeatableRNG
 {
     private static final int SEED_SIZE_BYTES = 20; // Needs 5 32-bit integers.
 
-    private final int[] state;
+    // Previously used an array for state but using separate fields proved to be
+    // faster.
+    private int state1;
+    private int state2;
+    private int state3;
+    private int state4;
+    private int state5;
+
     private final byte[] seed;
 
 
@@ -66,7 +73,12 @@ public class XORShiftRNG extends Random implements RepeatableRNG
             throw new IllegalArgumentException("XOR shift RNG requires 160 bits of seed data.");
         }
         this.seed = seed.clone();
-        this.state = BinaryUtils.convertBytesToInts(seed);
+        int[] state = BinaryUtils.convertBytesToInts(seed);
+        this.state1 = state[0];
+        this.state2 = state[1];
+        this.state3 = state[2];
+        this.state4 = state[3];
+        this.state5 = state[4];
     }
 
 
@@ -85,13 +97,13 @@ public class XORShiftRNG extends Random implements RepeatableRNG
     @Override
     protected int next(int bits)
     {
-        int t = (state[0] ^ (state[0] >> 7));
-        state[0] = state[1];
-        state[1] = state[2];
-        state[2] = state[3];
-        state[3] = state[4];
-        state[4] = (state[4] ^ (state[4] << 6)) ^ (t ^ (t << 13));
-        int value = (state[1] + state[1] + 1) * state[4];
+        int t = (state1 ^ (state1 >> 7));
+        state1 = state2;
+        state2 = state3;
+        state3 = state4;
+        state4 = state5;
+        state5 = (state5 ^ (state5 << 6)) ^ (t ^ (t << 13));
+        int value = (state2 + state2 + 1) * state5;
         return value >>> (32 - bits);
     }
 }
