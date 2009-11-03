@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
  */
 public class PermutationGeneratorTest
 {
-    private final String[] elements = new String[]{"1", "2", "3"};
+    private final String[] elements = {"1", "2", "3"};
 
 
     /**
@@ -102,6 +102,16 @@ public class PermutationGeneratorTest
             distinctPermutations.add(permutation.get(0) + permutation.get(1) + permutation.get(2));
         }
         assert distinctPermutations.size() == 6 : "Wrong number of permutations: " + distinctPermutations.size();
+    }
+
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testTooManyElements()
+    {
+        // 21 elements is too many to be able to process using 64-bit values.
+        new PermutationGenerator<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                                                        11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21});
+        // Should throw an IllegalArgumentException.
     }
 
 
