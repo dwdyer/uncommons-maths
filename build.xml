@@ -44,7 +44,7 @@
     </fileset>
   </path>
 
-  <property name="version" value="1.2.1"/>
+  <property name="version" value="1.2"/>
   <property name="artifact.identifier" value="uncommons-maths-${version}"/>
 
   <!-- This is the minimum coverage percentage (for both lines and
@@ -188,6 +188,17 @@
     </zip>
   </target>
 
+
+  <target name="release-maven"
+          depends="clean, dist"
+          description="Deploys the software to the Java.net Maven repository.">
+    <uncommons:maven-deploy module="core"
+                            name="maths"
+                            version="${version}"
+                            package="org/uncommons/maths"
+                            username="${maven.user}"
+                            password="${maven.password}"/>
+  </target>
 
 <!-- ==================================================================
       TARGETS FOR GENERATING TEST REPORTS & DOCUMENTATION

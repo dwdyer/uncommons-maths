@@ -30,7 +30,15 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="testng-5.7-jdk15" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/compiletime/testng/testng-5.10-jdk15.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 
