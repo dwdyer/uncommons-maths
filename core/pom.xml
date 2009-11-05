@@ -9,7 +9,7 @@
   <artifactId>uncommons-maths</artifactId>
   <version>@VERSION@</version>
   <packaging>jar</packaging>
-  <url>https://uncommons-maths.dev.java.net/</url>
+  <url>http://maths.uncommons.org/</url>
 
   <licenses>
     <license>
