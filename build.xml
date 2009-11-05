@@ -193,7 +193,7 @@
           depends="clean, dist"
           description="Deploys the software to the Java.net Maven repository.">
     <uncommons:maven-deploy module="core"
-                            name="maths"
+                            name="uncommons-maths"
                             version="${version}"
                             package="org/uncommons/maths"
                             username="${maven.user}"

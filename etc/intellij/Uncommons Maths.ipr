@@ -466,6 +466,79 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
   </component>
   <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="/Users/dan/Projects/uncommons-maths">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchMap">
+                <map>
+                  <entry key="https://uncommons-maths.dev.java.net/svn/uncommons-maths/branches">
+                    <value>
+                      <list>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1257386009032" />
+                          <option name="revision" value="102" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/branches/Maven" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1195317062854" />
+                          <option name="revision" value="1" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/branches/README" />
+                        </SvnBranchItem>
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags">
+                    <value>
+                      <list>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1233867597747" />
+                          <option name="revision" value="89" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/Release-1.2" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1219441277561" />
+                          <option name="revision" value="65" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/Release-1.1" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1195515801543" />
+                          <option name="revision" value="25" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/Release-1.0.2" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1195404249873" />
+                          <option name="revision" value="21" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/Release-1.0.1" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1195346675598" />
+                          <option name="revision" value="17" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/Release-1.0" />
+                        </SvnBranchItem>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1195317062854" />
+                          <option name="revision" value="1" />
+                          <option name="url" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags/README" />
+                        </SvnBranchItem>
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="branchUrls">
+                <list>
+                  <option value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/branches" />
+                  <option value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://uncommons-maths.dev.java.net/svn/uncommons-maths/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
