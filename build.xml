@@ -24,18 +24,18 @@
 =================================================================== -->
 
   <!-- Project-global locations. -->
-  <property name="conf.dir" location="./etc" />
-  <property name="lib.dir" location="lib" />
-  <property name="lib.compiletime" location="${lib.dir}/compiletime" />
-  <property name="lib.runtime" location="${lib.dir}/runtime" />
-  <property name="dist.dir" location="./dist" />
-  <property name="docs.dir" location="./docs" />
-  <property name="api.dir" location="${docs.dir}/api" />
-  <property name="coverage.dir" location="${docs.dir}/coverage" />
-  <property name="test-results.dir" location="${docs.dir}/test-results" />
-  <property name="release.dir" location="./release" />
-  <property name="web.dir" location="./www" />
-  <property name="temp.dir" location="./temp" />
+  <property name="conf.dir" value="etc" />
+  <property name="lib.dir" value="lib" />
+  <property name="lib.compiletime" value="${lib.dir}/compiletime" />
+  <property name="lib.runtime" value="${lib.dir}/runtime" />
+  <property name="dist.dir" value="./dist" />
+  <property name="docs.dir" value="./docs" />
+  <property name="api.dir" value="${docs.dir}/api" />
+  <property name="coverage.dir" value="${docs.dir}/coverage" />
+  <property name="test-results.dir" value="${docs.dir}/test-results" />
+  <property name="release.dir" value="release" />
+  <property name="web.dir" value="www" />
+  <property name="temp.dir" value="temp" />
 
   <!-- Classpath for compilation and tests. -->
   <path id="base.path">
