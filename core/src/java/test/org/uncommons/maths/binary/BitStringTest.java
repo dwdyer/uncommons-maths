@@ -286,4 +286,42 @@ public class BitStringTest
         BitString bitString2 = (BitString) inputStream.readObject();
         assert bitString2.equals(bitString) : "Deserialized object is not the same as original.";
     }
+
+
+    @Test
+    public void testSwapSubstringWordAligned()
+    {
+        // Bit indices are little-endian, so position 0 is the rightmost bit.
+        BitString ones = new BitString("1111111111111111111111111111111111111111111111111111111111111111");
+        BitString zeros = new BitString("0000000000000000000000000000000000000000000000000000000000000000");
+        ones.swapSubstring(zeros, 0, 32);
+        assert ones.toString().equals("1111111111111111111111111111111100000000000000000000000000000000")
+            : "Substring swap failed: " + ones;
+        assert zeros.toString().equals("0000000000000000000000000000000011111111111111111111111111111111")
+            : "Substring swap failed: " + zeros;
+    }
+
+
+    @Test
+    public void testSwapSubstringNonAlignedStart()
+    {
+        // Bit indices are little-endian, so position 0 is the rightmost bit.
+        BitString ones = new BitString("1111111111111111111111111111111111111111");
+        BitString zeros = new BitString("0000000000000000000000000000000000000000");
+        ones.swapSubstring(zeros, 2, 30);
+        assert ones.toString().equals("1111111100000000000000000000000000000011") : "Substring swap failed: " + ones;
+        assert zeros.toString().equals("0000000011111111111111111111111111111100") : "Substring swap failed: " + zeros;
+    }
+
+
+    @Test
+    public void testSwapSubstringNonAlignedEnd()
+    {
+        // Bit indices are little-endian, so position 0 is the rightmost bit.
+        BitString ones = new BitString("1111111111");
+        BitString zeros = new BitString("0000000000");
+        ones.swapSubstring(zeros, 0, 3);
+        assert ones.toString().equals("1111111000") : "Substring swap failed: " + ones;
+        assert zeros.toString().equals("0000000111") : "Substring swap failed: " + zeros;
+    }
 }

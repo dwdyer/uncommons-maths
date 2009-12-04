@@ -149,11 +149,11 @@ public final class BitString implements Cloneable, Serializable
         int offset = index % WORD_LENGTH;
         if (set)
         {
-            data[word] = (data[word] | (1 << offset));
+            data[word] |= (1 << offset);
         }
         else // Unset the bit.
         {
-            data[word] = (data[word] & ~(1 << offset));
+            data[word] &= ~(1 << offset);
         }
     }
 
@@ -169,7 +169,7 @@ public final class BitString implements Cloneable, Serializable
         assertValidIndex(index);
         int word = index / WORD_LENGTH;
         int offset = index % WORD_LENGTH;
-        data[word] = (data[word] ^ (1 << offset));        
+        data[word] ^= (1 << offset);
     }
 
 
@@ -223,6 +223,58 @@ public final class BitString implements Cloneable, Serializable
     public BigInteger toNumber()
     {
         return (new BigInteger(toString(), 2));
+    }
+
+
+    /**
+     * An efficient method for exchanging data between two bit strings.
+     * @param other The bitstring with which this bitstring should swap bits.
+     * @param start The start position for the substrings to be exchanged.  All bit
+     * indices are big-endian, which means position 0 is the rightmost bit.
+     * @param length The number of contiguous bits to swap.
+     */
+    public void swapSubstring(BitString other, int start, int length)
+    {
+        int word = start / WORD_LENGTH;
+
+        int partialWordSize = (WORD_LENGTH - start) % WORD_LENGTH;
+        if (partialWordSize > 0)
+        {
+            swapBits(other, word, 0xFFFFFFFF << (WORD_LENGTH - partialWordSize));
+            ++word;
+        }
+
+        int remainingBits = length - partialWordSize;
+        int stop = remainingBits / WORD_LENGTH;
+        for (int i = word; i < stop; i++)
+        {
+            int temp = data[i];
+            data[i] = other.data[i];
+            other.data[i] = temp;
+        }
+
+        remainingBits %= WORD_LENGTH;
+        if (remainingBits > 0)
+        {
+            swapBits(other, word, 0xFFFFFFFF >>> (WORD_LENGTH - remainingBits));
+        }
+    }
+
+
+    /**
+     * @param other The BitString to exchange bits with.
+     * @param word The word index of the word that will be swapped between the two bit strings.
+     * @param swapMask A mask that specifies which bits in the word will be swapped.
+     */
+    private void swapBits(BitString other, int word, int swapMask)
+    {
+        int preserveMask = ~swapMask;
+        int preservedThis = data[word] & preserveMask;
+        int preservedThat = other.data[word] & preserveMask;
+        int swapThis = data[word] & swapMask;
+        int swapThat = other.data[word] & swapMask;
+        data[word] = preservedThis | swapThat;
+        other.data[word] = preservedThat | swapThis;
     }
 
 
