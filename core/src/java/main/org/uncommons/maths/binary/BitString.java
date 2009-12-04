@@ -227,7 +227,8 @@ public final class BitString implements Cloneable, Serializable
 
 
     /**
-     * An efficient method for exchanging data between two bit strings.
+     * An efficient method for exchanging data between two bit strings.  Both bit strings must
+     * be long enough that they contain the full length of the specified substring. 
      * @param other The bitstring with which this bitstring should swap bits.
      * @param start The start position for the substrings to be exchanged.  All bit
      * indices are big-endian, which means position 0 is the rightmost bit.
@@ -235,6 +236,9 @@ public final class BitString implements Cloneable, Serializable
      */
     public void swapSubstring(BitString other, int start, int length)
     {
+        assertValidIndex(start);
+        other.assertValidIndex(start);
+        
         int word = start / WORD_LENGTH;
 
         int partialWordSize = (WORD_LENGTH - start) % WORD_LENGTH;
