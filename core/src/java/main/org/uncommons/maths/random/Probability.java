@@ -57,7 +57,7 @@ public final class Probability extends Number implements Comparable<Probability>
      * value of zero means that an event is guaranteed not to happen.  A value of 1 means
      * it is guaranteed to occur.
      */
-    public Probability(double probability)
+    public Probability(final double probability)
     {
         if (probability < 0 || probability > 1)
         {
@@ -70,12 +70,13 @@ public final class Probability extends Number implements Comparable<Probability>
     /**
      * Generates an event according the probability value {@literal p}.
      * @param rng A source of randomness for generating events.
-     * @return True with a probability of {@literal p}, fales with a probability of
+     * @return True with a probability of {@literal p}, false with a probability of
      * {@literal 1 - p}.
      */
     public boolean nextEvent(Random rng)
     {
-        return rng.nextDouble() < probability;
+        // Don't bother generating an random value if the result is guaranteed.
+        return probability == 1 || rng.nextDouble() < probability;
     }
 
 
@@ -97,15 +98,16 @@ public final class Probability extends Number implements Comparable<Probability>
      * @throws ArithmeticException Unless the probability is exactly zero or one.
      * @return An integer probability.
      */
+    @Override
     public int intValue()
     {
-        if (probability % 1 != 0)
+        if (probability % 1 == 0)
         {
-            throw new ArithmeticException("Cannot convert probability to integer due to loss of precision.");
+            return (int) probability;
         }
         else
         {
-            return (int) probability;
+            throw new ArithmeticException("Cannot convert probability to integer due to loss of precision.");
         }
     }
 
@@ -118,6 +120,7 @@ public final class Probability extends Number implements Comparable<Probability>
      * @throws ArithmeticException Unless the probability is exactly zero or one.
      * @return An integer probability.
      */
+    @Override
     public long longValue()
     {
         return intValue();
@@ -128,6 +131,7 @@ public final class Probability extends Number implements Comparable<Probability>
      * Returns the probability value as a float.
      * @return A real number between 0 and 1 inclusive.
      */
+    @Override
     public float floatValue()
     {
         return (float) probability;
@@ -138,6 +142,7 @@ public final class Probability extends Number implements Comparable<Probability>
      * Returns the probability value as a double.
      * @return A real number between 0 and 1 inclusive.
      */
+    @Override
     public double doubleValue()
     {
         return probability;
@@ -165,7 +170,7 @@ public final class Probability extends Number implements Comparable<Probability>
 
         Probability that = (Probability) other;
 
-        return Double.compare(that.doubleValue(), probability) == 0;
+        return Double.compare(that.probability, probability) == 0;
     }
 
 
@@ -176,7 +181,7 @@ public final class Probability extends Number implements Comparable<Probability>
     @Override
     public int hashCode()
     {
-        long temp = probability != +0.0d ? Double.doubleToLongBits(probability) : 0L;
+        long temp = probability == 0.0d ? 0L : Double.doubleToLongBits(probability);
         return (int) (temp ^ (temp >>> 32));
     }
 
@@ -191,7 +196,7 @@ public final class Probability extends Number implements Comparable<Probability>
      */
     public int compareTo(Probability other)
     {
-        return Double.compare(this.probability, other.doubleValue());
+        return Double.compare(this.probability, other.probability);
     }
 
 

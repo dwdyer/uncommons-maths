@@ -5,6 +5,10 @@ Changes in version 1.2.1
   fields.  This results in improved performance.  Optimisation suggested by Jos
   Hirth.
 
+* Optimised the Probability class so that it doesn't make an RNG call when the
+  probability is 1.
+
+
 Changes in verison 1.2
 ----------------------
 
