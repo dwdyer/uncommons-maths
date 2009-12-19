@@ -16,6 +16,7 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -43,6 +44,10 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
     private final int[] state;
     private int carry = 362436; // TO DO: This should be randomly generated.
     private int index = 4095;
+
+    // Lock to prevent concurrent modification of the RNG's internal state.
+    private final ReentrantLock lock = new ReentrantLock();
+    
 
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
@@ -96,16 +101,24 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
     @Override
     protected int next(int bits)
     {
-        index = (index + 1) & 4095;
-        long t = A * (state[index] & 0xFFFFFFFFL) + carry;
-        carry = (int) (t >> 32);
-        int x = ((int) t) + carry;
-        if (x < carry)
+        try
         {
-            x++;
-            carry++;
+            lock.lock();
+            index = (index + 1) & 4095;
+            long t = A * (state[index] & 0xFFFFFFFFL) + carry;
+            carry = (int) (t >> 32);
+            int x = ((int) t) + carry;
+            if (x < carry)
+            {
+                x++;
+                carry++;
+            }
+            state[index] = 0xFFFFFFFE - x;
+            return state[index] >>> (32 - bits);
         }
-        state[index] = 0xFFFFFFFE - x;
-        return state[index] >>> (32 - bits);
+        finally
+        {
+            lock.unlock();
+        }
     }
 }

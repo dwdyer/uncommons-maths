@@ -16,6 +16,11 @@
 package org.uncommons.maths.random;
 
 import java.security.GeneralSecurityException;
+import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ByteArrayInputStream;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -94,5 +99,24 @@ public class CellularAutomatonRNGTest
     public void testNullSeed() throws GeneralSecurityException
     {
         new CellularAutomatonRNG((byte[]) null);
+    }
+
+
+    @Test
+    public void testSerializable() throws IOException, ClassNotFoundException
+    {
+        // Serialise an RNG.
+        CellularAutomatonRNG rng = new CellularAutomatonRNG();
+        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
+        objectOutStream.writeObject(rng);
+
+        // Read the RNG back-in.
+        ObjectInputStream objectInStream = new ObjectInputStream(new ByteArrayInputStream(byteOutStream.toByteArray()));
+        CellularAutomatonRNG rng2 = (CellularAutomatonRNG) objectInStream.readObject();
+        assert rng != rng2 : "Deserialised RNG should be distinct object.";
+
+        // Both RNGs should generate the same sequence.
+        assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
 }

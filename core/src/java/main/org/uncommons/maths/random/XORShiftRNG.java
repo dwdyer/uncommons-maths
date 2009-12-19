@@ -16,6 +16,7 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -39,6 +40,10 @@ public class XORShiftRNG extends Random implements RepeatableRNG
     private int state5;
 
     private final byte[] seed;
+
+
+    // Lock to prevent concurrent modification of the RNG's internal state.
+    private final ReentrantLock lock = new ReentrantLock();
 
 
     /**
@@ -97,13 +102,21 @@ public class XORShiftRNG extends Random implements RepeatableRNG
     @Override
     protected int next(int bits)
     {
-        int t = (state1 ^ (state1 >> 7));
-        state1 = state2;
-        state2 = state3;
-        state3 = state4;
-        state4 = state5;
-        state5 = (state5 ^ (state5 << 6)) ^ (t ^ (t << 13));
-        int value = (state2 + state2 + 1) * state5;
-        return value >>> (32 - bits);
+        try
+        {
+            lock.lock();
+            int t = (state1 ^ (state1 >> 7));
+            state1 = state2;
+            state2 = state3;
+            state3 = state4;
+            state4 = state5;
+            state5 = (state5 ^ (state5 << 6)) ^ (t ^ (t << 13));
+            int value = (state2 + state2 + 1) * state5;
+            return value >>> (32 - bits);
+        }
+        finally
+        {
+            lock.unlock();
+        }
     }
 }

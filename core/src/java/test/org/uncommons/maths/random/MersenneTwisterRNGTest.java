@@ -15,6 +15,11 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.security.GeneralSecurityException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -94,5 +99,24 @@ public class MersenneTwisterRNGTest
     public void testNullSeed() throws GeneralSecurityException
     {
         new MersenneTwisterRNG((byte[]) null);
+    }
+
+
+    @Test
+    public void testSerializable() throws IOException, ClassNotFoundException
+    {
+        // Serialise an RNG.
+        MersenneTwisterRNG rng = new MersenneTwisterRNG();
+        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
+        objectOutStream.writeObject(rng);
+
+        // Read the RNG back-in.
+        ObjectInputStream objectInStream = new ObjectInputStream(new ByteArrayInputStream(byteOutStream.toByteArray()));
+        MersenneTwisterRNG rng2 = (MersenneTwisterRNG) objectInStream.readObject();
+        assert rng != rng2 : "Deserialised RNG should be distinct object.";
+
+        // Both RNGs should generate the same sequence.
+        assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
 }

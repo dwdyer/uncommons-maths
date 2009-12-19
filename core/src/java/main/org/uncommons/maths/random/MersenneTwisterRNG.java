@@ -16,6 +16,7 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -60,7 +61,7 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
     private final byte[] seed;
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final Object lock = new Object();
+    private final ReentrantLock lock = new ReentrantLock();
 
     private final int[] mt = new int[N]; // State vector.
     private int mtIndex = 0; // Index into state vector.
@@ -159,8 +160,9 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
     protected final int next(int bits)
     {
         int y;
-        synchronized (lock)
+        try
         {
+            lock.lock();
             if (mtIndex >= N) // Generate N ints at a time.
             {
                 int kk;
@@ -181,6 +183,10 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
             }
 
             y = mt[mtIndex++];
+        }
+        finally
+        {
+            lock.unlock();
         }
         // Tempering
         y ^= (y >>> 11);

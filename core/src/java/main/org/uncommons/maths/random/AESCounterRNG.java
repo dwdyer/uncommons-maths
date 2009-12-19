@@ -18,6 +18,7 @@ package org.uncommons.maths.random;
 import java.security.GeneralSecurityException;
 import java.security.Key;
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 import javax.crypto.Cipher;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -30,6 +31,9 @@ import org.uncommons.maths.binary.BinaryUtils;
  * files for the Java platform.  Larger keys may be used (192 or 256 bits) but if the
  * cryptography policy files are not installed, a
  * {@link java.security.GeneralSecurityException} will be thrown.</p>
+ *
+ * <p><em>NOTE: THIS CLASS IS NOT SERIALIZABLE</em></p>
+ * 
  * @author Daniel Dyer
  */
 public class AESCounterRNG extends Random implements RepeatableRNG
@@ -41,7 +45,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private final byte[] counter = new byte[16]; // 128-bit counter.
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final Object lock = new Object();
+    private final ReentrantLock lock = new ReentrantLock();
+
 
     private byte[] currentBlock = null;
     private int index = 0;
@@ -147,8 +152,9 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected final int next(int bits)
     {
         int result;
-        synchronized (lock)
+        try
         {
+            lock.lock();
             if (currentBlock == null || currentBlock.length - index < 4)
             {
                 try
@@ -166,6 +172,10 @@ public class AESCounterRNG extends Random implements RepeatableRNG
             result = BinaryUtils.convertBytesToInt(currentBlock, index);
             index += 4;
         }
+        finally
+        {
+            lock.unlock();
+        }
         return result >>> (32 - bits);
     }
 
@@ -178,7 +188,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     {
         private final byte[] keyData;
 
-        public AESKey(byte[] keyData)
+        private AESKey(byte[] keyData)
         {
             this.keyData = keyData;
         }

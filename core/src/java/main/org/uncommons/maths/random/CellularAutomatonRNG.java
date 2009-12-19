@@ -16,6 +16,7 @@
 package org.uncommons.maths.random;
 
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -71,7 +72,7 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
     private final int[] cells = new int[AUTOMATON_LENGTH];
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final Object lock = new Object();
+    private final ReentrantLock lock = new ReentrantLock();
 
     private int currentCellIndex = AUTOMATON_LENGTH - 1;
 
@@ -140,8 +141,9 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
     public int next(int bits)
     {
         int result;
-        synchronized (lock)
+        try
         {
+            lock.lock();
             // Set cell addresses using address of current cell.
             int cellC = currentCellIndex - 1;
             int cellB = cellC - 1;
@@ -164,6 +166,10 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
                 currentCellIndex -= 4;
             }
             result = convertCellsToInt(cells, cellA);
+        }
+        finally
+        {
+            lock.unlock();
         }
         return result >>> (32 - bits);
     }

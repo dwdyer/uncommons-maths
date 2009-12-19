@@ -16,6 +16,11 @@
 package org.uncommons.maths.random;
 
 import java.security.GeneralSecurityException;
+import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ByteArrayInputStream;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -96,5 +101,24 @@ public class XORShiftRNGTest
     public void testNullSeed() throws GeneralSecurityException
     {
         new XORShiftRNG((byte[]) null);
+    }
+
+
+    @Test
+    public void testSerializable() throws IOException, ClassNotFoundException
+    {
+        // Serialise an RNG.
+        XORShiftRNG rng = new XORShiftRNG();
+        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
+        objectOutStream.writeObject(rng);
+
+        // Read the RNG back-in.
+        ObjectInputStream objectInStream = new ObjectInputStream(new ByteArrayInputStream(byteOutStream.toByteArray()));
+        XORShiftRNG rng2 = (XORShiftRNG) objectInStream.readObject();
+        assert rng != rng2 : "Deserialised RNG should be distinct object.";
+
+        // Both RNGs should generate the same sequence.
+        assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
 }

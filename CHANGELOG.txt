@@ -1,3 +1,11 @@
+Changes in version 1.2.2
+------------------------
+
+* Fixed serialisation of MersenneTwisterRNG and CellularAutomatonRNG.
+
+* Made XORShiftRNG and CMWC4096RNG thread-safe.
+
+
 Changes in version 1.2.1
 ------------------------
 
