@@ -30,7 +30,6 @@
   <property name="lib.runtime" value="${lib.dir}/runtime" />
   <property name="dist.dir" value="./dist" />
   <property name="docs.dir" value="./docs" />
-  <property name="api.dir" value="${docs.dir}/api" />
   <property name="coverage.dir" value="${docs.dir}/coverage" />
   <property name="test-results.dir" value="${docs.dir}/test-results" />
   <property name="release.dir" value="release" />
@@ -61,24 +60,6 @@
   <!-- ==================================================================
        MACROS
   =================================================================== -->
-
-  <!-- Generates API documentation for all modules. -->
-  <macrodef name="api.docs">
-    <attribute name="api.dir"/>
-    <sequential>
-      <mkdir dir="@{api.dir}"/>
-      <javadoc destdir="@{api.dir}"
-               doctitle="Uncommons Maths ${version}"
-               windowtitle="Uncommons Maths API">
-        <fileset dir="." defaultexcludes="yes">
-          <include name="core/${java.dir}/main/org/uncommons/**/*.java"/>
-        </fileset>
-        <header><![CDATA[Uncommons Maths API<br><small>(Version ${version})</small>]]></header>
-        <link href="http://java.sun.com/j2se/1.5.0/docs/api/"/>
-      </javadoc>
-    </sequential>
-  </macrodef>
-
 
   <macrodef name="diehard">
     <attribute name="rng.class"/>
@@ -143,12 +124,7 @@
   <target name="dist"
           depends="core, demo"
           description="Generate the project distribution." >
-    <mkdir dir="${dist.dir}" />
-    <!-- Copy all application JARs and 3rd party libraries. -->
-    <copy todir="${dist.dir}" flatten="true">
-      <fileset dir="." includes="**/${build.dir}/*.jar" />
-      <fileset dir="${lib.runtime}" includes="**/*.jar" />
-    </copy>
+    <uncommons:dist />
   </target>
 
 
@@ -156,36 +132,7 @@
   <target name="release"
           depends="clean, dist, test, docs"
           description="Creates the release archives.">
-    <mkdir dir="${release.dir}" />
-    <!-- Create a GZipped TAR file containing the built binaries and the API
-         documentation. -->
-    <tar destfile="${release.dir}/${artifact.identifier}.tgz"
-         compression="gzip"
-         longfile="gnu">
-      <tarfileset dir="${dist.dir}"
-                  prefix="${artifact.identifier}"
-                  includes="**/*" />
-      <tarfileset dir="${api.dir}"
-                  prefix="${artifact.identifier}/docs/api"
-                  includes="**/*" />
-      <!-- Don't forget to include the licence and other important information. -->
-      <tarfileset dir="."
-                  prefix="${artifact.identifier}"
-                  includes="*.txt" />
-    </tar>
-    <!-- Also create a zip file release for the convenience of Windows users. -->
-    <zip destfile="${release.dir}/${artifact.identifier}.zip">
-      <zipfileset dir="${dist.dir}"
-                  prefix="${artifact.identifier}"
-                  includes="**/*" />
-      <zipfileset dir="${api.dir}"
-                  prefix="${artifact.identifier}/docs/api"
-                  includes="**/*" />
-      <!-- Don't forget to include the licence and other important information. -->
-      <zipfileset dir="."
-                  prefix="${artifact.identifier}"
-                  includes="*.txt" />
-    </zip>
+    <uncommons:release name="${artifact.identifier}" />
   </target>
 
 
@@ -295,7 +242,9 @@
   <!-- Generates API documentation for all modules. -->
   <target name="docs"
           description="Generates Javadoc API documentation.">
-    <api.docs api.dir="${api.dir}" />
+    <uncommons:javadoc title="Uncommons Maths API"
+                       version="${version}"
+                       excludes="demo/**/*.java" />
   </target>
 
 
@@ -313,7 +262,10 @@
         <include name="**/*.html" />
       </fileset>
     </delete>
-    <api.docs api.dir="${web.dir}/api" />
+    <uncommons:javadoc dir="${web.dir}/api"
+                       title="Uncommons Maths API"
+                       version="${version}"
+                       excludes="demo/**/*.java" />
     <copy todir="${web.dir}" file="./CHANGELOG.txt" />
   </target>
 
