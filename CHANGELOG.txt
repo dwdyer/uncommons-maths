@@ -5,6 +5,8 @@ Changes in version 1.2.2
 
 * Made XORShiftRNG and CMWC4096RNG thread-safe.
 
+* Added source JAR to distribution.
+
 
 Changes in version 1.2.1
 ------------------------
