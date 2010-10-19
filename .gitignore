@@ -1,0 +1,8 @@
+dist
+docs
+release
+temp
+website
+*/build
+*.iws
+.DS_Store
