@@ -125,12 +125,22 @@
           depends="core, demo"
           description="Generate the project distribution." >
     <uncommons:dist />
+    <mkdir dir="${dist.dir}/src" />
+    <copy todir="${dist.dir}/src" flatten="true">
+      <fileset dir="." includes="**/${build.dir}/*-src.jar"/>
+    </copy>
+  </target>
+
+
+  <!-- Build source JAR files for inclusion in the release. -->
+  <target name="source" description="Build source JARs.">
+    <uncommons:source module="core" jarfile="${artifact.identifier}-src.jar" />
   </target>
 
 
   <!-- Create the release artifacts. -->
   <target name="release"
-          depends="clean, dist, test, docs"
+          depends="clean, source, dist, test, docs"
           description="Creates the release archives.">
     <uncommons:release name="${artifact.identifier}" />
   </target>
