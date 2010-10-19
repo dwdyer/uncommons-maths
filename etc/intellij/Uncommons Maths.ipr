@@ -510,5 +510,14 @@
     <option name="cycleTableSpecificationString" value="" />
     <option name="shortCycleTableSpecificationString" value="" />
   </component>
+  <component name="libraryTable">
+    <library name="TestNG">
+      <CLASSES>
+        <root url="jar:///Users/dan/Projects/uncommons-maths/lib/compiletime/testng/testng-5.13.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+  </component>
 </project>
 
