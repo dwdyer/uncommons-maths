@@ -148,7 +148,7 @@
 
   <target name="release-maven"
           depends="clean, dist"
-          description="Deploys the core Maths module to the Java.net Maven repository.">
+          description="Deploys the core Maths module to the ossrh Maven repository.">
     <uncommons:maven-deploy module="core"
                             version="${version}"
                             username="${maven.user}"
@@ -255,6 +255,9 @@
     <uncommons:javadoc title="Uncommons Maths API"
                        version="${version}"
                        excludes="demo/**/*.java" />
+    <jar destfile="core/build/uncommons-maths-src.jar">
+    <fileset dir="${docs.dir}/api"/>
+  </jar>
   </target>
 
 
