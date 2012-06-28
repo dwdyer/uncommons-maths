@@ -21,7 +21,7 @@ import org.uncommons.maths.Maths;
 
 /**
  * Immutable value object for representing a rational number (or vulgar fraction).
- * Instaces of this class provide a way to perform arithmetic on fractional values
+ * Instances of this class provide a way to perform arithmetic on fractional values
  * without loss of precision.
  * This implementation automatically simplifies fractions (3/6 is stored as 1/2).
  * The implementation also requires that the denominator is positive.  The numerator
@@ -211,7 +211,7 @@ public final class Rational extends Number implements Comparable<Rational>
      * Returns the integer equivalent of this rational number.  If
      * there is no exact integer representation, it returns the closest
      * integer that is lower than the rational value (effectively the
-     * truncated version of calling {@link #doubleValue()}.
+     * truncated version of calling {@link #doubleValue()}).
      * @return The (truncated) integer value of this rational.
      */
     public int intValue()
@@ -224,7 +224,7 @@ public final class Rational extends Number implements Comparable<Rational>
      * Returns the integer equivalent of this rational number as a long.
      * If there is no exact integer representation, it returns the closest
      * long that is lower than the rational value (effectively the
-     * truncated version of calling {@link #doubleValue()}.
+     * truncated version of calling {@link #doubleValue()}).
      * @return The (truncated) long value of this rational.
      */
     public long longValue()

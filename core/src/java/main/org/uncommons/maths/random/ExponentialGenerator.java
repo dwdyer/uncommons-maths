@@ -74,7 +74,7 @@ public class ExponentialGenerator implements NumberGenerator<Double>
         double u;
         do
         {
-            // Get a uniformally-distributed random double between
+            // Get a uniformly-distributed random double between
             // zero (inclusive) and 1 (exclusive)
             u = rng.nextDouble();
         } while (u == 0d); // Reject zero, u must be positive for this to work.
