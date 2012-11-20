@@ -125,6 +125,15 @@
           depends="core, demo"
           description="Generate the project distribution." >
     <uncommons:dist />
+
+    <typedef resource="aQute/bnd/ant/taskdef.properties" classpathref="base.path" />
+    <bnd classpath="${dist.dir}/${artifact.identifier}.jar"
+         eclipse="false"
+         failok="false"
+         exceptions="true"
+         files="uncommons-maths.bnd"
+         output="${dist.dir}"/>
+
     <mkdir dir="${dist.dir}/src" />
     <copy todir="${dist.dir}/src" flatten="true">
       <fileset dir="." includes="**/${build.dir}/*-src.jar"/>
