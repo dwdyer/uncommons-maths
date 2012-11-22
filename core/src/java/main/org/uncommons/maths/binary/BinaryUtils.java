@@ -128,7 +128,7 @@ public final class BinaryUtils
         {
             byte b = bytes[i];
             value <<= 8;
-            value += b;
+            value |= b;
         }
         return value;
 

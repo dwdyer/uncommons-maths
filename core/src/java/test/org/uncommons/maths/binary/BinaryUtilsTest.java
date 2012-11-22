@@ -81,6 +81,19 @@ public class BinaryUtilsTest
     }
 
 
+    /**
+     * Regression test for failure to correctly convert values that contain negative bytes.
+     */
+    @Test
+    public void testConvertNegativeBytesToLong()
+    {
+        byte[] bytes = new byte[]{-121, 30, 107, -100, -76, -8, 53, 81};
+        final long expected = -510639L;
+        long result = BinaryUtils.convertBytesToLong(bytes, 0);
+        assert expected == result : "Expected " + expected + ", was " + result;
+    }
+
+
     @Test
     public void testConvertFixedPoint()
     {
