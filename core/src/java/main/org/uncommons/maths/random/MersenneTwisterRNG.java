@@ -37,6 +37,11 @@ import org.uncommons.maths.binary.BinaryUtils;
  * will always seed from an array of bytes.  I don't pretend to know the
  * meanings of the magic numbers or how it works, it just does.</p>
  *
+ * <p><em>NOTE: Because instances of this class require 128-bit seeds, it is not
+ * possible to seed this RNG using the {@link #setSeed(long)} method inherited
+ * from {@link Random}.  Calls to this method will have no effect.
+ * Instead the seed must be set by a constructor.</em></p>
+ *
  * @author Makoto Matsumoto and Takuji Nishimura (original C version)
  * @author Daniel Dyer (Java port)
  */

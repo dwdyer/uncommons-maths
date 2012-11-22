@@ -30,6 +30,11 @@ import org.uncommons.maths.binary.BinaryUtils;
  * the other RNGs provided by Uncommons Maths.  It requires just over 16 kilobytes, which may
  * be a problem if your are obtaining seed data from a slow or limited entropy source.
  * In contrast, the Mersenne Twister requires only 128 bits of seed data.</p>
+ *
+ * <p><em>NOTE: Because instances of this class require 16-kilobyte seeds, it is not
+ * possible to seed this RNG using the {@link #setSeed(long)} method inherited
+ * from {@link Random}.  Calls to this method will have no effect.
+ * Instead the seed must be set by a constructor.</em></p>
  *  
  * @author Daniel Dyer
  * @since 1.2

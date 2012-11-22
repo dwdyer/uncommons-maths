@@ -27,6 +27,10 @@ import org.uncommons.maths.binary.BinaryUtils;
  * class because it is statistically more random and performs slightly
  * better.</p>
  *
+ * <p><em>NOTE: Instances of this class do not use the seeding mechanism inherited
+ * from {@link Random}.  Calls to the {@link #setSeed(long)} method will have no
+ * effect.  Instead the seed must be set by a constructor.</em></p>
+ *
  * @author Daniel Dyer
  */
 public class JavaRNG extends Random implements RepeatableRNG
@@ -89,5 +93,4 @@ public class JavaRNG extends Random implements RepeatableRNG
     {
         return seed.clone();
     }
-
 }

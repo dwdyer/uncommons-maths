@@ -32,6 +32,11 @@ import org.uncommons.maths.binary.BinaryUtils;
  * cryptography policy files are not installed, a
  * {@link java.security.GeneralSecurityException} will be thrown.</p>
  *
+ * <p><em>NOTE: Because instances of this class require 128-bit seeds, it is not
+ * possible to seed this RNG using the {@link #setSeed(long)} method inherited
+ * from {@link Random}.  Calls to this method will have no effect.
+ * Instead the seed must be set by a constructor.</em></p>
+ *
  * <p><em>NOTE: THIS CLASS IS NOT SERIALIZABLE</em></p>
  * 
  * @author Daniel Dyer

@@ -20,10 +20,16 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
- * Very fast pseudo random number generator.  See
+ * <p>Very fast pseudo random number generator.  See
  * <a href="http://school.anhb.uwa.edu.au/personalpages/kwessen/shared/Marsaglia03.html">this
  * page</a> for a description.  This RNG has a period of about 2^160, which is not as long
- * as the {@link MersenneTwisterRNG} but it is faster.
+ * as the {@link MersenneTwisterRNG} but it is faster.</p>
+ *
+ * <p><em>NOTE: Because instances of this class require 160-bit seeds, it is not
+ * possible to seed this RNG using the {@link #setSeed(long)} method inherited
+ * from {@link Random}.  Calls to this method will have no effect.
+ * Instead the seed must be set by a constructor.</em></p>
+ *
  * @author Daniel Dyer
  * @since 1.2
  */
