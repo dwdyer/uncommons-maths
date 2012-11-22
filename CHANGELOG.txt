@@ -1,3 +1,14 @@
+Changes in version 1.2.3
+------------------------
+
+* Fixed bug in convertBytesToLong method in the BinaryUtils class.
+
+* Added OSGi bundle metadata (contributed by Dave LeBlanc).
+
+* Updated documentation to explain why setSeed does nothing for any of the
+  RNGs.
+
+
 Changes in version 1.2.2
 ------------------------
 
