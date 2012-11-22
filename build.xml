@@ -105,7 +105,16 @@
   <target name="core"
           description="Builds Uncommons Maths module.">
     <uncommons:compile module="core" />
-    <uncommons:jar module="core" jarfile="${artifact.identifier}.jar"/>
+    <uncommons:jar module="core" jarfile="${artifact.identifier}-temp.jar"/>
+    <typedef resource="aQute/bnd/ant/taskdef.properties" classpathref="base.path" />
+    <bnd classpath="core/${build.dir}/${artifact.identifier}-temp.jar"
+         eclipse="false"
+         failok="false"
+         exceptions="true"
+         files="uncommons-maths.bnd"
+         output="core/${build.dir}/${artifact.identifier}.jar"/>
+    <!-- Only need one JAR, so delete the non-OSGi version. -->
+    <delete file="core/${build.dir}/${artifact.identifier}-temp.jar" />
   </target>
 
 
@@ -125,14 +134,6 @@
           depends="core, demo"
           description="Generate the project distribution." >
     <uncommons:dist />
-
-    <typedef resource="aQute/bnd/ant/taskdef.properties" classpathref="base.path" />
-    <bnd classpath="${dist.dir}/${artifact.identifier}.jar"
-         eclipse="false"
-         failok="false"
-         exceptions="true"
-         files="uncommons-maths.bnd"
-         output="${dist.dir}"/>
 
     <mkdir dir="${dist.dir}/src" />
     <copy todir="${dist.dir}/src" flatten="true">
