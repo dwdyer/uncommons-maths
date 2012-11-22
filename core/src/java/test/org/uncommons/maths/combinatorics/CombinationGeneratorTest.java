@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006-2010 Daniel W. Dyer
+//   Copyright 2006-2012 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.testng.annotations.Test;
@@ -90,6 +91,18 @@ public class CombinationGeneratorTest
         assert distinctCombinations.size() == 3 : "Wrong number of combinations: " + distinctCombinations.size();
     }
 
+
+    /**
+     * Ensures that the iterator is read-only.
+     */
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testIteratorRemove()
+    {
+        CombinationGenerator<String> generator = new CombinationGenerator<String>(elements, 2);
+        Iterator<List<String>> iterator = generator.iterator();
+        iterator.next();
+        iterator.remove(); // Should throw UnsupportedOperationException.
+    }
 
 
     /**

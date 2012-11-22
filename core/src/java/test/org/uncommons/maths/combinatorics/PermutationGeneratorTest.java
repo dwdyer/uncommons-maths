@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006-2010 Daniel W. Dyer
+//   Copyright 2006-2012 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package org.uncommons.maths.combinatorics;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -102,6 +103,19 @@ public class PermutationGeneratorTest
             distinctPermutations.add(permutation.get(0) + permutation.get(1) + permutation.get(2));
         }
         assert distinctPermutations.size() == 6 : "Wrong number of permutations: " + distinctPermutations.size();
+    }
+
+
+    /**
+     * Ensures that the iterator is read-only.
+     */
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testIteratorRemove()
+    {
+        PermutationGenerator<String> generator = new PermutationGenerator<String>(elements);
+        Iterator<List<String>> iterator = generator.iterator();
+        iterator.next();
+        iterator.remove(); // Should throw UnsupportedOperationException.
     }
 
 

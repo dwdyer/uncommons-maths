@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006-2010 Daniel W. Dyer
+//   Copyright 2006-2012 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.

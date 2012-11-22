@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006-2010 Daniel W. Dyer
+//   Copyright 2006-2012 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -28,16 +28,16 @@ public class RationalTest
     public void testEquality()
     {
         Rational r1 = new Rational(3, 4);
-        Rational r2 = new Rational(3, 4);
+        Rational r2 = new Rational(6, 8);
         assert r1.equals(r2) : "Numerically equivalent rationals should be considered equal.";
         assert r2.equals(r1) : "Equality must be reflective.";
         assert r1.hashCode() == r2.hashCode() : "Equal values must have identical hash codes.";
         assert !r1.equals(Double.valueOf(0.75)) : "Objects of different types should not be considered equal.";
 
         assert !Rational.ONE.equals(Rational.HALF) : "Numerically distinct rationals should not be considered equal.";
+        assert !Rational.QUARTER.equals(Rational.THREE_QUARTERS) : "Rationals with the same denominator but different numerators should not be considered equal.";
         assert Rational.ONE.equals(Rational.ONE) : "Equality must be reflexive.";
         assert !Rational.ONE.equals(null) : "No object should be considered equal to null.";
-
     }
 
 
@@ -189,5 +189,23 @@ public class RationalTest
         Rational rational = new Rational(new BigDecimal("1.20000000000000000000000000"));
         assert rational.getNumerator() == 6 : "Numerator should be 6, is " + rational.getNumerator();
         assert rational.getDenominator() == 5 : "Denominator should be 5, is " + rational.getDenominator();
+    }
+
+
+    @Test
+    public void testIntValue()
+    {
+        Rational rational = new Rational(5, 2);
+        int intValue = rational.intValue();
+        assert intValue == 2 : "Integer value should be 2, is " + intValue;
+    }
+
+
+    @Test
+    public void testFloatValue()
+    {
+        Rational rational = new Rational(5, 2);
+        float floatValue = rational.floatValue();
+        assert floatValue == 2.5f : "Floating point value should be 2.5, is " + floatValue;
     }
 }

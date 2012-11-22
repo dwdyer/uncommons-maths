@@ -1,5 +1,5 @@
 // ============================================================================
-//   Copyright 2006-2010 Daniel W. Dyer
+//   Copyright 2006-2012 Daniel W. Dyer
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -64,6 +64,34 @@ public class BinaryUtilsTest
         final int expected = 134480385;
         int result = BinaryUtils.convertBytesToInt(bytes, 0);
         assert expected == result : "Expected " + expected + ", was " + result;
+    }
+
+
+    /**
+     * Make sure that the conversion method correctly converts multiples of 4 bytes to an
+     * array of integers assuming big-endian convention.
+     */
+    @Test
+    public void testConvertBytesToInts()
+    {
+        byte[] bytes = new byte[]{0, 0, 0, 16, 8, 4, 2, 1};
+        final int expected1 = 16;
+        final int expected2 = 134480385;
+        int[] result = BinaryUtils.convertBytesToInts(bytes);
+        assert expected1 == result[0] : "Expected first int to be " + expected1 + ", was " + result[0];
+        assert expected2 == result[1] : "Expected second int to be " + expected2 + ", was " + result[1];
+    }
+
+
+    /**
+     * Make sure that the conversion method throws an exception if the number of bytes is
+     * not a multiple of 4.
+     */
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testConvertWrongNumberOfBytesToInts()
+    {
+        byte[] bytes = new byte[]{0, 0, 16, 8, 4, 2, 1};
+        BinaryUtils.convertBytesToInts(bytes);
     }
 
 

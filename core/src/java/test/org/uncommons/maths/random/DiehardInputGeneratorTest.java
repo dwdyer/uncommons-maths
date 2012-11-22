@@ -13,34 +13,35 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // ============================================================================
-package org.uncommons.maths.number;
+package org.uncommons.maths.random;
+
+import java.io.File;
+import org.testng.annotations.Test;
 
 /**
- * Convenience implementation of {@link NumberGenerator} that always
- * returns the same value.
- * @param <T> The numeric type (Integer, Long, Double, etc.) of the constant.
+ * Unit test for the {@link DiehardInputGenerator} class.
  * @author Daniel Dyer
  */
-public class ConstantGenerator<T extends Number> implements NumberGenerator<T>
+public class DiehardInputGeneratorTest
 {
-    private final T constant;
-
     /**
-     * Creates a number generator that always returns the same
-     * values.
-     * @param constant The value to be returned by all invocations
-     * of the {@link #nextValue()} method.
+     * Make sure that the input file is created and that it is the correct size.
      */
-    public ConstantGenerator(T constant)
+    @Test
+    public void testFileCreation() throws Exception
     {
-        this.constant = constant;
-    }
-
-    /**
-     * @return The constant value specified when the generator was constructed.
-     */
-    public T nextValue()
-    {
-        return constant;
+        File tempFile = File.createTempFile("diehard-input", null);
+        try
+        {
+            DiehardInputGenerator.main(new String[]{"java.util.Random", tempFile.getAbsolutePath()});
+            assert tempFile.length() == 12000000 : "Generated file should be 12Mb, is " + tempFile.length() + " bytes.";
+        }
+        finally
+        {
+            if (!tempFile.delete())
+            {
+                tempFile.deleteOnExit();
+            }
+        }
     }
 }
