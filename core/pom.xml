@@ -10,6 +10,20 @@
   <version>@VERSION@</version>
   <packaging>jar</packaging>
   <url>http://maths.uncommons.org/</url>
+  <description>Random number generators, probability distributions, combinatorics and statistics for Java.</description>
+
+  <scm>
+    <connection>scm:git:git://github.com/dwdyer/uncommons-maths.git</connection>
+    <developerConnection>scm:git:git@github.com:dwdyer/uncommons-maths.git</developerConnection>
+    <url>http://github.com/dwdyer/uncommons-maths</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>dwdyer</id>
+      <name>Dan Dyer</name>
+    </developer>
+  </developers>
 
   <licenses>
     <license>
