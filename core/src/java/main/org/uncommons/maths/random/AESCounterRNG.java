@@ -16,10 +16,11 @@
 package org.uncommons.maths.random;
 
 import java.security.GeneralSecurityException;
-import java.security.Key;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -189,7 +190,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     /**
      * Trivial key implementation for use with AES cipher.
      */
-    private static final class AESKey implements Key
+    private static final class AESKey implements SecretKey
     {
         private final byte[] keyData;
 
@@ -211,6 +212,31 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         public byte[] getEncoded()
         {
             return keyData;
+        }
+
+
+        @Override
+        public boolean equals(Object other)
+        {
+            if (this == other)
+            {
+                return true;
+            }
+            else if (other == null || getClass() != other.getClass())
+            {
+                return false;
+            }
+            else
+            {
+                return Arrays.equals(keyData, ((AESKey) other).keyData);
+            }
+        }
+
+
+        @Override
+        public int hashCode()
+        {
+            return Arrays.hashCode(keyData);
         }
     }
 }

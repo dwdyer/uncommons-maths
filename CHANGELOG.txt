@@ -1,3 +1,10 @@
+Changes in version 1.2.4
+------------------------
+
+* Converted AES key implementation to implement javax.crypto.SecretKey so that
+  AESCounterRNG works on Android.
+
+
 Changes in version 1.2.3
 ------------------------
 
