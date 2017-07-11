@@ -6,3 +6,4 @@ website
 */build
 *.iws
 .DS_Store
+/bin/

@@ -44,14 +44,23 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class AESCounterRNG extends Random implements RepeatableRNG
 {
+    private static final long serialVersionUID = 5949778642428995210L;
+
     private static final int DEFAULT_SEED_SIZE_BYTES = 16;
 
     private final byte[] seed;
-    private final Cipher cipher; // TO DO: This field is not Serializable.
+    private transient Cipher cipher; // TO DO: This field is not Serializable.
     private final byte[] counter = new byte[16]; // 128-bit counter.
 
+    /** Called in constructor and readObject to initialize transient fields. */
+    protected void initTransientFields() {
+      lock = new ReentrantLock();
+      cipher = Cipher.getInstance("AES/ECB/NoPadding");
+      cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
+    }
+
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final ReentrantLock lock = new ReentrantLock();
+    private transient ReentrantLock lock;
 
 
     private byte[] currentBlock = null;
@@ -110,9 +119,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
             throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit or 256-bit seed.");
         }
         this.seed = seed.clone();
-
-        cipher = Cipher.getInstance("AES/ECB/NoPadding");
-        cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
+        initTransientFields();
     }
 
 
