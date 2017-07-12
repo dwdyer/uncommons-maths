@@ -72,9 +72,11 @@
         <arg value="${temp.dir}/random.dat"/>
       </java>
       <exec dir="${lib.compiletime}/diehard"
-            executable="${lib.compiletime}/diehard/diehard"
+            executable="dieharder"
             output="@{results.file}"
-            input="${lib.compiletime}/diehard/input.txt"/>
+            input="${lib.compiletime}/diehard/input.txt">
+        <arg value="-a"/>
+      </exec>
     </sequential>
   </macrodef>
 
@@ -239,7 +241,7 @@
 
 
   <target name="diehard"
-          description="Run DIEHARD test suite against each RNG."
+          description="Run DIEHARDER test suite (must be installed) against each RNG."
           depends="core">
     <delete dir="${docs.dir}/diehard" />
     <mkdir dir="${docs.dir}/diehard" />

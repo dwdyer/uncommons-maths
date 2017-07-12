@@ -4,9 +4,13 @@ Changes in version 1.2.4
 * Converted AES key implementation to implement javax.crypto.SecretKey so that
   AESCounterRNG works on Android.
 
-* AESCounterRNG now accepts 320-bit and 384-bit seeds.
+* AESCounterRNG now accepts 320-bit and 384-bit seeds when AES-192 and AES-256
+  respectively are available, and 256-bit seeds even when they're not.
 
 * Fixed serialisation of AESCounterRNG.
+
+* Diehard testing with ant now requires that dieharder be installed (can be done
+  with brew on Mac and apt-get or yum on common Linuxes), but is cross-platform.
 
 Changes in version 1.2.3
 ------------------------
