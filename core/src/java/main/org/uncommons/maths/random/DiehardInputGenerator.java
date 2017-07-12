@@ -23,16 +23,13 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * Utility to generate an input file for the
+ * Utility to populate a fifo with input for the
  * <a href="http://stat.fsu.edu/pub/diehard/" target="_top">DIEHARD</a> suite of statistical
  * tests for random number generators.
  * @author Daniel Dyer
  */
 public final class DiehardInputGenerator
 {
-    // How many 32-bit values should be written to the output file.
-    private static final int INT_COUNT = 1000 * 1000 * 1000;
-
     private DiehardInputGenerator()
     {
         // Prevents instantiation.
@@ -71,21 +68,15 @@ public final class DiehardInputGenerator
                                           File outputFile) throws IOException
     {
         DataOutputStream dataOutput = null;
-        try
-        {
-            dataOutput = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
-            for (int i = 0; i < INT_COUNT; i++)
-            {
+        dataOutput = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+        try {
+            while (true) {
                 dataOutput.writeInt(rng.nextInt());
             }
-            dataOutput.flush();
-        }
-        finally
-        {
-            if (dataOutput != null)
-            {
-                dataOutput.close();
-            }
+        } catch (IOException expected) {
+            // Broken pipe means Dieharder is finished
+        } finally {
+            dataOutput.close();
         }
     }
 }
