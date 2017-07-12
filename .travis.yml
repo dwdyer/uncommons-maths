@@ -10,10 +10,12 @@ jdk:
   - openjdk8
   - openjdk7
   - openjdk6
+env:
+  - TEST_COMMAND="ant test"
+  - TEST_COMMAND="travis_wait 50 ant diehard_stdout"
 addons:
   apt:
     packages:
       - dieharder
 script:
-  - ant test
-  - travis_wait 50 ant diehard_stdout
+  - "$TEST_COMMAND"
