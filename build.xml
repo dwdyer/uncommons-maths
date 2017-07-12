@@ -77,11 +77,18 @@
         </java>
         <exec dir="${lib.compiletime}/diehard"
               executable="dieharder"
-              output="@{shortname}.txt"
+              output="${docs.dir}/diehard/@{shortname}.txt"
               input="${temp.dir}/@{shortname}">
-          <arg line="-a -g 200"/>
-          <arg line="-p 20">
+          <arg value="-a"/>
+          <arg value="-g"/>
+          <arg value="200"/>
+          <arg value="-p">
             <!-- Travis timeouts are too short for 100 psamples -->
+            <condition>
+              <isset property="${env.TRAVIS}"/>
+            </condition>    
+          </arg>
+          <arg value="20">
             <condition>
               <isset property="${env.TRAVIS}"/>
             </condition>    
