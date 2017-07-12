@@ -15,6 +15,8 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Random;
@@ -47,21 +49,39 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private static final long serialVersionUID = 5949778642428995210L;
 
     private static final int DEFAULT_SEED_SIZE_BYTES = 16;
+    private static final int COUNTER_SIZE_BYTES = 16;  // 128-bit counter.
+
+    /**
+     * If the seed is longer than this, part of it becomes the counter's initial
+     * value. Otherwise, the full seed becomes the AES key and the counter is
+     * initially zero.
+     */
+    private static final int MAX_KEY_LENGTH_BYTES = 32;
 
     private final byte[] seed;
-    private transient Cipher cipher; // TO DO: This field is not Serializable.
-    private final byte[] counter = new byte[16]; // 128-bit counter.
+    private transient Cipher cipher;
+    private final byte[] counter = new byte[COUNTER_SIZE_BYTES];
 
     /** Called in constructor and readObject to initialize transient fields. */
-    protected void initTransientFields() {
+    protected void initTransientFields() throws GeneralSecurityException {
       lock = new ReentrantLock();
       cipher = Cipher.getInstance("AES/ECB/NoPadding");
       cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
     }
+    
+    /** Needed to initialize transient fields when deserializing. */
+    private void readObject(ObjectInputStream in)
+        throws IOException,ClassNotFoundException {
+      in.defaultReadObject();
+      try {
+        initTransientFields();
+      } catch (GeneralSecurityException e) {
+        throw new IOException(e);
+      }
+    }
 
     // Lock to prevent concurrent modification of the RNG's internal state.
     private transient ReentrantLock lock;
-
 
     private byte[] currentBlock = null;
     private int index = 0;
@@ -116,9 +136,16 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     {
         if (seed == null)
         {
-            throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit or 256-bit seed.");
+            throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit, 256-bit, 320-bit or 384-bit seed.");
         }
-        this.seed = seed.clone();
+        if (seed.length > MAX_KEY_LENGTH_BYTES) {
+            this.seed = Arrays.copyOfRange(
+                seed, 0, seed.length - COUNTER_SIZE_BYTES);
+            System.arraycopy(
+                seed, MAX_KEY_LENGTH_BYTES, counter, 0, COUNTER_SIZE_BYTES);
+        } else {
+            this.seed = seed.clone();
+        }
         initTransientFields();
     }
 
