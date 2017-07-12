@@ -82,17 +82,8 @@
           <arg value="-a"/>
           <arg value="-g"/>
           <arg value="200"/>
-          <arg value="-p">
-            <!-- Travis timeouts are too short for 100 psamples -->
-            <condition>
-              <isset property="${env.TRAVIS}"/>
-            </condition>    
-          </arg>
-          <arg value="20">
-            <condition>
-              <isset property="${env.TRAVIS}"/>
-            </condition>    
-          </arg>
+          <arg value="-p"/>
+          <arg value="20"/>
         </exec>
       </parallel>
       <concat>
