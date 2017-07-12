@@ -6,7 +6,7 @@ dist: trusty
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
+#  - oraclejdk7 (not currently working on Travis)
   - openjdk8
   - openjdk7
   - openjdk6
@@ -16,4 +16,4 @@ addons:
       - dieharder
 script:
   - ant test
-  - ant diehard
+  - ant diehard_stdout

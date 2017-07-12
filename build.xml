@@ -76,6 +76,8 @@
             output="@{results.file}"
             input="${lib.compiletime}/diehard/input.txt">
         <arg value="-a"/>
+        <arg value="-g"/>
+        <arg value="200"/>
       </exec>
     </sequential>
   </macrodef>
@@ -260,6 +262,24 @@
              results.file="${docs.dir}/diehard/java.txt" />
   </target>
 
+<!-- Diehard tests, outputting to stdout. Necessary to avoid a Travis timeout. -->
+  <target name="diehard_stdout"
+        description="Same as diehard, but write results to standard output."
+        depends="core">
+    <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
+             results.file="/dev/stdout" />
+    <diehard rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
+             results.file="/dev/stdout" />
+    <diehard rng.class="org.uncommons.maths.random.CMWC4096RNG"
+             results.file="/dev/stdout" />
+    <diehard rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
+             results.file="/dev/stdout" />
+    <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
+             results.file="/dev/stdout" />
+    <!-- Test java.util.Random for comparison. -->
+    <diehard rng.class="org.uncommons.maths.random.JavaRNG"
+             results.file="/dev/stdout" />
+  </target>
 
   <!-- Generates API documentation for all modules. -->
   <target name="docs"
