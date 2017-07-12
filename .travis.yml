@@ -16,4 +16,4 @@ addons:
       - dieharder
 script:
   - ant test
-  - ant diehard_stdout
+  - travis_wait ant diehard_stdout
