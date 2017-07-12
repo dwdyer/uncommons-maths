@@ -54,9 +54,9 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     /**
      * If the seed is longer than this, part of it becomes the counter's initial
      * value. Otherwise, the full seed becomes the AES key and the counter is
-     * initially zero.
+     * initially zero. Package-visible for testing of its initialization.
      */
-    private static final int MAX_KEY_LENGTH_BYTES;
+    static final int MAX_KEY_LENGTH_BYTES;
     static {
         try {
             MAX_KEY_LENGTH_BYTES =
