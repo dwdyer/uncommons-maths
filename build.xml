@@ -82,8 +82,8 @@
           <arg value="-a"/>
           <arg value="-g"/>
           <arg value="200"/>
-          <arg value="-p"/>
-          <arg value="20"/>
+          <arg value="-m"/>
+          <arg value="0.2"/>
         </exec>
       </parallel>
       <concat>
