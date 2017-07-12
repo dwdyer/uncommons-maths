@@ -56,7 +56,15 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * value. Otherwise, the full seed becomes the AES key and the counter is
      * initially zero.
      */
-    private static final int MAX_KEY_LENGTH_BYTES = 32;
+    private static final int MAX_KEY_LENGTH_BYTES;
+    static {
+        try {
+            MAX_KEY_LENGTH_BYTES =
+                    Math.min(Cipher.getMaxAllowedKeyLength("AES"), 32);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final byte[] seed;
     private transient Cipher cipher;
