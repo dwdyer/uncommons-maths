@@ -310,7 +310,7 @@
     <echo message="__   ______  _____   _____ _     _  __ _   "/>
     <echo message="\ \ / / __ \|  __ \ / ____| |   (_)/ _| |  "/>
     <echo message=" \ V / |  | | |__) | (___ | |__  _| |_| |_ "/>
-    <echo message="  > <| |  | |  _  / \___ \| '_ \| |  _| __|"/>
+    <echo message="  &gt; &lt;| |  | |  _  / \___ \| '_ \| |  _| __|"/>
     <echo message=" / . \ |__| | | \ \ ____) | | | | | | | |_ "/>
     <echo message="/_/ \_\____/|_|  \_\_____/|_| |_|_|_|  \__|"/>
     <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
