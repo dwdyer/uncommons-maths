@@ -12,7 +12,12 @@ jdk:
   - openjdk6
 env:
   - TEST_COMMAND="ant test"
-  - TEST_COMMAND="travis_wait 50 ant diehard_stdout"
+  - TEST_COMMAND="travis_wait 50 ant diehard_aes"
+  - TEST_COMMAND="travis_wait 50 ant diehard_automaton"
+  - TEST_COMMAND="travis_wait 50 ant diehard_cmwc"
+  - TEST_COMMAND="travis_wait 50 ant diehard_mersenne"
+  - TEST_COMMAND="travis_wait 50 ant diehard_xor"
+  - TEST_COMMAND="travis_wait 50 ant diehard_java"
 addons:
   apt:
     packages:

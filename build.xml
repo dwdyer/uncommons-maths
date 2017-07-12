@@ -63,28 +63,34 @@
 
   <macrodef name="diehard">
     <attribute name="rng.class"/>
-    <attribute name="results.file"/>
-    <attribute name="temp.file"/>
+    <attribute name="shortname"/>
     <sequential>
       <mkdir dir="${temp.dir}" />
-      <delete file="${temp.dir}/@{temp.file}" />
+      <delete file="${temp.dir}/@{shortname}" />
       <exec executable="mkfifo">
-        <arg value="${temp.dir}/@{temp.file}" />
+        <arg value="${temp.dir}/@{shortname}" />
       </exec>
       <parallel timeout="86400000">
         <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
           <arg value="@{rng.class}"/>
-          <arg value="${temp.dir}/@{temp.file}"/>
+          <arg value="${temp.dir}/@{shortname}"/>
         </java>
         <exec dir="${lib.compiletime}/diehard"
               executable="dieharder"
-              output="@{results.file}"
-              input="${temp.dir}/@{temp.file}">
+              output="@{shortname}.txt"
+              input="${temp.dir}/@{shortname}">
           <arg value="-a"/>
           <arg value="-g"/>
           <arg value="200"/>
         </exec>
       </parallel>
+      <concat>
+        <!-- Dump report to stdout if on Travis, since it won't be output from Travis otherwise -->
+        <condition>
+          <isset property="${env.TRAVIS}"/>
+        </condition>
+        <filelist dir="${docs.dir}/diehard" file="@{shortname}.txt"/>
+      </concat>
     </sequential>
   </macrodef>
 
@@ -247,6 +253,30 @@
     <delete file="velocity.log" />
   </target>
 
+  <target name="diehard_aes" description="Run DIEHARDER tests on AESCounterRNG">
+    <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
+             shortname="aes"/>
+  </target>
+  <target name="diehard_automaton" description="Run DIEHARDER tests on CellularAutomatonRNG">
+    <diehard rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
+             shortname="automaton"/>
+  </target>
+  <target name="diehard_cmwc" description="Run DIEHARDER tests on CMWC4096RNG">
+    <diehard rng.class="org.uncommons.maths.random.CMWC4096RNG"
+             shortname="cmwc"/>
+  </target>
+  <target name="diehard_mersenne" description="Run DIEHARDER tests on MersenneTwisterRNG">
+    <diehard rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
+             shortname="mersenne"/>
+  </target>
+  <target name="diehard_xor" description="Run DIEHARDER tests on XORShiftRNG">
+    <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
+             shortname="xor"/>
+  </target>
+  <target name="diehard_java" description="Run DIEHARDER tests on java.util.Random as a baseline">
+    <diehard rng.class="org.uncommons.maths.random.JavaRNG"
+             shortname="java"/>
+  </target>
 
   <target name="diehard"
           description="Run DIEHARDER test suite against each RNG. Dieharder must be installed. Requires Cygwin mkfifo if run on Windows."
@@ -254,94 +284,13 @@
     <delete dir="${docs.dir}/diehard" />
     <mkdir dir="${docs.dir}/diehard" />
     <parallel timeout="3600000">
-      <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
-               results.file="${docs.dir}/diehard/aes.txt"
-               temp.file="aes.dat"/>
-      <diehard rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
-               results.file="${docs.dir}/diehard/automaton.txt"
-               temp.file="automaton.dat"/>
-      <diehard rng.class="org.uncommons.maths.random.CMWC4096RNG"
-               results.file="${docs.dir}/diehard/cmwc.txt"
-               temp.file="cmwc.dat"/>
-      <diehard rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
-               results.file="${docs.dir}/diehard/mersenne.txt"
-               temp.file="mersenne.dat"/>
-      <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
-               results.file="${docs.dir}/diehard/xor.txt"
-               temp.file="xor.dat"/>
-      <!-- Test java.util.Random for comparison. -->
-      <diehard rng.class="org.uncommons.maths.random.JavaRNG"
-               results.file="${docs.dir}/diehard/java.txt"
-               temp.file="java.dat"/>
+      <antcall target="diehard_aes" />
+      <antcall target="diehard_automaton" />
+      <antcall target="diehard_cmwc" />
+      <antcall target="diehard_mersenne" />
+      <antcall target="diehard_xor" />
+      <antcall target="diehard_java" />
     </parallel>
-  </target>
-
-<!-- Diehard tests, outputting to stdout. Necessary to avoid a Travis timeout. -->
-  <target name="diehard_stdout"
-        description="Same as diehard, but write results to standard output."
-        depends="core">
-    <sequential>
-      <antcall target="diehard"/>
-      <echo message="          ______  _____ "/>
-      <echo message="    /\   |  ____|/ ____|"/>
-      <echo message="   /  \  | |__  | (___  "/>
-      <echo message="  / /\ \ |  __|  \___ \ "/>
-      <echo message=" / ____ \| |____ ____) |"/>
-      <echo message="/_/    \_\______|_____/ "/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="aes.txt"/>
-      </concat>
-  
-      <echo message="  _____     _ _       _            "/>
-      <echo message=" / ____|   | | |     | |           "/>
-      <echo message="| |     ___| | |_   _| | __ _ _ __ "/>
-      <echo message="| |    / _ \ | | | | | |/ _` | '__|"/>
-      <echo message="| |___|  __/ | | |_| | | (_| | |   "/>
-      <echo message=" \_____\___|_|_|\__,_|_|\__,_|_|   "/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="automaton.txt"/>
-      </concat>
-  
-      <echo message="  _____ __  ____          _______ "/>
-      <echo message=" / ____|  \/  \ \        / / ____|"/>
-      <echo message="| |    | \  / |\ \  /\  / / |     "/>
-      <echo message="| |    | |\/| | \ \/  \/ /| |     "/>
-      <echo message="| |____| |  | |  \  /\  / | |____ "/>
-      <echo message=" \_____|_|  |_|   \/  \/   \_____|"/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="cmwc.txt"/>
-      </concat>
-  
-      <echo message=" __  __                                     "/>
-      <echo message="|  \/  |                                    "/>
-      <echo message="| \  / | ___ _ __ ___  ___ _ __  _ __   ___ "/>
-      <echo message="| |\/| |/ _ \ '__/ __|/ _ \ '_ \| '_ \ / _ \"/>
-      <echo message="| |  | |  __/ |  \__ \  __/ | | | | | |  __/"/>
-      <echo message="|_|  |_|\___|_|  |___/\___|_| |_|_| |_|\___|"/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="mersenne.txt"/>
-      </concat>
-  
-      <echo message="__   ______  _____   _____ _     _  __ _   "/>
-      <echo message="\ \ / / __ \|  __ \ / ____| |   (_)/ _| |  "/>
-      <echo message=" \ V / |  | | |__) | (___ | |__  _| |_| |_ "/>
-      <echo message="  | || |  | |  _  / \___ \| '_ \| |  _| __|"/>
-      <echo message=" / . \ |__| | | \ \ ____) | | | | | | | |_ "/>
-      <echo message="/_/ \_\____/|_|  \_\_____/|_| |_|_|_|  \__|"/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="xor.txt"/>
-      </concat>
-  
-      <echo message="      _                  "/>
-      <echo message="     | |                 "/>
-      <echo message="     | | __ ___   ____ _ "/>
-      <echo message=" _   | |/ _` \ \ / / _` |"/>
-      <echo message="| |__| | (_| |\ V / (_| |"/>
-      <echo message=" \____/ \__,_| \_/ \__,_|"/>
-      <concat>
-        <filelist dir="${docs.dir}/diehard" file="java.txt"/>
-      </concat>
-    </sequential>
   </target>
 
   <!-- Generates API documentation for all modules. -->
