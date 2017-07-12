@@ -33,9 +33,9 @@ public class AESCounterRNGTest
 {
     @Test
     public void testMaxSeedLengthOk() {
-        assert AESCounterRNGTest.MAX_KEY_LENGTH_BYTES >= 16 :
+        assert AESCounterRNG.MAX_KEY_LENGTH_BYTES >= 16 :
                 "Should allow a 16-byte key";
-        assert AESCounterRNGTest.MAX_KEY_LENGTH_BYTES <= 32 :
+        assert AESCounterRNG.MAX_KEY_LENGTH_BYTES <= 32 :
                 "Shouldn't allow a key longer than 32 bytes";
     }
 

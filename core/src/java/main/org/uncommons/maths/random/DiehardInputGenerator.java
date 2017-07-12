@@ -58,8 +58,9 @@ public final class DiehardInputGenerator
 
 
     /**
-     * Generates a file of random data in a format suitable for the DIEHARD test.
-     * DIEHARD requires 3 million 32-bit integers.
+     * Populates a file with random numbers as long as it can be written to.
+     * Intended for use with a named pipe.
+     *
      * @param rng The random number generator to use to generate the data.
      * @param outputFile The file that the random data is written to.
      * @throws IOException If there is a problem writing to the file.
