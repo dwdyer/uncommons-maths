@@ -1,6 +1,5 @@
-# workaround for https://github.com/travis-ci/travis-ci/issues/2839 
-env:
-  - JAVA_HOME=/
+# workaround for https://github.com/travis-ci/travis-ci/issues/7884 
+sudo: required
 
 language: java
 dist: trusty
