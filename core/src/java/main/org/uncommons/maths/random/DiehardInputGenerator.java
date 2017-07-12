@@ -31,7 +31,7 @@ import java.util.Random;
 public final class DiehardInputGenerator
 {
     // How many 32-bit values should be written to the output file.
-    private static final int INT_COUNT = 3000000;
+    private static final int INT_COUNT = 1000 * 1000 * 1000;
 
     private DiehardInputGenerator()
     {

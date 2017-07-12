@@ -67,18 +67,23 @@
     <sequential>
       <mkdir dir="${temp.dir}" />
       <delete file="${temp.dir}/random.dat" />
-      <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
-        <arg value="@{rng.class}"/>
-        <arg value="${temp.dir}/random.dat"/>
-      </java>
-      <exec dir="${lib.compiletime}/diehard"
-            executable="dieharder"
-            output="@{results.file}"
-            input="${lib.compiletime}/diehard/input.txt">
-        <arg value="-a"/>
-        <arg value="-g"/>
-        <arg value="200"/>
+      <exec executable="mkfifo">
+        <arg value="${temp.dir}/random.dat" />
       </exec>
+      <parallel>
+        <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
+          <arg value="@{rng.class}"/>
+          <arg value="${temp.dir}/random.dat"/>
+        </java>
+        <exec dir="${lib.compiletime}/diehard"
+              executable="dieharder"
+              output="@{results.file}"
+              input="${temp.dir}/random.dat">
+          <arg value="-a"/>
+          <arg value="-g"/>
+          <arg value="200"/>
+        </exec>
+      </parallel>
     </sequential>
   </macrodef>
 
@@ -243,7 +248,7 @@
 
 
   <target name="diehard"
-          description="Run DIEHARDER test suite (must be installed) against each RNG."
+          description="Run DIEHARDER test suite against each RNG. Dieharder must be installed. Requires Cygwin mkfifo if run on Windows."
           depends="core">
     <delete dir="${docs.dir}/diehard" />
     <mkdir dir="${docs.dir}/diehard" />
