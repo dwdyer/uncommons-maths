@@ -79,9 +79,13 @@
               executable="dieharder"
               output="@{shortname}.txt"
               input="${temp.dir}/@{shortname}">
-          <arg value="-a"/>
-          <arg value="-g"/>
-          <arg value="200"/>
+          <arg line="-a -g 200"/>
+          <arg line="-p 20">
+            <!-- Travis timeouts are too short for 100 psamples -->
+            <condition>
+              <isset property="${env.TRAVIS}"/>
+            </condition>    
+          </arg>
         </exec>
       </parallel>
       <concat>
