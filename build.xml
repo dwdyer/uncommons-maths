@@ -83,7 +83,7 @@
           <arg value="-g"/>
           <arg value="200"/>
           <arg value="-m"/>
-          <arg value="0.2"/>
+          <arg value="0.1"/>
         </exec>
       </parallel>
       <concat>

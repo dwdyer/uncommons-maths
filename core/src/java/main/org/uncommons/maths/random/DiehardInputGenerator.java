@@ -72,7 +72,7 @@ public final class DiehardInputGenerator
         dataOutput = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
         try {
             while (true) {
-                dataOutput.writeInt(rng.nextInt());
+                dataOutput.writeLong(rng.nextLong());
             }
         } catch (IOException expected) {
             // Broken pipe means Dieharder is finished
