@@ -70,7 +70,7 @@
       <exec executable="mkfifo">
         <arg value="${temp.dir}/random.dat" />
       </exec>
-      <parallel>
+      <parallel timeout="86400000">
         <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
           <arg value="@{rng.class}"/>
           <arg value="${temp.dir}/random.dat"/>
