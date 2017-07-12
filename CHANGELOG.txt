@@ -4,6 +4,9 @@ Changes in version 1.2.4
 * Converted AES key implementation to implement javax.crypto.SecretKey so that
   AESCounterRNG works on Android.
 
+* AESCounterRNG now accepts 320-bit and 384-bit seeds.
+
+* Fixed serialisation of AESCounterRNG.
 
 Changes in version 1.2.3
 ------------------------
