@@ -1,5 +1,10 @@
+# workaround for https://github.com/travis-ci/travis-ci/issues/2839 
+env:
+  - JAVA_HOME=/
+
 language: java
 dist: trusty
+
 jdk:
   - oraclejdk8
   - oraclejdk7
