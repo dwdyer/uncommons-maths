@@ -83,12 +83,12 @@
           <arg value="-g"/>
           <arg value="200"/>
           <arg value="-m"/>
-          <arg value="0.1"/>
+          <arg value="0.05"/> <!-- Don't have time to use full sample size on Travis -->
         </exec>
       </parallel>
       <concat>
         <!-- Dump report to stdout, in case we're on Travis -->
-        <filelist dir="${docs.dir}/diehard" file="@{shortname}.txt"/>
+        <filelist dir="${docs.dir}/diehard" files="@{shortname}.txt"/>
       </concat>
     </sequential>
   </macrodef>

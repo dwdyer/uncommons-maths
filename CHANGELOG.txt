@@ -7,10 +7,15 @@ Changes in version 1.2.4
 * AESCounterRNG now accepts 320-bit and 384-bit seeds when AES-192 and AES-256
   respectively are available, and 256-bit seeds even when they're not.
 
+* Improved the performance of AESCounterRNG by merging some calls and arrays.
+
 * Fixed serialisation of AESCounterRNG.
 
 * Diehard testing with ant now requires that dieharder be installed (can be done
   with brew on Mac and apt-get or yum on common Linuxes), but is cross-platform.
+
+* Diehard testing should now be faster on 64-bit JVMs, at a slight cost to
+  32-bit JVMs.
 
 Changes in version 1.2.3
 ------------------------
