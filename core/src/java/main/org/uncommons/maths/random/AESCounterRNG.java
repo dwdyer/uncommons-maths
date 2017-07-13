@@ -49,7 +49,21 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private static final long serialVersionUID = 5949778642428995210L;
 
     private static final int DEFAULT_SEED_SIZE_BYTES = 16;
-    private static final int COUNTER_SIZE_BYTES = 16;  // 128-bit counter.
+    
+    /**
+     * 128-bit counter. Note to forkers: when running a cipher in ECB mode, this
+     * counter's length should equal the cipher's block size.
+     */
+    private static final int COUNTER_SIZE_BYTES = 16;
+    
+    /**
+     * Number of blocks to encrypt at once, to construct/GC fewer arrays. This
+     * takes advantage of the fact that in ECB mode, concatenating and then
+     * encrypting gives the same output as encrypting and then concatenating, as
+     * long as both plaintexts are a whole number of blocks. (The AES block size
+     * is 128 bits at all key lengths.)
+     */
+    private static final int BLOCKS_AT_ONCE = 16;
 
     /**
      * If the seed is longer than this, part of it becomes the counter's initial
@@ -69,12 +83,14 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private final byte[] seed;
     private transient Cipher cipher;
     private final byte[] counter = new byte[COUNTER_SIZE_BYTES];
+    private transient byte[] counterInput;
 
     /** Called in constructor and readObject to initialize transient fields. */
     protected void initTransientFields() throws GeneralSecurityException {
       lock = new ReentrantLock();
       cipher = Cipher.getInstance("AES/ECB/NoPadding");
       cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
+      counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
     }
     
     /** Needed to initialize transient fields when deserializing. */
@@ -91,8 +107,10 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     // Lock to prevent concurrent modification of the RNG's internal state.
     private transient ReentrantLock lock;
 
-    private byte[] currentBlock = null;
-    private int index = 0;
+    private byte[] currentBlock = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
+    
+    // force generation of first block on demand
+    private int index = currentBlock.length;
 
 
     /**
@@ -181,15 +199,20 @@ public class AESCounterRNG extends Random implements RepeatableRNG
 
 
     /**
-     * Generates a single 128-bit block (16 bytes).
+     * Generates BLOCKS_AT_ONCE 128-bit (16-byte) blocks. Copies them to
+     * currentBlock.
      * @throws GeneralSecurityException If there is a problem with the cipher
      * that generates the random data.
-     * @return A 16-byte block of random data.
      */
-    private byte[] nextBlock() throws GeneralSecurityException
+    private void nextBlock() throws GeneralSecurityException
     {
-        incrementCounter();
-        return cipher.doFinal(counter);
+        for (int i=0; i < BLOCKS_AT_ONCE; i++) {
+            incrementCounter();
+            System.arraycopy(counter, 0, counterInput, i*COUNTER_SIZE_BYTES,
+                    COUNTER_SIZE_BYTES);
+        }
+        System.arraycopy(cipher.doFinal(counterInput), 0, currentBlock, 0,
+                COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE);
     }
 
 
@@ -203,11 +226,11 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         try
         {
             lock.lock();
-            if (currentBlock == null || currentBlock.length - index < 4)
+            if (currentBlock.length - index < 4)
             {
                 try
                 {
-                    currentBlock = nextBlock();
+                    nextBlock();
                     index = 0;
                 }
                 catch (GeneralSecurityException ex)

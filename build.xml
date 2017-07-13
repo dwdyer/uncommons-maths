@@ -87,10 +87,7 @@
         </exec>
       </parallel>
       <concat>
-        <!-- Dump report to stdout if on Travis, since it won't be output from Travis otherwise -->
-        <condition>
-          <isset property="${env.TRAVIS}"/>
-        </condition>
+        <!-- Dump report to stdout, in case we're on Travis -->
         <filelist dir="${docs.dir}/diehard" file="@{shortname}.txt"/>
       </concat>
     </sequential>
