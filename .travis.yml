@@ -9,7 +9,7 @@ jdk:
 #  - oraclejdk7 (not currently working on Travis)
   - openjdk8
   - openjdk7
-  - openjdk6
+#  - openjdk6 (not currently working on Travis)
 env:
   - TEST_COMMAND="ant test"
   - TEST_COMMAND="travis_wait 50 ant diehard_aes"
