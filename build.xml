@@ -116,8 +116,12 @@
       <replaceregexp match="^        test_name   .*" replace="" flags="gm">
         <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
-      <replaceregexp match="\n\n" replace="\n" flags="gs">
+      <replaceregexp match="\n\n" replace="\\n" flags="gs">
         <fileset dir="${docs.dir}/diehard"/>        
+      </replaceregexp>
+      <replaceregexp match="nnnn" replace="" flags="g">
+        <!-- TODO: Fix the bug in the previous replaceregexp that makes this necessary -->
+        <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
       <!-- Print combined report -->
       <echo message="#=========================================================#"/>
