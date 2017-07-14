@@ -118,7 +118,7 @@
       <!-- deprecated by dieharder authors: <diehardtest rng.class="@{rng.class}" test.number="014"/> -->
       <diehardtest rng.class="@{rng.class}" test.number="015"/>
       <diehardtest rng.class="@{rng.class}" test.number="016"/>
-      <diehardtest rng.class="@{rng.class}" test.number="017"/>
+      <diehardtest rng.class="@{rng.class}" test.number="017" extra.args="-p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="100"/>
       <diehardtest rng.class="@{rng.class}" test.number="101"/>
       <diehardtest rng.class="@{rng.class}" test.number="102"/>
