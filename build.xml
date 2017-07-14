@@ -170,11 +170,11 @@
       <diehardtest rng.class="@{rng.class}" test.number="203.31" extra.args="-n 31 -t 100000 -p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="203.32" extra.args="-n 32 -t 100000 -p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="204"/>
-      <diehardtest rng.class="@{rng.class}" test.number="205" extra.args="-p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="206" extra.args="-p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="207" extra.args="-p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="208" extra.args="-p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="209" extra.args="-p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="205"/>
+      <diehardtest rng.class="@{rng.class}" test.number="206"/>
+      <diehardtest rng.class="@{rng.class}" test.number="207"/>
+      <diehardtest rng.class="@{rng.class}" test.number="208"/>
+      <diehardtest rng.class="@{rng.class}" test.number="209"/>
       
       <!-- Remove redundant headers -->
       <replaceregexp match="^#.*" replace="">
