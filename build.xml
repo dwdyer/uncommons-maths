@@ -74,6 +74,11 @@
         <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
           <arg value="@{rng.class}"/>
           <arg value="${temp.dir}/@{shortname}"/>
+          <jvmarg value="-XX:+AggressiveOpts"/>
+          <jvmarg value="-XX:+UseBiasedLocking"/>
+          <jvmarg value="-XX:+UseFastAccessorMethods"/>
+          <jvmarg value="-XX:+UseAES"/>
+          <jvmarg value="-XX:+UseAESIntrinsics"/>
         </java>
         <exec dir="${lib.compiletime}/diehard"
               executable="dieharder"
@@ -83,7 +88,7 @@
           <arg value="-g"/>
           <arg value="200"/>
           <arg value="-m"/>
-          <arg value="0.04"/> <!-- Don't have time to use full sample size on Travis -->
+          <arg value="0.1"/> <!-- Don't have time to use full sample size on Travis -->
         </exec>
       </parallel>
       <concat>
