@@ -177,16 +177,13 @@
       <diehardtest rng.class="@{rng.class}" test.number="209"/>
       
       <!-- Remove redundant headers -->
-      <replaceregexp match="^#.*" replace="">
+      <replaceregexp match="^#.*" replace="" flags="gm">
         <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
-      <replaceregexp match="^#.*" replace="">
+      <replaceregexp match="^   rng_name.*" replace="" flags="gm">
         <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
-      <replaceregexp match="^   rng_name.*" replace="">
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <replaceregexp match="^stdin_input_raw.*" replace="">
+      <replaceregexp match="^stdin_input_raw.*" replace="" flags="gm">
         <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
 
