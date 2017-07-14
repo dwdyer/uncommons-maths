@@ -61,19 +61,21 @@
        MACROS
   =================================================================== -->
 
-  <macrodef name="diehard">
+  <macrodef name="diehardtest">
+    <attribute name="test.number"
+        description="Integer part is the number of a Dieharder test to run.
+        Full value, including fractional part, is used to create filenames and
+        must be unique."/>
     <attribute name="rng.class"/>
-    <attribute name="shortname"/>
+    <attribute name="extra.args" default=""/>
     <sequential>
-      <mkdir dir="${temp.dir}" />
-      <delete file="${temp.dir}/@{shortname}" />
       <exec executable="mkfifo">
-        <arg value="${temp.dir}/@{shortname}" />
+        <arg value="${temp.dir}/@{rng.class}/@{test.number}" />
       </exec>
       <parallel timeout="86400000">
         <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
           <arg value="@{rng.class}"/>
-          <arg value="${temp.dir}/@{shortname}"/>
+          <arg value="${temp.dir}/@{rng.class}/@{test.number}"/>
           <jvmarg value="-XX:+AggressiveOpts"/>
           <jvmarg value="-XX:+UseBiasedLocking"/>
           <jvmarg value="-XX:+UseFastAccessorMethods"/>
@@ -82,18 +84,83 @@
         </java>
         <exec dir="${lib.compiletime}/diehard"
               executable="dieharder"
-              output="${docs.dir}/diehard/@{shortname}.txt"
-              input="${temp.dir}/@{shortname}">
-          <arg value="-a"/>
-          <arg value="-g"/>
-          <arg value="200"/>
-          <arg value="-m"/>
-          <arg value="0.1"/> <!-- Don't have time to use full sample size on Travis -->
+              output="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"
+              input="${temp.dir}/@{rng.class}/@{test.number}">
+          <arg line="-d @{test.number} -g 200 @{extra.args}"/>
         </exec>
       </parallel>
+    </sequential>
+  </macrodef>
+    
+  <macrodef name="diehard">
+    <attribute name="rng.class"/>
+    <attribute name="shortname"/>
+    <sequential>
+      <mkdir dir="${temp.dir}" />
+      <delete dir="${temp.dir}/@{rng.class}" />
+      <mkdir dir="${temp.dir}/@{rng.class}" />
+      <delete dir="${docs.dir}/diehard/@{rng.class}" />
+      <mkdir dir="${docs.dir}/diehard/@{rng.class}" />
+      <diehardtest rng.class="@{rng.class}" test.number="000"/>
+      <diehardtest rng.class="@{rng.class}" test.number="001"/>
+      <diehardtest rng.class="@{rng.class}" test.number="002"/>
+      <diehardtest rng.class="@{rng.class}" test.number="003"/>
+      <diehardtest rng.class="@{rng.class}" test.number="004"/>
+      <diehardtest rng.class="@{rng.class}" test.number="005"/>
+      <diehardtest rng.class="@{rng.class}" test.number="006"/>
+      <diehardtest rng.class="@{rng.class}" test.number="007"/>
+      <diehardtest rng.class="@{rng.class}" test.number="008"/>
+      <diehardtest rng.class="@{rng.class}" test.number="009"/>
+      <diehardtest rng.class="@{rng.class}" test.number="010"/>
+      <diehardtest rng.class="@{rng.class}" test.number="011"/>
+      <diehardtest rng.class="@{rng.class}" test.number="012"/>
+      <diehardtest rng.class="@{rng.class}" test.number="013"/>
+      <!-- deprecated by dieharder authors: <diehardtest rng.class="@{rng.class}" test.number="014"/> -->
+      <diehardtest rng.class="@{rng.class}" test.number="015"/>
+      <diehardtest rng.class="@{rng.class}" test.number="016"/>
+      <diehardtest rng.class="@{rng.class}" test.number="017"/>
+      <diehardtest rng.class="@{rng.class}" test.number="100"/>
+      <diehardtest rng.class="@{rng.class}" test.number="101"/>
+      <diehardtest rng.class="@{rng.class}" test.number="102"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.01" extra.args="-n 1"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.02" extra.args="-n 2"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.03" extra.args="-n 3"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.04" extra.args="-n 4"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.05" extra.args="-n 5"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.06" extra.args="-n 6"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.07" extra.args="-n 7"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.08" extra.args="-n 8"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.09" extra.args="-n 9"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.10" extra.args="-n 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.11" extra.args="-n 11"/>
+      <diehardtest rng.class="@{rng.class}" test.number="200.12" extra.args="-n 12"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201"/>
+      <diehardtest rng.class="@{rng.class}" test.number="202"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203" extra.args="-t 100000 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="204"/>
+      <diehardtest rng.class="@{rng.class}" test.number="205"/>
+      <diehardtest rng.class="@{rng.class}" test.number="206"/>
+      <diehardtest rng.class="@{rng.class}" test.number="207"/>
+      <diehardtest rng.class="@{rng.class}" test.number="208"/>
+      <diehardtest rng.class="@{rng.class}" test.number="209"/>
+      
+      <!-- Remove redundant headers -->
+      <replaceregexp match="^#.*" replace="">
+        <fileset dir="${docs.dir}/diehard"/>
+      </replaceregexp>
+      <replaceregexp match="^#.*" replace="">
+        <fileset dir="${docs.dir}/diehard"/>
+      </replaceregexp>
+      <replaceregexp match="^   rng_name.*" replace="">
+        <fileset dir="${docs.dir}/diehard"/>
+      </replaceregexp>
+      <replaceregexp match="^stdin_input_raw.*" replace="">
+        <fileset dir="${docs.dir}/diehard"/>
+      </replaceregexp>
+
       <concat>
         <!-- Dump report to stdout, in case we're on Travis -->
-        <filelist dir="${docs.dir}/diehard" files="@{shortname}.txt"/>
+        <fileset dir="${docs.dir}/diehard"/>
       </concat>
     </sequential>
   </macrodef>
