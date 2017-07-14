@@ -134,7 +134,7 @@
       <diehardtest rng.class="@{rng.class}" test.number="200.10" extra.args="-n 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.11" extra.args="-n 11"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.12" extra.args="-n 12"/>
-      <diehardtest rng.class="@{rng.class}" test.number="201"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201" extra.args="-p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="202"/>
       <diehardtest rng.class="@{rng.class}" test.number="203" extra.args="-t 100000 -p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="204"/>
@@ -158,8 +158,11 @@
         <fileset dir="${docs.dir}/diehard"/>
       </replaceregexp>
 
+      <!-- Print combined report -->
+      <echo message="#=========================================================#"/>
+      <echo message="test_name   |ntup| tsamples |psamples|  p-value |Assessment"/>  
+      <echo message="#=========================================================#"/>
       <concat>
-        <!-- Dump report to stdout, in case we're on Travis -->
         <fileset dir="${docs.dir}/diehard"/>
       </concat>
     </sequential>
