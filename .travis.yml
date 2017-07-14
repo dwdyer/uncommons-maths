@@ -11,16 +11,22 @@ jdk:
   - openjdk7
 #  - openjdk6 (not currently working on Travis)
 env:
-  - TEST_COMMAND="ant test"
-  - TEST_COMMAND="travis_wait 50 ant diehard_aes"
-  - TEST_COMMAND="travis_wait 50 ant diehard_automaton"
-  - TEST_COMMAND="travis_wait 50 ant diehard_cmwc"
-  - TEST_COMMAND="travis_wait 50 ant diehard_mersenne"
-  - TEST_COMMAND="travis_wait 50 ant diehard_xor"
-  - TEST_COMMAND="travis_wait 50 ant diehard_java"
+  - ANT_TARGET="test"
+  - ANT_TARGET="diehard_aes_1"
+  - ANT_TARGET="diehard_aes_2"
+  - ANT_TARGET="diehard_automaton_1"
+  - ANT_TARGET="diehard_automaton_2"
+  - ANT_TARGET="diehard_cmwc_1"
+  - ANT_TARGET="diehard_cmwc_2"
+  - ANT_TARGET="diehard_mersenne_1"
+  - ANT_TARGET="diehard_mersenne_2"
+  - ANT_TARGET="diehard_xor_1"
+  - ANT_TARGET="diehard_xor_2"
+  - ANT_TARGET="diehard_java_1"
+  - ANT_TARGET="diehard_java_2"
 addons:
   apt:
     packages:
       - dieharder
 script:
-  - "$TEST_COMMAND"
+  - travis_wait 50 "$ANT_TARGET"
