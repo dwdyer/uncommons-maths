@@ -94,23 +94,23 @@
         <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="^   rng_name.*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="^stdin_input_raw.*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="^        test_name   .*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="\n\n" replace="\\n" flags="gs">
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>        
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>        
       </replaceregexp>
       <replaceregexp match="nnnn" replace="" flags="g">
         <!-- TODO: Fix the bug in the previous replaceregexp that makes this necessary -->
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <concat>
-        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </concat>
     </sequential>
   </macrodef>
