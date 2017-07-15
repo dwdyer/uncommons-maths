@@ -89,6 +89,29 @@
           <arg line="-d @{test.number} -g 200 @{extra.args}"/>
         </exec>
       </parallel>
+      <!-- Remove redundant headers -->
+      <replaceregexp match="^#.*" replace="" flags="gm">
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </replaceregexp>
+      <replaceregexp match="^   rng_name.*" replace="" flags="gm">
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </replaceregexp>
+      <replaceregexp match="^stdin_input_raw.*" replace="" flags="gm">
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </replaceregexp>
+      <replaceregexp match="^        test_name   .*" replace="" flags="gm">
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </replaceregexp>
+      <replaceregexp match="\n\n" replace="\\n" flags="gs">
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>        
+      </replaceregexp>
+      <replaceregexp match="nnnn" replace="" flags="g">
+        <!-- TODO: Fix the bug in the previous replaceregexp that makes this necessary -->
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </replaceregexp>
+      <concat>
+        <fileset dir="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
+      </concat>
     </sequential>
   </macrodef>
     
@@ -102,34 +125,12 @@
       <mkdir dir="${temp.dir}/@{rng.class}" />
       <delete dir="${docs.dir}/diehard/@{rng.class}" />
       <mkdir dir="${docs.dir}/diehard/@{rng.class}" />
-      <tests/>
-      <!-- Remove redundant headers -->
-      <replaceregexp match="^#.*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <replaceregexp match="^   rng_name.*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <replaceregexp match="^stdin_input_raw.*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <replaceregexp match="^        test_name   .*" replace="" flags="gm">
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <replaceregexp match="\n\n" replace="\\n" flags="gs">
-        <fileset dir="${docs.dir}/diehard"/>        
-      </replaceregexp>
-      <replaceregexp match="nnnn" replace="" flags="g">
-        <!-- TODO: Fix the bug in the previous replaceregexp that makes this necessary -->
-        <fileset dir="${docs.dir}/diehard"/>
-      </replaceregexp>
-      <!-- Print combined report -->
+      <!-- Report header -->
       <echo message="#=========================================================#"/>
       <echo message="test_name   |ntup| tsamples |psamples|  p-value |Assessment"/>  
       <echo message="#=========================================================#"/>
-      <concat>
-        <fileset dir="${docs.dir}/diehard"/>
-      </concat>
+
+      <tests/>
     </sequential>
   </macrodef>
   
