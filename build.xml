@@ -126,10 +126,9 @@
       <delete dir="${docs.dir}/diehard/@{rng.class}" />
       <mkdir dir="${docs.dir}/diehard/@{rng.class}" />
       <!-- Report header -->
-      <echo message="#=========================================================#"/>
-      <echo message="test_name   |ntup| tsamples |psamples|  p-value |Assessment"/>  
-      <echo message="#=========================================================#"/>
-
+      <echo message="#=================================================================#"/>
+      <echo message="      test_name     |ntup| tsamples |psamples|  p-value |Assessment"/>  
+      <echo message="#=================================================================#"/>
       <tests/>
     </sequential>
   </macrodef>
@@ -178,39 +177,39 @@
   <macrodef name="diehard2_">
     <attribute name="rng.class"/>
     <sequential>
-      <diehardtest rng.class="@{rng.class}" test.number="203.00" extra.args="-n 0 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.01" extra.args="-n 1 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.02" extra.args="-n 2 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.03" extra.args="-n 3 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.04" extra.args="-n 4 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.05" extra.args="-n 5 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.06" extra.args="-n 6 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.07" extra.args="-n 7 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.08" extra.args="-n 8 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.09" extra.args="-n 9 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.10" extra.args="-n 10 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.11" extra.args="-n 11 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.12" extra.args="-n 12 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.13" extra.args="-n 13 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.14" extra.args="-n 14 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.15" extra.args="-n 15 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.16" extra.args="-n 16 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.17" extra.args="-n 17 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.18" extra.args="-n 18 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.19" extra.args="-n 19 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.20" extra.args="-n 20 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.21" extra.args="-n 21 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.22" extra.args="-n 22 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.23" extra.args="-n 23 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.24" extra.args="-n 24 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.25" extra.args="-n 25 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.26" extra.args="-n 26 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.27" extra.args="-n 27 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.28" extra.args="-n 28 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.29" extra.args="-n 29 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.30" extra.args="-n 30 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.31" extra.args="-n 31 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.32" extra.args="-n 32 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.00" extra.args="-n 0 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.01" extra.args="-n 1 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.02" extra.args="-n 2 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.03" extra.args="-n 3 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.04" extra.args="-n 4 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.05" extra.args="-n 5 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.06" extra.args="-n 6 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.07" extra.args="-n 7 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.08" extra.args="-n 8 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.09" extra.args="-n 9 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.10" extra.args="-n 10 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.11" extra.args="-n 11 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.12" extra.args="-n 12 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.13" extra.args="-n 13 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.14" extra.args="-n 14 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.15" extra.args="-n 15 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.16" extra.args="-n 16 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.17" extra.args="-n 17 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.18" extra.args="-n 18 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.19" extra.args="-n 19 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.20" extra.args="-n 20 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.21" extra.args="-n 21 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.22" extra.args="-n 22 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.23" extra.args="-n 23 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.24" extra.args="-n 24 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.25" extra.args="-n 25 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.26" extra.args="-n 26 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.27" extra.args="-n 27 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.28" extra.args="-n 28 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.29" extra.args="-n 29 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.30" extra.args="-n 30 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.31" extra.args="-n 31 -p 30"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.32" extra.args="-n 32 -p 30"/>
       <diehardtest rng.class="@{rng.class}" test.number="204"/>
       <diehardtest rng.class="@{rng.class}" test.number="205"/>
       <diehardtest rng.class="@{rng.class}" test.number="206"/>
