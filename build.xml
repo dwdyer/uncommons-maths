@@ -154,7 +154,7 @@
       <!-- deprecated by dieharder authors: <diehardtest rng.class="@{rng.class}" test.number="014"/> -->
       <diehardtest rng.class="@{rng.class}" test.number="015"/>
       <diehardtest rng.class="@{rng.class}" test.number="016"/>
-      <diehardtest rng.class="@{rng.class}" test.number="017" extra.args="-p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="017"/>
       <diehardtest rng.class="@{rng.class}" test.number="100"/>
       <diehardtest rng.class="@{rng.class}" test.number="101"/>
       <diehardtest rng.class="@{rng.class}" test.number="102"/>
@@ -170,47 +170,47 @@
       <diehardtest rng.class="@{rng.class}" test.number="200.10" extra.args="-n 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.11" extra.args="-n 11"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.12" extra.args="-n 12"/>
-      <diehardtest rng.class="@{rng.class}" test.number="201" extra.args="-p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201"/>
+      <diehardtest rng.class="@{rng.class}" test.number="202"/>
     </sequential>
   </macrodef>
   
   <macrodef name="diehard2_">
     <attribute name="rng.class"/>
     <sequential>
-      <diehardtest rng.class="@{rng.class}" test.number="202"/>
       <diehardtest rng.class="@{rng.class}" test.number="203.00" extra.args="-n 0 -p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="203.01" extra.args="-n 1 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.02" extra.args="-n 2 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.03" extra.args="-n 3 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.04" extra.args="-n 4 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.05" extra.args="-n 5 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.06" extra.args="-n 6 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.07" extra.args="-n 7 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.08" extra.args="-n 8 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.09" extra.args="-n 9 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.10" extra.args="-n 10 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.11" extra.args="-n 11 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.12" extra.args="-n 12 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.13" extra.args="-n 13 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.14" extra.args="-n 14 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.15" extra.args="-n 15 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.16" extra.args="-n 16 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.17" extra.args="-n 17 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.18" extra.args="-n 18 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.19" extra.args="-n 19 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.20" extra.args="-n 20 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.21" extra.args="-n 21 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.22" extra.args="-n 22 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.23" extra.args="-n 23 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.24" extra.args="-n 24 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.25" extra.args="-n 25 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.26" extra.args="-n 26 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.27" extra.args="-n 27 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.28" extra.args="-n 28 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.29" extra.args="-n 29 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.30" extra.args="-n 30 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.31" extra.args="-n 31 -t 100000 -p 10"/>
-      <diehardtest rng.class="@{rng.class}" test.number="203.32" extra.args="-n 32 -t 100000 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.02" extra.args="-n 2 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.03" extra.args="-n 3 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.04" extra.args="-n 4 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.05" extra.args="-n 5 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.06" extra.args="-n 6 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.07" extra.args="-n 7 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.08" extra.args="-n 8 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.09" extra.args="-n 9 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.10" extra.args="-n 10 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.11" extra.args="-n 11 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.12" extra.args="-n 12 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.13" extra.args="-n 13 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.14" extra.args="-n 14 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.15" extra.args="-n 15 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.16" extra.args="-n 16 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.17" extra.args="-n 17 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.18" extra.args="-n 18 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.19" extra.args="-n 19 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.20" extra.args="-n 20 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.21" extra.args="-n 21 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.22" extra.args="-n 22 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.23" extra.args="-n 23 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.24" extra.args="-n 24 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.25" extra.args="-n 25 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.26" extra.args="-n 26 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.27" extra.args="-n 27 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.28" extra.args="-n 28 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.29" extra.args="-n 29 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.30" extra.args="-n 30 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.31" extra.args="-n 31 -p 10"/>
+      <diehardtest rng.class="@{rng.class}" test.number="203.32" extra.args="-n 32 -p 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="204"/>
       <diehardtest rng.class="@{rng.class}" test.number="205"/>
       <diehardtest rng.class="@{rng.class}" test.number="206"/>
@@ -416,11 +416,11 @@
     <delete file="velocity.log" />
   </target>
 
-  <target name="diehard_aes_1" description="Run DIEHARDER tests 0-201 on AESCounterRNG">
+  <target name="diehard_aes_1" description="Run DIEHARDER tests 0-202 on AESCounterRNG">
     <diehard1 rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
-    <target depends="core" name="diehard_aes_2" description="Run DIEHARDER tests 202+ on AESCounterRNG, batch 2">
+    <target depends="core" name="diehard_aes_2" description="Run DIEHARDER tests 203+ on AESCounterRNG, batch 2">
     <diehard2 rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
@@ -429,11 +429,11 @@
              shortname="aes"/>
   </target>
 
-  <target depends="core" name="diehard_automaton_1" description="Run DIEHARDER tests 0-201 on CellularAutomatonRNG">
+  <target depends="core" name="diehard_automaton_1" description="Run DIEHARDER tests 0-202 on CellularAutomatonRNG">
     <diehard1 rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
              shortname="automaton"/>
   </target>
-  <target depends="core" name="diehard_automaton_2" description="Run DIEHARDER tests 202+ on CellularAutomatonRNG">
+  <target depends="core" name="diehard_automaton_2" description="Run DIEHARDER tests 203+ on CellularAutomatonRNG">
     <diehard2 rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
              shortname="automaton"/>
   </target>
@@ -442,11 +442,11 @@
              shortname="automaton"/>
   </target>
 
-  <target depends="core" name="diehard_cmwc_1" description="Run DIEHARDER tests 0-201 on CMWC4096RNG">
+  <target depends="core" name="diehard_cmwc_1" description="Run DIEHARDER tests 0-202 on CMWC4096RNG">
     <diehard1 rng.class="org.uncommons.maths.random.CMWC4096RNG"
              shortname="cmwc"/>
   </target>
-  <target depends="core" name="diehard_cmwc_2" description="Run DIEHARDER tests 202+ on CMWC4096RNG">
+  <target depends="core" name="diehard_cmwc_2" description="Run DIEHARDER tests 203+ on CMWC4096RNG">
     <diehard2 rng.class="org.uncommons.maths.random.CMWC4096RNG"
              shortname="cmwc"/>
   </target>
@@ -455,11 +455,11 @@
              shortname="cmwc"/>
   </target>
 
-  <target depends="core" name="diehard_mersenne_1" description="Run DIEHARDER tests 0-201 on MersenneTwisterRNG">
+  <target depends="core" name="diehard_mersenne_1" description="Run DIEHARDER tests 0-202 on MersenneTwisterRNG">
     <diehard1 rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
              shortname="mersenne"/>
   </target>
-  <target depends="core" name="diehard_mersenne_2" description="Run DIEHARDER tests 202+ on MersenneTwisterRNG">
+  <target depends="core" name="diehard_mersenne_2" description="Run DIEHARDER tests 203+ on MersenneTwisterRNG">
     <diehard2 rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
              shortname="mersenne"/>
   </target>
@@ -468,11 +468,11 @@
              shortname="mersenne"/>
   </target>
 
-  <target depends="core" name="diehard_xor_1" description="Run DIEHARDER tests 0-201 on XORShiftRNG">
+  <target depends="core" name="diehard_xor_1" description="Run DIEHARDER tests 0-202 on XORShiftRNG">
     <diehard1 rng.class="org.uncommons.maths.random.XORShiftRNG"
              shortname="xor"/>
   </target>
-  <target depends="core" name="diehard_xor_2" description="Run DIEHARDER tests 202+ on XORShiftRNG">
+  <target depends="core" name="diehard_xor_2" description="Run DIEHARDER tests 203+ on XORShiftRNG">
     <diehard2 rng.class="org.uncommons.maths.random.XORShiftRNG"
              shortname="xor"/>
   </target>
@@ -481,11 +481,11 @@
              shortname="xor"/>
   </target>
 
-  <target depends="core" name="diehard_java_1" description="Run DIEHARDER tests 0-201 on java.util.Random as a baseline">
+  <target depends="core" name="diehard_java_1" description="Run DIEHARDER tests 0-202 on java.util.Random as a baseline">
     <diehard1 rng.class="org.uncommons.maths.random.JavaRNG"
              shortname="java"/>
   </target>
-  <target depends="core" name="diehard_java_2" description="Run DIEHARDER tests 202+ on java.util.Random as a baseline">
+  <target depends="core" name="diehard_java_2" description="Run DIEHARDER tests 203+ on java.util.Random as a baseline">
     <diehard2 rng.class="org.uncommons.maths.random.JavaRNG"
              shortname="java"/>
   </target>
