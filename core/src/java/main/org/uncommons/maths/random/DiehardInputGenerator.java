@@ -77,7 +77,11 @@ public final class DiehardInputGenerator
         } catch (IOException expected) {
             // Broken pipe means Dieharder is finished
         } finally {
-            dataOutput.close();
+            try {
+                dataOutput.close();
+            } catch (IOException ignored) {
+                // Thrown by close() on some JVMs when the pipe is broken
+            }
         }
     }
 }
