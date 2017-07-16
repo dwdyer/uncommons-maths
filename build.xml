@@ -416,7 +416,7 @@
     <delete file="velocity.log" />
   </target>
 
-  <target name="diehard_aes_1" description="Run DIEHARDER tests 0-202 on AESCounterRNG">
+  <target depends="core" name="diehard_aes_1" description="Run DIEHARDER tests 0-202 on AESCounterRNG">
     <diehard1 rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
