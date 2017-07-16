@@ -420,76 +420,76 @@
     <diehard1 rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
-    <target name="diehard_aes_2" description="Run DIEHARDER tests 202+ on AESCounterRNG, batch 2">
+    <target depends="core" name="diehard_aes_2" description="Run DIEHARDER tests 202+ on AESCounterRNG, batch 2">
     <diehard2 rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
-    <target name="diehard_aes" description="Run all DIEHARDER tests on AESCounterRNG">
+    <target depends="core" name="diehard_aes" description="Run all DIEHARDER tests on AESCounterRNG">
     <diehard rng.class="org.uncommons.maths.random.AESCounterRNG"
              shortname="aes"/>
   </target>
 
-  <target name="diehard_automaton_1" description="Run DIEHARDER tests 0-201 on CellularAutomatonRNG">
+  <target depends="core" name="diehard_automaton_1" description="Run DIEHARDER tests 0-201 on CellularAutomatonRNG">
     <diehard1 rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
              shortname="automaton"/>
   </target>
-  <target name="diehard_automaton_2" description="Run DIEHARDER tests 202+ on CellularAutomatonRNG">
+  <target depends="core" name="diehard_automaton_2" description="Run DIEHARDER tests 202+ on CellularAutomatonRNG">
     <diehard2 rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
              shortname="automaton"/>
   </target>
-  <target name="diehard_automaton" description="Run all DIEHARDER tests on CellularAutomatonRNG">
+  <target depends="core" name="diehard_automaton" description="Run all DIEHARDER tests on CellularAutomatonRNG">
     <diehard rng.class="org.uncommons.maths.random.CellularAutomatonRNG"
              shortname="automaton"/>
   </target>
 
-  <target name="diehard_cmwc_1" description="Run DIEHARDER tests 0-201 on CMWC4096RNG">
+  <target depends="core" name="diehard_cmwc_1" description="Run DIEHARDER tests 0-201 on CMWC4096RNG">
     <diehard1 rng.class="org.uncommons.maths.random.CMWC4096RNG"
              shortname="cmwc"/>
   </target>
-  <target name="diehard_cmwc_2" description="Run DIEHARDER tests 202+ on CMWC4096RNG">
+  <target depends="core" name="diehard_cmwc_2" description="Run DIEHARDER tests 202+ on CMWC4096RNG">
     <diehard2 rng.class="org.uncommons.maths.random.CMWC4096RNG"
              shortname="cmwc"/>
   </target>
-  <target name="diehard_cmwc" description="Run all DIEHARDER tests on CMWC4096RNG">
+  <target depends="core" name="diehard_cmwc" description="Run all DIEHARDER tests on CMWC4096RNG">
     <diehard rng.class="org.uncommons.maths.random.CMWC4096RNG"
              shortname="cmwc"/>
   </target>
 
-  <target name="diehard_mersenne_1" description="Run DIEHARDER tests 0-201 on MersenneTwisterRNG">
+  <target depends="core" name="diehard_mersenne_1" description="Run DIEHARDER tests 0-201 on MersenneTwisterRNG">
     <diehard1 rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
              shortname="mersenne"/>
   </target>
-  <target name="diehard_mersenne_2" description="Run DIEHARDER tests 202+ on MersenneTwisterRNG">
+  <target depends="core" name="diehard_mersenne_2" description="Run DIEHARDER tests 202+ on MersenneTwisterRNG">
     <diehard2 rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
              shortname="mersenne"/>
   </target>
-  <target name="diehard_mersenne" description="Run all DIEHARDER tests on MersenneTwisterRNG">
+  <target depends="core" name="diehard_mersenne" description="Run all DIEHARDER tests on MersenneTwisterRNG">
     <diehard rng.class="org.uncommons.maths.random.MersenneTwisterRNG"
              shortname="mersenne"/>
   </target>
 
-  <target name="diehard_xor_1" description="Run DIEHARDER tests 0-201 on XORShiftRNG">
+  <target depends="core" name="diehard_xor_1" description="Run DIEHARDER tests 0-201 on XORShiftRNG">
     <diehard1 rng.class="org.uncommons.maths.random.XORShiftRNG"
              shortname="xor"/>
   </target>
-  <target name="diehard_xor_2" description="Run DIEHARDER tests 202+ on XORShiftRNG">
+  <target depends="core" name="diehard_xor_2" description="Run DIEHARDER tests 202+ on XORShiftRNG">
     <diehard2 rng.class="org.uncommons.maths.random.XORShiftRNG"
              shortname="xor"/>
   </target>
-  <target name="diehard_xor" description="Run all DIEHARDER tests on XORShiftRNG">
+  <target depends="core" name="diehard_xor" description="Run all DIEHARDER tests on XORShiftRNG">
     <diehard rng.class="org.uncommons.maths.random.XORShiftRNG"
              shortname="xor"/>
   </target>
 
-  <target name="diehard_java_1" description="Run DIEHARDER tests 0-201 on java.util.Random as a baseline">
+  <target depends="core" name="diehard_java_1" description="Run DIEHARDER tests 0-201 on java.util.Random as a baseline">
     <diehard1 rng.class="org.uncommons.maths.random.JavaRNG"
              shortname="java"/>
   </target>
-  <target name="diehard_java_2" description="Run DIEHARDER tests 202+ on java.util.Random as a baseline">
+  <target depends="core" name="diehard_java_2" description="Run DIEHARDER tests 202+ on java.util.Random as a baseline">
     <diehard2 rng.class="org.uncommons.maths.random.JavaRNG"
              shortname="java"/>
   </target>
-  <target name="diehard_java" description="Run DIEHARDER tests on java.util.Random as a baseline">
+  <target depends="core" name="diehard_java" description="Run DIEHARDER tests on java.util.Random as a baseline">
     <diehard rng.class="org.uncommons.maths.random.JavaRNG"
              shortname="java"/>
   </target>

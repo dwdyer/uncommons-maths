@@ -29,4 +29,4 @@ addons:
     packages:
       - dieharder
 script:
-  - travis_wait 45 ant "$ANT_TARGET"
+  - travis_wait 40 ant "$ANT_TARGET"
