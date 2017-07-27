@@ -72,6 +72,7 @@ public class AESCounterRNGTest
         ObjectInputStream objectInStream = new ObjectInputStream(new ByteArrayInputStream(byteOutStream.toByteArray()));
         AESCounterRNG rng2 = (AESCounterRNG) objectInStream.readObject();
         assert rng != rng2 : "Deserialised RNG should be distinct object.";
+        assert rng.equals(rng2);
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
@@ -87,6 +88,7 @@ public class AESCounterRNGTest
         AESCounterRNG rng = new AESCounterRNG();
         // Create second RNG using same seed.
         AESCounterRNG duplicateRNG = new AESCounterRNG(rng.getSeed());
+        assert rng.equals(duplicateRNG);
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
     }
 

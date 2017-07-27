@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
+import javax.crypto.SecretKeySpec;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -89,7 +89,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected void initTransientFields() throws GeneralSecurityException {
       lock = new ReentrantLock();
       cipher = Cipher.getInstance("AES/ECB/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new AESKey(this.seed));
+      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.seed, "AES"));
       counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
     }
     
@@ -250,58 +250,17 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         return result >>> (32 - bits);
     }
 
-
-
-    /**
-     * Trivial key implementation for use with AES cipher.
-     */
-    private static final class AESKey implements SecretKey
-    {
-        private final byte[] keyData;
-
-        private AESKey(byte[] keyData)
-        {
-            this.keyData = keyData;
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof AESCounterRNG) {
+            return Arrays.equals(seed, ((AESCounterRNG) other).seed);
+        } else {
+            return false;
         }
-
-        public String getAlgorithm()
-        {
-            return "AES";
-        }
-
-        public String getFormat()
-        {
-            return "RAW";
-        }
-
-        public byte[] getEncoded()
-        {
-            return keyData;
-        }
-
-
-        @Override
-        public boolean equals(Object other)
-        {
-            if (this == other)
-            {
-                return true;
-            }
-            else if (other == null || getClass() != other.getClass())
-            {
-                return false;
-            }
-            else
-            {
-                return Arrays.equals(keyData, ((AESKey) other).keyData);
-            }
-        }
-
-
-        @Override
-        public int hashCode()
-        {
-            return Arrays.hashCode(keyData);
-        }
+    }
+    
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(seed);
     }
 }
