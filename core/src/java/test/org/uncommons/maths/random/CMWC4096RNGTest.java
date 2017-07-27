@@ -31,7 +31,7 @@ import org.uncommons.maths.Maths;
  */
 public class CMWC4096RNGTest
 {
-    private final SeedGenerator seedGenerator = new RandomDotOrgSeedGenerator();
+    private final SeedGenerator seedGenerator = DefaultSeedGenerator.getInstance();
 
     /**
      * Test to ensure that two distinct RNGs with the same seed return the

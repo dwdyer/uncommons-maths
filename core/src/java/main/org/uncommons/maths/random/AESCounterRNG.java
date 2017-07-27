@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.crypto.Cipher;
-import javax.crypto.SecretKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
