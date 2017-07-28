@@ -76,11 +76,6 @@
         <java classname="org.uncommons.maths.random.DiehardInputGenerator" classpath="core/build/classes/main">
           <arg value="@{rng.class}"/>
           <arg value="${temp.dir}/@{rng.class}/@{test.number}"/>
-          <jvmarg value="-XX:+AggressiveOpts"/>
-          <jvmarg value="-XX:+UseBiasedLocking"/>
-          <jvmarg value="-XX:+UseFastAccessorMethods"/>
-          <jvmarg value="-XX:+UseAES"/>
-          <jvmarg value="-XX:+UseAESIntrinsics"/>
         </java>
         <exec dir="${lib.compiletime}/diehard"
               executable="dieharder"
