@@ -169,14 +169,14 @@ public class AESCounterRNGTest
         Random masterRNG = new Random();
         long[] seeds = {masterRNG.nextLong(), masterRNG.nextLong(),
         masterRNG.nextLong(), masterRNG.nextLong()};
-        byte[] otherSeed = new byte[4];
-        masterRNG.nextBytes(otherSeed);
+        long otherSeed = masterRNG.nextLong();
         AESCounterRNG[] rngs = {new AESCounterRNG(16), new AESCounterRNG(16)};
         for (int i=0; i<2; i++) {
             for (long seed : seeds) {
                 AESCounterRNG rngReseeded = new AESCounterRNG(rngs[i].getSeed());
-                AESCounterRNG rngReseededOther = new AESCounterRNG(otherSeed);
+                AESCounterRNG rngReseededOther = new AESCounterRNG(rngs[i].getSeed());
                 rngReseeded.setSeed(seed);
+                rngReseededOther.setSeed(otherSeed);
                 assert !(rngs[i].equals(rngReseeded));
                 assert !(rngReseededOther.equals(rngReseeded));
                 assert rngs[i].nextLong() != rngReseeded.nextLong()

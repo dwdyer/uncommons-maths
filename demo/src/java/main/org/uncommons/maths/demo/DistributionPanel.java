@@ -37,7 +37,7 @@ class DistributionPanel extends JPanel
 
     private static final long serialVersionUID = 6288266643926973601L;
     private final SortedMap<String, ParametersPanel> parameterPanels = new TreeMap<String, ParametersPanel>();
-    private final JComboBox<String> distributionCombo = new JComboBox<>();
+    private final JComboBox<String> distributionCombo = new JComboBox<String>();
 
     {
         parameterPanels.put("Binomial", new BinomialParametersPanel());

@@ -319,7 +319,7 @@ public final class BitString implements Cloneable, Serializable
         catch (CloneNotSupportedException ex)
         {
             // Not possible.
-            throw (Error) new InternalError("Cloning failed.", ex);
+            throw (Error) new InternalError("Cloning failed.").initCause(ex);
         }
     }
 

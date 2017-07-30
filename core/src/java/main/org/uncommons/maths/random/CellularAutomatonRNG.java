@@ -117,12 +117,26 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(seedGenerator.generateSeed(SEED_SIZE_BYTES));
     }
 
-    private void copySeedToCells() {
+    protected void copySeedToCellsAndPreEvolve() {
         // Set initial cell states using seed.
         cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
         cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;
         cells[AUTOMATON_LENGTH - 3] = seed[2] + 128;
         cells[AUTOMATON_LENGTH - 4] = seed[3] + 128;
+        int seedAsInt = BinaryUtils.convertBytesToInt(seed, 0);
+        if (seedAsInt != 0xFFFFFFFF)
+        {
+            seedAsInt++;
+        }
+        for (int i = 0; i < AUTOMATON_LENGTH - 4; i++)
+        {
+            cells[i] = 0x000000FF & (seedAsInt >> (i % 32));
+        }
+        // Evolve automaton before returning integers.
+        for (int i = 0; i < AUTOMATON_LENGTH * AUTOMATON_LENGTH / 4; i++)
+        {
+            next(32);
+        }
     }
     
     /**
@@ -136,23 +150,8 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
             throw new IllegalArgumentException("Cellular Automaton RNG requires a 32-bit (4-byte) seed.");
         }
         this.seed = seed.clone();
-        copySeedToCells();
-        int seedAsInt = BinaryUtils.convertBytesToInt(seed, 0);
-        if (seedAsInt != 0xFFFFFFFF)
-        {
-            seedAsInt++;
-        }
-        for (int i = 0; i < AUTOMATON_LENGTH - 4; i++)
-        {
-            cells[i] = 0x000000FF & (seedAsInt >> (i % 32));
-        }
-
-        // Evolve automaton before returning integers.
-        for (int i = 0; i < AUTOMATON_LENGTH * AUTOMATON_LENGTH / 4; i++)
-        {
-            next(32);
-        }
         initTransientFields();
+        copySeedToCellsAndPreEvolve();
     }
 
 
@@ -229,7 +228,8 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
             this.seed[1] = (byte)(seed >> 8);
             this.seed[2] = (byte)(seed >> 16);
             this.seed[3] = (byte)(seed >> 24);
-            copySeedToCells();
+            currentCellIndex = AUTOMATON_LENGTH - 1;
+            copySeedToCellsAndPreEvolve();
         } finally {
             lock.unlock();
         }

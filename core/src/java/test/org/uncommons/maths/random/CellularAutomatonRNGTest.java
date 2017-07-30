@@ -125,7 +125,7 @@ public class CellularAutomatonRNGTest
         long seed = new Random().nextLong();
         CellularAutomatonRNG rng = new CellularAutomatonRNG();
         CellularAutomatonRNG rng2 = new CellularAutomatonRNG();
-        rng.nextLong(); // ensure they won't be in initial state before reseeding
+        rng.nextLong(); // ensure they won't both be in initial state before reseeding
         rng.setSeed(seed);
         rng2.setSeed(seed);
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after reseeding with same seed";
