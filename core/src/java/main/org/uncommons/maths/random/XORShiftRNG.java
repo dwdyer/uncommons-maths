@@ -39,9 +39,9 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class XORShiftRNG extends Random implements RepeatableRNG
 {
-    private static final int SEED_SIZE_BYTES = 20; // Needs 5 32-bit integers.
     private static final long serialVersionUID = 952521144304194886L;
-    
+    private static final int SEED_SIZE_BYTES = 20; // Needs 5 32-bit integers.
+
     // Previously used an array for state but using separate fields proved to be
     // faster.
     private int state1;
@@ -56,14 +56,17 @@ public class XORShiftRNG extends Random implements RepeatableRNG
     // Lock to prevent concurrent modification of the RNG's internal state.
     private transient Lock lock;
 
-    protected void initTransientFields() {
+    protected void initTransientFields()
+    {
         lock = new ReentrantLock();
     }
 
-  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-    in.defaultReadObject();
-    initTransientFields();
-  }
+    private void readObject(ObjectInputStream in) throws IOException,
+                                                         ClassNotFoundException
+    {
+        in.defaultReadObject();
+        initTransientFields();
+    }
 
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
@@ -139,15 +142,17 @@ public class XORShiftRNG extends Random implements RepeatableRNG
             lock.unlock();
         }
     }
-    
+
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(Object other)
+    {
         return other instanceof XORShiftRNG
                 && Arrays.equals(seed, ((XORShiftRNG) other).seed);
     }
-    
+
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Arrays.hashCode(seed);
     }
 }

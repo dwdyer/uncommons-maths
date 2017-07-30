@@ -87,24 +87,10 @@ public class AESCounterRNGTest
     @Test
     public void testRepeatability() throws GeneralSecurityException
     {
-        AESCounterRNG rng = new AESCounterRNG();
+        AESCounterRNG rng = new AESCounterRNG(48);
         // Create second RNG using same seed.
         AESCounterRNG duplicateRNG = new AESCounterRNG(rng.getSeed());
         assert rng.equals(duplicateRNG);
-        assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
-    }
-
-    /**
-     * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.
-     */
-    @Test
-    public void testRepeatabilityWithSeedInCounter() throws GeneralSecurityException
-    {
-        byte[] longSeed = DefaultSeedGenerator.getInstance().generateSeed(48);
-        AESCounterRNG rng = new AESCounterRNG(longSeed);
-        // Create second RNG using same seed.
-        AESCounterRNG duplicateRNG = new AESCounterRNG(longSeed);
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
     }
 
@@ -154,7 +140,7 @@ public class AESCounterRNGTest
     {
         new AESCounterRNG(49); // Should throw an exception.
     }
-    
+
     /**
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
@@ -188,12 +174,12 @@ public class AESCounterRNGTest
         assert rngs[0].nextLong() != rngs[1].nextLong()
                 : "RNGs converged after 4 setSeed calls";
     }
-    
+
     @Test
     public void testEquals() throws GeneralSecurityException {
         RNGTestUtils.doEqualsSanityChecks(new AESCounterRNG());
     }
-    
+
     @Test
     public void testHashCode() throws Exception {
         assert RNGTestUtils.testHashCodeDistribution(AESCounterRNG.class.getConstructor())

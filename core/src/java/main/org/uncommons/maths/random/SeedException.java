@@ -22,7 +22,6 @@ package org.uncommons.maths.random;
  */
 public class SeedException extends Exception
 {
-
     private static final long serialVersionUID = -6151013676983010168L;
 
     /**

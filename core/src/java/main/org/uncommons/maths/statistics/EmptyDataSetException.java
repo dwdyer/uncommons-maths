@@ -23,10 +23,9 @@ package org.uncommons.maths.statistics;
  */
 public class EmptyDataSetException extends RuntimeException
 {
+    private static final long serialVersionUID = -7921246413460120073L;
 
-  private static final long serialVersionUID = -7921246413460120073L;
-
-  public EmptyDataSetException()
+    public EmptyDataSetException()
     {
         super("No values in data set.");
     }
