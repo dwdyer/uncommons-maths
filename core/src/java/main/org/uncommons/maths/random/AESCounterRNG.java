@@ -84,6 +84,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private byte[] seed;
     private transient Cipher cipher;
     private final byte[] counter = new byte[COUNTER_SIZE_BYTES];
+    private boolean counterInitialized = false;
     private transient byte[] counterInput;
 
     // Ignore setSeed calls from super constructor
@@ -93,8 +94,21 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected void initTransientFields() throws GeneralSecurityException
     {
         lock = new ReentrantLock();
+        byte[] key;
+        if (seed.length > MAX_KEY_LENGTH_BYTES) {
+            // part of the seed goes to key; rest goes to counter
+            key = Arrays.copyOfRange(seed, 0, seed.length - COUNTER_SIZE_BYTES);
+
+            // copy to counter only if counter hasn't already been deserialized
+            if (!counterInitialized) {
+                System.arraycopy(seed, MAX_KEY_LENGTH_BYTES, counter, 0, COUNTER_SIZE_BYTES);
+                counterInitialized = true;
+            }
+        } else {
+            key = seed;
+        }
         cipher = Cipher.getInstance("AES/ECB/NoPadding");
-        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(seed, "AES"));
+        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"));
         counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
         superConstructorFinished = true;
     }
@@ -169,9 +183,6 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         if (seed == null)
         {
             throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit, 256-bit, 320-bit or 384-bit seed.");
-        } else if (seed.length > MAX_KEY_LENGTH_BYTES) {
-            this.seed = Arrays.copyOfRange(seed, 0, seed.length - COUNTER_SIZE_BYTES);
-            System.arraycopy(seed, MAX_KEY_LENGTH_BYTES, counter, 0, COUNTER_SIZE_BYTES);
         } else {
             this.seed = seed.clone();
         }

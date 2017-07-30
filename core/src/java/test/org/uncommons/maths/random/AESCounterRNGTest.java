@@ -42,11 +42,11 @@ public class AESCounterRNGTest
     }
 
     @Test
-    public void testSerializable() throws GeneralSecurityException, IOException,
-            ClassNotFoundException
+    public void testSerializableWithoutSeedInCounter()
+            throws GeneralSecurityException, IOException, ClassNotFoundException
     {
         // Serialise an RNG.
-        AESCounterRNG rng = new AESCounterRNG();
+        AESCounterRNG rng = new AESCounterRNG(16);
         ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
         objectOutStream.writeObject(rng);
@@ -74,7 +74,6 @@ public class AESCounterRNGTest
         ObjectInputStream objectInStream = new ObjectInputStream(new ByteArrayInputStream(byteOutStream.toByteArray()));
         AESCounterRNG rng2 = (AESCounterRNG) objectInStream.readObject();
         assert rng != rng2 : "Deserialised RNG should be distinct object.";
-        assert rng.equals(rng2);
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
