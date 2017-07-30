@@ -1,6 +1,3 @@
-# workaround for https://github.com/travis-ci/travis-ci/issues/7884 
-sudo: required
-
 language: java
 dist: trusty
 group: edge
@@ -14,8 +11,8 @@ jdk:
   - openjdk6
 matrix:
   allow_failures:
-    - jdk: oraclejdk7 # Not working on Travis right now
-    - jdk: openjdk6 # Not working on Travis right now
+    - jdk: oraclejdk7 # https://github.com/travis-ci/travis-ci/issues/7884
+    - jdk: openjdk6 # Unknown Travis issue
 env:
   - ANT_TARGET="test"
   - ANT_TARGET="diehard_aes_1"
