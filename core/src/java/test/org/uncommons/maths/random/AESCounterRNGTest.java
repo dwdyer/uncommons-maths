@@ -189,10 +189,7 @@ public class AESCounterRNGTest
     }
     
     @Test
-    public void testNotEqualToOtherClass() throws GeneralSecurityException {
-        AESCounterRNG rng = new AESCounterRNG();
-        Random otherRng = new Random();
-        assert !(rng.equals(otherRng)) : "AESCounterRNG.equals(Random)";
-        assert !(otherRng.equals(rng)) : "Random.equals(AESCounterRNG)";
+    public void testEquals() throws GeneralSecurityException {
+        RNGTestUtils.doEqualsSanityChecks(new AESCounterRNG());
     }
 }

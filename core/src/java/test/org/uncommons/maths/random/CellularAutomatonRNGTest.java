@@ -130,4 +130,9 @@ public class CellularAutomatonRNGTest
         rng2.setSeed(seed);
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after reseeding with same seed";
     }
+    
+    @Test
+    public void testEquals() {
+        RNGTestUtils.doEqualsSanityChecks(new CellularAutomatonRNG());
+    } 
 }

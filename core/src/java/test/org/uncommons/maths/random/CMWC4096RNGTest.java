@@ -120,4 +120,9 @@ public class CMWC4096RNGTest
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
+    
+    @Test
+    public void testEquals() {
+        RNGTestUtils.doEqualsSanityChecks(new CMWC4096RNG());
+    } 
 }

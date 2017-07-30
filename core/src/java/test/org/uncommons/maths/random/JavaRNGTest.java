@@ -65,6 +65,10 @@ public class JavaRNGTest
         });
     }
 
+    @Test
+    public void testEquals() {
+        RNGTestUtils.doEqualsSanityChecks(new JavaRNG());
+    } 
 
     // Don't bother testing the distribution of the output for this RNG, it's beyond our control.
 }

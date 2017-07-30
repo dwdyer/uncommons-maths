@@ -29,6 +29,11 @@ final class RNGTestUtils
         // Prevents instantiation of utility class.
     }
 
+    public static void doEqualsSanityChecks(Random rng) {
+        assert !(rng.equals(null)) : "RNG compares equal to null";
+        assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
+    }
+
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
      * same sequence of numbers and compare as equal.
