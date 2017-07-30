@@ -72,7 +72,7 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         240, 160, 142, 119,  73, 103, 166,  33, 148,   9, 111, 136, 168, 150,  82
     };
 
-
+    private transient boolean superConstructorFinished = false;
     private final byte[] seed;
     private final int[] cells = new int[AUTOMATON_LENGTH];
 
@@ -194,8 +194,10 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
     {
         try {
             lock.lock();
-            System.arraycopy(BinaryUtils.convertIntToBytes((int) seed), 0,
-                    this.seed, 0, 4);
+            this.seed[0] = (byte)(seed);
+            this.seed[1] = (byte)(seed >> 8);
+            this.seed[2] = (byte)(seed >> 16);
+            this.seed[3] = (byte)(seed >> 24);
             copySeedToCells();
         } finally {
             lock.unlock();

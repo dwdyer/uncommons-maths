@@ -21,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ByteArrayInputStream;
+import java.util.Random;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -122,7 +123,7 @@ public class CellularAutomatonRNGTest
     
     @Test
     public void testSetSeed() {
-        long seed = new SecureRandom().nextLong();
+        long seed = new Random().nextLong();
         CellularAutomatonRNG rng = new CellularAutomatonRNG();
         CellularAutomatonRNG rng2 = new CellularAutomatonRNG();
         rng.nextLong(); // ensure they won't be in initial state before reseeding
