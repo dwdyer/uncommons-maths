@@ -50,7 +50,7 @@
        branches) that will be tolerated.  This is used to prevent
        regressions in coverage.  The threshold will be raised as
        test coverage improves. -->
-  <property name="minimum.coverage" value="95" />
+  <property name="minimum.coverage" value="94.4" />
 
   <taskdef uri="antlib:org.uncommons.antlib"
            resource="org/uncommons/antlib/antlib.xml"
@@ -98,7 +98,7 @@
         <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="\n\n" replace="\\n" flags="gs">
-        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>        
+        <fileset file="${docs.dir}/diehard/@{rng.class}/@{test.number}.txt"/>
       </replaceregexp>
       <replaceregexp match="nnnn" replace="" flags="g">
         <!-- TODO: Fix the bug in the previous replaceregexp that makes this necessary -->
@@ -109,7 +109,7 @@
       </concat>
     </sequential>
   </macrodef>
-    
+
   <macrodef name="diehard_">
     <attribute name="rng.class"/>
     <attribute name="shortname"/>
@@ -122,12 +122,12 @@
       <mkdir dir="${docs.dir}/diehard/@{rng.class}" />
       <!-- Report header -->
       <echo message="#=================================================================#"/>
-      <echo message="      test_name     |ntup| tsamples |psamples|  p-value |Assessment"/>  
+      <echo message="      test_name     |ntup| tsamples |psamples|  p-value |Assessment"/>
       <echo message="#=================================================================#"/>
       <tests/>
     </sequential>
   </macrodef>
-  
+
   <macrodef name="diehard1_">
     <attribute name="rng.class"/>
     <sequential>
@@ -171,7 +171,7 @@
       <diehardtest rng.class="@{rng.class}" test.number="202"/>
     </sequential>
   </macrodef>
-  
+
   <macrodef name="diehard2_">
     <attribute name="rng.class"/>
     <sequential>
@@ -240,7 +240,7 @@
       </diehard_>
     </sequential>
   </macrodef>
-  
+
   <macrodef name="diehard">
     <attribute name="rng.class"/>
     <attribute name="shortname"/>
@@ -304,7 +304,7 @@
                    mainclass="org.uncommons.maths.demo.RandomDemo" />
   </target>
 
-  
+
   <!-- Copy all necessary files to distribution directory. -->
   <target name="dist"
           depends="core, demo"
