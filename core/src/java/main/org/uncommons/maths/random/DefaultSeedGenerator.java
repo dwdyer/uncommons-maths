@@ -26,12 +26,13 @@ import org.uncommons.maths.binary.BinaryUtils;
 public final class DefaultSeedGenerator implements SeedGenerator
 {
     private static final String DEBUG_PROPERTY = "org.uncommons.maths.random.debug";
-    
+
     /** Singleton instance. */
     private static final DefaultSeedGenerator INSTANCE = new DefaultSeedGenerator();
 
     /** Delegate generators. */
-    private static final SeedGenerator[] GENERATORS = {
+    private static final SeedGenerator[] GENERATORS =
+    {
         new DevRandomSeedGenerator(),
         new RandomDotOrgSeedGenerator(),
         new SecureRandomSeedGenerator()

@@ -39,7 +39,7 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
 {
     private static final int SEED_SIZE_BYTES = 4;
     private static final int AUTOMATON_LENGTH = 2056;
-    
+
     private static final int[] RNG_RULE =
     {
         100,  75,  16,   3, 229,  51, 197, 118,  24,  62, 198,  11, 141, 152, 241, 188,
@@ -86,7 +86,7 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
 
     private int currentCellIndex = AUTOMATON_LENGTH - 1;
 
-    
+
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
      */
@@ -95,12 +95,15 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(DefaultSeedGenerator.getInstance().generateSeed(SEED_SIZE_BYTES));
     }
 
-    protected void initTransientFields() {
+    protected void initTransientFields()
+    {
         lock = new ReentrantLock();
         superConstructorFinished = true;
     }
 
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException,
+                                                         ClassNotFoundException
+    {
         in.defaultReadObject();
         initTransientFields();
     }
@@ -117,12 +120,14 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(seedGenerator.generateSeed(SEED_SIZE_BYTES));
     }
 
-    protected void copySeedToCellsAndPreEvolve() {
+    protected void copySeedToCellsAndPreEvolve()
+    {
         // Set initial cell states using seed.
         cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
         cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;
         cells[AUTOMATON_LENGTH - 3] = seed[2] + 128;
         cells[AUTOMATON_LENGTH - 4] = seed[3] + 128;
+
         int seedAsInt = BinaryUtils.convertBytesToInt(seed, 0);
         if (seedAsInt != 0xFFFFFFFF)
         {
@@ -132,13 +137,14 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         {
             cells[i] = 0x000000FF & (seedAsInt >> (i % 32));
         }
+
         // Evolve automaton before returning integers.
         for (int i = 0; i < AUTOMATON_LENGTH * AUTOMATON_LENGTH / 4; i++)
         {
             next(32);
         }
     }
-    
+
     /**
      * Creates an RNG and seeds it with the specified seed data.
      * @param seed The seed data used to initialise the RNG.
@@ -205,13 +211,15 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         return o instanceof CellularAutomatonRNG
                 && Arrays.equals(seed, ((CellularAutomatonRNG)o).seed);
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Arrays.hashCode(seed);
     }
 

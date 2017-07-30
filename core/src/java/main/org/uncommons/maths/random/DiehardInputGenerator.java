@@ -69,17 +69,25 @@ public final class DiehardInputGenerator
                                           File outputFile) throws IOException
     {
         DataOutputStream dataOutput = new DataOutputStream(
-            new BufferedOutputStream(new FileOutputStream(outputFile)));
-        try {
+                new BufferedOutputStream(new FileOutputStream(outputFile)));
+        try
+        {
             while (true) {
                 dataOutput.writeLong(rng.nextLong());
             }
-        } catch (IOException expected) {
-            // Broken pipe means Dieharder is finished
-        } finally {
-            try {
+        }
+        catch (IOException expected)
+        {
+            // Broken pipe when Dieharder is finished
+        }
+        finally
+        {
+            try
+            {
                 dataOutput.close();
-            } catch (IOException ignored) {
+            }
+            catch (IOException ignored)
+            {
                 // Thrown by close() on some JVMs when the pipe is broken
             }
         }
