@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
+import java.util.Random;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -164,15 +164,15 @@ public class AESCounterRNGTest
     }
 
     @Test
-    public void testSetSeed() throws Exception {
-        // can't use a real SeedGenerator since we need longs, so use a SecureRandom
-        SecureRandom masterRNG = new SecureRandom();
+    public void testSetSeed() throws GeneralSecurityException {
+        // can't use a real SeedGenerator since we need longs, so use a Random
+        Random masterRNG = new Random();
         long[] seeds = new long[]
                 {masterRNG.nextLong(), masterRNG.nextLong(),
                 masterRNG.nextLong(), masterRNG.nextLong()};
         long otherSeed = masterRNG.nextLong();
         AESCounterRNG[] rngs = new AESCounterRNG[]
-                {new AESCounterRNG(), new AESCounterRNG()};
+                {new AESCounterRNG(16), new AESCounterRNG(16)};
         for (int i=0; i<2; i++) {
             for (long seed : seeds) {
                 AESCounterRNG rngReseeded = new AESCounterRNG(rngs[i].getSeed());
@@ -187,5 +187,13 @@ public class AESCounterRNGTest
         }
         assert rngs[0].nextLong() != rngs[1].nextLong()
                 : "RNGs converged after 4 setSeed calls";
+    }
+    
+    @Test
+    public void testNotEqualToOtherClass() throws GeneralSecurityException {
+        AESCounterRNG rng = new AESCounterRNG();
+        Random otherRng = new Random();
+        assert !(rng.equals(otherRng)) : "AESCounterRNG.equals(Random)";
+        assert !(otherRng.equals(rng)) : "Random.equals(AESCounterRNG)";
     }
 }

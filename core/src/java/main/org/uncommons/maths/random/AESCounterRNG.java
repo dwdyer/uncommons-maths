@@ -254,18 +254,13 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected final int next(int bits)
     {
         int result;
-        try
-        {
+        try {
             lock.lock();
-            if (currentBlock.length - index < 4)
-            {
-                try
-                {
+            if (currentBlock.length - index < 4) {
+                try {
                     nextBlock();
                     index = 0;
-                }
-                catch (GeneralSecurityException ex)
-                {
+                } catch (GeneralSecurityException ex) {
                     // Should never happen.  If initialisation succeeds without exceptions
                     // we should be able to proceed indefinitely without exceptions.
                     throw new IllegalStateException("Failed creating next random block.", ex);
@@ -273,9 +268,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
             }
             result = BinaryUtils.convertBytesToInt(currentBlock, index);
             index += 4;
-        }
-        finally
-        {
+        } finally {
             lock.unlock();
         }
         return result >>> (32 - bits);
