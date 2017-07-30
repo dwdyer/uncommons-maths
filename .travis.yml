@@ -3,13 +3,19 @@ sudo: required
 
 language: java
 dist: trusty
+group: edge
 
 jdk:
+  - oraclejdk9
   - oraclejdk8
-#  - oraclejdk7 (not currently working on Travis)
+  - oraclejdk7
   - openjdk8
   - openjdk7
-#  - openjdk6 (not currently working on Travis)
+  - openjdk6
+matrix:
+  allow_failures:
+    - jdk: oraclejdk7 # Not working on Travis right now
+    - jdk: openjdk6 # Not working on Travis right now
 env:
   - ANT_TARGET="test"
   - ANT_TARGET="diehard_aes_1"
