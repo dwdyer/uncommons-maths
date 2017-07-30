@@ -40,7 +40,8 @@ public class DiehardInputGeneratorTest
         assert !tempPipe.exists() || tempPipe.delete() :
                 "Temporary pipe already exists and can't be deleted! " +
                 "(This test cannot run multiple times in parallel.)";
-        try {
+        try
+        {
             Process mkfifo = Runtime.getRuntime()
                     .exec(new String[]{"/usr/bin/mkfifo", tempPipeName});
             mkfifo.waitFor();

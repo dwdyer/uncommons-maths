@@ -41,6 +41,7 @@ public class AESCounterRNGTest
                 "Shouldn't allow a key longer than 32 bytes";
     }
 
+
     @Test
     public void testSerializableWithoutSeedInCounter()
             throws GeneralSecurityException, IOException, ClassNotFoundException
@@ -59,6 +60,7 @@ public class AESCounterRNGTest
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
+
 
     @Test
     public void testSerializableWithSeedInCounter()
@@ -79,6 +81,7 @@ public class AESCounterRNGTest
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
 
+
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
      * same sequence of numbers.
@@ -92,6 +95,7 @@ public class AESCounterRNGTest
         assert rng.equals(duplicateRNG);
         assert RNGTestUtils.testEquivalence(rng, duplicateRNG, 1000) : "Generated sequences do not match.";
     }
+
 
     /**
      * Test to ensure that the output from the RNG is broadly as expected.  This will not
@@ -128,17 +132,20 @@ public class AESCounterRNGTest
         assert Maths.approxEquals(observedSD, expectedSD, 0.02) : "Standard deviation is outside acceptable range: " + observedSD;
     }
 
+
     @Test(expectedExceptions = GeneralSecurityException.class)
     public void testSeedTooShort() throws GeneralSecurityException
     {
         new AESCounterRNG(new byte[]{1, 2, 3}); // Should throw an exception.
     }
 
+
     @Test(expectedExceptions = GeneralSecurityException.class)
     public void testSeedTooLong() throws GeneralSecurityException
     {
         new AESCounterRNG(49); // Should throw an exception.
     }
+
 
     /**
      * RNG must not accept a null seed otherwise it will not be properly initialised.
@@ -148,6 +155,7 @@ public class AESCounterRNGTest
     {
         new AESCounterRNG((byte[]) null); // Should throw an exception.
     }
+
 
     @Test
     public void testSetSeed() throws GeneralSecurityException {
@@ -174,10 +182,12 @@ public class AESCounterRNGTest
                 : "RNGs converged after 4 setSeed calls";
     }
 
+
     @Test
     public void testEquals() throws GeneralSecurityException {
         RNGTestUtils.doEqualsSanityChecks(new AESCounterRNG());
     }
+
 
     @Test
     public void testHashCode() throws Exception {

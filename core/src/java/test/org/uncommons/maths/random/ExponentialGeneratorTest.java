@@ -56,12 +56,12 @@ public class ExponentialGeneratorTest
     }
 
 
-    
+
     private void checkDistribution(NumberGenerator<Double> generator,
                                    double rate)
     {
 
-      final int iterations = 10000;
+        final int iterations = 10000;
         DataSet data = new DataSet(iterations);
         for (int i = 0; i < iterations; i++)
         {
@@ -70,14 +70,14 @@ public class ExponentialGeneratorTest
         // Exponential distribution appears to be a bit more volatile than the others in
         // terms of conforming to expectations, so use a 4% tolerance here, instead of the 2%
         // used for other distributions, to avoid too many false positives.
-      final double expectedMean = 1 / rate;
-      assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.04d)
+        final double expectedMean = 1 / rate;
+        assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.04d)
             : "Observed mean outside acceptable range: " + data.getArithmeticMean();
-      final double expectedStandardDeviation = Math.sqrt(1 / (rate * rate));
-      assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.04d)
+        final double expectedStandardDeviation = Math.sqrt(1 / (rate * rate));
+        assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.04d)
             : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
-      final double expectedMedian = Math.log(2) / rate;
-      assert Maths.approxEquals(data.getMedian(), expectedMedian, 0.04d)
+        final double expectedMedian = Math.log(2) / rate;
+        assert Maths.approxEquals(data.getMedian(), expectedMedian, 0.04d)
             : "Observed median outside acceptable range: " + data.getMedian();
     }
 }

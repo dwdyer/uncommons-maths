@@ -36,9 +36,9 @@ public class ContinuousUniformGeneratorTest
         final double min = 150;
         final double max = 500;
         final double range = max - min;
-      // Expected standard deviation for a uniformly distributed population of values in the range 0..n
+        // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
-      NumberGenerator<Double> generator = new ContinuousUniformGenerator(min,
+        NumberGenerator<Double> generator = new ContinuousUniformGenerator(min,
                                                                            max,
                                                                            new MersenneTwisterRNG());
         final int iterations = 10000;
@@ -49,15 +49,15 @@ public class ContinuousUniformGeneratorTest
             assert value >= min && value <= max : "Value out-out-of-range: " + value;
             data.addValue(value);
         }
-      final double expectedMean = (range / 2) + min;
-      assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02)
+        final double expectedMean = (range / 2) + min;
+        assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02)
             : "Observed mean outside acceptable range: " + data.getArithmeticMean();
-      final double standardDeviation = range / Math.sqrt(12);
-      assert Maths.approxEquals(data.getSampleStandardDeviation(), standardDeviation, 0.02)
+        final double standardDeviation = range / Math.sqrt(12);
+        assert Maths.approxEquals(data.getSampleStandardDeviation(), standardDeviation, 0.02)
             : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
         // Expected median is the same as expected mean.
         assert Maths.approxEquals(data.getMedian(), expectedMean, 0.02)
-            : "Observed mean outside acceptable range: " + data.getMedian(); 
+            : "Observed mean outside acceptable range: " + data.getMedian();
     }
 
 }

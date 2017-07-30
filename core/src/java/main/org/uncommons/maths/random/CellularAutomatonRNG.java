@@ -37,6 +37,7 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class CellularAutomatonRNG extends Random implements RepeatableRNG
 {
+    private static final long serialVersionUID = 5959251752288589909L;
     private static final int SEED_SIZE_BYTES = 4;
     private static final int AUTOMATON_LENGTH = 2056;
 
@@ -75,7 +76,6 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         130,  97,  91, 227, 146,   4,  31, 120, 211,  38,  22, 138, 140, 237, 238, 251,
         240, 160, 142, 119,  73, 103, 166,  33, 148,   9, 111, 136, 168, 150,  82
     };
-    private static final long serialVersionUID = 5959251752288589909L;
 
     private transient boolean superConstructorFinished = false;
     private final byte[] seed;

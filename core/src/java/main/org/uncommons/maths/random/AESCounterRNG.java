@@ -183,9 +183,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         if (seed == null)
         {
             throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit, 256-bit, 320-bit or 384-bit seed.");
-        } else {
-            this.seed = seed.clone();
         }
+        this.seed = seed.clone();
         initTransientFields();
     }
 
@@ -287,7 +286,9 @@ public class AESCounterRNG extends Random implements RepeatableRNG
                 try {
                     nextBlock();
                     index = 0;
-                } catch (GeneralSecurityException ex) {
+                }
+                catch (GeneralSecurityException ex)
+                {
                     // Should never happen.  If initialisation succeeds without exceptions
                     // we should be able to proceed indefinitely without exceptions.
                     throw new IllegalStateException("Failed creating next random block.", ex);

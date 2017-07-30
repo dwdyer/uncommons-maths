@@ -79,9 +79,7 @@ public class PoissonGeneratorTest
     private void checkDistribution(NumberGenerator<Integer> generator,
                                    double expectedMean)
     {
-        // Variance of a Possion distribution equals its mean.
-
-      final int iterations = 10000;
+        final int iterations = 10000;
         DataSet data = new DataSet(iterations);
         for (int i = 0; i < iterations; i++)
         {
@@ -91,8 +89,10 @@ public class PoissonGeneratorTest
         }
         assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02)
                 : "Observed mean outside acceptable range: " + data.getArithmeticMean();
-      final double expectedStandardDeviation = Math.sqrt(expectedMean);
-      assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.02)
+
+        // Variance of a Possion distribution equals its mean.
+        final double expectedStandardDeviation = Math.sqrt(expectedMean);
+        assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.02)
                 : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
     }
 }

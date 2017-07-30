@@ -97,7 +97,8 @@ public class CellularAutomatonRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() {
+    public void testNullSeed()
+    {
         new CellularAutomatonRNG((byte[]) null);
     }
 
@@ -119,9 +120,10 @@ public class CellularAutomatonRNGTest
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
-    
+
     @Test
-    public void testSetSeed() {
+    public void testSetSeed()
+    {
         long seed = new Random().nextLong();
         CellularAutomatonRNG rng = new CellularAutomatonRNG();
         CellularAutomatonRNG rng2 = new CellularAutomatonRNG();
@@ -130,14 +132,16 @@ public class CellularAutomatonRNGTest
         rng2.setSeed(seed);
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after reseeding with same seed";
     }
-    
+
     @Test
-    public void testEquals() {
+    public void testEquals()
+    {
         RNGTestUtils.doEqualsSanityChecks(new CellularAutomatonRNG());
     }
-        
+
     @Test
-    public void testHashCode() throws Exception {
+    public void testHashCode() throws Exception
+    {
         assert RNGTestUtils.testHashCodeDistribution(CellularAutomatonRNG.class.getConstructor())
                 : "Too many hashCode collisions";
     }
