@@ -134,5 +134,11 @@ public class CellularAutomatonRNGTest
     @Test
     public void testEquals() {
         RNGTestUtils.doEqualsSanityChecks(new CellularAutomatonRNG());
-    } 
+    }
+        
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(CellularAutomatonRNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
 }

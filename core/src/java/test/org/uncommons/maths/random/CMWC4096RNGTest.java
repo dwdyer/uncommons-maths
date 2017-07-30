@@ -124,5 +124,11 @@ public class CMWC4096RNGTest
     @Test
     public void testEquals() {
         RNGTestUtils.doEqualsSanityChecks(new CMWC4096RNG());
-    } 
+    }
+        
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(CMWC4096RNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
 }

@@ -122,5 +122,11 @@ public class MersenneTwisterRNGTest
     @Test
     public void testEquals() {
         RNGTestUtils.doEqualsSanityChecks(new MersenneTwisterRNG());
-    } 
+    }
+        
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(MersenneTwisterRNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
 }

@@ -68,7 +68,13 @@ public class JavaRNGTest
     @Test
     public void testEquals() {
         RNGTestUtils.doEqualsSanityChecks(new JavaRNG());
-    } 
-
+    }
+    
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(JavaRNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
+    
     // Don't bother testing the distribution of the output for this RNG, it's beyond our control.
 }

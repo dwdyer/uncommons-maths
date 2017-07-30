@@ -125,4 +125,10 @@ public class XORShiftRNGTest
     public void testEquals() {
         RNGTestUtils.doEqualsSanityChecks(new XORShiftRNG());
     } 
+        
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(XORShiftRNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
 }

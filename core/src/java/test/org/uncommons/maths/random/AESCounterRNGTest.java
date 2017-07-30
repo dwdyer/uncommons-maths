@@ -192,4 +192,10 @@ public class AESCounterRNGTest
     public void testEquals() throws GeneralSecurityException {
         RNGTestUtils.doEqualsSanityChecks(new AESCounterRNG());
     }
+    
+    @Test
+    public void testHashCode() throws Exception {
+        assert RNGTestUtils.testHashCodeDistribution(AESCounterRNG.class.getConstructor())
+                : "Too many hashCode collisions";
+    }
 }

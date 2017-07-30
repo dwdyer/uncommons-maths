@@ -15,6 +15,8 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.lang.reflect.Constructor;
+import java.util.HashSet;
 import java.util.Random;
 import org.uncommons.maths.statistics.DataSet;
 
@@ -32,6 +34,18 @@ final class RNGTestUtils
     public static void doEqualsSanityChecks(Random rng) {
         assert !(rng.equals(null)) : "RNG compares equal to null";
         assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
+    }
+    
+    public static boolean testHashCodeDistribution(Constructor<? extends Random> ctor) {
+        try {
+            HashSet<Integer> uniqueHashCodes = new HashSet<Integer>();
+            for (int i=0; i<100; i++) {
+                uniqueHashCodes.add(ctor.newInstance().hashCode());
+            }
+            return uniqueHashCodes.size() > 90;
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
