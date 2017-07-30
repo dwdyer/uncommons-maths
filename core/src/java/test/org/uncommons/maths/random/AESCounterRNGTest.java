@@ -154,28 +154,6 @@ public class AESCounterRNGTest
         new AESCounterRNG(49); // Should throw an exception.
     }
     
-    @Test
-    public void testSetSeed() throws Exception {
-        // can't use a real SeedGenerator since we need longs, so use a SecureRandom
-        SecureRandom masterRNG = new SecureRandom();
-        long[] seeds = new long[]
-                {masterRNG.nextLong(), masterRNG.nextLong(),
-                masterRNG.nextLong(), masterRNG.nextLong()};
-        AESCounterRNG[] rngs = new AESCounterRNG[]
-                {new AESCounterRNG(16), new AESCounterRNG(16)};
-        for (int i=0; i<2; i++) {
-            for (long seed : seeds) {
-                AESCounterRNG rngCopy = new AESCounterRNG(rngs[i].getSeed());
-                rngCopy.setSeed(seed);
-                assert rngs[i].nextLong() != rngCopy.nextLong()
-                        : "setSeed had no effect";
-                rngs[i] = rngCopy;
-            }
-        }
-        assert rngs[0].nextLong() != rngs[1].nextLong()
-                : "RNGs converged after 4 setSeed calls";
-    }
-
     /**
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
@@ -183,5 +161,31 @@ public class AESCounterRNGTest
     public void testNullSeed() throws GeneralSecurityException
     {
         new AESCounterRNG((byte[]) null); // Should throw an exception.
+    }
+
+    @Test
+    public void testSetSeed() throws Exception {
+        // can't use a real SeedGenerator since we need longs, so use a SecureRandom
+        SecureRandom masterRNG = new SecureRandom();
+        long[] seeds = new long[]
+                {masterRNG.nextLong(), masterRNG.nextLong(),
+                masterRNG.nextLong(), masterRNG.nextLong()};
+        long otherSeed = masterRNG.nextLong();
+        AESCounterRNG[] rngs = new AESCounterRNG[]
+                {new AESCounterRNG(), new AESCounterRNG()};
+        for (int i=0; i<2; i++) {
+            for (long seed : seeds) {
+                AESCounterRNG rngReseeded = new AESCounterRNG(rngs[i].getSeed());
+                AESCounterRNG rngReseededOther = new AESCounterRNG(rngs[i].getSeed());
+                rngReseeded.setSeed(seed);
+                assert !(rngs[i].equals(rngReseeded));
+                assert !(rngReseededOther.equals(rngReseeded));
+                assert rngs[i].nextLong() != rngReseeded.nextLong()
+                        : "setSeed had no effect";
+                rngs[i] = rngReseeded;
+            }
+        }
+        assert rngs[0].nextLong() != rngs[1].nextLong()
+                : "RNGs converged after 4 setSeed calls";
     }
 }
