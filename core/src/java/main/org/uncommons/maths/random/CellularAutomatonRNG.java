@@ -90,6 +90,11 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(DefaultSeedGenerator.getInstance().generateSeed(SEED_SIZE_BYTES));
     }
 
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        superConstructorFinished = true;
+    }
+
 
     /**
      * Seed the RNG using the provided seed generation strategy.
