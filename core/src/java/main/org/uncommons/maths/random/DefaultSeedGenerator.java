@@ -25,6 +25,12 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public final class DefaultSeedGenerator implements SeedGenerator
 {
+    /**
+     * When debug is enabled, generation of seeds larger than this will still
+     * report the source and size of the seed, but not its contents.
+     */
+    private static final int MAX_SEED_BYTES_TO_DUMP = 64;
+
     private static final String DEBUG_PROPERTY = "org.uncommons.maths.random.debug";
 
     /** Singleton instance. */
@@ -75,8 +81,15 @@ public final class DefaultSeedGenerator implements SeedGenerator
                     if (debug)
                     {
                         String seedString = BinaryUtils.convertBytesToHexString(seed);
-                        System.out.println(seed.length + " bytes of seed data acquired from " + generator + ":");
-                        System.out.println("  " + seedString);
+                        System.out.print(seed.length + " bytes of seed data acquired from " + generator);
+                        if (length <= MAX_SEED_BYTES_TO_DUMP)
+                        {
+                            System.out.println(":\n" + seedString);
+                        }
+                        else
+                        {
+                            System.out.println();
+                        }
                     }
                 }
                 catch (SecurityException ex)

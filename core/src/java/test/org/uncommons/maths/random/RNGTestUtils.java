@@ -35,14 +35,18 @@ final class RNGTestUtils
         assert !(rng.equals(null)) : "RNG compares equal to null";
         assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
     }
-    
+
+    /**
+     * Test that in a sample of 100 RNGs from the given parameterless
+     * constructor, there are at least 90 unique hash codes.
+     */
     public static boolean testHashCodeDistribution(Constructor<? extends Random> ctor) {
         try {
             HashSet<Integer> uniqueHashCodes = new HashSet<Integer>();
             for (int i=0; i<100; i++) {
                 uniqueHashCodes.add(ctor.newInstance().hashCode());
             }
-            return uniqueHashCodes.size() > 90;
+            return uniqueHashCodes.size() >= 90;
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
