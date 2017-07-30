@@ -90,22 +90,24 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     private transient boolean superConstructorFinished = false;
 
     /** Called in constructor and readObject to initialize transient fields. */
-    protected void initTransientFields() throws GeneralSecurityException {
-      lock = new ReentrantLock();
-      cipher = Cipher.getInstance("AES/ECB/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(seed, "AES"));
-      counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
-      superConstructorFinished = true;
+    protected void initTransientFields() throws GeneralSecurityException
+    {
+        lock = new ReentrantLock();
+        cipher = Cipher.getInstance("AES/ECB/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(seed, "AES"));
+        counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
+        superConstructorFinished = true;
     }
 
     /** Needed to initialize transient fields when deserializing. */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-      in.defaultReadObject();
-      try {
-        initTransientFields();
-      } catch (GeneralSecurityException e) {
-        throw new IOException(e);
-      }
+    private void readObject(ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        try {
+            initTransientFields();
+        } catch (GeneralSecurityException e) {
+            throw new IOException(e);
+        }
     }
 
     // Lock to prevent concurrent modification of the RNG's internal state.
@@ -121,7 +123,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * Creates a new RNG and seeds it using 128 bits from the default seeding strategy.
      * @throws GeneralSecurityException If there is a problem initialising the AES cipher.
      */
-    public AESCounterRNG() throws GeneralSecurityException {
+    public AESCounterRNG() throws GeneralSecurityException
+    {
         this(DEFAULT_SEED_SIZE_BYTES);
     }
 
@@ -134,7 +137,9 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * @throws SeedException If there is a problem generating a seed.
      * @throws GeneralSecurityException If there is a problem initialising the AES cipher.
      */
-    public AESCounterRNG(SeedGenerator seedGenerator) throws SeedException, GeneralSecurityException {
+    public AESCounterRNG(SeedGenerator seedGenerator) throws SeedException,
+                                                             GeneralSecurityException
+    {
         this(seedGenerator.generateSeed(DEFAULT_SEED_SIZE_BYTES));
     }
 
@@ -148,7 +153,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * @throws GeneralSecurityException If there is a problem initialising the AES cipher.
      * @since 1.0.2
      */
-    public AESCounterRNG(int seedSizeBytes) throws GeneralSecurityException {
+    public AESCounterRNG(int seedSizeBytes) throws GeneralSecurityException
+    {
         this(DefaultSeedGenerator.getInstance().generateSeed(seedSizeBytes));
     }
 
@@ -158,8 +164,10 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * @param seed The seed data used to initialise the RNG.
      * @throws GeneralSecurityException If there is a problem initialising the AES cipher.
      */
-    public AESCounterRNG(byte[] seed) throws GeneralSecurityException {
-        if (seed == null) {
+    public AESCounterRNG(byte[] seed) throws GeneralSecurityException
+    {
+        if (seed == null)
+        {
             throw new IllegalArgumentException("AES RNG requires a 128-bit, 192-bit, 256-bit, 320-bit or 384-bit seed.");
         } else if (seed.length > MAX_KEY_LENGTH_BYTES) {
             this.seed = Arrays.copyOfRange(seed, 0, seed.length - COUNTER_SIZE_BYTES);
@@ -171,9 +179,12 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public byte[] getSeed() {
+    public byte[] getSeed()
+    {
         lock.lock();
         try {
             return seed.clone();
@@ -182,7 +193,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         }
     }
 
-    private void incrementCounter() {
+    private void incrementCounter()
+    {
         for (int i = 0; i < counter.length; i++)
         {
             ++counter[i];
@@ -240,9 +252,13 @@ public class AESCounterRNG extends Random implements RepeatableRNG
                 System.arraycopy(md.digest(), 0, this.seed, 0, this.seed.length);
             }
             cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.seed, "AES"));
-        } catch (GeneralSecurityException e) {
+        }
+        catch (GeneralSecurityException e)
+        {
             throw new RuntimeException(e);
-        } finally {
+        }
+        finally
+        {
             lock.unlock();
         }
     }
@@ -268,7 +284,9 @@ public class AESCounterRNG extends Random implements RepeatableRNG
             }
             result = BinaryUtils.convertBytesToInt(currentBlock, index);
             index += 4;
-        } finally {
+        }
+        finally
+        {
             lock.unlock();
         }
         return result >>> (32 - bits);

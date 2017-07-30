@@ -33,7 +33,8 @@ import org.uncommons.maths.Maths;
 public class AESCounterRNGTest
 {
     @Test
-    public void testMaxSeedLengthOk() {
+    public void testMaxSeedLengthOk()
+    {
         assert AESCounterRNG.MAX_KEY_LENGTH_BYTES >= 16 :
                 "Should allow a 16-byte key";
         assert AESCounterRNG.MAX_KEY_LENGTH_BYTES <= 32 :
