@@ -1,6 +1,8 @@
 Changes in version 1.2.4
 ------------------------
 
+* CellularAutomatonRNG now implements setSeed.
+
 AESCounterRNG improvements:
 
 * Now accepts 320-bit and 384-bit seeds when AES-192 and AES-256
