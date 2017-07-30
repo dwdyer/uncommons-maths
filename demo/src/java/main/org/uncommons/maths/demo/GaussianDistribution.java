@@ -26,7 +26,7 @@ import org.uncommons.maths.random.GaussianGenerator;
 class GaussianDistribution extends ProbabilityDistribution
 {
     /** {@code Math.sqrt(2*Math.PI)}, with rounding error corrected */
-    public static final double SQRT_2PI = 2.5066282746310005;
+    private static final double SQRT_2PI = 2.5066282746310005;
     private final double mean;
     private final double standardDeviation;
 
@@ -89,7 +89,7 @@ class GaussianDistribution extends ProbabilityDistribution
         return "Gaussian Distribution (\u03bc = " + mean + ", \u03c3 = " + standardDeviation + ')';
     }
 
-    
+
     public boolean isDiscrete()
     {
         return false;

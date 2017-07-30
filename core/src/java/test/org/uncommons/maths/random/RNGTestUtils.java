@@ -43,7 +43,8 @@ final class RNGTestUtils
     public static boolean testHashCodeDistribution(Constructor<? extends Random> ctor) {
         try {
             HashSet<Integer> uniqueHashCodes = new HashSet<Integer>();
-            for (int i=0; i<100; i++) {
+            for (int i=0; i<100; i++)
+            {
                 uniqueHashCodes.add(ctor.newInstance().hashCode());
             }
             return uniqueHashCodes.size() >= 90;
@@ -66,7 +67,8 @@ final class RNGTestUtils
                                           Random rng2,
                                           int iterations)
     {
-        if (!rng1.equals(rng2)) {
+        if (!rng1.equals(rng2))
+        {
             return false;
         }
         for (int i = 0; i < iterations; i++)
