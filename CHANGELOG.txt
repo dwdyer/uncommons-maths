@@ -10,7 +10,9 @@ AESCounterRNG improvements:
 
 * Fixed serialisation.
 
-* setSeed is no longer a no-op, except during construction and deserialization.
+* setSeed is now implemented. The input will be appended to the existing seed;
+  if the seed is already at maximum length, it will be combined with the input
+  using a SHA256 digest. Doesn't work during construction or deserialization.
 
 Diehard testing support:
 
