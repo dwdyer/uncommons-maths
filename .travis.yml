@@ -1,6 +1,7 @@
 language: java
 dist: trusty
 group: edge
+sudo: true # TODO: Find out why this always times out when disabled
 
 jdk:
   - oraclejdk9
