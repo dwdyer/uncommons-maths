@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -151,6 +152,28 @@ public class AESCounterRNGTest
     public void testSeedTooLong() throws GeneralSecurityException
     {
         new AESCounterRNG(49); // Should throw an exception.
+    }
+    
+    @Test
+    public void testSetSeed() throws Exception {
+        // can't use a real SeedGenerator since we need longs, so use a SecureRandom
+        SecureRandom masterRNG = new SecureRandom();
+        long[] seeds = new long[]
+                {masterRNG.nextLong(), masterRNG.nextLong(),
+                masterRNG.nextLong(), masterRNG.nextLong()};
+        AESCounterRNG[] rngs = new AESCounterRNG[]
+                {new AESCounterRNG(16), new AESCounterRNG(16)};
+        for (int i=0; i<2; i++) {
+            for (long seed : seeds) {
+                AESCounterRNG rngCopy = new AESCounterRNG(rngs[i].getSeed());
+                rngCopy.setSeed(seed);
+                assert rngs[i].nextLong() != rngCopy.nextLong()
+                        : "setSeed had no effect";
+                rngs[i] = rngCopy;
+            }
+        }
+        assert rngs[0].nextLong() != rngs[1].nextLong()
+                : "RNGs converged after 4 setSeed calls";
     }
 
     /**

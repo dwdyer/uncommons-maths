@@ -17,6 +17,7 @@ package org.uncommons.maths.random;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Random;
@@ -80,10 +81,13 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         }
     }
 
-    private final byte[] seed;
+    private byte[] seed;
     private transient Cipher cipher;
     private final byte[] counter = new byte[COUNTER_SIZE_BYTES];
     private transient byte[] counterInput;
+
+    // Ignore setSeed calls from super constructor
+    private transient boolean superConstructorFinished = false;
 
     /** Called in constructor and readObject to initialize transient fields. */
     protected void initTransientFields() throws GeneralSecurityException {
@@ -91,6 +95,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
       cipher = Cipher.getInstance("AES/ECB/NoPadding");
       cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.seed, "AES"));
       counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
+      superConstructorFinished = true;
     }
     
     /** Needed to initialize transient fields when deserializing. */
@@ -179,6 +184,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     /**
      * {@inheritDoc}
      */
+    @Override
     public byte[] getSeed()
     {
         return seed.clone();
@@ -215,6 +221,50 @@ public class AESCounterRNG extends Random implements RepeatableRNG
                 COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * The given seed is combined with the existing seed. Thus, this method is
+     * guaranteed not to reduce randomness by more than half.
+     */
+    @Override
+    public void setSeed(long seed)
+    {
+        if (!superConstructorFinished) {
+            // setSeed is called by super() but won't work yet
+            return;
+        }
+        try {
+            if (this.seed.length < MAX_KEY_LENGTH_BYTES) {
+                // Extend the key
+                byte[] newSeed = new byte[this.seed.length + 8];
+                System.arraycopy(this.seed, 0, newSeed, 0, this.seed.length);
+                ByteBuffer.wrap(newSeed, this.seed.length, 8)
+                        .putLong(seed);
+                this.seed = newSeed;
+            } else {
+                // Encrypt the input with the existing key, so that all of the
+                // existing key influences the new seed state.
+                
+                // First, double the input, since AES requires 16-byte blocks.
+                
+                byte[] seedBytes = new byte[16];
+                ByteBuffer seedBuffer = ByteBuffer.wrap(seedBytes);
+                seedBuffer.putLong(seed);
+                seedBuffer.putLong(seed);
+                byte[] cryptedSeed = cipher.doFinal(seedBytes);
+                // Shift the key left
+                System.arraycopy(this.seed, 8, this.seed, 0,
+                        this.seed.length - 8);
+                // Add 8 bytes of the encrypted seed to the new key
+                System.arraycopy(cryptedSeed, 0, this.seed,
+                        this.seed.length - 8, 8);
+            }
+            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.seed, "AES"));
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * {@inheritDoc}
