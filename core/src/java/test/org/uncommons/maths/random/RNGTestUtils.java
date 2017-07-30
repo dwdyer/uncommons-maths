@@ -31,7 +31,7 @@ final class RNGTestUtils
 
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.
+     * same sequence of numbers and compare as equal.
      * @param rng1 The first RNG.  Its output is compared to that of {@code rng2}.
      * @param rng2 The second RNG.  Its output is compared to that of {@code rng1}.
      * @param iterations The number of values to generate from each RNG and
@@ -43,6 +43,9 @@ final class RNGTestUtils
                                           Random rng2,
                                           int iterations)
     {
+        if (!rng1.equals(rng2)) {
+            return false;
+        }
         for (int i = 0; i < iterations; i++)
         {
             if (rng1.nextInt() != rng2.nextInt())

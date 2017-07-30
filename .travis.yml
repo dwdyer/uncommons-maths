@@ -11,22 +11,26 @@ jdk:
   - openjdk6
 matrix:
   allow_failures:
+    - jdk: oraclejdk9 # Currently too slow
     - jdk: oraclejdk7 # https://github.com/travis-ci/travis-ci/issues/7884
     - jdk: openjdk6 # Unknown Travis issue
 env:
-  - ANT_TARGET="test"
-  - ANT_TARGET="diehard_aes_1"
-  - ANT_TARGET="diehard_aes_2"
-  - ANT_TARGET="diehard_automaton_1"
-  - ANT_TARGET="diehard_automaton_2"
-  - ANT_TARGET="diehard_cmwc_1"
-  - ANT_TARGET="diehard_cmwc_2"
-  - ANT_TARGET="diehard_mersenne_1"
-  - ANT_TARGET="diehard_mersenne_2"
-  - ANT_TARGET="diehard_xor_1"
-  - ANT_TARGET="diehard_xor_2"
-  - ANT_TARGET="diehard_java_1"
-  - ANT_TARGET="diehard_java_2"
+  global:
+    - JAVA_OPTS="-XX:+AggressiveOpts -XX:+UseAES -XX:+UseAESIntrinsics"
+  matrix:
+    - ANT_TARGET="test"
+    - ANT_TARGET="diehard_aes_1"
+    - ANT_TARGET="diehard_aes_2"
+    - ANT_TARGET="diehard_automaton_1"
+    - ANT_TARGET="diehard_automaton_2"
+    - ANT_TARGET="diehard_cmwc_1"
+    - ANT_TARGET="diehard_cmwc_2"
+    - ANT_TARGET="diehard_mersenne_1"
+    - ANT_TARGET="diehard_mersenne_2"
+    - ANT_TARGET="diehard_xor_1"
+    - ANT_TARGET="diehard_xor_2"
+    - ANT_TARGET="diehard_java_1"
+    - ANT_TARGET="diehard_java_2"
 addons:
   apt:
     packages:

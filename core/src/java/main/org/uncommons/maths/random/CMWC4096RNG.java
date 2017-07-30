@@ -17,6 +17,7 @@ package org.uncommons.maths.random;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -138,5 +139,16 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
         {
             lock.unlock();
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof CMWC4096RNG
+                && Arrays.equals(seed, ((CMWC4096RNG) other).seed);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(seed);
     }
 }

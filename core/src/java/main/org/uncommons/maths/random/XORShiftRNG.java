@@ -17,6 +17,7 @@ package org.uncommons.maths.random;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -39,9 +40,9 @@ import org.uncommons.maths.binary.BinaryUtils;
 public class XORShiftRNG extends Random implements RepeatableRNG
 {
     private static final int SEED_SIZE_BYTES = 20; // Needs 5 32-bit integers.
-  private static final long serialVersionUID = 952521144304194886L;
-
-  // Previously used an array for state but using separate fields proved to be
+    private static final long serialVersionUID = 952521144304194886L;
+    
+    // Previously used an array for state but using separate fields proved to be
     // faster.
     private int state1;
     private int state2;
@@ -137,5 +138,16 @@ public class XORShiftRNG extends Random implements RepeatableRNG
         {
             lock.unlock();
         }
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof XORShiftRNG
+                && Arrays.equals(seed, ((XORShiftRNG) other).seed);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(seed);
     }
 }

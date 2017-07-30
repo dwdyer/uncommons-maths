@@ -17,6 +17,7 @@ package org.uncommons.maths.random;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -215,5 +216,16 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
         y ^= (y >>> 18);
 
         return y >>> (32 - bits);
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof MersenneTwisterRNG
+                && Arrays.equals(seed, ((MersenneTwisterRNG) other).seed);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(seed);
     }
 }
