@@ -164,7 +164,10 @@
       <diehardtest rng.class="@{rng.class}" test.number="200.10" extra.args="-n 10"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.11" extra.args="-n 11"/>
       <diehardtest rng.class="@{rng.class}" test.number="200.12" extra.args="-n 12"/>
-      <diehardtest rng.class="@{rng.class}" test.number="201"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201.02" extra.args="-n 2"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201.03" extra.args="-n 3"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201.04" extra.args="-n 4"/>
+      <diehardtest rng.class="@{rng.class}" test.number="201.05" extra.args="-n 5"/>
       <diehardtest rng.class="@{rng.class}" test.number="202"/>
     </sequential>
   </macrodef>
