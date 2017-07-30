@@ -32,6 +32,7 @@ final class RNGTestUtils
     }
 
     public static void doEqualsSanityChecks(Random rng) {
+        assert rng.equals(rng) : "RNG doesn't compare equal to itself";
         assert !(rng.equals(null)) : "RNG compares equal to null";
         assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
     }
