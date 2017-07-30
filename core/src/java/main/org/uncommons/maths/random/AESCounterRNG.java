@@ -174,7 +174,12 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     /** {@inheritDoc} */
     @Override
     public byte[] getSeed() {
-        return seed.clone();
+        try {
+            lock.lock();
+            return seed.clone();
+        } finally {
+            lock.unlock();
+        }
     }
 
     private void incrementCounter() {
