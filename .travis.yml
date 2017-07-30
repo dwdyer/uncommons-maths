@@ -1,7 +1,7 @@
 language: java
 dist: trusty
 group: edge
-sudo: true # TODO: Find out why this always times out when disabled
+sudo: true # TODO: Find out why we always time out in the container environment
 
 jdk:
   - oraclejdk9
@@ -12,7 +12,7 @@ jdk:
   - openjdk6
 matrix:
   allow_failures:
-    - jdk: oraclejdk9 # Currently too slow
+    - jdk: oraclejdk9 # Still experimental on Travis
     - jdk: oraclejdk7 # https://github.com/travis-ci/travis-ci/issues/7884
     - jdk: openjdk6 # Unknown Travis issue
 env:
