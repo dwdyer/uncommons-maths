@@ -1,6 +1,280 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" project-jdk-name="1.9" project-jdk-type="JavaSDK">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.random.AESCounterRNG serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.BinomialParametersPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.DistributionPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.ExponentialParametersPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.GaussianParametersPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.GraphPanel serialVersionUID" />
+      <entry_point TYPE="method" FQNAME="org.uncommons.maths.random.JavaRNGTest$1 byte[] generateSeed(int length)" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.ParametersPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.PoissonParametersPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.RNGPanel serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.RandomDemo serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.number.Rational TWO_THIRDS" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.number.Rational THIRD" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.number.Rational ZERO" />
+      <entry_point TYPE="field" FQNAME="org.uncommons.maths.demo.UniformParametersPanel serialVersionUID" />
+    </entry_points>
+    <pattern value="org.uncommons.maths.random.AESCounterRNG" method="readObject" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNG" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testNotEqualToOtherClass" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testSetSeed" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testSeedTooLong" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testSeedTooShort" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testStandardDeviation" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testRepeatabilityWithSeedInCounter" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testSerializableWithSeedInCounter" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testSerializable" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" method="testMaxSeedLengthOk" />
+    <pattern value="org.uncommons.maths.random.AESCounterRNGTest" />
+    <pattern value="org.uncommons.maths.number.AdjustableNumberGenerator" method="AdjustableNumberGenerator" />
+    <pattern value="org.uncommons.maths.number.AdjustableNumberGenerator" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertFixedPointNegative" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertFixedPointTooHigh" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertFixedPointZero" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertFixedPoint" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertNegativeBytesToLong" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertBytesToLong" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertWrongNumberOfBytesToInts" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertBytesToInts" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testConvertBytesToInt" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testInvalidHexStringLength" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testHexStringToBytes" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" method="testBytesToHexString" />
+    <pattern value="org.uncommons.maths.binary.BinaryUtilsTest" />
+    <pattern value="org.uncommons.maths.random.BinomialGenerator" method="BinomialGenerator" />
+    <pattern value="org.uncommons.maths.random.BinomialGenerator" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" method="testTrialsTooLow" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" method="testProbabilityTooLow" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" method="testProbabilityTooHigh" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" method="testDynamicParameters" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.BinomialGeneratorTest" />
+    <pattern value="org.uncommons.maths.demo.BinomialParametersPanel" />
+    <pattern value="org.uncommons.maths.binary.BitString" method="BitString" />
+    <pattern value="org.uncommons.maths.binary.BitString" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testSwapSubstringNonAlignedEnd" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testSwapSubstringNonAlignedStart" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testSwapSubstringWordAligned" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testSerialisation" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testIndexTooHigh" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testNegativeIndex" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testInvalidChars" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testInvalidLength" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testEquals" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testClone" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testCountUnsetBits" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testCountSetBits" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testToNumber" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testParsing" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testToString" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testFlipBits" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testSetBits" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testCreateRandomBitString" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" method="testCreateBitString" />
+    <pattern value="org.uncommons.maths.binary.BitStringTest" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testSerializable" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testInvalidSeedSize" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testStandardDeviation" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.CMWC4096RNGTest" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNG" method="readObject" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNG" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testSetSeed" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testSerializable" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testInvalidSeedSize" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testStandardDeviation" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.CellularAutomatonRNGTest" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGenerator" method="CombinationGenerator" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGenerator" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testOrdering" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testExhaustion" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testTooManyCombinations" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testZeroLength" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testCombinationLengthTooLong" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testDestinationArrayTooLong" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testDestinationArrayTooShort" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testIteratorRemove" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testIterable" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" method="testCombinations" />
+    <pattern value="org.uncommons.maths.combinatorics.CombinationGeneratorTest" />
+    <pattern value="org.uncommons.maths.number.ConstantGenerator" method="ConstantGenerator" />
+    <pattern value="org.uncommons.maths.number.ConstantGenerator" />
+    <pattern value="org.uncommons.maths.random.ContinuousUniformGenerator" method="ContinuousUniformGenerator" />
+    <pattern value="org.uncommons.maths.random.ContinuousUniformGenerator" />
+    <pattern value="org.uncommons.maths.random.ContinuousUniformGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.ContinuousUniformGeneratorTest" />
+    <pattern value="org.uncommons.maths.statistics.DataSet" method="DataSet" />
+    <pattern value="org.uncommons.maths.statistics.DataSet" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testEmptyDataSet" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testSampleStandardDeviation" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testPopulationStandardDeviation" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testSampleVariance" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testPopulationVariance" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testMeanDeviation" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testHarmonicMean" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testGeometricMean" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testArithmeticMean" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testMedian" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testMaximum" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testMinimum" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testProduct" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testAggregate" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" method="testCapacityIncrease" />
+    <pattern value="org.uncommons.maths.statistics.DataSetTest" />
+    <pattern value="org.uncommons.maths.random.DefaultSeedGeneratorTest.RestrictedSecurityManager" />
+    <pattern value="org.uncommons.maths.random.DefaultSeedGeneratorTest" method="testRestrictedEnvironment" />
+    <pattern value="org.uncommons.maths.random.DefaultSeedGeneratorTest" />
+    <pattern value="org.uncommons.maths.random.DevRandomSeedGeneratorTest" method="testGenerator" />
+    <pattern value="org.uncommons.maths.random.DevRandomSeedGeneratorTest" />
+    <pattern value="org.uncommons.maths.random.DiehardInputGenerator" method="main" />
+    <pattern value="org.uncommons.maths.random.DiehardInputGenerator" />
+    <pattern value="org.uncommons.maths.random.DiehardInputGeneratorTest" method="testFileCreation" />
+    <pattern value="org.uncommons.maths.random.DiehardInputGeneratorTest" />
+    <pattern value="org.uncommons.maths.random.DiscreteUniformGenerator" method="DiscreteUniformGenerator" />
+    <pattern value="org.uncommons.maths.random.DiscreteUniformGenerator" />
+    <pattern value="org.uncommons.maths.random.DiscreteUniformGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.DiscreteUniformGeneratorTest" />
+    <pattern value="org.uncommons.maths.demo.DistributionPanel" />
+    <pattern value="org.uncommons.maths.statistics.EmptyDataSetException" method="EmptyDataSetException" />
+    <pattern value="org.uncommons.maths.statistics.EmptyDataSetException" />
+    <pattern value="org.uncommons.maths.random.ExponentialGenerator" method="ExponentialGenerator" />
+    <pattern value="org.uncommons.maths.random.ExponentialGenerator" />
+    <pattern value="org.uncommons.maths.random.ExponentialGeneratorTest" method="testDynamicParameters" />
+    <pattern value="org.uncommons.maths.random.ExponentialGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.ExponentialGeneratorTest" />
+    <pattern value="org.uncommons.maths.demo.ExponentialParametersPanel" />
+    <pattern value="org.uncommons.maths.random.GaussianGenerator" method="GaussianGenerator" />
+    <pattern value="org.uncommons.maths.random.GaussianGenerator" />
+    <pattern value="org.uncommons.maths.random.GaussianGeneratorTest" method="testDynamicParameters" />
+    <pattern value="org.uncommons.maths.random.GaussianGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.GaussianGeneratorTest" />
+    <pattern value="org.uncommons.maths.demo.GaussianParametersPanel" />
+    <pattern value="org.uncommons.maths.demo.GraphPanel" method="generateGraph" />
+    <pattern value="org.uncommons.maths.demo.GraphPanel" />
+    <pattern value="org.uncommons.maths.random.JavaRNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.JavaRNGTest" method="testInvalidSeedSize" />
+    <pattern value="org.uncommons.maths.random.JavaRNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.JavaRNGTest" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testGreatestCommonDivisorNegatives" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testNoCommonDivisorGreaterThanOne" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testGreatestCommonDivisor" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testRestrictRangeValueTooHigh" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testRestrictRangeValueTooLow" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testRestrictRangeValueWithinRange" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testApproxEqualsToleranceTooHigh" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testApproxEqualsToleranceTooLow" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testApproxEqualsToleranceZero" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testApproxEquals" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testLog" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testNegativePower" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testRaiseToPower" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testNegativeBigFactorial" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testFactorialTooBig" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testNegativeFactorial" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testBigFactorial" />
+    <pattern value="org.uncommons.maths.MathsTest" method="testFactorial" />
+    <pattern value="org.uncommons.maths.MathsTest" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testSerializable" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testInvalidSeedSize" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testStandardDeviation" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.MersenneTwisterRNGTest" />
+    <pattern value="org.uncommons.maths.demo.ParametersPanel" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGenerator" method="PermutationGenerator" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGenerator" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testExhaustion" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testZeroLength" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testDestinationArrayTooLong" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testDestinationArrayTooShort" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testTooManyElements" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testIteratorRemove" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testIterable" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testPermutationCount" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" method="testPermutations" />
+    <pattern value="org.uncommons.maths.combinatorics.PermutationGeneratorTest" />
+    <pattern value="org.uncommons.maths.random.PoissonGenerator" method="PoissonGenerator" />
+    <pattern value="org.uncommons.maths.random.PoissonGenerator" />
+    <pattern value="org.uncommons.maths.random.PoissonGeneratorTest" method="testMeanTooLow" />
+    <pattern value="org.uncommons.maths.random.PoissonGeneratorTest" method="testDynamicParameters" />
+    <pattern value="org.uncommons.maths.random.PoissonGeneratorTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.PoissonGeneratorTest" />
+    <pattern value="org.uncommons.maths.demo.PoissonParametersPanel" />
+    <pattern value="org.uncommons.maths.random.Probability" method="Probability" />
+    <pattern value="org.uncommons.maths.random.Probability" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testPossibleEvents" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testCertainties" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testImpossibleEvents" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testFractionalComplements" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testIntegerComplements" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testComparisons" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testEquality" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testFractionalIntegerConversion" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testOneIntegerConversion" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testZeroIntegerConversion" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testProbabilityTooHigh" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" method="testProbabilityTooLow" />
+    <pattern value="org.uncommons.maths.random.ProbabilityTest" />
+    <pattern value="org.uncommons.maths.random.RNGBenchmark" method="main" />
+    <pattern value="org.uncommons.maths.random.RNGBenchmark" />
+    <pattern value="org.uncommons.maths.demo.RNGPanel" />
+    <pattern value="org.uncommons.maths.demo.RandomDemo" method="main" />
+    <pattern value="org.uncommons.maths.demo.RandomDemo" />
+    <pattern value="org.uncommons.maths.random.RandomDotOrgSeedGeneratorTest" method="testLargeRequest" />
+    <pattern value="org.uncommons.maths.random.RandomDotOrgSeedGeneratorTest" method="testGenerator" />
+    <pattern value="org.uncommons.maths.random.RandomDotOrgSeedGeneratorTest" />
+    <pattern value="org.uncommons.maths.number.Rational" method="Rational" />
+    <pattern value="org.uncommons.maths.number.Rational" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testFloatValue" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testIntValue" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testBigDecimalConversionExcessPrecision" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testBigDecimalConversion" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testNegativeDenominator" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testZeroDenominator" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testToStringInteger" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testToStringTopHeavyFraction" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testToStringProperFraction" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testSubtractDifferentDenominators" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testSubtractSameDenominator" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testAddDifferentDenominators" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testAddSameDenominator" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testDivide" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testMultiply" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testSimplification" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testComparisons" />
+    <pattern value="org.uncommons.maths.number.RationalTest" method="testEquality" />
+    <pattern value="org.uncommons.maths.number.RationalTest" />
+    <pattern value="org.uncommons.maths.random.RepeatableRNG" method="getSeed" />
+    <pattern value="org.uncommons.maths.random.RepeatableRNG" />
+    <pattern value="org.uncommons.maths.random.SecureRandomSeedGeneratorTest" method="testGenerator" />
+    <pattern value="org.uncommons.maths.random.SecureRandomSeedGeneratorTest" />
+    <pattern value="org.uncommons.swing.SpringUtilities" method="makeGrid" />
+    <pattern value="org.uncommons.swing.SpringUtilities" />
+    <pattern value="org.uncommons.swing.SwingBackgroundTaskTest" method="testExecutionThreads" />
+    <pattern value="org.uncommons.swing.SwingBackgroundTaskTest" />
+    <pattern value="org.uncommons.maths.demo.UniformParametersPanel" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testSerializable" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testNullSeed" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testInvalidSeedSize" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testStandardDeviation" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testDistribution" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" method="testRepeatability" />
+    <pattern value="org.uncommons.maths.random.XORShiftRNGTest" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.9" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

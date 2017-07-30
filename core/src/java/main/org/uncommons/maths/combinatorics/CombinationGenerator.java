@@ -39,7 +39,7 @@ public class CombinationGenerator<T> implements Iterable<List<T>>
     private final T[] elements;
     private final int[] combinationIndices;
     private long remainingCombinations;
-    private long totalCombinations;
+    private final long totalCombinations;
 
     /**
      * Create a combination generator that generates all combinations of
@@ -56,7 +56,7 @@ public class CombinationGenerator<T> implements Iterable<List<T>>
         }
 
         this.elements = elements.clone();
-        this.combinationIndices = new int[combinationLength];
+        combinationIndices = new int[combinationLength];
 
         BigInteger sizeFactorial = Maths.bigFactorial(elements.length);
         BigInteger lengthFactorial = Maths.bigFactorial(combinationLength);

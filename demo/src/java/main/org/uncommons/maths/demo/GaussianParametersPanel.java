@@ -28,10 +28,12 @@ import org.uncommons.swing.SpringUtilities;
  */
 class GaussianParametersPanel extends ParametersPanel
 {
-    private final SpinnerNumberModel meanNumberModel = new SpinnerNumberModel(0, -1000, 1000, 1);
-    private final SpinnerNumberModel deviationNumberModel = new SpinnerNumberModel(1d, 0.01d, 1000d, 1d);
 
-    public GaussianParametersPanel()
+    private static final long serialVersionUID = -4881994118433208963L;
+    private final SpinnerNumberModel meanNumberModel = new SpinnerNumberModel(0, -1000, 1000, 1);
+    private final SpinnerNumberModel deviationNumberModel = new SpinnerNumberModel(1.0, 0.01d, 1000.0, 1.0);
+
+    GaussianParametersPanel()
     {
         JPanel wrapper = new JPanel(new SpringLayout());
         wrapper.add(new JLabel("Mean: "));

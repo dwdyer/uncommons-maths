@@ -31,8 +31,7 @@ public final class DefaultSeedGenerator implements SeedGenerator
     private static final DefaultSeedGenerator INSTANCE = new DefaultSeedGenerator();
 
     /** Delegate generators. */
-    private static final SeedGenerator[] GENERATORS = new SeedGenerator[]
-    {
+    private static final SeedGenerator[] GENERATORS = {
         new DevRandomSeedGenerator(),
         new RandomDotOrgSeedGenerator(),
         new SecureRandomSeedGenerator()
@@ -71,7 +70,7 @@ public final class DefaultSeedGenerator implements SeedGenerator
                 byte[] seed = generator.generateSeed(length);
                 try
                 {
-                    boolean debug = System.getProperty(DEBUG_PROPERTY, "false").equals("true");
+                    boolean debug = "true".equals(System.getProperty(DEBUG_PROPERTY, "false"));
                     if (debug)
                     {
                         String seedString = BinaryUtils.convertBytesToHexString(seed);

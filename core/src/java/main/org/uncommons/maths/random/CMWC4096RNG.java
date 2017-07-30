@@ -15,7 +15,10 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Random;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -44,15 +47,24 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
     private static final int SEED_SIZE_BYTES = 16384; // Needs 4,096 32-bit integers.
 
     private static final long A = 18782L;
+  private static final long serialVersionUID = 1731465909906078875L;
 
-    private final byte[] seed;
+  private final byte[] seed;
     private final int[] state;
     private int carry = 362436; // TO DO: This should be randomly generated.
     private int index = 4095;
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final ReentrantLock lock = new ReentrantLock();
-    
+    private transient Lock lock;
+
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    initTransientFields();
+  }
+
+  protected void initTransientFields() {
+    lock = new ReentrantLock();
+  }
 
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
@@ -87,7 +99,8 @@ public class CMWC4096RNG extends Random implements RepeatableRNG
             throw new IllegalArgumentException("CMWC RNG requires 16kb of seed data.");
         }
         this.seed = seed.clone();
-        this.state = BinaryUtils.convertBytesToInts(seed);
+      state = BinaryUtils.convertBytesToInts(seed);
+      initTransientFields();
     }
 
 

@@ -54,7 +54,7 @@ public class JavaRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException, SeedException
+    public void testNullSeed() throws SeedException
     {
         new JavaRNG(new SeedGenerator()
         {

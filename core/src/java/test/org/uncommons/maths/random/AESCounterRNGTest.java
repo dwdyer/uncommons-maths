@@ -167,16 +167,15 @@ public class AESCounterRNGTest
     public void testSetSeed() throws GeneralSecurityException {
         // can't use a real SeedGenerator since we need longs, so use a Random
         Random masterRNG = new Random();
-        long[] seeds = new long[]
-                {masterRNG.nextLong(), masterRNG.nextLong(),
-                masterRNG.nextLong(), masterRNG.nextLong()};
-        long otherSeed = masterRNG.nextLong();
-        AESCounterRNG[] rngs = new AESCounterRNG[]
-                {new AESCounterRNG(16), new AESCounterRNG(16)};
+        long[] seeds = {masterRNG.nextLong(), masterRNG.nextLong(),
+        masterRNG.nextLong(), masterRNG.nextLong()};
+        byte[] otherSeed = new byte[4];
+        masterRNG.nextBytes(otherSeed);
+        AESCounterRNG[] rngs = {new AESCounterRNG(16), new AESCounterRNG(16)};
         for (int i=0; i<2; i++) {
             for (long seed : seeds) {
                 AESCounterRNG rngReseeded = new AESCounterRNG(rngs[i].getSeed());
-                AESCounterRNG rngReseededOther = new AESCounterRNG(rngs[i].getSeed());
+                AESCounterRNG rngReseededOther = new AESCounterRNG(otherSeed);
                 rngReseeded.setSeed(seed);
                 assert !(rngs[i].equals(rngReseeded));
                 assert !(rngReseededOther.equals(rngReseeded));

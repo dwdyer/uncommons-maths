@@ -98,8 +98,7 @@ public class CMWC4096RNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
-    {
+    public void testNullSeed() {
         new CMWC4096RNG((byte[]) null);
     }
 

@@ -93,7 +93,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected void initTransientFields() throws GeneralSecurityException {
       lock = new ReentrantLock();
       cipher = Cipher.getInstance("AES/ECB/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.seed, "AES"));
+      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(seed, "AES"));
       counterInput = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
       superConstructorFinished = true;
     }
@@ -111,7 +111,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     // Lock to prevent concurrent modification of the RNG's internal state.
     private transient ReentrantLock lock;
 
-    private byte[] currentBlock = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
+    private final byte[] currentBlock = new byte[COUNTER_SIZE_BYTES * BLOCKS_AT_ONCE];
 
     // force generation of first block on demand
     private int index = currentBlock.length;
@@ -174,8 +174,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     /** {@inheritDoc} */
     @Override
     public byte[] getSeed() {
+        lock.lock();
         try {
-            lock.lock();
             return seed.clone();
         } finally {
             lock.unlock();
@@ -222,8 +222,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
             // setSeed is called by super() but won't work yet
             return;
         }
+        lock.lock();
         try {
-            lock.lock();
             if (this.seed.length < MAX_KEY_LENGTH_BYTES) {
                 // Extend the key
                 byte[] newSeed = new byte[this.seed.length + 8];
@@ -254,8 +254,8 @@ public class AESCounterRNG extends Random implements RepeatableRNG
     protected final int next(int bits)
     {
         int result;
+        lock.lock();
         try {
-            lock.lock();
             if (currentBlock.length - index < 4) {
                 try {
                     nextBlock();
@@ -274,15 +274,14 @@ public class AESCounterRNG extends Random implements RepeatableRNG
         return result >>> (32 - bits);
     }
 
+    @SuppressWarnings("NonFinalFieldReferenceInEquals")
     @Override
     public boolean equals(Object other) {
-        if (other instanceof AESCounterRNG) {
-            return Arrays.equals(seed, ((AESCounterRNG) other).seed);
-        } else {
-            return false;
-        }
+        return other instanceof AESCounterRNG
+                && Arrays.equals(seed, ((AESCounterRNG) other).seed);
     }
 
+    @SuppressWarnings("NonFinalFieldReferencedInHashCode")
     @Override
     public int hashCode() {
         return Arrays.hashCode(seed);

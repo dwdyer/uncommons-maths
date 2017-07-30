@@ -62,9 +62,9 @@ public class GaussianGeneratorTest
         // Adjust parameters and ensure that the generator output conforms to this new
         // distribution.
         final double adjustedMean = 73;
-        final double adjustedStandardDeviation = 9;
-        meanGenerator.setValue(adjustedMean);
-        standardDeviationGenerator.setValue(adjustedStandardDeviation);
+      meanGenerator.setValue(adjustedMean);
+      final double adjustedStandardDeviation = 9;
+      standardDeviationGenerator.setValue(adjustedStandardDeviation);
         
         checkDistribution(generator, adjustedMean, adjustedStandardDeviation);
     }

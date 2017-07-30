@@ -15,7 +15,10 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Random;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -62,17 +65,27 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
     private static final int SEED_FACTOR2 = 1566083941;
     private static final int GENERATE_MASK1 = 0x9d2c5680;
     private static final int GENERATE_MASK2 = 0xefc60000;
+  private static final long serialVersionUID = -4856906677508460512L;
 
-    private final byte[] seed;
+  private final byte[] seed;
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final ReentrantLock lock = new ReentrantLock();
+    private transient Lock lock;
 
     private final int[] mt = new int[N]; // State vector.
     private int mtIndex = 0; // Index into state vector.
 
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    initTransientFields();
+  }
 
-    /**
+  protected void initTransientFields() {
+    lock = new ReentrantLock();
+  }
+
+
+  /**
      * Creates a new RNG and seeds it using the default seeding strategy.
      */
     public MersenneTwisterRNG()
@@ -146,6 +159,7 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
             }
         }
         mt[0] = UPPER_MASK; // Most significant bit is 1 - guarantees non-zero initial array.
+        initTransientFields();
     }
 
 
@@ -187,7 +201,8 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
                 mtIndex = 0;
             }
 
-            y = mt[mtIndex++];
+            y = mt[mtIndex];
+          mtIndex++;
         }
         finally
         {

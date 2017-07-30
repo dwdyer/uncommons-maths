@@ -37,11 +37,9 @@ public class DiehardInputGeneratorTest
     {
         final String tempPipeName = System.getProperty("java.io.tmpdir") + "/diehard-input";
         File tempPipe = new File(tempPipeName);
-        if (tempPipe.exists()) {
-            assert tempPipe.delete() :
-                    "Temporary pipe already exists and can't be deleted! " +
-                    "(This test cannot run multiple times in parallel.)";
-        }
+        assert !tempPipe.exists() || tempPipe.delete() :
+                "Temporary pipe already exists and can't be deleted! " +
+                "(This test cannot run multiple times in parallel.)";
         try {
             Process mkfifo = Runtime.getRuntime()
                     .exec(new String[]{"/usr/bin/mkfifo", tempPipeName});

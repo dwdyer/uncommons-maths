@@ -20,6 +20,7 @@ import java.awt.CardLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import javax.swing.BorderFactory;
@@ -33,8 +34,10 @@ import javax.swing.JPanel;
  */
 class DistributionPanel extends JPanel
 {
+
+    private static final long serialVersionUID = 6288266643926973601L;
     private final SortedMap<String, ParametersPanel> parameterPanels = new TreeMap<String, ParametersPanel>();
-    private final JComboBox distributionCombo = new JComboBox();
+    private final JComboBox<String> distributionCombo = new JComboBox<>();
 
     {
         parameterPanels.put("Binomial", new BinomialParametersPanel());
@@ -45,12 +48,12 @@ class DistributionPanel extends JPanel
     }
 
     
-    public DistributionPanel()
+    DistributionPanel()
     {
         super(new BorderLayout());
         final CardLayout parametersLayout = new CardLayout();
         final JPanel parametersPanel = new JPanel(parametersLayout);
-        for (Map.Entry<String, ParametersPanel> entry : parameterPanels.entrySet())
+        for (Entry<String, ParametersPanel> entry : parameterPanels.entrySet())
         {
             distributionCombo.addItem(entry.getKey());
             parametersPanel.add(entry.getValue(), entry.getKey());

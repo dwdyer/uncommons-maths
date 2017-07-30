@@ -17,6 +17,7 @@ package org.uncommons.maths.demo;
 
 import java.awt.BorderLayout;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -33,9 +34,11 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 class GraphPanel extends JPanel
 {
-    private final ChartPanel chartPanel = new ChartPanel(null);
 
-    public GraphPanel()
+  private static final long serialVersionUID = 7221055190103508945L;
+  private final ChartPanel chartPanel = new ChartPanel(null);
+
+    GraphPanel()
     {
         super(new BorderLayout());
         add(chartPanel, BorderLayout.CENTER);
@@ -55,12 +58,12 @@ class GraphPanel extends JPanel
         XYSeries expectedSeries = new XYSeries("Expected");
         dataSet.addSeries(expectedSeries);
 
-        for (Map.Entry<Double, Double> entry : observedValues.entrySet())
+        for (Entry<Double, Double> entry : observedValues.entrySet())
         {
             observedSeries.add(entry.getKey(), entry.getValue());
         }
 
-        for (Map.Entry<Double, Double> entry : expectedValues.entrySet())
+        for (Entry<Double, Double> entry : expectedValues.entrySet())
         {
             expectedSeries.add(entry.getKey(), entry.getValue());
         }

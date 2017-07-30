@@ -117,7 +117,8 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
             int index = -1;
             for (String line = reader.readLine(); line != null; line = reader.readLine())
             {
-                cache[++index] = (byte) Integer.parseInt(line, 16);
+                ++index;
+                cache[index] = (byte) Integer.parseInt(line, 16);
             }
             if (index < cache.length - 1)
             {

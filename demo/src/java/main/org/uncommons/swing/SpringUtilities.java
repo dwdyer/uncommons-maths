@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import javax.swing.Spring;
 import javax.swing.SpringLayout;
+import javax.swing.SpringLayout.Constraints;
 
 /**
  * Utility methods for creating form-style or grid-style layouts with SpringLayout.
@@ -71,7 +72,7 @@ public final class SpringUtilities
         Spring maxHeightSpring = layout.getConstraints(parent.getComponent(0)).getWidth();
         for (int i = 1; i < max; i++)
         {
-            SpringLayout.Constraints cons = layout.getConstraints(parent.getComponent(i));
+            Constraints cons = layout.getConstraints(parent.getComponent(i));
             maxWidthSpring = Spring.max(maxWidthSpring, cons.getWidth());
             maxHeightSpring = Spring.max(maxHeightSpring, cons.getHeight());
         }
@@ -80,18 +81,18 @@ public final class SpringUtilities
         // components to have the same size.
         for (int i = 0; i < max; i++)
         {
-            SpringLayout.Constraints cons = layout.getConstraints(parent.getComponent(i));
+            Constraints cons = layout.getConstraints(parent.getComponent(i));
             cons.setWidth(maxWidthSpring);
             cons.setHeight(maxHeightSpring);
         }
 
         // Then adjust the x/y constraints of all the cells so that they
         // are aligned in a grid.
-        SpringLayout.Constraints lastConstraints = null;
-        SpringLayout.Constraints lastRowConstraints = null;
+        Constraints lastConstraints = null;
+        Constraints lastRowConstraints = null;
         for (int i = 0; i < max; i++)
         {
-            SpringLayout.Constraints constraints = layout.getConstraints(parent.getComponent(i));
+            Constraints constraints = layout.getConstraints(parent.getComponent(i));
             if (i % cols == 0) // Start of new row.
             {
                 lastRowConstraints = lastConstraints;
@@ -116,7 +117,7 @@ public final class SpringUtilities
         }
 
         // Set the parent's size.
-        SpringLayout.Constraints pCons = layout.getConstraints(parent);
+        Constraints pCons = layout.getConstraints(parent);
         pCons.setConstraint(SpringLayout.SOUTH,
                             Spring.sum(Spring.constant(yPad),
                                        lastConstraints.getConstraint(SpringLayout.SOUTH)));
@@ -165,7 +166,7 @@ public final class SpringUtilities
             }
             for (int r = 0; r < rows; r++)
             {
-                SpringLayout.Constraints constraints = getConstraintsForCell(r, c, parent, columns);
+                Constraints constraints = getConstraintsForCell(r, c, parent, columns);
                 constraints.setX(x);
                 constraints.setWidth(width);
             }
@@ -184,7 +185,7 @@ public final class SpringUtilities
             }
             for (int c = 0; c < columns; c++)
             {
-                SpringLayout.Constraints constraints = getConstraintsForCell(r, c, parent, columns);
+                Constraints constraints = getConstraintsForCell(r, c, parent, columns);
                 constraints.setY(y);
                 constraints.setHeight(height);
             }
@@ -192,7 +193,7 @@ public final class SpringUtilities
         }
 
         // Set the parent's size.
-        SpringLayout.Constraints parentConstraints = layout.getConstraints(parent);
+        Constraints parentConstraints = layout.getConstraints(parent);
         parentConstraints.setConstraint(SpringLayout.SOUTH, y);
         parentConstraints.setConstraint(SpringLayout.EAST, x);
     }
@@ -201,7 +202,7 @@ public final class SpringUtilities
     /**
      * Helper method for {@link #makeCompactGrid(Container, int, int, int, int, int, int)}.
      */
-    private static SpringLayout.Constraints getConstraintsForCell(int row,
+    private static Constraints getConstraintsForCell(int row,
                                                                   int col,
                                                                   Container parent,
                                                                   int cols)

@@ -96,8 +96,7 @@ public class MersenneTwisterRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
-    {
+    public void testNullSeed() {
         new MersenneTwisterRNG((byte[]) null);
     }
 

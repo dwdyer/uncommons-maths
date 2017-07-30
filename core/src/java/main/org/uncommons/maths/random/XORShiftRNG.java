@@ -15,7 +15,10 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Random;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -36,8 +39,9 @@ import org.uncommons.maths.binary.BinaryUtils;
 public class XORShiftRNG extends Random implements RepeatableRNG
 {
     private static final int SEED_SIZE_BYTES = 20; // Needs 5 32-bit integers.
+  private static final long serialVersionUID = 952521144304194886L;
 
-    // Previously used an array for state but using separate fields proved to be
+  // Previously used an array for state but using separate fields proved to be
     // faster.
     private int state1;
     private int state2;
@@ -49,8 +53,16 @@ public class XORShiftRNG extends Random implements RepeatableRNG
 
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final ReentrantLock lock = new ReentrantLock();
+    private transient Lock lock;
 
+    protected void initTransientFields() {
+        lock = new ReentrantLock();
+    }
+
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    initTransientFields();
+  }
 
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
@@ -85,11 +97,12 @@ public class XORShiftRNG extends Random implements RepeatableRNG
         }
         this.seed = seed.clone();
         int[] state = BinaryUtils.convertBytesToInts(seed);
-        this.state1 = state[0];
-        this.state2 = state[1];
-        this.state3 = state[2];
-        this.state4 = state[3];
-        this.state5 = state[4];
+        state1 = state[0];
+        state2 = state[1];
+        state3 = state[2];
+        state4 = state[3];
+        state5 = state[4];
+        initTransientFields();
     }
 
 

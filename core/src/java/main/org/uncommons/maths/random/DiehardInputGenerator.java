@@ -42,7 +42,6 @@ public final class DiehardInputGenerator
      * @throws Exception If there are problems setting up the RNG or writing to
      * the output file.
      */
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception
     {
         if (args.length != 2)
@@ -51,7 +50,7 @@ public final class DiehardInputGenerator
             System.out.println("\t<Fully-qualified RNG class name> <Output file>");
             System.exit(1);
         }
-        Class<? extends Random> rngClass = (Class<? extends Random>) Class.forName(args[0]);
+        Class<? extends Random> rngClass = Class.forName(args[0]).asSubclass(Random.class);
         File outputFile = new File(args[1]);
         generateOutputFile(rngClass.newInstance(), outputFile);
     }
@@ -65,11 +64,12 @@ public final class DiehardInputGenerator
      * @param outputFile The file that the random data is written to.
      * @throws IOException If there is a problem writing to the file.
      */
+    @SuppressWarnings("InfiniteLoopStatement")
     public static void generateOutputFile(Random rng,
                                           File outputFile) throws IOException
     {
-        DataOutputStream dataOutput = null;
-        dataOutput = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+        DataOutputStream dataOutput = new DataOutputStream(
+            new BufferedOutputStream(new FileOutputStream(outputFile)));
         try {
             while (true) {
                 dataOutput.writeLong(rng.nextLong());

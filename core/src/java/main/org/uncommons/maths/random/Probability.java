@@ -49,8 +49,9 @@ public final class Probability extends Number implements Comparable<Probability>
      * @see #EVENS
      */
     public static final Probability ONE = new Probability(1);
+  private static final long serialVersionUID = 4847628452547056381L;
 
-    private final double probability;
+  private final double probability;
 
     /**
      * @param probability The probability value (a number in the range 0..1 inclusive).  A
@@ -196,7 +197,7 @@ public final class Probability extends Number implements Comparable<Probability>
      */
     public int compareTo(Probability other)
     {
-        return Double.compare(this.probability, other.probability);
+        return Double.compare(probability, other.probability);
     }
 
 

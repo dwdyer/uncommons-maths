@@ -17,6 +17,7 @@ package org.uncommons.maths.demo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import org.uncommons.maths.number.NumberGenerator;
 
@@ -38,10 +39,10 @@ abstract class ProbabilityDistribution
                                      : generateContinuousValues(count, rng);
 
         double sum = 0;
-        for (Double key : values.keySet())
+        for (Entry<Double, Double> doubleDoubleEntry : values.entrySet())
         {
-            Double value = values.get(key);
-            values.put(key, value / count);
+            Double value = doubleDoubleEntry.getValue();
+            values.put(doubleDoubleEntry.getKey(), value / count);
             sum += value;
         }
         assert Math.round(sum) == count : "Wrong total: " + sum;
@@ -59,7 +60,8 @@ abstract class ProbabilityDistribution
             double value = generator.nextValue().doubleValue();
             Double aggregate = values.get(value);
             aggregate = aggregate == null ? 0 : aggregate;
-            values.put(value, ++aggregate);
+          ++aggregate;
+          values.put(value, aggregate);
         }
         return values;
     }
@@ -106,7 +108,7 @@ abstract class ProbabilityDistribution
         for (int i = 0; i < intervals.length; i++)
         {
             // Correct the value to take into account the size of the interval.
-            double value = (1 / intervalSize) * (double) intervals[i];
+            double value = (1.0 / intervalSize) * intervals[i];
             discretisedValues.put(min + ((i + 0.5) * intervalSize), value);
         }
         return discretisedValues;
