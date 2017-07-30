@@ -39,10 +39,10 @@ abstract class ProbabilityDistribution
                                      : generateContinuousValues(count, rng);
 
         double sum = 0;
-        for (Entry<Double, Double> doubleDoubleEntry : values.entrySet())
+        for (Entry<Double, Double> entry : values.entrySet())
         {
-            Double value = doubleDoubleEntry.getValue();
-            values.put(doubleDoubleEntry.getKey(), value / count);
+            Double value = entry.getValue();
+            values.put(entry.getKey(), value / count);
             sum += value;
         }
         assert Math.round(sum) == count : "Wrong total: " + sum;

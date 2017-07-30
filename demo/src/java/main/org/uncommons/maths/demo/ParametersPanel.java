@@ -23,10 +23,9 @@ import javax.swing.JPanel;
  */
 abstract class ParametersPanel extends JPanel
 {
+    private static final long serialVersionUID = 3278614718971993661L;
 
-  private static final long serialVersionUID = 3278614718971993661L;
-
-  protected ParametersPanel()
+    protected ParametersPanel()
     {
         super(new BorderLayout());
     }

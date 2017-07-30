@@ -34,9 +34,9 @@ import org.jfree.data.xy.XYSeriesCollection;
  */
 class GraphPanel extends JPanel
 {
+    private static final long serialVersionUID = 7221055190103508945L;
 
-  private static final long serialVersionUID = 7221055190103508945L;
-  private final ChartPanel chartPanel = new ChartPanel(null);
+    private final ChartPanel chartPanel = new ChartPanel(null);
 
     GraphPanel()
     {

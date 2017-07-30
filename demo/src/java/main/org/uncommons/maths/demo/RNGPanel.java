@@ -42,9 +42,9 @@ import org.uncommons.swing.SpringUtilities;
  */
 class RNGPanel extends JPanel
 {
+    private static final long serialVersionUID = 6371975789624655739L;
 
-  private static final long serialVersionUID = 6371975789624655739L;
-  private final JComboBox<String> rngCombo = new JComboBox<String>();
+    private final JComboBox<String> rngCombo = new JComboBox<String>();
     private final SpinnerNumberModel iterationsNumberModel = new SpinnerNumberModel(10000, 10, 1000000, 100);
 
     private final SortedMap<String, Random> rngs = new TreeMap<String, Random>();

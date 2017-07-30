@@ -25,8 +25,8 @@ import org.uncommons.maths.random.DiscreteUniformGenerator;
  */
 class UniformDistribution extends ProbabilityDistribution
 {
-
     public static final double SQRT_12 = 3.4641016151377546;
+
     private final int min;
     private final int max;
 
@@ -75,5 +75,5 @@ class UniformDistribution extends ProbabilityDistribution
     public boolean isDiscrete()
     {
         return true;
-    }    
+    }
 }

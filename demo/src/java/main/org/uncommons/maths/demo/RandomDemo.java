@@ -37,8 +37,8 @@ import org.uncommons.swing.SwingBackgroundTask;
  */
 public class RandomDemo extends JFrame
 {
-
     private static final long serialVersionUID = 857793204632246264L;
+
     private final DistributionPanel distributionPanel = new DistributionPanel();
     private final RNGPanel rngPanel = new RNGPanel();
     private final GraphPanel graphPanel = new GraphPanel();
@@ -102,7 +102,7 @@ public class RandomDemo extends JFrame
         return controls;
     }
 
-    
+
     public static void main(String[] args)
     {
         SwingUtilities.invokeLater(new Runnable()

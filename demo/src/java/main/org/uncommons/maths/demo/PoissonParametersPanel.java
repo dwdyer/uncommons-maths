@@ -29,8 +29,8 @@ import org.uncommons.swing.SpringUtilities;
 class PoissonParametersPanel extends ParametersPanel
 {
 
-  private static final long serialVersionUID = -3864628303806044284L;
-  private final SpinnerNumberModel meanNumberModel = new SpinnerNumberModel(5.0d, 0.1d, 100.0d, 0.1d);
+    private static final long serialVersionUID = -3864628303806044284L;
+    private final SpinnerNumberModel meanNumberModel = new SpinnerNumberModel(5.0d, 0.1d, 100.0d, 0.1d);
 
     PoissonParametersPanel()
     {
