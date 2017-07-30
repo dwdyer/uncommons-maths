@@ -119,4 +119,15 @@ public class CellularAutomatonRNGTest
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
     }
+    
+    @Test
+    public void testSetSeed() {
+        long seed = new SecureRandom().nextLong();
+        CellularAutomatonRNG rng = new CellularAutomatonRNG();
+        CellularAutomatonRNG rng2 = new CellularAutomatonRNG();
+        rng.nextLong(); // ensure they won't be in initial state before reseeding
+        rng.setSeed(seed);
+        rng2.setSeed(seed);
+        assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after reseeding with same seed";
+    }
 }

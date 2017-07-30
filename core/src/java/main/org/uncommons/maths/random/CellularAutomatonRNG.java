@@ -102,7 +102,14 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(seedGenerator.generateSeed(SEED_SIZE_BYTES));
     }
 
-
+    private void copySeedToCells() {
+        // Set initial cell states using seed.
+        cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
+        cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;
+        cells[AUTOMATON_LENGTH - 3] = seed[2] + 128;
+        cells[AUTOMATON_LENGTH - 4] = seed[3] + 128;
+    }
+    
     /**
      * Creates an RNG and seeds it with the specified seed data.
      * @param seed The seed data used to initialise the RNG.
@@ -114,13 +121,7 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
             throw new IllegalArgumentException("Cellular Automaton RNG requires a 32-bit (4-byte) seed.");
         }
         this.seed = seed.clone();
-
-        // Set initial cell states using seed.
-        cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
-        cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;
-        cells[AUTOMATON_LENGTH - 3] = seed[2] + 128;
-        cells[AUTOMATON_LENGTH - 4] = seed[3] + 128;
-
+        copySeedToCells();
         int seedAsInt = BinaryUtils.convertBytesToInt(seed, 0);
         if (seedAsInt != 0xFFFFFFFF)
         {
@@ -182,12 +183,24 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
 
     /**
      * {@inheritDoc}
-     */    
+     */
     public byte[] getSeed()
     {
         return seed;
     }
 
+    @Override
+    public void setSeed(long seed)
+    {
+        try {
+            lock.lock();
+            System.arraycopy(BinaryUtils.convertIntToBytes((int) seed), 0,
+                    this.seed, 0, 4);
+            copySeedToCells();
+        } finally {
+            lock.unlock();
+        }
+    }
 
     private static int convertCellsToInt(int[] cells, int offset)
     {

@@ -213,7 +213,7 @@ public class AESCounterRNG extends Random implements RepeatableRNG
      * {@inheritDoc}
      *
      * The given seed is combined with the existing seed. Thus, this method is
-     * guaranteed not to reduce randomness by more than half.
+     * guaranteed not to reduce randomness.
      */
     @Override
     public void setSeed(long seed)
