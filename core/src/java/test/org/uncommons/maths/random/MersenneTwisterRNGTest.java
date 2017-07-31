@@ -121,9 +121,9 @@ public class MersenneTwisterRNGTest
     }
 
     @Test
-    public void testEquals()
+    public void testEquals() throws ReflectiveOperationException
     {
-        RNGTestUtils.doEqualsSanityChecks(new MersenneTwisterRNG());
+        RNGTestUtils.doEqualsSanityChecks(MersenneTwisterRNG.class.getConstructor());
     }
 
     @Test

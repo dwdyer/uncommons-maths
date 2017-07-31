@@ -134,9 +134,9 @@ public class CellularAutomatonRNGTest
     }
 
     @Test
-    public void testEquals()
+    public void testEquals() throws ReflectiveOperationException
     {
-        RNGTestUtils.doEqualsSanityChecks(new CellularAutomatonRNG());
+        RNGTestUtils.doEqualsSanityChecks(CellularAutomatonRNG.class.getConstructor());
     }
 
     @Test

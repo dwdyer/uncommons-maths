@@ -184,8 +184,8 @@ public class AESCounterRNGTest
 
 
     @Test
-    public void testEquals() throws GeneralSecurityException {
-        RNGTestUtils.doEqualsSanityChecks(new AESCounterRNG());
+    public void testEquals() throws GeneralSecurityException, ReflectiveOperationException {
+        RNGTestUtils.doEqualsSanityChecks(AESCounterRNG.class.getConstructor());
     }
 
 

@@ -123,9 +123,9 @@ public class CMWC4096RNGTest
     }
 
     @Test
-    public void testEquals()
+    public void testEquals() throws ReflectiveOperationException
     {
-        RNGTestUtils.doEqualsSanityChecks(new CMWC4096RNG());
+        RNGTestUtils.doEqualsSanityChecks(CMWC4096RNG.class.getConstructor());
     }
 
     @Test

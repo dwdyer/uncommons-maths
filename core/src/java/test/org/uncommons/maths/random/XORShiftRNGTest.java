@@ -123,9 +123,9 @@ public class XORShiftRNGTest
     }
 
     @Test
-    public void testEquals()
+    public void testEquals() throws ReflectiveOperationException
     {
-        RNGTestUtils.doEqualsSanityChecks(new XORShiftRNG());
+        RNGTestUtils.doEqualsSanityChecks(XORShiftRNG.class.getConstructor());
     }
 
     @Test

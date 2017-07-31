@@ -31,10 +31,24 @@ final class RNGTestUtils
         // Prevents instantiation of utility class.
     }
 
-    public static void doEqualsSanityChecks(Random rng) {
-        assert rng.equals(rng) : "RNG doesn't compare equal to itself";
-        assert !(rng.equals(null)) : "RNG compares equal to null";
-        assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
+    /**
+     * Test that the given parameterless constructor, called twice, doesn't
+     * produce RNGs that compare as equal. Also checks for compliance with basic
+     * parts of the Object.equals() contract.
+     */
+    public static void doEqualsSanityChecks(Constructor<? extends Random> ctor) {
+        try
+        {
+            Random rng = ctor.newInstance();
+            Random rng2 = ctor.newInstance();
+            assert !(rng.equals(rng2));
+            assert rng.equals(rng) : "RNG doesn't compare equal to itself";
+            assert !(rng.equals(null)) : "RNG compares equal to null";
+            assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
+        }
+        catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
