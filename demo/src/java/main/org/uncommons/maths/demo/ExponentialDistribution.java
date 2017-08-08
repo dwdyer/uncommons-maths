@@ -28,7 +28,7 @@ class ExponentialDistribution extends ProbabilityDistribution
     private final double rate;
 
 
-    public ExponentialDistribution(double rate)
+    ExponentialDistribution(double rate)
     {
         this.rate = rate;
     }
@@ -61,14 +61,7 @@ class ExponentialDistribution extends ProbabilityDistribution
      */
     private double getExpectedProbability(double x)
     {
-        if (x < 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return rate * Math.exp(-rate * x);
-        }
+        return x < 0 ? 0 : rate * Math.exp(-rate * x);
     }
 
 
@@ -86,7 +79,7 @@ class ExponentialDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Exponential Distribution (\u03bb = " + rate + ")";
+        return "Exponential Distribution (\u03bb = " + rate + ')';
     }
 
 

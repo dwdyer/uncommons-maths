@@ -36,10 +36,8 @@ public class DiscreteUniformGeneratorTest
         final int min = 150;
         final int max = 500;
         final int range = max - min;
-        final double expectedMean = (range / 2) + min;
         // Expected standard deviation for a uniformly distributed population of values in the range 0..n
         // approaches n/sqrt(12).
-        final double standardDeviation = range / Math.sqrt(12);
         NumberGenerator<Integer> generator = new DiscreteUniformGenerator(min,
                                                                           max,
                                                                           new MersenneTwisterRNG());
@@ -51,8 +49,10 @@ public class DiscreteUniformGeneratorTest
             assert value >= min && value <= max : "Value out-of-range: " + value;
             data.addValue(value);
         }
+        final double expectedMean = (range / 2) + min;
         assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02)
             : "Observed mean outside acceptable range: " + data.getArithmeticMean();
+        final double standardDeviation = range / Math.sqrt(12);
         assert Maths.approxEquals(data.getSampleStandardDeviation(), standardDeviation, 0.02)
             : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
         // Expected median is the same as expected mean.

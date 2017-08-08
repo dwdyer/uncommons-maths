@@ -98,7 +98,7 @@ public class XORShiftRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
+    public void testNullSeed()
     {
         new XORShiftRNG((byte[]) null);
     }
@@ -120,5 +120,18 @@ public class XORShiftRNGTest
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
+    }
+
+    @Test
+    public void testEquals() throws ReflectiveOperationException
+    {
+        RNGTestUtils.doEqualsSanityChecks(XORShiftRNG.class.getConstructor());
+    }
+
+    @Test
+    public void testHashCode() throws Exception
+    {
+        assert RNGTestUtils.testHashCodeDistribution(XORShiftRNG.class.getConstructor())
+                : "Too many hashCode collisions";
     }
 }

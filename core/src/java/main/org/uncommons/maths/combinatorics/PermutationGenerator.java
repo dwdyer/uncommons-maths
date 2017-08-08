@@ -44,7 +44,7 @@ public class PermutationGenerator<T> implements Iterable<List<T>>
     private final T[] elements;
     private final int[] permutationIndices;
     private long remainingPermutations;
-    private long totalPermutations;
+    private final long totalPermutations;
 
 
     /**

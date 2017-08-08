@@ -35,7 +35,7 @@ public class DiscreteUniformGenerator implements NumberGenerator<Integer>
     {
         this.rng = rng;
         this.minimumValue = minimumValue;
-        this.range = maximumValue - minimumValue + 1;
+        range = maximumValue - minimumValue + 1;
     }
 
 

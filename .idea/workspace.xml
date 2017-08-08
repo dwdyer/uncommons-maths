@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.3281759" />
+    <option name="CUSTOM_SCOPE_NAME" value="All Places" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c0752cc9-83dd-4a86-80e4-1c4457ab68a5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/core.iml" afterPath="$PROJECT_DIR$/core/core.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BitString.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BitString.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/CombinationGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/CombinationGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/PermutationGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/PermutationGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/number/Rational.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/number/Rational.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/AESCounterRNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/AESCounterRNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CMWC4096RNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CMWC4096RNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CellularAutomatonRNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CellularAutomatonRNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/ContinuousUniformGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/ContinuousUniformGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DefaultSeedGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DefaultSeedGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiehardInputGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiehardInputGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiscreteUniformGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiscreteUniformGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/JavaRNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/JavaRNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/MersenneTwisterRNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/MersenneTwisterRNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/Probability.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/Probability.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/RandomDotOrgSeedGenerator.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/RandomDotOrgSeedGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/SeedException.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/SeedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/XORShiftRNG.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/XORShiftRNG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/DataSet.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/DataSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/EmptyDataSetException.java" afterPath="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/EmptyDataSetException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BinaryUtilsTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BinaryUtilsTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BitStringTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BitStringTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/combinatorics/CombinationGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/combinatorics/CombinationGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/number/RationalTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/number/RationalTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/AESCounterRNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/AESCounterRNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/BinomialGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/BinomialGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/CMWC4096RNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/CMWC4096RNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/CellularAutomatonRNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/CellularAutomatonRNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ContinuousUniformGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ContinuousUniformGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DefaultSeedGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DefaultSeedGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiehardInputGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiehardInputGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiscreteUniformGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiscreteUniformGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ExponentialGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ExponentialGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/GaussianGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/GaussianGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/JavaRNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/JavaRNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/MersenneTwisterRNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/MersenneTwisterRNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/PoissonGeneratorTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/PoissonGeneratorTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/XORShiftRNGTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/XORShiftRNGTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/statistics/DataSetTest.java" afterPath="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/statistics/DataSetTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/BinomialDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/BinomialDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/BinomialParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/BinomialParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/DistributionPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/DistributionPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GraphPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GraphPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ProbabilityDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ProbabilityDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RNGPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RNGPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RandomDemo.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RandomDemo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformDistribution.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformDistribution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformParametersPanel.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformParametersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SpringUtilities.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SpringUtilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SwingBackgroundTask.java" afterPath="$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SwingBackgroundTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uncommons-maths.iml" afterPath="$PROJECT_DIR$/uncommons-maths.iml" />
+    </list>
+    <ignored path="$PROJECT_DIR$/core/bin/" />
+    <ignored path="$PROJECT_DIR$/bin/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="CellularAutomatonRNG.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CellularAutomatonRNG.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="106">
+              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="105" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8458#8459#0" expanded="true" />
+                <element signature="e#8493#8494#0" expanded="true" />
+                <element signature="e#8716#8717#0" expanded="true" />
+                <element signature="e#8760#8761#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rational.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/number/Rational.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="170" column="8" lean-forward="false" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BitString.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BitString.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="330" column="55" lean-forward="true" selection-start-line="330" selection-start-column="55" selection-end-line="330" selection-end-column="55" />
+              <folding>
+                <element signature="e#7603#7662#0" expanded="true" />
+                <element signature="e#8784#8843#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XORShiftRNG.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/XORShiftRNG.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AESCounterRNG.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/AESCounterRNG.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="86">
+              <caret line="101" column="4" lean-forward="false" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DevRandomSeedGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DevRandomSeedGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BitStringTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BitStringTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="281" column="44" lean-forward="true" selection-start-line="281" selection-start-column="44" selection-end-line="281" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultSeedGeneratorTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DefaultSeedGeneratorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="56" column="31" lean-forward="false" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>readobj</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonDistribution.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianParametersPanel.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianDistribution.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformDistribution.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RandomDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ProbabilityDistribution.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/RandomDotOrgSeedGenerator.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DefaultSeedGenerator.java" />
+        <option value="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BinaryUtilsTest.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/DistributionPanel.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RNGPanel.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/number/Rational.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/DataSet.java" />
+        <option value="$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialDistribution.java" />
+        <option value="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiehardInputGeneratorTest.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiehardInputGenerator.java" />
+        <option value="$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/AESCounterRNGTest.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BitString.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/AESCounterRNG.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CellularAutomatonRNG.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/XORShiftRNG.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CMWC4096RNG.java" />
+        <option value="$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/MersenneTwisterRNG.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Class structureJava</id>
+          </State>
+          <State>
+            <id>Cloning issuesJava</id>
+          </State>
+          <State>
+            <id>Code maturity issuesJava</id>
+          </State>
+          <State>
+            <id>Code style issuesJava</id>
+          </State>
+          <State>
+            <id>Concurrency annotation issuesJava</id>
+          </State>
+          <State>
+            <id>Control flow issuesJava</id>
+          </State>
+          <State>
+            <id>Declaration redundancyJava</id>
+          </State>
+          <State>
+            <id>Encapsulation issuesJava</id>
+          </State>
+          <State>
+            <id>Error handlingJava</id>
+          </State>
+          <State>
+            <id>Finalization issuesJava</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralJava</id>
+          </State>
+          <State>
+            <id>ImportsJava</id>
+          </State>
+          <State>
+            <id>Inheritance issuesJava</id>
+          </State>
+          <State>
+            <id>Initialization issuesJava</id>
+          </State>
+          <State>
+            <id>J2ME issuesJava</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Numeric issuesJava</id>
+          </State>
+          <State>
+            <id>Serialization issuesJava</id>
+          </State>
+          <State>
+            <id>Visibility issuesJava</id>
+          </State>
+          <State>
+            <id>toString() issuesJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>UseOfAnotherObjectsPrivateField</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="maths" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uncommons-maths" type="b2602c69:ProjectViewProjectNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="maths" type="462c0819:PsiDirectoryNode" />
+              <item name="random" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/demo" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0752cc9-83dd-4a86-80e4-1c4457ab68a5" name="Default" comment="" />
+      <created>1501386557620</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1501386557620</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1378" height="738" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40877193" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24961598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3736842" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961598" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24961598" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48070174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianDistribution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GaussianParametersPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="33" column="106" lean-forward="false" selection-start-line="33" selection-start-column="106" selection-end-line="33" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SpringUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="113" column="13" lean-forward="true" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/test/org/uncommons/swing/SwingBackgroundTaskTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/swing/SwingBackgroundTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/PoissonDistribution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+          <folding>
+            <element signature="e#1336#1352#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ProbabilityDistribution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/UniformDistribution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="e#1721#1722#0" expanded="false" />
+            <element signature="e#1767#1768#0" expanded="false" />
+            <element signature="e#1824#1825#0" expanded="false" />
+            <element signature="e#1868#1869#0" expanded="false" />
+            <element signature="e#2032#2033#0" expanded="false" />
+            <element signature="e#2059#2060#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DefaultSeedGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="72" column="87" lean-forward="false" selection-start-line="72" selection-start-column="87" selection-end-line="72" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BinaryUtilsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="129" column="98" lean-forward="false" selection-start-line="129" selection-start-column="98" selection-end-line="129" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/Maths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="51" column="12" lean-forward="false" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/GraphPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BinaryUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="59" column="25" lean-forward="false" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/DistributionPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="39" column="70" lean-forward="false" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RNGPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="46" column="59" lean-forward="false" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/ExponentialDistribution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="60" column="7" lean-forward="true" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/statistics/DataSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiehardInputGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/RepeatableRNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/AESCounterRNGTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="172" column="39" lean-forward="false" selection-start-line="172" selection-start-column="39" selection-end-line="172" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DiscreteUniformGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ContinuousUniformGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DiehardInputGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="67" column="23" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+          <folding>
+            <element signature="e#2422#2464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/Probability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="172" column="35" lean-forward="false" selection-start-line="172" selection-start-column="35" selection-end-line="172" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/java/main/org/uncommons/maths/demo/RandomDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="139" column="19" lean-forward="false" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+          <folding>
+            <element signature="e#5281#5282#0" expanded="false" />
+            <element signature="e#5326#5327#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/SeedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/number/RationalTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="39" selection-start-column="53" selection-end-line="40" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/ProbabilityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="79" column="19" lean-forward="false" selection-start-line="79" selection-start-column="19" selection-end-line="79" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/CombinationGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="274" column="27" lean-forward="false" selection-start-line="274" selection-start-column="27" selection-end-line="274" selection-end-column="27" />
+          <folding>
+            <element signature="e#9893#9894#0" expanded="true" />
+            <element signature="e#9955#9956#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/combinatorics/PermutationGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="291" column="27" lean-forward="false" selection-start-line="291" selection-start-column="27" selection-end-line="291" selection-end-column="27" />
+          <folding>
+            <element signature="e#10596#10597#0" expanded="true" />
+            <element signature="e#10658#10659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/JavaRNGTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="62" column="23" lean-forward="false" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+          <folding>
+            <element signature="e#2105#2252#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/BinomialGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/DevRandomSeedGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/binary/BitStringTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="281" column="44" lean-forward="true" selection-start-line="281" selection-start-column="44" selection-end-line="281" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/test/org/uncommons/maths/random/DefaultSeedGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="56" column="31" lean-forward="false" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/AESCounterRNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="101" column="4" lean-forward="false" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/RandomDotOrgSeedGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="106" column="42" lean-forward="true" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/number/Rational.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="170" column="8" lean-forward="false" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CellularAutomatonRNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="105" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8458#8459#0" expanded="true" />
+            <element signature="e#8493#8494#0" expanded="true" />
+            <element signature="e#8716#8717#0" expanded="true" />
+            <element signature="e#8760#8761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/MersenneTwisterRNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="161" column="30" lean-forward="true" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/CMWC4096RNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="102" column="28" lean-forward="true" selection-start-line="102" selection-start-column="28" selection-end-line="102" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/binary/BitString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="330" column="55" lean-forward="true" selection-start-line="330" selection-start-column="55" selection-end-line="330" selection-end-column="55" />
+          <folding>
+            <element signature="e#7603#7662#0" expanded="true" />
+            <element signature="e#8784#8843#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/java/main/org/uncommons/maths/random/XORShiftRNG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.9</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>uncommons-maths</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.9</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
