@@ -19,12 +19,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
+<<<<<<< HEAD
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+=======
+import java.security.Key;
+import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
+import javax.crypto.Cipher;
+>>>>>>> parent of b7ba13a... Modification to AES key implementation so that AESCounterRNG works on Android.
 import org.uncommons.maths.binary.BinaryUtils;
 
 /**
@@ -311,9 +318,39 @@ public class AESCounterRNG extends Random implements RepeatableRNG
                 && Arrays.equals(seed, ((AESCounterRNG) other).seed);
     }
 
+<<<<<<< HEAD
     @SuppressWarnings("NonFinalFieldReferencedInHashCode")
     @Override
     public int hashCode() {
         return Arrays.hashCode(seed);
+=======
+
+    /**
+     * Trivial key implementation for use with AES cipher.
+     */
+    private static final class AESKey implements Key
+    {
+        private final byte[] keyData;
+
+        private AESKey(byte[] keyData)
+        {
+            this.keyData = keyData;
+        }
+
+        public String getAlgorithm()
+        {
+            return "AES";
+        }
+
+        public String getFormat()
+        {
+            return "RAW";
+        }
+
+        public byte[] getEncoded()
+        {
+            return keyData;
+        }
+>>>>>>> parent of b7ba13a... Modification to AES key implementation so that AESCounterRNG works on Android.
     }
 }
