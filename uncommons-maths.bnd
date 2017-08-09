@@ -2,4 +2,3 @@ Bundle-Name: Uncommons Maths
 Bundle-SymbolicName: org.uncommons.maths
 Bundle-Version: ${version}
 Export-Package: *;version=${version}
-
