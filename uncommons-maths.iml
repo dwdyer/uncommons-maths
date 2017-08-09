@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/bnd/bnd-1.50.0.jar!/" />
+    <libelement value="file://lib/compiletime/cobertura/asm-3.0.jar" />
+    <libelement value="file://lib/compiletime/cobertura/asm-tree-3.0.jar" />
+    <libelement value="file://lib/compiletime/cobertura/cobertura.jar" />
+    <libelement value="file://lib/compiletime/cobertura/jakarta-oro-2.0.8.jar" />
+    <libelement value="file://lib/compiletime/cobertura/log4j-1.2.9.jar" />
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/maven/maven-ant-tasks-2.0.10.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/testng/reportng-1.1.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/testng/testng-5.13.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/testng/velocity-dep-1.4.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/compiletime/uncommons-antlib-0.3.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/runtime/jcommon-1.0.12.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/runtime/jfreechart-1.0.8.jar!/" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/core/src/java/main" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/core/src/java/test" expected_position="1" />
+      <src_folder value="file://$MODULE_DIR$/demo/src/java/main" expected_position="2" />
+      <src_folder value="file://$MODULE_DIR$/demo/src/java/test" expected_position="3" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/demo">
+      <sourceFolder url="file://$MODULE_DIR$/demo/src/java/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/demo/src/java/test" isTestSource="true" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="bnd-1.50.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/bnd/bnd-1.50.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="asm-3.0.jar">
+        <CLASSES>
+          <root url="file://lib/compiletime/cobertura/asm-3.0.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="asm-tree-3.0.jar">
+        <CLASSES>
+          <root url="file://lib/compiletime/cobertura/asm-tree-3.0.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="cobertura.jar">
+        <CLASSES>
+          <root url="file://lib/compiletime/cobertura/cobertura.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jakarta-oro-2.0.8.jar">
+        <CLASSES>
+          <root url="file://lib/compiletime/cobertura/jakarta-oro-2.0.8.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="log4j-1.2.9.jar">
+        <CLASSES>
+          <root url="file://lib/compiletime/cobertura/log4j-1.2.9.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="maven-ant-tasks-2.0.10.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/maven/maven-ant-tasks-2.0.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="reportng-1.1.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/testng/reportng-1.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="testng-5.13.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/testng/testng-5.13.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="velocity-dep-1.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/testng/velocity-dep-1.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="uncommons-antlib-0.3.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/compiletime/uncommons-antlib-0.3.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jcommon-1.0.12.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/runtime/jcommon-1.0.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jfreechart-1.0.8.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/runtime/jfreechart-1.0.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="inheritedJdk" />
+  </component>
+</module>
