@@ -1,0 +1,11 @@
+--- build.xml
++++ build.xml
+@@ -304,7 +480,7 @@
+                    mainclass="org.uncommons.maths.demo.RandomDemo" />
+   </target>
+ 
+-
++
+   <!-- Copy all necessary files to distribution directory. -->
+   <target name="dist"
+           depends="core, demo"
