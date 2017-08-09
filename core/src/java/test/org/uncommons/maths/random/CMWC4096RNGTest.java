@@ -31,7 +31,7 @@ import org.uncommons.maths.Maths;
  */
 public class CMWC4096RNGTest
 {
-    private final SeedGenerator seedGenerator = new RandomDotOrgSeedGenerator();
+    private final SeedGenerator seedGenerator = DefaultSeedGenerator.getInstance();
 
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
@@ -98,7 +98,7 @@ public class CMWC4096RNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
+    public void testNullSeed()
     {
         new CMWC4096RNG((byte[]) null);
     }
