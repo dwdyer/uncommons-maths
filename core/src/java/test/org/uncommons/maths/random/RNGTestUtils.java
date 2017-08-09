@@ -82,10 +82,6 @@ final class RNGTestUtils
                                           Random rng2,
                                           int iterations)
     {
-        if (!rng1.equals(rng2))
-        {
-            return false;
-        }
         for (int i = 0; i < iterations; i++)
         {
             if (rng1.nextInt() != rng2.nextInt())

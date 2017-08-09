@@ -18,6 +18,7 @@ package org.uncommons.maths.random;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.IOException;
 import org.testng.annotations.Test;
 
 /**
@@ -58,5 +59,24 @@ public class DiehardInputGeneratorTest
                 tempPipe.deleteOnExit();
             }
         }
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testTooManyArgs() throws Exception {
+        final String tempPipeName = System.getProperty("java.io.tmpdir") + "/diehard-input";
+        DiehardInputGenerator.main(new String[]{
+                "java.util.Random", tempPipeName, tempPipeName});
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testTooFewArgs() throws Exception {
+        DiehardInputGenerator.main(new String[]{"java.util.Random"});
+    }
+
+    @Test(expectedExceptions = IOException.class)
+    public void testNonExistentFile() throws Exception {
+        final String tempPipeName = System.getProperty("java.io.tmpdir")
+                + "/nonexistent-subfolder/nonexistent-file";
+        DiehardInputGenerator.main(new String[]{"java.util.Random", tempPipeName});
     }
 }
