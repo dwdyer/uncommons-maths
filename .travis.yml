@@ -1,0 +1,40 @@
+language: java
+dist: trusty
+group: edge
+sudo: true # TODO: Find out why we always time out in the container environment
+
+jdk:
+  - oraclejdk9
+  - oraclejdk8
+  - oraclejdk7
+  - openjdk8
+  - openjdk7
+  - openjdk6
+matrix:
+  allow_failures:
+    - jdk: oraclejdk9 # Still experimental on Travis
+    - jdk: oraclejdk7 # https://github.com/travis-ci/travis-ci/issues/7884
+    - jdk: openjdk6 # Unknown Travis issue
+env:
+  global:
+    - JAVA_OPTS="-XX:+AggressiveOpts -XX:+UseAES -XX:+UseAESIntrinsics"
+  matrix:
+    - ANT_TARGET="test"
+    - ANT_TARGET="diehard_aes_1"
+    - ANT_TARGET="diehard_aes_2"
+    - ANT_TARGET="diehard_automaton_1"
+    - ANT_TARGET="diehard_automaton_2"
+    - ANT_TARGET="diehard_cmwc_1"
+    - ANT_TARGET="diehard_cmwc_2"
+    - ANT_TARGET="diehard_mersenne_1"
+    - ANT_TARGET="diehard_mersenne_2"
+    - ANT_TARGET="diehard_xor_1"
+    - ANT_TARGET="diehard_xor_2"
+    - ANT_TARGET="diehard_java_1"
+    - ANT_TARGET="diehard_java_2"
+addons:
+  apt:
+    packages:
+      - dieharder
+script:
+  - travis_wait 40 ant "$ANT_TARGET"
