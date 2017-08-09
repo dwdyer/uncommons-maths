@@ -25,13 +25,11 @@ import org.uncommons.maths.random.GaussianGenerator;
  */
 class GaussianDistribution extends ProbabilityDistribution
 {
-    /** {@code Math.sqrt(2*Math.PI)}, with rounding error corrected */
-    private static final double SQRT_2PI = 2.5066282746310005;
     private final double mean;
     private final double standardDeviation;
 
 
-    GaussianDistribution(double mean, double standardDeviation)
+    public GaussianDistribution(double mean, double standardDeviation)
     {
         this.mean = mean;
         this.standardDeviation = standardDeviation;
@@ -66,7 +64,7 @@ class GaussianDistribution extends ProbabilityDistribution
      */
     private double getExpectedProbability(double x)
     {
-        double y = 1 / (standardDeviation * SQRT_2PI);
+        double y = 1 / (standardDeviation * Math.sqrt(Math.PI * 2));
         double z = -(Math.pow(x - mean, 2) / (2 * Math.pow(standardDeviation, 2)));
         return y * Math.exp(z);
     }
@@ -86,10 +84,10 @@ class GaussianDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Gaussian Distribution (\u03bc = " + mean + ", \u03c3 = " + standardDeviation + ')';
+        return "Gaussian Distribution (\u03bc = " + mean + ", \u03c3 = " + standardDeviation +")";
     }
 
-
+    
     public boolean isDiscrete()
     {
         return false;

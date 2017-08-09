@@ -30,7 +30,7 @@ class PoissonDistribution extends ProbabilityDistribution
 {
     private final double mean;
 
-    PoissonDistribution(double mean)
+    public PoissonDistribution(double mean)
     {
         this.mean = mean;
     }
@@ -89,7 +89,7 @@ class PoissonDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Poisson Distribution (\u03bb = " + mean + ')';
+        return "Poisson Distribution (\u03bb = " + mean + ")";
     }
 
 

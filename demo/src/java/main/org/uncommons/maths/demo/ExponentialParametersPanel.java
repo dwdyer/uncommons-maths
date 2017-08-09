@@ -28,10 +28,9 @@ import org.uncommons.swing.SpringUtilities;
  */
 class ExponentialParametersPanel extends ParametersPanel
 {
-    private static final long serialVersionUID = 4873052029434918480L;
     private final SpinnerNumberModel rateNumberModel = new SpinnerNumberModel(2.0d, 0.1d, 100.0d, 0.1d);
 
-    ExponentialParametersPanel()
+    public ExponentialParametersPanel()
     {
         JPanel wrapper = new JPanel(new SpringLayout());
         wrapper.add(new JLabel("Rate: "));

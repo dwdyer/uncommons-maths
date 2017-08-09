@@ -27,7 +27,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 import org.uncommons.swing.SwingBackgroundTask;
 
 /**
@@ -37,8 +36,6 @@ import org.uncommons.swing.SwingBackgroundTask;
  */
 public class RandomDemo extends JFrame
 {
-    private static final long serialVersionUID = 857793204632246264L;
-
     private final DistributionPanel distributionPanel = new DistributionPanel();
     private final RNGPanel rngPanel = new RNGPanel();
     private final GraphPanel graphPanel = new GraphPanel();
@@ -49,7 +46,7 @@ public class RandomDemo extends JFrame
         setLayout(new BorderLayout());
         add(createControls(), BorderLayout.WEST);
         add(graphPanel, BorderLayout.CENTER);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 500);
         setMinimumSize(new Dimension(500, 250));
         validate();
@@ -67,7 +64,7 @@ public class RandomDemo extends JFrame
         {
             public void actionPerformed(ActionEvent actionEvent)
             {
-              setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RandomDemo.this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 new SwingBackgroundTask<GraphData>()
                 {
                     private ProbabilityDistribution distribution;
@@ -93,7 +90,7 @@ public class RandomDemo extends JFrame
                                                  data.getExpectedMean(),
                                                  data.getExpectedStandardDeviation(),
                                                  distribution.isDiscrete());
-                      setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        RandomDemo.this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     }
                 }.execute();
             }
@@ -102,7 +99,7 @@ public class RandomDemo extends JFrame
         return controls;
     }
 
-
+    
     public static void main(String[] args)
     {
         SwingUtilities.invokeLater(new Runnable()
@@ -123,7 +120,7 @@ public class RandomDemo extends JFrame
         private final double expectedStandardDeviation;
 
 
-        GraphData(Map<Double, Double> observedValues,
+        public GraphData(Map<Double, Double> observedValues,
                          Map<Double, Double> expectedValues,
                          double expectedMean,
                          double expectedStandardDeviation)
