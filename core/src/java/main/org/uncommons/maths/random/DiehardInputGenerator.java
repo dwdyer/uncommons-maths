@@ -38,36 +38,22 @@ public final class DiehardInputGenerator
 
     /**
      * @param args The first argument is the class name of the RNG, the second
-     * is the file to use for output.
+     * is the file to use for output (should be a named pipe).
      * @throws Exception If there are problems setting up the RNG or writing to
      * the output file.
      */
+    @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) throws Exception
     {
         if (args.length != 2)
         {
-            System.out.println("Expected arguments:");
-            System.out.println("\t<Fully-qualified RNG class name> <Output file>");
-            System.exit(1);
+            System.err.println("Expected arguments:");
+            System.err.println("\t<Fully-qualified RNG class name> <Output file>");
+            throw new IllegalArgumentException("See above");
         }
         Class<? extends Random> rngClass = Class.forName(args[0]).asSubclass(Random.class);
         File outputFile = new File(args[1]);
-        generateOutputFile(rngClass.newInstance(), outputFile);
-    }
-
-
-    /**
-     * Populates a file with random numbers as long as it can be written to.
-     * Intended for use with a named pipe.
-     *
-     * @param rng The random number generator to use to generate the data.
-     * @param outputFile The file that the random data is written to.
-     * @throws IOException If there is a problem writing to the file.
-     */
-    @SuppressWarnings("InfiniteLoopStatement")
-    public static void generateOutputFile(Random rng,
-                                          File outputFile) throws IOException
-    {
+        Random rng = rngClass.newInstance();
         DataOutputStream dataOutput = new DataOutputStream(
                 new BufferedOutputStream(new FileOutputStream(outputFile)));
         try
