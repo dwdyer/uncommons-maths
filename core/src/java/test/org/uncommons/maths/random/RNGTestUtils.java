@@ -15,6 +15,8 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.lang.reflect.Constructor;
+import java.util.HashSet;
 import java.util.Random;
 import org.uncommons.maths.statistics.DataSet;
 
@@ -30,8 +32,45 @@ final class RNGTestUtils
     }
 
     /**
+     * Test that the given parameterless constructor, called twice, doesn't
+     * produce RNGs that compare as equal. Also checks for compliance with basic
+     * parts of the Object.equals() contract.
+     */
+    public static void doEqualsSanityChecks(Constructor<? extends Random> ctor) {
+        try
+        {
+            Random rng = ctor.newInstance();
+            Random rng2 = ctor.newInstance();
+            assert !(rng.equals(rng2));
+            assert rng.equals(rng) : "RNG doesn't compare equal to itself";
+            assert !(rng.equals(null)) : "RNG compares equal to null";
+            assert !(rng.equals(new Random())) : "RNG compares equal to new Random()";
+        }
+        catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Test that in a sample of 100 RNGs from the given parameterless
+     * constructor, there are at least 90 unique hash codes.
+     */
+    public static boolean testHashCodeDistribution(Constructor<? extends Random> ctor) {
+        try {
+            HashSet<Integer> uniqueHashCodes = new HashSet<Integer>();
+            for (int i=0; i<100; i++)
+            {
+                uniqueHashCodes.add(ctor.newInstance().hashCode());
+            }
+            return uniqueHashCodes.size() >= 90;
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Test to ensure that two distinct RNGs with the same seed return the
-     * same sequence of numbers.
+     * same sequence of numbers and compare as equal.
      * @param rng1 The first RNG.  Its output is compared to that of {@code rng2}.
      * @param rng2 The second RNG.  Its output is compared to that of {@code rng1}.
      * @param iterations The number of values to generate from each RNG and
