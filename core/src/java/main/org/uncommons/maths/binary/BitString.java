@@ -30,7 +30,10 @@ import java.util.Random;
  */
 public final class BitString implements Cloneable, Serializable
 {
+
     private static final int WORD_LENGTH = 32;
+    private static final int ALL_ONES = 0xFFFFFFFF;
+    private static final long serialVersionUID = 3372603729644519076L;
 
     private final int length;
 
@@ -53,7 +56,7 @@ public final class BitString implements Cloneable, Serializable
             throw new IllegalArgumentException("Length must be non-negative.");
         }
         this.length = length;
-        this.data = new int[(length + WORD_LENGTH - 1) / WORD_LENGTH];
+        data = new int[(length + WORD_LENGTH - 1) / WORD_LENGTH];
     }
 
 
@@ -82,7 +85,7 @@ public final class BitString implements Cloneable, Serializable
         if (bitsUsed < WORD_LENGTH)
         {
             int unusedBits = WORD_LENGTH - bitsUsed;
-            int mask = 0xFFFFFFFF >>> unusedBits;
+            int mask = ALL_ONES >>> unusedBits;
             data[data.length - 1] &= mask;
         }
     }
@@ -93,7 +96,7 @@ public final class BitString implements Cloneable, Serializable
      * in big-endian order.
      * @param value A character string of ones and zeros.
      */    
-    public BitString(String value)
+    public BitString(CharSequence value)
     {
         this(value.length());
         for (int i = 0; i < value.length(); i++)
@@ -234,6 +237,7 @@ public final class BitString implements Cloneable, Serializable
      * indices are big-endian, which means position 0 is the rightmost bit.
      * @param length The number of contiguous bits to swap.
      */
+    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     public void swapSubstring(BitString other, int start, int length)
     {
         assertValidIndex(start);
@@ -244,7 +248,7 @@ public final class BitString implements Cloneable, Serializable
         int partialWordSize = (WORD_LENGTH - start) % WORD_LENGTH;
         if (partialWordSize > 0)
         {
-            swapBits(other, word, 0xFFFFFFFF << (WORD_LENGTH - partialWordSize));
+            swapBits(other, word, ALL_ONES << (WORD_LENGTH - partialWordSize));
             ++word;
         }
 
@@ -260,7 +264,7 @@ public final class BitString implements Cloneable, Serializable
         remainingBits %= WORD_LENGTH;
         if (remainingBits > 0)
         {
-            swapBits(other, word, 0xFFFFFFFF >>> (WORD_LENGTH - remainingBits));
+            swapBits(other, word, ALL_ONES >>> (WORD_LENGTH - remainingBits));
         }
     }
 
@@ -270,6 +274,7 @@ public final class BitString implements Cloneable, Serializable
      * @param word The word index of the word that will be swapped between the two bit strings.
      * @param swapMask A mask that specifies which bits in the word will be swapped.
      */
+    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     private void swapBits(BitString other, int word, int swapMask)
     {
         int preserveMask = ~swapMask;
@@ -323,6 +328,7 @@ public final class BitString implements Cloneable, Serializable
      * @return True if the argument is a BitString instance and both bit
      * strings are the same length with identical bits set/unset.
      */
+    @SuppressWarnings("NonFinalFieldReferenceInEquals")
     @Override
     public boolean equals(Object o)
     {
@@ -344,6 +350,7 @@ public final class BitString implements Cloneable, Serializable
     /**
      * Over-ridden to be consistent with {@link #equals(Object)}.
      */
+    @SuppressWarnings("NonFinalFieldReferencedInHashCode")
     @Override
     public int hashCode()
     {

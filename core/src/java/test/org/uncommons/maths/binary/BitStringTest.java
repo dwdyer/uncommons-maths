@@ -105,7 +105,7 @@ public class BitStringTest
         bitString.setBit(8, true);
         String string = bitString.toString();
         // Testing with leading zero to make sure it isn't omitted.
-        assert string.equals("0110001000") : "Incorrect string representation: " + string;
+        assert "0110001000".equals(string) : "Incorrect string representation: " + string;
     }
 
 
@@ -295,9 +295,11 @@ public class BitStringTest
         BitString ones = new BitString("1111111111111111111111111111111111111111111111111111111111111111");
         BitString zeros = new BitString("0000000000000000000000000000000000000000000000000000000000000000");
         ones.swapSubstring(zeros, 0, 32);
-        assert ones.toString().equals("1111111111111111111111111111111100000000000000000000000000000000")
+        assert "1111111111111111111111111111111100000000000000000000000000000000"
+            .equals(ones.toString())
             : "Substring swap failed: " + ones;
-        assert zeros.toString().equals("0000000000000000000000000000000011111111111111111111111111111111")
+        assert "0000000000000000000000000000000011111111111111111111111111111111"
+            .equals(zeros.toString())
             : "Substring swap failed: " + zeros;
     }
 
@@ -309,8 +311,8 @@ public class BitStringTest
         BitString ones = new BitString("1111111111111111111111111111111111111111");
         BitString zeros = new BitString("0000000000000000000000000000000000000000");
         ones.swapSubstring(zeros, 2, 30);
-        assert ones.toString().equals("1111111100000000000000000000000000000011") : "Substring swap failed: " + ones;
-        assert zeros.toString().equals("0000000011111111111111111111111111111100") : "Substring swap failed: " + zeros;
+        assert "1111111100000000000000000000000000000011".equals(ones.toString()) : "Substring swap failed: " + ones;
+        assert "0000000011111111111111111111111111111100".equals(zeros.toString()) : "Substring swap failed: " + zeros;
     }
 
 
@@ -321,7 +323,7 @@ public class BitStringTest
         BitString ones = new BitString("1111111111");
         BitString zeros = new BitString("0000000000");
         ones.swapSubstring(zeros, 0, 3);
-        assert ones.toString().equals("1111111000") : "Substring swap failed: " + ones;
-        assert zeros.toString().equals("0000000111") : "Substring swap failed: " + zeros;
+        assert "1111111000".equals(ones.toString()) : "Substring swap failed: " + ones;
+        assert "0000000111".equals(zeros.toString()) : "Substring swap failed: " + zeros;
     }
 }

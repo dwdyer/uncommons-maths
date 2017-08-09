@@ -15,6 +15,7 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.util.Arrays;
 import java.util.Random;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -35,6 +36,7 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class JavaRNG extends Random implements RepeatableRNG
 {
+    private static final long serialVersionUID = -6526304552538799385L;
     private static final int SEED_SIZE_BYTES = 8;
 
     private final byte[] seed;
@@ -88,9 +90,22 @@ public class JavaRNG extends Random implements RepeatableRNG
 
     /**
      * {@inheritDoc}
-     */    
+     */
     public byte[] getSeed()
     {
         return seed.clone();
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        return other instanceof JavaRNG
+                && Arrays.equals(seed, ((JavaRNG) other).seed);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Arrays.hashCode(seed);
     }
 }

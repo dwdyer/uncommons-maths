@@ -51,12 +51,12 @@ public class DataSet
      * Creates an empty data set with the specified initial capacity.
      * @param capacity The initial capacity for the data set (this number
      * of values will be able to be added without needing to resize the
-     * internal data storage). 
+     * internal data storage).
      */
     public DataSet(int capacity)
     {
-        this.dataSet = new double[capacity];
-        this.dataSetSize = 0;
+        dataSet = new double[capacity];
+        dataSetSize = 0;
     }
 
 
@@ -67,7 +67,7 @@ public class DataSet
     public DataSet(double[] dataSet)
     {
         this.dataSet = dataSet.clone();
-        this.dataSetSize = dataSet.length;
+        dataSetSize = dataSet.length;
         for (double value : this.dataSet)
         {
             updateStatsWithNewValue(value);
@@ -164,14 +164,9 @@ public class DataSet
         System.arraycopy(dataSet, 0, dataCopy, 0, dataCopy.length);
         Arrays.sort(dataCopy);
         int midPoint = dataCopy.length / 2;
-        if (dataCopy.length % 2 != 0)
-        {
-            return dataCopy[midPoint];
-        }
-        else
-        {
-            return dataCopy[midPoint - 1] + (dataCopy[midPoint] - dataCopy[midPoint - 1]) / 2;
-        }
+        return dataCopy.length % 2 != 0
+                ? dataCopy[midPoint]
+                : dataCopy[midPoint - 1] + (dataCopy[midPoint] - dataCopy[midPoint - 1]) / 2;
     }
 
 
@@ -296,7 +291,7 @@ public class DataSet
      * @throws EmptyDataSetException If the data set is empty.
      */
     private double sumSquaredDiffs()
-    {        
+    {
         double mean = getArithmeticMean();
         double squaredDiffs = 0;
         for (int i = 0; i < getSize(); i++)

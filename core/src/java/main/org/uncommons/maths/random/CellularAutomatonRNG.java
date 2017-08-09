@@ -15,7 +15,11 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -33,9 +37,10 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class CellularAutomatonRNG extends Random implements RepeatableRNG
 {
+    private static final long serialVersionUID = 5959251752288589909L;
     private static final int SEED_SIZE_BYTES = 4;
     private static final int AUTOMATON_LENGTH = 2056;
-    
+
     private static final int[] RNG_RULE =
     {
         100,  75,  16,   3, 229,  51, 197, 118,  24,  62, 198,  11, 141, 152, 241, 188,
@@ -72,22 +77,35 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         240, 160, 142, 119,  73, 103, 166,  33, 148,   9, 111, 136, 168, 150,  82
     };
 
-
+    private transient boolean superConstructorFinished = false;
     private final byte[] seed;
     private final int[] cells = new int[AUTOMATON_LENGTH];
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private final ReentrantLock lock = new ReentrantLock();
+    private transient Lock lock;
 
     private int currentCellIndex = AUTOMATON_LENGTH - 1;
 
-    
+
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
      */
     public CellularAutomatonRNG()
     {
         this(DefaultSeedGenerator.getInstance().generateSeed(SEED_SIZE_BYTES));
+    }
+
+    protected void initTransientFields()
+    {
+        lock = new ReentrantLock();
+        superConstructorFinished = true;
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException,
+                                                         ClassNotFoundException
+    {
+        in.defaultReadObject();
+        initTransientFields();
     }
 
 
@@ -102,19 +120,8 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         this(seedGenerator.generateSeed(SEED_SIZE_BYTES));
     }
 
-
-    /**
-     * Creates an RNG and seeds it with the specified seed data.
-     * @param seed The seed data used to initialise the RNG.
-     */
-    public CellularAutomatonRNG(byte[] seed)
+    protected void copySeedToCellsAndPreEvolve()
     {
-        if (seed == null || seed.length != SEED_SIZE_BYTES)
-        {
-            throw new IllegalArgumentException("Cellular Automaton RNG requires a 32-bit (4-byte) seed.");
-        }
-        this.seed = seed.clone();
-
         // Set initial cell states using seed.
         cells[AUTOMATON_LENGTH - 1] = seed[0] + 128;
         cells[AUTOMATON_LENGTH - 2] = seed[1] + 128;
@@ -138,6 +145,21 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
         }
     }
 
+    /**
+     * Creates an RNG and seeds it with the specified seed data.
+     * @param seed The seed data used to initialise the RNG.
+     */
+    public CellularAutomatonRNG(byte[] seed)
+    {
+        if (seed == null || seed.length != SEED_SIZE_BYTES)
+        {
+            throw new IllegalArgumentException("Cellular Automaton RNG requires a 32-bit (4-byte) seed.");
+        }
+        this.seed = seed.clone();
+        initTransientFields();
+        copySeedToCellsAndPreEvolve();
+    }
+
 
     /**
      * {@inheritDoc}
@@ -146,23 +168,23 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
     public int next(int bits)
     {
         int result;
+        lock.lock();
         try
         {
-            lock.lock();
             // Set cell addresses using address of current cell.
             int cellC = currentCellIndex - 1;
             int cellB = cellC - 1;
-            int cellA = cellB - 1;
 
             // Update cell states using rule table.
             cells[currentCellIndex] = RNG_RULE[cells[cellC] + cells[currentCellIndex]];
             cells[cellC] = RNG_RULE[cells[cellB] + cells[cellC]];
+            int cellA = cellB - 1;
             cells[cellB] = RNG_RULE[cells[cellA] + cells[cellB]];
 
             // Update the state of cellA and shift current cell to the left by 4 bytes.
             if (cellA == 0)
             {
-                cells[cellA] = RNG_RULE[cells[cellA]];
+                cells[0] = RNG_RULE[cells[0]];
                 currentCellIndex = AUTOMATON_LENGTH - 1;
             }
             else
@@ -182,12 +204,44 @@ public class CellularAutomatonRNG extends Random implements RepeatableRNG
 
     /**
      * {@inheritDoc}
-     */    
+     */
     public byte[] getSeed()
     {
-        return seed;
+        return seed.clone();
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        return o instanceof CellularAutomatonRNG
+                && Arrays.equals(seed, ((CellularAutomatonRNG)o).seed);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Arrays.hashCode(seed);
+    }
+
+    @Override
+    public void setSeed(long seed)
+    {
+        if (!superConstructorFinished) {
+            // setSeed can't work until seed array allocated
+            return;
+        }
+        lock.lock();
+        try {
+            this.seed[0] = (byte)(seed);
+            this.seed[1] = (byte)(seed >> 8);
+            this.seed[2] = (byte)(seed >> 16);
+            this.seed[3] = (byte)(seed >> 24);
+            currentCellIndex = AUTOMATON_LENGTH - 1;
+            copySeedToCellsAndPreEvolve();
+        } finally {
+            lock.unlock();
+        }
+    }
 
     private static int convertCellsToInt(int[] cells, int offset)
     {

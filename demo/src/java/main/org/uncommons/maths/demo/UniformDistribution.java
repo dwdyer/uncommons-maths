@@ -25,10 +25,12 @@ import org.uncommons.maths.random.DiscreteUniformGenerator;
  */
 class UniformDistribution extends ProbabilityDistribution
 {
+    public static final double SQRT_12 = 3.4641016151377546;
+
     private final int min;
     private final int max;
 
-    public UniformDistribution(int min, int max)
+    UniformDistribution(int min, int max)
     {
         this.min = min;
         this.max = max;
@@ -40,7 +42,7 @@ class UniformDistribution extends ProbabilityDistribution
         Map<Double, Double> values = new HashMap<Double, Double>();
         for (int i = min; i <= max; i++)
         {
-            values.put((double) i, 1d / ((max - min) + 1));
+            values.put((double) i, 1.0 / ((max - min) + 1));
         }
         return values;
     }
@@ -54,24 +56,24 @@ class UniformDistribution extends ProbabilityDistribution
 
     public double getExpectedMean()
     {
-        return (max - min) / 2 + min;
+        return (max - min) / 2.0 + min;
     }
 
 
     public double getExpectedStandardDeviation()
     {
-        return (max - min) / Math.sqrt(12);
+        return (max - min) / SQRT_12;
     }
 
 
     public String getDescription()
     {
-        return "Uniform Distribution (Range = " + min + "..." + max + ")";
+        return "Uniform Distribution (Range = " + min + "..." + max + ')';
     }
 
 
     public boolean isDiscrete()
     {
         return true;
-    }    
+    }
 }
