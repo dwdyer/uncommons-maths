@@ -28,12 +28,10 @@ import org.uncommons.swing.SpringUtilities;
  */
 class UniformParametersPanel extends ParametersPanel
 {
-    private static final long serialVersionUID = 3332535142883292218L;
-
     private final SpinnerNumberModel minNumberModel = new SpinnerNumberModel(1, 0, 100, 1);
     private final SpinnerNumberModel maxNumberModel = new SpinnerNumberModel(10, 1, 100, 1);
 
-    UniformParametersPanel()
+    public UniformParametersPanel()
     {
         JPanel wrapper = new JPanel(new SpringLayout());
         wrapper.add(new JLabel("Minimum: "));

@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ByteArrayInputStream;
-import java.util.Random;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import org.uncommons.maths.Maths;
@@ -97,7 +96,7 @@ public class CellularAutomatonRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed()
+    public void testNullSeed() throws GeneralSecurityException
     {
         new CellularAutomatonRNG((byte[]) null);
     }
@@ -119,30 +118,5 @@ public class CellularAutomatonRNGTest
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
-    }
-
-    @Test
-    public void testSetSeed()
-    {
-        long seed = new Random().nextLong();
-        CellularAutomatonRNG rng = new CellularAutomatonRNG();
-        CellularAutomatonRNG rng2 = new CellularAutomatonRNG();
-        rng.nextLong(); // ensure they won't both be in initial state before reseeding
-        rng.setSeed(seed);
-        rng2.setSeed(seed);
-        assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after reseeding with same seed";
-    }
-
-    @Test
-    public void testEquals() throws ReflectiveOperationException
-    {
-        RNGTestUtils.doEqualsSanityChecks(CellularAutomatonRNG.class.getConstructor());
-    }
-
-    @Test
-    public void testHashCode() throws Exception
-    {
-        assert RNGTestUtils.testHashCodeDistribution(CellularAutomatonRNG.class.getConstructor())
-                : "Too many hashCode collisions";
     }
 }

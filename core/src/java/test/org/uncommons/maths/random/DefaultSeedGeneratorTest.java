@@ -59,7 +59,7 @@ public class DefaultSeedGeneratorTest
         @Override
         public void checkRead(String file)
         {
-            if ("/dev/random".equals(file))
+            if (file.equals("/dev/random"))
             {
                 throw new SecurityException("Test not permitted to access /dev/random");
             }

@@ -98,7 +98,7 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
      * is greater than that permitted by random.org for a single request.
      * @throws IOException If there is a problem downloading the random bits.
      */
-    private static synchronized void refreshCache(int requiredBytes) throws IOException
+    private void refreshCache(int requiredBytes) throws IOException
     {
         int numberOfBytes = Math.max(requiredBytes, cache.length);
         numberOfBytes = Math.min(numberOfBytes, MAX_REQUEST_SIZE);
@@ -117,8 +117,7 @@ public class RandomDotOrgSeedGenerator implements SeedGenerator
             int index = -1;
             for (String line = reader.readLine(); line != null; line = reader.readLine())
             {
-                ++index;
-                cache[index] = (byte) Integer.parseInt(line, 16);
+                cache[++index] = (byte) Integer.parseInt(line, 16);
             }
             if (index < cache.length - 1)
             {

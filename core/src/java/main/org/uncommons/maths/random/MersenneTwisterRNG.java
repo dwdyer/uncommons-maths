@@ -15,11 +15,7 @@
 // ============================================================================
 package org.uncommons.maths.random;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import org.uncommons.maths.binary.BinaryUtils;
 
@@ -51,8 +47,6 @@ import org.uncommons.maths.binary.BinaryUtils;
  */
 public class MersenneTwisterRNG extends Random implements RepeatableRNG
 {
-    private static final long serialVersionUID = -4856906677508460512L;
-
     // The actual seed size isn't that important, but it should be a multiple of 4.
     private static final int SEED_SIZE_BYTES = 16;
 
@@ -72,22 +66,11 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
     private final byte[] seed;
 
     // Lock to prevent concurrent modification of the RNG's internal state.
-    private transient Lock lock;
+    private final ReentrantLock lock = new ReentrantLock();
 
     private final int[] mt = new int[N]; // State vector.
     private int mtIndex = 0; // Index into state vector.
 
-    private void readObject(ObjectInputStream in) throws IOException,
-                                                         ClassNotFoundException
-    {
-        in.defaultReadObject();
-        initTransientFields();
-    }
-
-    protected void initTransientFields()
-    {
-        lock = new ReentrantLock();
-    }
 
     /**
      * Creates a new RNG and seeds it using the default seeding strategy.
@@ -163,7 +146,6 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
             }
         }
         mt[0] = UPPER_MASK; // Most significant bit is 1 - guarantees non-zero initial array.
-        initTransientFields();
     }
 
 
@@ -205,8 +187,7 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
                 mtIndex = 0;
             }
 
-            y = mt[mtIndex];
-            mtIndex++;
+            y = mt[mtIndex++];
         }
         finally
         {
@@ -219,18 +200,5 @@ public class MersenneTwisterRNG extends Random implements RepeatableRNG
         y ^= (y >>> 18);
 
         return y >>> (32 - bits);
-    }
-
-    @Override
-    public boolean equals(Object other)
-    {
-        return other instanceof MersenneTwisterRNG
-                && Arrays.equals(seed, ((MersenneTwisterRNG) other).seed);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Arrays.hashCode(seed);
     }
 }

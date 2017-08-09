@@ -16,15 +16,10 @@
 package org.uncommons.maths.random;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import org.testng.annotations.Test;
 
 /**
  * Unit test for the {@link DiehardInputGenerator} class.
- *
- * On Windows, this test requires Cygwin.
- *
  * @author Daniel Dyer
  */
 public class DiehardInputGeneratorTest
@@ -32,30 +27,20 @@ public class DiehardInputGeneratorTest
     /**
      * Make sure that the input file is created and that it is the correct size.
      */
-    @Test(timeOut = 60000)
+    @Test
     public void testFileCreation() throws Exception
     {
-        final String tempPipeName = System.getProperty("java.io.tmpdir") + "/diehard-input";
-        File tempPipe = new File(tempPipeName);
-        assert !tempPipe.exists() || tempPipe.delete() :
-                "Temporary pipe already exists and can't be deleted! " +
-                "(This test cannot run multiple times in parallel.)";
+        File tempFile = File.createTempFile("diehard-input", null);
         try
         {
-            Process mkfifo = Runtime.getRuntime()
-                    .exec(new String[]{"/usr/bin/mkfifo", tempPipeName});
-            mkfifo.waitFor();
-            Process consumer = Runtime.getRuntime()
-                    .exec(new String[]{"/usr/bin/xxd", "-l", "1000", tempPipeName});
-            DiehardInputGenerator.main(new String[]{"java.util.Random", tempPipeName});
-            consumer.waitFor();
-            assert consumer.exitValue() == 0 : "Error consuming the random number stream";
+            DiehardInputGenerator.main(new String[]{"java.util.Random", tempFile.getAbsolutePath()});
+            assert tempFile.length() == 12000000 : "Generated file should be 12Mb, is " + tempFile.length() + " bytes.";
         }
         finally
         {
-            if (!tempPipe.delete())
+            if (!tempFile.delete())
             {
-                tempPipe.deleteOnExit();
+                tempFile.deleteOnExit();
             }
         }
     }

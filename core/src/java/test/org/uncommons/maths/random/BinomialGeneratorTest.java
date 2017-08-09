@@ -112,19 +112,19 @@ public class BinomialGeneratorTest
                                    int n,
                                    double p)
     {
+        final double expectedMean = n * p;
+        final double expectedStandardDeviation = Math.sqrt(n * p * (1 - p));
 
         final int iterations = 10000;
         DataSet data = new DataSet(iterations);
         for (int i = 0; i < iterations; i++)
         {
             int value = generator.nextValue();
-            assert value >= 0 && value <= n : "Value out-of-range: " + value;
+            assert value >= 0 && value <= n : "Value out-of-range: " + value; 
             data.addValue(value);
         }
-        final double expectedMean = n * p;
         assert Maths.approxEquals(data.getArithmeticMean(), expectedMean, 0.02d)
                 : "Observed mean outside acceptable range: " + data.getArithmeticMean();
-        final double expectedStandardDeviation = Math.sqrt(n * p * (1 - p));
         assert Maths.approxEquals(data.getSampleStandardDeviation(), expectedStandardDeviation, 0.02)
                 : "Observed standard deviation outside acceptable range: " + data.getSampleStandardDeviation();
     }

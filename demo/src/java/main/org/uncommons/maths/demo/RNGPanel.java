@@ -42,9 +42,7 @@ import org.uncommons.swing.SpringUtilities;
  */
 class RNGPanel extends JPanel
 {
-    private static final long serialVersionUID = 6371975789624655739L;
-
-    private final JComboBox<String> rngCombo = new JComboBox<String>();
+    private final JComboBox rngCombo = new JComboBox();
     private final SpinnerNumberModel iterationsNumberModel = new SpinnerNumberModel(10000, 10, 1000000, 100);
 
     private final SortedMap<String, Random> rngs = new TreeMap<String, Random>();
@@ -66,7 +64,7 @@ class RNGPanel extends JPanel
     }
 
 
-    RNGPanel()
+    public RNGPanel()
     {
         super(new SpringLayout());
         for (String name : rngs.keySet())
@@ -84,7 +82,7 @@ class RNGPanel extends JPanel
 
     public Random getRNG()
     {
-        return rngs.get(rngCombo.getSelectedItem());
+        return rngs.get((String) rngCombo.getSelectedItem());
     }
 
 
