@@ -24,7 +24,7 @@ import org.uncommons.maths.Maths;
  */
 public class DataSetTest
 {
-    private static final double[] DATA_SET = new double[]{1, 2, 3, 4, 5};
+    private static final double[] DATA_SET = {1, 2, 3, 4, 5};
 
     /**
      * Make sure that the data set's capacity grows correctly as

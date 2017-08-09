@@ -32,7 +32,7 @@ class BinomialDistribution extends ProbabilityDistribution
     private final double p;
 
 
-    public BinomialDistribution(int n, double p)
+    BinomialDistribution(int n, double p)
     {
         this.n = n;
         this.p = p;
@@ -97,7 +97,7 @@ class BinomialDistribution extends ProbabilityDistribution
 
     public String getDescription()
     {
-        return "Binomial Distribution (n = " + n + ", p = " + p + ")";
+        return "Binomial Distribution (n = " + n + ", p = " + p + ')';
     }
 
 

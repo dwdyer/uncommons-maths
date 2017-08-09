@@ -96,7 +96,7 @@ public class MersenneTwisterRNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
+    public void testNullSeed()
     {
         new MersenneTwisterRNG((byte[]) null);
     }
@@ -118,5 +118,18 @@ public class MersenneTwisterRNGTest
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
+    }
+
+    @Test
+    public void testEquals() throws ReflectiveOperationException
+    {
+        RNGTestUtils.doEqualsSanityChecks(MersenneTwisterRNG.class.getConstructor());
+    }
+
+    @Test
+    public void testHashCode() throws Exception
+    {
+        assert RNGTestUtils.testHashCodeDistribution(MersenneTwisterRNG.class.getConstructor())
+                : "Too many hashCode collisions";
     }
 }

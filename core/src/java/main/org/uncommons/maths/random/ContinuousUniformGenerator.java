@@ -35,7 +35,7 @@ public class ContinuousUniformGenerator implements NumberGenerator<Double>
     {
         this.rng = rng;
         this.minimumValue = minimumValue;
-        this.range = maximumValue - minimumValue;
+        range = maximumValue - minimumValue;
     }
 
 

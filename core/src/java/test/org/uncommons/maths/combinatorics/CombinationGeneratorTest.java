@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
  */
 public class CombinationGeneratorTest
 {
-    private final String[] elements = new String[]{"1", "2", "3"};
+    private final String[] elements = {"1", "2", "3"};
 
     /**
      * This is the main test case and ensures that the combination generator
@@ -193,7 +193,7 @@ public class CombinationGeneratorTest
     @Test
     public void testOrdering()
     {
-        Integer[] elements = new Integer[]{1, 2, 3, 4, 5, 6};
+        Integer[] elements = {1, 2, 3, 4, 5, 6};
         CombinationGenerator<Integer> generator = new CombinationGenerator<Integer>(elements, 4);
         for (List<Integer> combination : generator)
         {

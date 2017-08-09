@@ -137,7 +137,7 @@ public class RationalTest
     public void testToStringProperFraction()
     {
         String string = new Rational(4, 5).toString();
-        assert string.equals("4/5") : "String value should be \"4/5\", is \"" + string + "\"";
+        assert "4/5".equals(string) : "String value should be \"4/5\", is \"" + string + "\"";
     }
 
 
@@ -145,7 +145,7 @@ public class RationalTest
     public void testToStringTopHeavyFraction()
     {
         String string = new Rational(3, 2).toString();
-        assert string.equals("3/2") : "String value should be \"3/2\", is \"" + string + "\"";
+        assert "3/2".equals(string) : "String value should be \"3/2\", is \"" + string + "\"";
     }    
 
 
@@ -153,7 +153,7 @@ public class RationalTest
     public void testToStringInteger()
     {
         String string = new Rational(8, 2).toString();
-        assert string.equals("4") : "String value should be \"4\", is \"" + string + "\"";
+        assert "4".equals(string) : "String value should be \"4\", is \"" + string + "\"";
     }
 
 

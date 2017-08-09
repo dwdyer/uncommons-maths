@@ -31,7 +31,7 @@ import org.uncommons.maths.Maths;
  */
 public class CMWC4096RNGTest
 {
-    private final SeedGenerator seedGenerator = new RandomDotOrgSeedGenerator();
+    private final SeedGenerator seedGenerator = DefaultSeedGenerator.getInstance();
 
     /**
      * Test to ensure that two distinct RNGs with the same seed return the
@@ -98,7 +98,7 @@ public class CMWC4096RNGTest
      * RNG must not accept a null seed otherwise it will not be properly initialised.
      */
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testNullSeed() throws GeneralSecurityException
+    public void testNullSeed()
     {
         new CMWC4096RNG((byte[]) null);
     }
@@ -120,5 +120,18 @@ public class CMWC4096RNGTest
 
         // Both RNGs should generate the same sequence.
         assert RNGTestUtils.testEquivalence(rng, rng2, 20) : "Output mismatch after serialisation.";
+    }
+
+    @Test
+    public void testEquals() throws ReflectiveOperationException
+    {
+        RNGTestUtils.doEqualsSanityChecks(CMWC4096RNG.class.getConstructor());
+    }
+
+    @Test
+    public void testHashCode() throws Exception
+    {
+        assert RNGTestUtils.testHashCodeDistribution(CMWC4096RNG.class.getConstructor())
+                : "Too many hashCode collisions";
     }
 }

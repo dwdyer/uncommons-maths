@@ -1,10 +1,31 @@
+<<<<<<< HEAD
 Changes in version 1.2.4
 ------------------------
 
-* Converted AES key implementation to implement javax.crypto.SecretKey so that
-  AESCounterRNG works on Android.
+* CellularAutomatonRNG now implements setSeed.
 
+AESCounterRNG improvements:
 
+* Now accepts 320-bit and 384-bit seeds when AES-192 and AES-256
+  respectively are available, and 256-bit seeds even when they're not.
+
+* Improved performance by merging some calls and arrays.
+
+* Fixed serialisation.
+
+* setSeed is now implemented. The input will be appended to the existing seed;
+  if the seed is already at maximum length, it will be combined with the input
+  using a SHA256 digest. Doesn't work during construction or deserialization.
+
+Diehard testing support:
+
+* Now requires that dieharder be installed as /usr/bin/dieharder, but can now
+  run on any Unix-like system except MinGW.
+
+* Output generation for testing should now be faster on 64-bit JVMs.
+
+=======
+>>>>>>> parent of b7ba13a... Modification to AES key implementation so that AESCounterRNG works on Android.
 Changes in version 1.2.3
 ------------------------
 
