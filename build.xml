@@ -496,14 +496,14 @@
           depends="core">
     <delete dir="${docs.dir}/diehard" />
     <mkdir dir="${docs.dir}/diehard" />
-    <parallel timeout="3600000">
+    <sequential>
       <antcall target="diehard_aes" />
       <antcall target="diehard_automaton" />
       <antcall target="diehard_cmwc" />
       <antcall target="diehard_mersenne" />
       <antcall target="diehard_xor" />
       <antcall target="diehard_java" />
-    </parallel>
+    </sequential>
   </target>
 
   <!-- Generates API documentation for all modules. -->
