@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Uncommons Maths - Changelog</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="author" content="Daniel Dyer" />
+    <link href="//uncommons.org/uncommons.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://www.uncommons.org/amazon.js"></script>
+  </head>
+  <body class="yui-skin-sam">
+    <div id="container">
+      <div id="title">
+        <h1>Uncommons Maths</h1>
+        <h2>Random number generators, probability distributions, combinatorics and statistics for Java</h2>
+      </div>
+      <div id="ribbon">
+        Current Stable Version: <span class="version">1.2.3</span>
+        <a href="https://github.com/dwdyer/uncommons-maths/downloads">Download</a>
+        <a href="api/index.html">API Docs</a>
+        <a href="https://github.com/dwdyer/uncommons-maths/issues">Bugs</a>
+        <a href="https://github.com/dwdyer/uncommons-maths">Source Code</a>
+        <a href="changelog.html">Changelog</a>
+      </div>
+
+      <h2>Changelog</h2>
+      <pre>
+Changes in version 1.2.3
+------------------------
+
+* Fixed bug in convertBytesToLong method in the BinaryUtils class.
+
+* Added OSGi bundle metadata (contributed by Dave LeBlanc).
+
+* Updated documentation to explain why setSeed does nothing for any of the
+  RNGs.
+
+
+Changes in version 1.2.2
+------------------------
+
+* Fixed serialisation of MersenneTwisterRNG and CellularAutomatonRNG.
+
+* Made XORShiftRNG and CMWC4096RNG thread-safe.
+
+* Added source JAR to distribution.
+
+
+Changes in version 1.2.1
+------------------------
+
+* Converted internal state of XORShiftRNG from an array to five separate
+  fields.  This results in improved performance.  Optimisation suggested by Jos
+  Hirth.
+
+* Optimised the Probability class so that it doesn't make an RNG call when the
+  probability is 1.
+
+* Added swapSubstring method to enable efficient exchange of data between two
+  BitStrings.
+
+
+Changes in verison 1.2
+----------------------
+
+* Added two new fast PRNGs (CMWC and XOR).  CMWC provides a very long period
+  and the XOR RNG is twice as fast as the Mersenne Twister.  See
+  http://school.anhb.uwa.edu.au/personalpages/kwessen/shared/Marsaglia03.html
+  for descriptions.
+
+* Fixed RandomDotOrgSeedGenerator so that it can generate seeds > 1kb in size.
+
+* Changed RandomDotOrgSeedGenerator so that it uses HTTPS for communicating
+  with the website (ISSUE#9).
+
+* Introduced the Probability class, a new numeric type.  This immutatble value
+  type encapsulates a probability value between zero and one.  The class
+  enforces the 0..1 bounds and provides convenient methods for working with
+  probabilities.
+
+* Added Rational type to enable arithmetic on rational numbers without loss of
+  precision.
+
+* Added restrictRange methods to Maths class.  These adjust a given value so
+  that it falls between specified minimum and maximum values.
+
+* Made caching of BigInteger factorials thread-safe.
+
+
+Changes in version 1.1
+----------------------
+
+* PermutationGenerator and CombinationGenerator now implement
+  java.lang.Iterable (ISSUE#1).
+
+* Moved PermutationGenerator and CombinationGenerator into new combinatorics
+  package.
+
+* Moved NumberGenerator and its implementations into new number package.
+
+* Added demo program for different probability distributions (ISSUE#2).
+
+* Added method to the DataSet class for calculating the harmonic mean.
+
+* RNGs no longer log any information to stdout (ISSUE#7) by default.
+  The DefaultSeedGenerator class will log the seeds that it generates
+  only if the org.uncommons.maths.random.debug System property is set to true.
+
+* Relaxed restriction on the maximum size of the element set used by
+  CombinationGenerator.  The maximum was 20 but bigger sets are now permitted
+  as long as the total number of combinations is no more than 2^63 (ISSUE#8).
+
+* Added a cache for BigInteger factorial values.  This avoids expensive
+  recalculation in code that repeatedly computes factorials.
+
+
+Changes in version 1.0.2
+------------------------
+
+* Added generator for exponential distribution.
+
+* Fixed possibility of out-of-range values in continuous uniform generator.
+
+* Modified AESCounterRNG to allow seed size (AES key size) to be specified.
+  Defaults to 128-bits.  192-bits and 256-bits are supported but they require
+  the unlimited strength cryptography policy files (available from Sun) to be
+  installed on the local machine.
+
+
+Changes in version 1.0.1
+------------------------
+
+* Added minimum, maximum and median methods to DataSet class.
+
+* Fixed logic around zero-length combinations and permutations.
+
+* Improved unit test coverage.
+      </pre>
+
+      <div id="footer">
+        &copy; 2006 - 2012 <a href="http://www.dandyer.co.uk">Daniel W. Dyer</a>
+      </div>
+    </div>
+  </body>
+</html>

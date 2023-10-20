@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://maths.uncommons.org/demo">
+  <information>
+    <title>Uncommons Maths - Random Numbers Demo</title>
+    <vendor>uncommons.org</vendor>
+  </information>
+  <resources>
+    <j2se version="1.5+" />
+    <jar href="uncommons-maths-demo-1.2.3.jar" main="true"/>
+    <jar href="uncommons-maths-1.2.3.jar"/>
+    <jar href="jfreechart-1.0.8.jar"/>
+    <jar href="jcommon-1.0.12.jar"/>
+  </resources>
+  <application-desc />
+  <property name="java.awt.Window.locationByPlatform" value="true" />
+</jnlp>
